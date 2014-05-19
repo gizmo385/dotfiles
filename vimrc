@@ -45,7 +45,10 @@ Bundle 'honza/vim-snippets'
 "Snips settings
 let g:snips_email='cachapline8@gmail.com'
 let g:snips_github='gizmo385'
-let g:snips_authro='Christopher'
+let g:snips_author='Christopher'
+
+" Multiple cursors
+Bundle 'terryma/vim-multiple-cursors'
 
 "Ctlr-P Stuff
 Bundle 'kien/ctrlp.vim'
@@ -143,6 +146,13 @@ au FocusLost * :wa    " save on losing focus
 
 " ,W strips trailing whitespace
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+" Leader command to edit vimrc
+" Open in a separate buffer
+"nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC <CR>
+
+"Open in the same buffer
+nnoremap <leader>ev :e $MYVIMRC <CR>
 
 " jj for escape
 inoremap jj <ESC>
