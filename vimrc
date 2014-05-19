@@ -43,7 +43,7 @@ Bundle 'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
 
 "Snips settings
-let g:snips_email='cachapline8@gmail.com'
+let g:snips_email='email@email.com'
 let g:snips_github='gizmo385'
 let g:snips_author='Christopher'
 
