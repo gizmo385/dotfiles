@@ -10,9 +10,11 @@
 pushd ~
 
 # Clone the repo
-git clone https://github.com/gizmo385/dotfiles.git
+echo "Cloning dotfiles..."
+git clone --quiet --progress https://github.com/gizmo385/dotfiles.git
 
 # Copy everything from the repo to the directory
+echo "Replacing old dotfiles"
 mv dotfiles/bashrc ./.bashrc
 mv dotfiles/vimrc ./.vimrc
 mv dotfiles/bash_aliases ./.bash_aliases
@@ -21,9 +23,10 @@ mv dotfiles/update_dotfiles.sh .
 mv dotfiles/clean_files.py .
 
 # Remove the cloned repo
+echo "Removing cloned repo..."
 rm -rf dotfiles
 
-# Resource the bashrc
+# Re-source the bashrc
 source .bashrc
 
 # Go back to whatever directory I was in
