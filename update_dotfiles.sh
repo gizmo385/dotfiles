@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# This bash script will clone down the dotfiles from the github repo and copy
+# them into your home directory.
+#
+# Execute with "bash update_dotfiles.sh" or with the "dotfiles" alias defined in
+# the bash_aliases file.
+
 # Move the home directory
 pushd ~
 
