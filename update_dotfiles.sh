@@ -11,7 +11,7 @@ pushd ~
 
 # Clone the repo
 echo "Cloning dotfiles..."
-git clone --quiet --progress https://github.com/gizmo385/dotfiles.git
+git clone --quiet https://github.com/gizmo385/dotfiles.git
 
 # Copy everything from the repo to the directory
 echo "Replacing old dotfiles"
