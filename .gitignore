@@ -1,0 +1,3 @@
+update_remove_dotfiles.sh
+*.sw*
+*.un~
