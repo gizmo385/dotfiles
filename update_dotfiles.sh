@@ -11,6 +11,7 @@ mv dotfiles/bashrc ./.bashrc
 mv dotfiles/vimrc ./.vimrc
 mv dotfiles/bash_aliases ./.bash_aliases
 mv dotfiles/bash_profile ./.bash_profile
+mv dotfiles/update_dotfiles.sh .
 mv dotfiles/clean_files.py .
 
 # Remove the cloned repo
