@@ -29,3 +29,7 @@ alias clean='python3 ~/clean_files.py "$PWD"'
 # Aliases for easily creating virtualenvs for Python
 alias py3vm='mkvirtualenv --python=/usr/bin/python3.3'
 alias py2vm='mkvirtualenv --python=/usr/bin/python2.7'
+
+# Application aliases
+alias sql='sqlite3'
+alias dotfiles='sh ~/update_dotfiles.sh'
