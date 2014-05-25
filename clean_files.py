@@ -2,6 +2,7 @@ import os.path, os
 import re
 import sys
 import shlex
+from math import fabs
 
 # Get the system arguments
 args = sys.argv
@@ -21,6 +22,6 @@ for file in files:
         os.remove(file)
 
 message = "Removed " + str(removal_count) + " "
-message += "files." if removal_count >= 2 else "file."
+message += "files." if fabs(removal_count) >= 2 else "file."
 
 print( message )
