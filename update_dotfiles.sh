@@ -27,7 +27,7 @@ echo "Removing cloned repo..."
 rm -rf dotfiles
 
 # Re-source the bashrc
-source .bashrc
+source ~/.bashrc
 
 # Go back to whatever directory I was in
 popd
