@@ -38,3 +38,4 @@ alias py2vm='mkvirtualenv --python=/usr/bin/python2.7'
 # Application aliases
 alias sql='sqlite3'
 alias dotfiles='bash ~/update_dotfiles.sh; alert;'
+alias eclipse='(sudo ~/home/christopher/eclipse/eclipse &)'
