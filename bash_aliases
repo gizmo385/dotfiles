@@ -22,6 +22,9 @@ alias lec='ssh cachapline8@lectura.cs.arizona.edu'
 # Make cpr copy with the recursive flag
 alias cpr='cp -r'
 
+# Directory tree
+alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+
 # Map cmd so that it opens the terminal
 alias cmd='gnome-terminal'
 
@@ -37,4 +40,3 @@ alias py2vm='mkvirtualenv --python=/usr/bin/python2.7'
 
 # Application aliases
 alias sql='sqlite3'
-alias dotfiles='bash ~/update_dotfiles.sh; alert;'
