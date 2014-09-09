@@ -40,3 +40,5 @@ alias py2vm='mkvirtualenv --python=/usr/bin/python2.7'
 
 # Application aliases
 alias sql='sqlite3'
+alias groot='cd "$(git rev-parse --show-toplevel)"'
+alias sgradle='gradle --build-file $(find $(git rev-parse --show-toplevel) -name "build.gradle") $1'

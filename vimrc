@@ -10,22 +10,17 @@ endif
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
-"Mustang Color Scheme
+"Colorschemes
 Bundle 'croaker/mustang-vim'
 colorscheme mustang
-
-"Solarized Color Scheme
-Bundle 'altercation/vim-colors-solarized'
-let g:solarized_termcolors=256
-
-"colorscheme solarized
-"set background=light
-set background=dark
 
 "rainbow parenthesis -- Coloring of nested parenthesis
 Bundle 'kien/rainbow_parentheses.vim'
 au VimEnter * RainbowParenthesesToggle
 au VimEnter * RainbowParenthesesLoadBraces
+
+" Taglist
+Bundle 'vim-scripts/taglist.vim'
 
 "NERDTree -- File browser in vim
 Bundle 'scrooloose/nerdtree'
@@ -36,23 +31,33 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 "NERDcommenter -- Auto comment out lines
 Bundle 'scrooloose/nerdcommenter'
 
-"vim-snipmate, dependencies, and snippet files. Useful snippet completion
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
-
-"Snips settings
-let g:snips_email='cachapline8@gmail.com'
-let g:snips_github='gizmo385'
-let g:snips_author='Christopher'
-
 " Multiple cursors
 Bundle 'terryma/vim-multiple-cursors'
 
 "Ctlr-P Stuff
 Bundle 'kien/ctrlp.vim'
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+set wildignore+=*.class
+let g:ctrlp_custom_ignore= '\v.*[\/](doc|build|bin|gen|res)[\/].*'
+
+" Neocomplete with cache
+Bundle 'Shougo/neocomplcache.vim'
+
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#enable_smart_case = 1
+
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+au BufNewFile,BufRead *.gradle setf groovy
+
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" vim-airline
+Bundle 'bling/vim-airline'
+
+" fugitive: git plugin
+Bundle 'tpope/vim-fugitive'
 
 filetype plugin indent on
 filetype plugin on
@@ -107,12 +112,18 @@ set showmatch   " jump to matching brackets
 "clear out highlighting by hitting ', '
 nnoremap <leader><space> :noh<cr>
 
+"CtrlP search buffers is ,b
+nmap <leader>b :CtrlPBuffer<CR>
+
+"nerdtree is ,n
+map <leader>n :NERDTreeToggle<CR>
+
 "make tab match bracket pairs
 "nnoremap <tab> %
 "vnoremap <tab> %
 
 set wrap              " wrap lines
-set textwidth=80      " max width is 81 characters
+set textwidth=100     " max width is 100 characters
 set formatoptions=qrn1 " r = insert comment character,
 " q = format comments with gq,
 " n1 = recognize formatted lists
@@ -167,6 +178,9 @@ nnoremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" Copying
+map <C-c> "+y<CR>
+
 " nothing should beep or flash
 set noeb vb t_vb=
 
@@ -178,21 +192,21 @@ set mouse=a
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
 
+" Filetype specific mappings
+au BufEnter *.py nmap <F5> :!python %<CR>
+au BufEnter *.java nmap <F5> :!javac %<CR>
+au BufEnter *.ksh nmap <F5> :!ksh %<CR>
+
 "bundle related mappings
 
 "turn off numbering and reenable for copy/paste ease
 "nnoremap <leader>nn :set nu!<cr>:set nu!<cr>
 "nnoremap <leader>rn :set relativenumber<cr>
 
-"nerdtree is ,n
-map <leader>n :NERDTreeToggle<CR>
-
-"CtrlP search buffers is ,b
-"nmap <leader>b :CtrlPBuffer<CR>
 
 "force the use of latex style tex files
 let g:tex_flavor = "latex"
 
 if has('gui_running')
-    colorscheme default
+    "colorscheme default
 endif
