@@ -26,7 +26,7 @@ fi
 
 # Find the files that we need to move
 echo Copying dotfiles into ${HOME}
-cp -rf ./.dotfiles/${dotfiles_folder}/* $HOME/
+cp -rf ./.dotfiles/${dotfiles_folder}/. $HOME/
 copy_exit_status=$?
 
 # Remove the tempory folder that the dotfiles were cloned into
