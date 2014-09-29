@@ -22,6 +22,6 @@ for file in files:
         os.remove(file)
 
 message = "Removed " + str(removal_count) + " "
-message += "files." if fabs(removal_count) >= 2 else "file."
+message += "files." if fabs(removal_count) != 1 else "file."
 
 print( message )
