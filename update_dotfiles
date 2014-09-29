@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Set the location of the repository on github
+repository_location="gizmo385/dotfiles"
+
+# In the repository, this is the folder that contains the dotfiles to copy
+dotfiles_folder="dotfiles"
+
+# Check that git is installed
+command -v git > /dev/null 2>&1
+if (( $? != 0 )) ; then
+    echo Git is required to update dotfiles 1>&2
+    exit 1
+fi
+
+# Clone the dotfiles
+echo Cloning remote dotfiles...
+git clone https://github.com/${repository_location} .dotfiles > /dev/null 2>&1
+git_exit_status=$?
+
+# If the clone operation failed, exit with the exit status provided by git
+if (( $git_exit_status != 0 )) ; then
+    echo There was an error while attempting to clone dotfiles! 1>&2
+    exit $git_exit_status
+fi
+
+# Find the files that we need to move
+echo Copying dotfiles into ${HOME}
+cp -rf ./.dotfiles/${dotfiles_folder}/* $HOME
+copy_exit_status=$?
+
+# Remove the tempory folder that the dotfiles were cloned into
+#rm -rf ./.dotfiles
+
+echo Finished copying dotfiles. Please source the relevant files for your shell.

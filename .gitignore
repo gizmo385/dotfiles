@@ -1,3 +1,10 @@
-update_remote_dotfiles.sh
-*.sw*
+### https://raw.github.com/github/gitignore/4ddafa3728456f3e5b74c9a470e58b2adbdcc882/Global/vim.gitignore
+
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
 *.un~
+Session.vim
+.netrwhist
+*~
+
+
