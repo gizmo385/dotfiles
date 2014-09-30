@@ -30,6 +30,6 @@ cp -rf ./.dotfiles/${dotfiles_folder}/. $HOME/
 copy_exit_status=$?
 
 # Remove the tempory folder that the dotfiles were cloned into
-#rm -rf ./.dotfiles
+rm -rf ./.dotfiles
 
 echo Finished copying dotfiles. Please source the relevant files for your shell.

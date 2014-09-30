@@ -196,7 +196,7 @@ autocmd BufWinEnter *.* silent loadview
 "au BufEnter *.py nmap <F5> :!python %<CR>
 "au BufEnter *.java nmap <F5> :!javac %<CR>
 "au BufEnter *.ksh nmap <F5> :!ksh %<CR>
-nmap <F5> compile %<CR>
+nmap <F5> :!compile %<CR>
 
 "bundle related mappings
 
