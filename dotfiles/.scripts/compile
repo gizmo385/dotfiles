@@ -6,6 +6,7 @@ if (( $# < 1 )) ; then
     exit 1
 fi
 
+exit_status=0
 num_files=$#
 
 # Iterate over filename arguments
@@ -15,11 +16,6 @@ for (( i = 1; i <= num_files; i+= 1 )) do
 
     filename="${filepath%.*}"
     extension="${filepath##*.}"
-
-    echo Filepath: $filepath
-    echo Directory: $directory
-    echo Filename: $filename
-    echo Extension: $extension
 
     case $extension in
         c)
@@ -43,8 +39,11 @@ for (( i = 1; i <= num_files; i+= 1 )) do
             ;;
         ?)
             echo Unrecognized file extension! >&2
+            exit_status=1
             ;;
     esac
 
     shift
 done
+
+exit $exit_status
