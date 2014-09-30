@@ -27,6 +27,9 @@ alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 # Remove files created by vim (.swp & .un~)
 alias clean='python3 $HOME/.scripts/clean_files.py "$PWD"'
 
+# Compile files
+alias compile='bash $HOME/.scripts/compile'
+
 # Application aliases
 alias groot='cd "$(git rev-parse --show-toplevel)"'
 alias sgradle='gradle --build-file $(find $(git rev-parse --show-toplevel) -name "build.gradle") $1'

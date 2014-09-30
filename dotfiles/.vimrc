@@ -193,9 +193,10 @@ autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
 
 " Filetype specific mappings
-au BufEnter *.py nmap <F5> :!python %<CR>
-au BufEnter *.java nmap <F5> :!javac %<CR>
-au BufEnter *.ksh nmap <F5> :!ksh %<CR>
+"au BufEnter *.py nmap <F5> :!python %<CR>
+"au BufEnter *.java nmap <F5> :!javac %<CR>
+"au BufEnter *.ksh nmap <F5> :!ksh %<CR>
+nmap <F5> compile %<CR>
 
 "bundle related mappings
 

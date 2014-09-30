@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Verify that the number of arguments is valid
+if (( $# < 1 )) ; then
+    echo Usage: compile [file ...] 1>&2
+    exit 1
+fi
+
+num_files=$#
+
+# Iterate over filename arguments
+for (( i = 1; i <= num_files; i+= 1 )) do
+    filepath=$(basename "$1")
+    directory="${filepath%/*}"
+
+    filename="${filepath%.*}"
+    extension="${filepath##*.}"
+
+    echo Filepath: $filepath
+    echo Directory: $directory
+    echo Filename: $filename
+    echo Extension: $extension
+
+    case $extension in
+        c)
+            c_compile="gcc -Wall -g -o ${filename} ${filepath}"
+            eval $c_compile
+            ;;
+        py)
+            python "$filepath"
+            ;;
+        java)
+            javac "$filepath"
+            ;;
+        sh)
+            sh "$filepath"
+            ;;
+        ksh)
+            ksh "$filepath"
+            ;;
+        html)
+            see "$filepath"
+            ;;
+        ?)
+            echo Unrecognized file extension! >&2
+            ;;
+    esac
+
+    shift
+done
