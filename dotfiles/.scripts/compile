@@ -37,6 +37,9 @@ for (( i = 1; i <= num_files; i+= 1 )) do
         html)
             see "$filepath"
             ;;
+        hs)
+            ghci "$filepath"
+            ;;
         ?)
             echo Unrecognized file extension! >&2
             exit_status=1
