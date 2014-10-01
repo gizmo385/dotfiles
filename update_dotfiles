@@ -29,6 +29,8 @@ echo Copying dotfiles into ${HOME}
 cp -rf ./.dotfiles/${dotfiles_folder}/. $HOME/
 copy_exit_status=$?
 
+cp ./.dotfiles/update_dotfiles ${HOME}/
+
 # Remove the tempory folder that the dotfiles were cloned into
 rm -rf ./.dotfiles
 
