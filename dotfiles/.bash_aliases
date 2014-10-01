@@ -30,6 +30,9 @@ alias clean='python3 $HOME/.scripts/clean_files.py "$PWD"'
 # Compile files
 alias compile='bash $HOME/.scripts/compile'
 
+# Easily access the C section of man
+alias cman='man 3'
+
 # Application aliases
 alias groot='cd "$(git rev-parse --show-toplevel)"'
 alias sgradle='gradle --build-file $(find $(git rev-parse --show-toplevel) -name "build.gradle") $1'
