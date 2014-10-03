@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# Exit code summary:
+# 1 => An invalid number of arguments were passed
+# 2 => The filename specified could not be found
+
+# Verify that the number of arguments is one
+if (( $# != 2 )) ; then
+    echo "Usage: cdof <current_directory> <file>"
+    exit 1
+fi
+
+# Load the command line arguments
+current_directory=$1
+filename=$2
+search_dir=
+
+
+# This command will show the base directory for the current git repository
+groot_command="git -C ${current_directory} rev-parse --show-toplevel"
+
+# Determine if we're currently inside a git repository
+eval "$groot_command" > /dev/null 2>&1
+if (( $? == 0 )) ; then
+    search_dir=$(eval $groot_command)
+else
+    search_dir="$current_directory"
+fi
+
+# Execute the find command and pipe the output to a temporary file
+find ${search_dir} -name "${filename}" | xargs dirname 2>/dev/null | sort | uniq > ".cdof_result.temp" 2>/dev/null
+
+result_num=$(cat ".cdof_result.temp" | wc -l)
+
+# Based on the number of results, either print an error message,
+# cd to the directory, or ask which directory to cd to
+if (( $result_num == 0 )) ; then
+    echo "Could not locate any result for ${filename}"
+    rm -f ".cdof_result.temp"
+    exit 2
+elif (( $result_num == 1 )) ; then
+    echo $(cat ".cdof_result.temp")
+    rm -f ".cdof_result.temp"
+else
+    select file_selection in $(cat ".cdof_result.temp") ;
+    do
+        echo $file_selection
+        rm -f ".cdof_result.temp"
+        exit 0
+    done
+    rm -f ".cdof_result.temp"
+fi

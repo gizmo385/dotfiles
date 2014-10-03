@@ -33,6 +33,15 @@ alias compile='bash $HOME/.scripts/compile'
 # Easily access the C section of man
 alias cman='man 3'
 
+
+cdof_func() {
+    x=$(bash $HOME/.scripts/cdof '$(pwd)' $1) && cd $x
+}
+
+# cd aliases
+alias cdof='cdof_func'
+#alias cdof='cd $(bash $HOME/.scripts/cdof .)'
+
 # Application aliases
 alias groot='cd "$(git rev-parse --show-toplevel)"'
 alias sgradle='gradle --build-file $(find $(git rev-parse --show-toplevel) -name "build.gradle") $1'
