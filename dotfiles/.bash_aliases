@@ -35,7 +35,7 @@ alias cman='man 3'
 
 
 cdof_func() {
-    x=$(bash $HOME/.scripts/cdof '$(pwd)' $1) && cd $x
+    x=$(bash $HOME/.scripts/cdof `pwd` $1) && cd $x
 }
 
 # cd aliases
