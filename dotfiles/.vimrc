@@ -59,6 +59,10 @@ Bundle 'bling/vim-airline'
 " fugitive: git plugin
 Bundle 'tpope/vim-fugitive'
 
+" Snippet libraries
+Bundle 'SirVer/ultisnips'
+Bundle 'honza/vim-snippets'
+
 filetype plugin indent on
 filetype plugin on
 
