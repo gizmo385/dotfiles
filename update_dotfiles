@@ -34,4 +34,16 @@ cp -f ./.dotfiles/update_dotfiles ${HOME}/
 # Remove the tempory folder that the dotfiles were cloned into
 rm -rf ./.dotfiles
 
+# Install vundle and then update dotfiles
+echo Installing vim plugins
+rm -rf $HOME/.vim/bundle/*
+
+git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/vundle > /dev/null 2>&1
+
+if (( $? != 0 )) ; then
+    echo There was an error while downloading Vundle! 1>&2
+fi
+
+vim +BundleInstall +qa > /dev/null 2>&1
+
 echo Finished copying dotfiles. Please source the relevant files for your shell.
