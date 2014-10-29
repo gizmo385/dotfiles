@@ -38,7 +38,7 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle 'kien/ctrlp.vim'
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 set wildignore+=*.class
-let g:ctrlp_custom_ignore= '\v(.*[\/](doc|build|bin|gen|res)[\/].*)|(o)|(class))'
+let g:ctrlp_custom_ignore= '\v(.*[\/](doc|build|bin|gen|res)[\/].*)|(*.(o|class))'
 
 " Neocomplete with cache
 Bundle 'Shougo/neocomplcache.vim'
