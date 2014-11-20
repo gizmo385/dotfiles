@@ -59,10 +59,6 @@ Bundle 'bling/vim-airline'
 " fugitive: git plugin
 Bundle 'tpope/vim-fugitive'
 
-" Snippet libraries
-Bundle 'SirVer/ultisnips'
-Bundle 'honza/vim-snippets'
-
 filetype plugin indent on
 filetype plugin on
 
@@ -121,6 +117,9 @@ nmap <leader>b :CtrlPBuffer<CR>
 
 "nerdtree is ,n
 map <leader>n :NERDTreeToggle<CR>
+
+"taglist is ,t
+map <leader>t :TlistToggle<CR>
 
 "make tab match bracket pairs
 "nnoremap <tab> %
