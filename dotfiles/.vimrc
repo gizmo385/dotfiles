@@ -59,6 +59,11 @@ Bundle 'bling/vim-airline'
 " fugitive: git plugin
 Bundle 'tpope/vim-fugitive'
 
+" Clojure stuff
+Bundle 'typedclojure/vim-typedclojure'
+Bundle 'tpope/vim-fireplace'
+Bundle 'tpope/vim-leiningen'
+
 filetype plugin indent on
 filetype plugin on
 
