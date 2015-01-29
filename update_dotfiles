@@ -41,7 +41,7 @@ rm -rf $HOME/.vim/bundle/*
 echo "Installing Vundle (plugin manager)"
 git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/vundle > /dev/null 2>&1
 
-echo Installing vim plugins
+echo "Installing vim plugins (this may take a while)"
 vim -E -c BundleInstall! -c qa! > /dev/null
 echo Finished installing vim plugins
 
