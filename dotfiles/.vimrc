@@ -12,7 +12,7 @@ Bundle 'gmarik/vundle'
 
 "Colorschemes
 Bundle 'croaker/mustang-vim'
-colorscheme mustang
+:silent! colorscheme mustang
 
 "rainbow parenthesis -- Coloring of nested parenthesis
 Bundle 'kien/rainbow_parentheses.vim'
