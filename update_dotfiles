@@ -2,6 +2,7 @@
 
 # Set the location of the repository on github
 repository_location="gizmo385/dotfiles"
+repository_branch="update_script_testing"
 
 # In the repository, this is the folder that contains the dotfiles to copy
 dotfiles_folder="dotfiles"
@@ -15,7 +16,7 @@ fi
 
 # Clone the dotfiles
 echo Cloning remote dotfiles...
-git clone --recursive https://github.com/${repository_location} .dotfiles > /dev/null 2>&1
+git clone --recursive https://github.com/${repository_location} -b ${repository_branch} .dotfiles > /dev/null 2>&1
 git_exit_status=$?
 
 # If the clone operation failed, exit with the exit status provided by git
@@ -29,7 +30,7 @@ echo Copying dotfiles into ${HOME}
 cp -rf ./.dotfiles/${dotfiles_folder}/. $HOME/
 copy_exit_status=$?
 
-cp -f ./.dotfiles/update_dotfiles ${HOME}/
+#cp -f ./.dotfiles/update_dotfiles ${HOME}/
 
 # Remove the tempory folder that the dotfiles were cloned into
 rm -rf ./.dotfiles
@@ -39,6 +40,10 @@ rm -rf $HOME/.vim/bundle/*
 
 echo "Installing Vundle (plugin manager)"
 git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/vundle > /dev/null 2>&1
-echo Install vim plugins by starting vim and running :BundleInstall
+
+echo Installing vim plugins
+vim -E -c BundleInstall! -c qa! > /dev/null
+echo Finished installing vim plugins
+
 
 echo Finished copying dotfiles. Please source the relevant files for your shell.
