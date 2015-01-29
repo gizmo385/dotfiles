@@ -33,6 +33,9 @@ alias compile='bash $HOME/.scripts/compile'
 # Easily access the C section of man
 alias cman='man 3'
 
+# Create new latex files easily
+alias newlatex='cat ~/.scripts/template.tex >'
+
 cdof_func() {
     x=$(bash $HOME/.scripts/cdof `pwd` $1) && cd $x
 }
