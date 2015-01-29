@@ -30,6 +30,10 @@ echo Copying dotfiles into ${HOME}
 cp -rf ./.dotfiles/${dotfiles_folder}/. $HOME/
 copy_exit_status=$?
 
+#cp -f ./.dotfiles/update_dotfiles ${HOME}/
+
+# Remove the tempory folder that the dotfiles were cloned into
+rm -rf ./.dotfiles
 
 # Install vundle and then update dotfiles
 rm -rf $HOME/.vim/bundle/*
@@ -37,13 +41,9 @@ rm -rf $HOME/.vim/bundle/*
 echo "Installing Vundle (plugin manager)"
 git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/vundle > /dev/null 2>&1
 
-echo "Installing vim plugins (this may take a while)"
+echo Installing vim plugins
 vim -E -c BundleInstall! -c qa! > /dev/null
 echo Finished installing vim plugins
 
-# Update self and remove the tempory folder that the dotfiles were cloned into
-echo Cleaning up...
-cp -f ./.dotfiles/update_dotfiles ${HOME}/
-rm -rf ./.dotfiles \\
-    && echo "Finished copying dotfiles. Please source the relevant files for your shell." \\
-    && exit
+
+echo Finished copying dotfiles. Please source the relevant files for your shell.
