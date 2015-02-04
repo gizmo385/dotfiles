@@ -2,7 +2,7 @@
 
 # Set the location of the repository on github
 repository_location="gizmo385/dotfiles"
-repository_branch="update_script_testing"
+repository_branch="master"
 
 # In the repository, this is the folder that contains the dotfiles to copy
 dotfiles_folder="dotfiles"
