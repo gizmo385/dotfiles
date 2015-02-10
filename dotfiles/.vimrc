@@ -191,7 +191,7 @@ nnoremap ; :
 au FocusLost * :wa    " save on losing focus
 
 " ,W strips trailing whitespace
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+nnoremap <leader>ww :%s/\s\+$//<cr>:let @/=''<CR>
 
 " Leader command to edit vimrc
 " Open in a separate buffer
