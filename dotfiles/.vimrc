@@ -71,6 +71,28 @@ autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadRound
 autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadSquare
 autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadBraces
 autocmd BufEnter *.cljs,*.clj,*.cljs.hl setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
+
+filetype plugin indent on
+filetype plugin on
+
+let g:clojure_fuzzy_indent = 1
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^go']
+let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
+let g:clojure_align_multiline_strings = 1
+
+function! SetClojureOptions()
+    setlocal filetype=clojure
+    setlocal autoindent
+    setlocal tabstop=2
+    setlocal shiftwidth=2
+    setlocal expandtab
+endfunction
+autocmd BufNewFile,BufRead *.clj call SetClojureOptions()
+
+au BufNewFile,BufRead *.clj setlocal sw=2 ts=2 expandtab
+
+let g:paredit_electric_return=0
+
 " -- Rainbow parenthesis options
 let g:rbpt_colorpairs = [
     \ ['darkyellow',  'RoyalBlue3'],
@@ -90,9 +112,6 @@ let g:rbpt_colorpairs = [
     \ ['darkyellow',  'DarkOrchid3'],
     \ ['darkred',     'firebrick3'],
     \ ]
-
-filetype plugin indent on
-filetype plugin on
 
 let &t_Co=16
 syntax enable
