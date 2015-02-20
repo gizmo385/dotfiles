@@ -60,6 +60,7 @@ Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
 nnoremap gs :Gstatus<CR>
 nnoremap ga :Gwrite<CR>
+nnoremap gw :Gwrite<CR>
 nnoremap gc :Gcommit<CR>
 nnoremap gd :Gdiff<CR>
 
