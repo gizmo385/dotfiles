@@ -15,6 +15,9 @@ alias la='ls -A'
 alias lsa='ls -ACF'
 alias l='ls -CF'
 
+# Tree-structured ls
+alias lst="find . -name '*' | sed -e 's/^/|-/' -e 's/[^-][^\/]*\//|   /g' -e 's/|   \([A-Za-z0-9_.]\)/|   +--\1/'"
+
 # Remote access aliases
 alias lec='ssh cachapline8@lectura.cs.arizona.edu'
 

@@ -58,6 +58,10 @@ Bundle 'bling/vim-airline'
 
 " fugitive: git plugin
 Bundle 'tpope/vim-fugitive'
+nnoremap gs :Gstatus<CR>
+nnoremap ga :Gwrite<CR>
+nnoremap gc :Gcommit<CR>
+nnoremap gd :Gdiff<CR>
 
 " Clojure stuff
 Bundle 'typedclojure/vim-typedclojure'
@@ -71,6 +75,28 @@ autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadRound
 autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadSquare
 autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadBraces
 autocmd BufEnter *.cljs,*.clj,*.cljs.hl setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
+
+filetype plugin indent on
+filetype plugin on
+
+let g:clojure_fuzzy_indent = 1
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^go']
+let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
+let g:clojure_align_multiline_strings = 1
+
+function! SetClojureOptions()
+    setlocal filetype=clojure
+    setlocal autoindent
+    setlocal tabstop=2
+    setlocal shiftwidth=2
+    setlocal expandtab
+endfunction
+autocmd BufNewFile,BufRead *.clj call SetClojureOptions()
+
+au BufNewFile,BufRead *.clj setlocal sw=2 ts=2 expandtab
+
+let g:paredit_electric_return=0
+
 " -- Rainbow parenthesis options
 let g:rbpt_colorpairs = [
     \ ['darkyellow',  'RoyalBlue3'],
@@ -91,11 +117,13 @@ let g:rbpt_colorpairs = [
     \ ['darkred',     'firebrick3'],
     \ ]
 
-filetype plugin indent on
-filetype plugin on
-
-let &t_Co=16
+let &t_Co=256
 syntax enable
+
+" cursor line and column highlighting
+set cursorcolumn
+set cursorline
+"hi CursorLine   cterm=NONE ctermbg=darkgrey ctermfg=white guibg=darkred guifg=white
 
 set nocompatible              " give me vim, not vi
 set modelines=0               " no exploits plox
@@ -191,7 +219,7 @@ nnoremap ; :
 au FocusLost * :wa    " save on losing focus
 
 " ,W strips trailing whitespace
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+nnoremap <leader>ww :%s/\s\+$//<cr>:let @/=''<CR>
 
 " Leader command to edit vimrc
 " Open in a separate buffer
