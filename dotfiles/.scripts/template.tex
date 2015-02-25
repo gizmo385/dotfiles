@@ -6,7 +6,7 @@
 \usepackage{tikz}
 \usepackage{hyperref}%
 \setcounter{MaxMatrixCols}{30}
-%TCIDATA{OutputFilter=latex2.dll}
+%TCIDATA{OutputFilter=late$x2$.dll}
 %TCIDATA{Version=5.00.0.2552}
 %TCIDATA{CSTFile=40 LaTeX article.cst}
 %TCIDATA{Created=Thursday, August 21, 2008 14:03:59}
@@ -37,10 +37,12 @@
 \newtheorem{solution}[theorem]{Solution}
 \newtheorem{summary}[theorem]{Summary}
 \newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
-\begin{document}
 
-\title{}
-\author{Christopher Chapline}
-\maketitle
+\usepackage{fancyhdr}
+\setlength\headheight{26pt}
+\pagestyle{fancy}
+\lhead{{\footnotesize TITLE GOES HERE}}
+\rhead{{\footnotesize Christopher Chapline}}
+\begin{document}
 
 \end{document}
