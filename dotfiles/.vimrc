@@ -72,11 +72,11 @@ Bundle 'tpope/vim-leiningen'
 Bundle 'kovisoft/slimv'
 
 " Clojure specific Rainbow Parenthesis settings
-autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesActivate
-autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadRound
-autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadSquare
-autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadBraces
-autocmd BufEnter *.cljs,*.clj,*.cljs.hl setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
+autocmd VimEnter,BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesActivate
+autocmd VimEnter,BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadRound
+autocmd VimEnter,BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadSquare
+autocmd VimEnter,BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadBraces
+autocmd VimEnter,BufEnter *.cljs,*.clj,*.cljs.hl setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
 
 filetype plugin indent on
 filetype plugin on
