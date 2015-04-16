@@ -12,7 +12,10 @@ Bundle 'gmarik/vundle'
 
 "Colorschemes
 Bundle 'croaker/mustang-vim'
-:silent! colorscheme mustang
+"Bundle 'lsdr/monokai'
+:silent! colorscheme monokai
+
+"au BufReadPost *.java colorscheme monokai
 
 "rainbow parenthesis -- Coloring of nested parenthesis
 Bundle 'kien/rainbow_parentheses.vim'
