@@ -19,7 +19,7 @@ alias l='ls -CF'
 alias lst="find . -name '*' | sed -e 's/^/|-/' -e 's/[^-][^\/]*\//|   /g' -e 's/|   \([A-Za-z0-9_.]\)/|   +--\1/'"
 
 # Remote access aliases
-alias lec='ssh cachapline8@lectura.cs.arizona.edu'
+alias lec='ssh -X cachapline8@lectura.cs.arizona.edu'
 
 # Make cpr copy with the recursive flag
 alias cpr='cp -r'
@@ -51,3 +51,7 @@ alias groot='cd "$(git rev-parse --show-toplevel)"'
 alias sgradle='gradle --build-file $(find $(git rev-parse --show-toplevel) -name "build.gradle") $1'
 alias latex='pdflatex -interaction=nonstopmode'
 alias clip='xclip -sel clip'
+
+alias fuck='$(thefuck $(fc -ln -1))'
+# You can use whatever you want as an alias, like for mondays:
+ alias FUCK='fuck'
