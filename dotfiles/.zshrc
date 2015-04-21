@@ -2,7 +2,8 @@
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
-ZSH_THEME="amuse"
+ZSH_THEME="frisk"
+#ZSH_THEME="amuse"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 #COMPLETION_WAITING_DOTS="true"
