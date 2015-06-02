@@ -169,7 +169,7 @@ vnoremap \ :%s/\v
 
 set ignorecase  " ignore case when searching
 set smartcase   " unless I mix case
-set gdefault    " replace everything on a line by default
+"set gdefault    " replace everything on a line by default
 set incsearch   " search incrementally
 set hlsearch    " highlight search matches
 set showmatch   " jump to matching brackets
@@ -247,7 +247,7 @@ noremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " Copying
-map <C-c> "+y<CR>
+vnoremap <C-c> "+y<CR>
 
 " nothing should beep or flash
 set noeb vb t_vb=
@@ -257,8 +257,8 @@ fixdel   " makes the delete key work better
 set mouse=a
 
 " automatically save and restore my folds
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
+"autocmd BufWinLeave *.* mkview
+"autocmd BufWinEnter *.* silent loadview
 
 " Filetype specific mappings
 "au BufEnter *.py nmap <F5> :!python %<CR>
@@ -271,6 +271,17 @@ nmap <F5> :!bash $HOME/.scripts/compile %<CR>
 "turn off numbering and reenable for copy/paste ease
 "nnoremap <leader>nn :set nu!<cr>:set nu!<cr>
 "nnoremap <leader>rn :set relativenumber<cr>
+
+" vp doesn't replace paste buffer
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()
 
 
 "force the use of latex style tex files
