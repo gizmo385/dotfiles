@@ -23,6 +23,18 @@ export ANDROID_HOME="/home/christopher/sdk"
 
 source $HOME/.shell_scripts/gibo-completion.zsh
 
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
