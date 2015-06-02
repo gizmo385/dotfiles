@@ -24,6 +24,7 @@ au VimEnter * RainbowParenthesesLoadBraces
 
 " Taglist
 Bundle 'vim-scripts/taglist.vim'
+let Tlist_WinWidth = 60
 
 "NERDTree -- File browser in vim
 Bundle 'scrooloose/nerdtree'
