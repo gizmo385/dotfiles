@@ -28,7 +28,7 @@ alias cpr='cp -r'
 alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 
 # Remove files created by vim (.swp & .un~)
-alias clean='python3 $HOME/.scripts/clean_files.py "$PWD"'
+alias clean='python3 $HOME/.scripts/clean_files.py'
 
 # Compile files
 alias compile='bash $HOME/.scripts/compile'
