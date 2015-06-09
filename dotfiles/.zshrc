@@ -17,6 +17,9 @@ source $HOME/.bash_aliases
 
 # User configuration
 
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/christopher/.rvm/bin:/home/christopher/.rvm/bin:/opt/gradle-1.12/bin:/home/christopher/.rvm/bin:/opt/gradle-1.12/bin:/:/home/christopher/.shell_scripts/"
 # export MANPATH="/usr/local/man:$MANPATH"
 export ANDROID_HOME="/home/christopher/sdk"
@@ -39,11 +42,11 @@ bindkey '^Z' fancy-ctrl-z
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+ else
+   export EDITOR='mvim'
+ fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
