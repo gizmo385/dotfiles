@@ -14,7 +14,7 @@ parser.add_argument("--verbose", "-v", action = "store_true",
 
 # Build the regular expression to match file names to delete
 extensions = ["un~", "swp"]
-extensions_regex = r'.*\.(%s)' % "|".join(extensions)
+extensions_regex = r'.*\.(%s)$' % "|".join(extensions)
 regex = re.compile(extensions_regex)
 
 def parse_directory(directory, recursive = False, debug = False):
