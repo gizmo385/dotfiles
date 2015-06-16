@@ -41,7 +41,7 @@ Bundle 'terryma/vim-multiple-cursors'
 "Ctlr-P Stuff
 Bundle 'kien/ctrlp.vim'
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-set wildignore+=*.class,*.o,*.a
+set wildignore+=*.class,*.o,*.a,*.pyc
 let g:ctrlp_custom_ignore= '\v(.*[\/](doc|build|bin|gen|res)[\/].*)|(*.(o|class))'
 
 " Neocomplete with cache
@@ -60,6 +60,17 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " vim-airline
 Bundle 'bling/vim-airline'
+
+" Scratch pad for vim
+Bundle 'mtth/scratch.vim'
+let g:scratch_no_mappings = 1
+let g:scratch_autohide = 0
+let g:scratch_insert_autohide = 0
+nmap <leader>gs <plug>(scratch-insert-reuse)
+nmap <leader>gS <plug>(scratch-insert-clear)
+xmap <leader>gs <plug>(scratch-selection-reuse)
+xmap <leader>gS <plug>(scratch-selection-clear)
+
 
 " fugitive: git plugin
 Bundle 'tpope/vim-fugitive'
