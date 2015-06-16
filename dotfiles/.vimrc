@@ -61,17 +61,6 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " vim-airline
 Bundle 'bling/vim-airline'
 
-" Scratch pad for vim
-Bundle 'mtth/scratch.vim'
-let g:scratch_no_mappings = 1
-let g:scratch_autohide = 0
-let g:scratch_insert_autohide = 0
-nmap <leader>gs <plug>(scratch-insert-reuse)
-nmap <leader>gS <plug>(scratch-insert-clear)
-xmap <leader>gs <plug>(scratch-selection-reuse)
-xmap <leader>gS <plug>(scratch-selection-clear)
-
-
 " fugitive: git plugin
 Bundle 'tpope/vim-fugitive'
 nnoremap gs :Gstatus<CR>
@@ -79,6 +68,15 @@ nnoremap ga :Gwrite<CR>
 nnoremap gw :Gwrite<CR>
 nnoremap gc :Gcommit<CR>
 nnoremap gd :Gdiff<CR>
+nnoremap gb :Gblame<CR>
+
+" Scratch pad for vim
+Bundle 'mtth/scratch.vim'
+let g:scratch_no_mappings = 1
+nnoremap sp :ScratchInsert<CR>
+nnoremap cp :ScratchInsert!<CR>
+xnoremap sp :ScratchSelection<CR>
+xnoremap cp :ScratchSelection!<CR>
 
 " Clojure stuff
 Bundle 'typedclojure/vim-typedclojure'
@@ -92,6 +90,12 @@ autocmd VimEnter,BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadRound
 autocmd VimEnter,BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadSquare
 autocmd VimEnter,BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadBraces
 autocmd VimEnter,BufEnter *.cljs,*.clj,*.cljs.hl setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
+
+" Python specific Rainbow Parenthesis settings
+autocmd VimEnter,BufEnter *.py RainbowParenthesesActivate
+autocmd VimEnter,BufEnter *.py RainbowParenthesesLoadRound
+autocmd VimEnter,BufEnter *.py RainbowParenthesesLoadSquare
+autocmd VimEnter,BufEnter *.py RainbowParenthesesLoadBraces
 
 filetype plugin indent on
 filetype plugin on
