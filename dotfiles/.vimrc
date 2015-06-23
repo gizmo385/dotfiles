@@ -61,6 +61,10 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " vim-airline
 Bundle 'bling/vim-airline'
 
+" Vim auto previews for markdown
+Bundle 'shime/vim-livedown'
+nmap gm :LivedownPreview<CR>
+
 " fugitive: git plugin
 Bundle 'tpope/vim-fugitive'
 nnoremap gs :Gstatus<CR>
