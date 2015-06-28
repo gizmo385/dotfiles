@@ -95,11 +95,11 @@ autocmd VimEnter,BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadSquare
 autocmd VimEnter,BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadBraces
 autocmd VimEnter,BufEnter *.cljs,*.clj,*.cljs.hl setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
 
-" Python specific Rainbow Parenthesis settings
-autocmd VimEnter,BufEnter *.py RainbowParenthesesActivate
-autocmd VimEnter,BufEnter *.py RainbowParenthesesLoadRound
-autocmd VimEnter,BufEnter *.py RainbowParenthesesLoadSquare
-autocmd VimEnter,BufEnter *.py RainbowParenthesesLoadBraces
+" Other language Rainbow Parenthesis settings
+autocmd VimEnter,BufEnter *.py,*.java RainbowParenthesesActivate
+autocmd VimEnter,BufEnter *.py,*.java RainbowParenthesesLoadRound
+autocmd VimEnter,BufEnter *.py,*.java RainbowParenthesesLoadSquare
+autocmd VimEnter,BufEnter *.py,*.java RainbowParenthesesLoadBraces
 
 filetype plugin indent on
 filetype plugin on
@@ -267,7 +267,7 @@ noremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " Copying
-vnoremap <C-c> "+y<CR>
+vnoremap <C-c> "+y
 
 " nothing should beep or flash
 set noeb vb t_vb=
