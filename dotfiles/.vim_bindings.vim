@@ -73,3 +73,28 @@ nnoremap ; :
 " Exiting insert mode
 inoremap jj <ESC>
 inoremap JJ <ESC>
+
+"""""""""""""""""""""""""""""
+" Plugin bindings
+"""""""""""""""""""""""""""""
+nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>t :TlistToggle<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap gm :LivedownPreview<CR>
+
+" Fugitive git commands
+nnoremap gs :Gstatus<CR>
+nnoremap ga :Gwrite<CR>
+nnoremap gw :Gwrite<CR>
+nnoremap gc :Gcommit<CR>
+nnoremap gd :Gdiff<CR>
+nnoremap gb :Gblame<CR>
+
+" Scratch pad
+nnoremap sp :ScratchInsert<CR>
+nnoremap cp :ScratchInsert!<CR>
+xnoremap sp :ScratchSelection<CR>
+xnoremap cp :ScratchSelection!<CR>
+
+" Necomplete
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"

@@ -43,8 +43,17 @@ Bundle 'tpope/vim-fugitive'
 " Scratch pad for vim
 Bundle 'mtth/scratch.vim'
 
-" Clojure stuff
-Bundle 'typedclojure/vim-typedclojure' " Typed clojure support
-Bundle 'tpope/vim-fireplace' " Clojure REPL and auto-execute
-Bundle 'tpope/vim-leiningen' " Support for the leiningen build system
-Bundle 'kovisoft/slimv' " Slurp, spit, and general LISP editing tools
+"""""""""""""""""""""""""""""""""
+"Clojure stuff
+"""""""""""""""""""""""""""""""""
+" Typed clojure support
+Bundle 'typedclojure/vim-typedclojure'
+
+" Clojure REPL and auto-execute
+Bundle 'tpope/vim-fireplace'
+
+" Support for the leiningen build system
+Bundle 'tpope/vim-leiningen'
+
+" Slurp, spit, and general LISP editing tools
+Bundle 'kovisoft/slimv'

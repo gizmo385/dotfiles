@@ -18,6 +18,9 @@ autocmd VimEnter,BufEnter *.py,*.java RainbowParenthesesLoadRound
 autocmd VimEnter,BufEnter *.py,*.java RainbowParenthesesLoadSquare
 autocmd VimEnter,BufEnter *.py,*.java RainbowParenthesesLoadBraces
 
+filetype plugin indent on
+filetype plugin on
+
 " -- Rainbow parenthesis colors
 let g:rbpt_colorpairs = [
     \ ['darkyellow',  'RoyalBlue3'],
@@ -38,16 +41,19 @@ let g:rbpt_colorpairs = [
     \ ['darkred',     'firebrick3'],
     \ ]
 
+let &t_Co=256
+syntax enable
+
 " Taglist settings
 let Tlist_WinWidth = 60
-map <leader>t :TlistToggle<CR>
+"map <leader>t :TlistToggle<CR>
 
 " Nerdtree settings
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-map <leader>n :NERDTreeToggle<CR>
+"map <leader>n :NERDTreeToggle<CR>
 
 " Ctrl-P stuff
-nmap <leader>b :CtrlPBuffer<CR>
+"nmap <leader>b :CtrlPBuffer<CR>
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 set wildignore+=*.class,*.o,*.a,*.pyc
 let g:ctrlp_custom_ignore= '\v(.*[\/](doc|build|bin|gen|res)[\/].*)|(*.(o|class))'
@@ -62,25 +68,25 @@ autocmd FileType java setlocal omnifunc=javacomplete#Complete
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 au BufNewFile,BufRead *.gradle setf groovy
 
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Livedown Markdown previewer
-nmap gm :LivedownPreview<CR>
+"nmap gm :LivedownPreview<CR>
 
 " fugitive: git plugin
-nnoremap gs :Gstatus<CR>
-nnoremap ga :Gwrite<CR>
-nnoremap gw :Gwrite<CR>
-nnoremap gc :Gcommit<CR>
-nnoremap gd :Gdiff<CR>
-nnoremap gb :Gblame<CR>
+"nnoremap gs :Gstatus<CR>
+"nnoremap ga :Gwrite<CR>
+"nnoremap gw :Gwrite<CR>
+"nnoremap gc :Gcommit<CR>
+"nnoremap gd :Gdiff<CR>
+"nnoremap gb :Gblame<CR>
 
 " Scratch pad for vim
 let g:scratch_no_mappings = 1
-nnoremap sp :ScratchInsert<CR>
-nnoremap cp :ScratchInsert!<CR>
-xnoremap sp :ScratchSelection<CR>
-xnoremap cp :ScratchSelection!<CR>
+"nnoremap sp :ScratchInsert<CR>
+"nnoremap cp :ScratchInsert!<CR>
+"xnoremap sp :ScratchSelection<CR>
+"xnoremap cp :ScratchSelection!<CR>
 
 " Clojure stuff
 let g:clojure_fuzzy_indent = 1
