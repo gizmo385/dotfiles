@@ -75,6 +75,13 @@ inoremap jj <ESC>
 inoremap JJ <ESC>
 
 """""""""""""""""""""""""""""
+" Custom commands
+"""""""""""""""""""""""""""""
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+ cmap w!! w !sudo tee > /dev/null %
+
+
+"""""""""""""""""""""""""""""
 " Plugin bindings
 """""""""""""""""""""""""""""
 nnoremap <leader>n :NERDTreeToggle<CR>
