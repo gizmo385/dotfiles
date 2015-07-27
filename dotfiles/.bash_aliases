@@ -52,6 +52,8 @@ alias sgradle='gradle --build-file $(find $(git rev-parse --show-toplevel) -name
 alias latex='pdflatex -interaction=nonstopmode'
 alias clip='xclip -sel clip'
 
+alias gdd='view +:Gdiff +":nmap q :qa<CR>"'
+
 alias pipupgrade='sudo -H pip list | grep -Po "^[A-Za-z0-9\-]+" | xargs sudo -H pip install --upgrade'
 alias globalignore='gibo --upgrade --list | grep -A 30 Global | tail -n +3 | tr "\n" " " | xargs gibo'
 
