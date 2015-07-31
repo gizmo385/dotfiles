@@ -46,6 +46,9 @@ Bundle 'mtth/scratch.vim'
 " Proper pep8 indents for python
 Bundle 'hynek/vim-python-pep8-indent'
 
+" Control spotify from vim
+Bundle 'gizmo385/spotify.vim'
+
 """""""""""""""""""""""""""""""""
 "Clojure stuff
 """""""""""""""""""""""""""""""""
