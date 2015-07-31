@@ -43,6 +43,9 @@ Bundle 'tpope/vim-fugitive'
 " Scratch pad for vim
 Bundle 'mtth/scratch.vim'
 
+" Proper pep8 indents for python
+Bundle 'hynek/vim-python-pep8-indent'
+
 """""""""""""""""""""""""""""""""
 "Clojure stuff
 """""""""""""""""""""""""""""""""
