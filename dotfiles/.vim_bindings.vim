@@ -41,6 +41,10 @@ inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 
+" Moving the beginning of a line or end of a line
+nnoremap H ^
+nnoremap L $
+
 " Change windows with <C-movement>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
