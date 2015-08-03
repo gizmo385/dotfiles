@@ -62,5 +62,7 @@ Bundle 'tpope/vim-fireplace'
 Bundle 'tpope/vim-leiningen'
 
 " Slurp, spit, and general LISP editing tools
-"Bundle 'kovisoft/slimv'
 Bundle 'vim-scripts/paredit.vim'
+
+Bundle 'guns/vim-clojure-static'
+Bundle 'guns/vim-clojure-highlight'
