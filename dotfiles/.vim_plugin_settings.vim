@@ -1,5 +1,9 @@
 " Colorscheme
-:silent! colorscheme monokai
+":silent! colorscheme monokai
+let g:solarized_termcolors=256
+colorscheme solarized
+set background=light
+
 
 " Rainbow Parenthesis
 au VimEnter * RainbowParenthesesToggle

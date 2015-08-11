@@ -7,8 +7,9 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Colorschemes
-"Bundle 'lsdr/monokai'
 Bundle 'croaker/mustang-vim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'vim-scripts/xoria256.vim'
 
 "rainbow parenthesis -- Coloring of nested parenthesis
 Bundle 'kien/rainbow_parentheses.vim'
