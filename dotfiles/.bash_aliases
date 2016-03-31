@@ -52,6 +52,8 @@ alias sgradle='gradle --build-file $(find $(git rev-parse --show-toplevel) -name
 alias latex='pdflatex -interaction=nonstopmode'
 alias clip='xclip -sel clip'
 
+alias untar='tar -xf'
+
 alias gdd='view +:Gdiff +":nmap q :qa<CR>"'
 alias gs='git status'
 
