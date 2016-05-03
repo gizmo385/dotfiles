@@ -20,9 +20,33 @@ source $HOME/.bash_aliases
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/christopher/.rvm/bin:/home/christopher/.rvm/bin:/opt/gradle-1.12/bin:/home/christopher/.rvm/bin:/opt/gradle-1.12/bin:/:/home/christopher/.shell_scripts/"
+# Forming the path
+export PATH="/usr/local/sbin":$PATH
+export PATH="/usr/local/bin":$PATH
+export PATH="/usr/sbin":$PATH
+export PATH="/usr/bin":$PATH
+export PATH="/sbin":$PATH
+export PATH="/bin":$PATH
+export PATH="/usr/games":$PATH
+export PATH="/usr/local/games":$PATH
+export PATH="/home/christopher/.rvm/bin":$PATH
+export PATH="/home/christopher/.rvm/bin":$PATH
+export PATH="/opt/gradle-1.12/bin":$PATH
+export PATH="/home/christopher/.rvm/bin":$PATH
+export PATH="/opt/gradle-1.12/bin":$PATH
+export PATH="/":$PATH
+export PATH="/home/christopher/.shell_scripts/":$PATH
+export PATH="/bin":$PATH
+export PATH="/usr/bin":$PATH
+export PATH="/Library/Frameworks/Python.framework/Versions/3.3/bin":$PATH
+export PATH=".scripts":$PATH
+export PATH="/opt/local/bin":$PATH
+export PATH="/usr/texbin":$PATH
+export PATH="/usr/local/bin":$PATH
+
 # export MANPATH="/usr/local/man:$MANPATH"
 export ANDROID_HOME="/home/christopher/sdk"
+
 
 source $HOME/.shell_scripts/gibo-completion.zsh
 
@@ -41,15 +65,12 @@ bindkey '^Z' fancy-ctrl-z
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
+# Load the global gitignore
+git config --global core.excludesfile ~/.global_gitignore
+
 # Preferred editor for local and remote sessions
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
- else
-   export EDITOR='mvim'
- fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='vim'
+else
+    export EDITOR='mvim'
+fi
