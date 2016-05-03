@@ -1,7 +1,3 @@
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
 # Fix my typos
 alias cd..='cd ..'
 alias celar='clear'
@@ -32,7 +28,6 @@ alias compile='bash $HOME/.scripts/compile'
 
 # Easily access the C section of man
 alias cman='man 3'
-alias vim='mvim -v'
 
 # Create new latex files easily
 alias newlatex='cat ~/.scripts/template.tex >'
@@ -47,7 +42,6 @@ alias cdof='cdof_func'
 # Application aliases
 alias sgradle='gradle --build-file $(find $(git rev-parse --show-toplevel) -name "build.gradle") $1'
 alias latex='pdflatex -interaction=nonstopmode'
-alias clip='xclip -sel clip'
 alias untar='tar -xf'
 
 # Git aliases
