@@ -59,6 +59,13 @@ alias gs='git status'
 alias pipupgrade='pip list | grep -Po "^[A-Za-z0-9\-]+" | xargs sudo -H pip install --upgrade'
 alias globalignore='gibo --upgrade --list | grep -A 30 Global | tail -n +3 | tr "\n" " " | xargs gibo'
 
+# Managing dotfiles
+GIT_FILE_HOST="https://raw.githubusercontent.com"
+GIT_USER="gizmo385"
+REPO_NAME="dotfiles"
+REPO_BRANCH="master"
+alias update_dotfiles='curl ${GIT_FILE_HOST}/${GIT_USER}/${REPO_NAME}/${REPO_BRANCH}/update_dotfiles | sh'
+
 # Operating System specific aliases
 OS=`uname`
 case $OS in
