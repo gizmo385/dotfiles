@@ -34,7 +34,10 @@ alias newlatex='cat ~/.scripts/template.tex >'
 
 # cd aliases
 cdof_func() {
-    x=$(bash $HOME/.scripts/cdof `pwd` $1) && cd $x
+    result=$(python ${HOME}/.scripts/cdof.py \
+        $(git rev-parse --show-toplevel 2>/dev/null || echo ".") \
+        $1)
+    cd $result
 }
 
 alias cdof='cdof_func'
