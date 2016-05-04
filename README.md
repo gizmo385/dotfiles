@@ -25,6 +25,12 @@ If you wish to fork these dotfiles for yourself, there are a few areas you might
 
 * Update the name in `.gitconfig`
 
+### Known Bugs in Dotfiles
+
+* The [cdof](https://github.com/gizmo385/dotfiles/blob/master/dotfiles/.scripts/cdof) script is a
+bit buggy and will most likely be rewritten. Currently, it doesn't support file paths where spaces
+are present in a file name. Its functionality is also hit or miss on OSX machines.
+
 ### Current Vim Plugins
 Here is an overview of the various plugins I have installed for Vim:
 
