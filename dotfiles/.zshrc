@@ -47,9 +47,6 @@ export PATH="/usr/local/bin":$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 export ANDROID_HOME="/home/christopher/sdk"
 
-
-source $HOME/.shell_scripts/gibo-completion.zsh
-
 fancy-ctrl-z () {
   if [[ $#BUFFER -eq 0 ]]; then
     BUFFER="fg"
