@@ -1,0 +1,71 @@
+{
+    "link_dir" : "./test_link_dir",
+    "install_dir" : "./test_dir",
+
+    "package_sources" : [
+        {
+            "name" : "apt-get",
+            "base_command": "apt-get",
+            "install_command" : "apt-get install -y"
+        },
+        {
+            "name" : "brew",
+            "base_command": "brew",
+            "install_command" : "brew install"
+        },
+        {
+            "name" : "pip",
+            "base_command": "pip",
+            "install_command" : "pip install"
+        }
+    ],
+
+    "package_groups" : {
+        "apt-get" : ["exuberant-ctags", "openjdk-8-jre", "openjdk-8-jdk", "xclip"],
+        "brew" : ["gibo"],
+        "pip" : ["requests"]
+    },
+
+    "dotfiles" : {
+        "vim" : [
+            ".vimrc",
+            ".vim_settings",
+            ".vim_bindings",
+            ".vim_plugins",
+            ".vim_plugin_settings",
+            ".vim"
+        ],
+
+        "bash" : [
+            ".bashrc",
+            ".bash_profile",
+            ".bash_aliases"
+        ],
+
+        "zsh" : [
+            ".zshrc"
+        ],
+
+        "git" : [
+            ".gitconfig",
+            ".global_gitignore"
+        ],
+
+        "other" : [
+            ".ssh",
+            ".scripts"
+        ]
+    },
+
+    "commands" : [
+        {
+            "message" : "Installing oh my zsh",
+            "command" : "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)\""
+        },
+
+        {
+            "message" : "Installing Vundle (plugin manager for Vim)",
+            "command" : "git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/vundle > /dev/null 2>&1"
+        }
+    ]
+}
