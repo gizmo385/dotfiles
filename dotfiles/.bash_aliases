@@ -11,9 +11,6 @@ alias l='ls -CF'
 # Tree-structured ls
 alias lst="find . -name '*' | sed -e 's/^/|-/' -e 's/[^-][^\/]*\//|   /g' -e 's/|   \([A-Za-z0-9_.]\)/|   +--\1/'"
 
-# Remote access aliases
-alias lec='ssh lectura'
-
 # Make cpr copy with the recursive flag
 alias cpr='cp -r'
 
