@@ -44,6 +44,27 @@ alias sgradle='gradle --build-file $(find $(git rev-parse --show-toplevel) -name
 alias latex='pdflatex -interaction=nonstopmode'
 alias untar='tar -xf'
 
+# Screen aliases
+alias lscreen='screen -ls' # List screens
+alias rscreen='screen -r' # Attach to a screen
+
+# Kills a detached named screen
+_screen_kill() {
+    if [ -z $1 ]; then
+        echo Please supply a screen name!
+        exit 1
+    else
+        screen -X -S $1 quit
+    fi
+}
+alias qscreen='_screen_kill'
+
+# Starts a detached named screen and executes the arguments after the first argument
+_bg_screen() {
+    screen -S $1 -dm bash -c "'${@:2}'; exec ${SHELL}"
+}
+alias bgscreen='_bg_screen'
+
 # Git aliases
 alias groot='cd "$(git rev-parse --show-toplevel)"'
 alias gdd='view +:Gdiff +":nmap q :qa<CR>"'
