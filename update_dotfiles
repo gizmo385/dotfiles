@@ -14,34 +14,33 @@ if (( $? != 0 )) ; then
     exit 1
 fi
 
-# Clone the dotfiles
-echo Cloning remote dotfiles...
-git clone --recursive https://github.com/${repository_location} -b ${repository_branch} .dotfiles > /dev/null 2>&1
+# Clone dotfiles if they aren't present
+if [ ! -d "$HOME/.dotfiles" ]; then
+    # Clone the dotfiles
+    echo Cloning remote dotfiles...
+    git clone --recursive https://github.com/${repository_location} -b ${repository_branch} ${HOME}/.dotfiles
+    git_exit_status=$?
+fi
+
+# Pull the most updated copy
+cd $HOME/.dotfiles && git pull
 git_exit_status=$?
 
-# If the clone operation failed, exit with the exit status provided by git
+# If the clone/pull operation failed, exit with the exit status provided by git
 if (( $git_exit_status != 0 )) ; then
-    echo There was an error while attempting to clone dotfiles! 1>&2
+    echo There was an error while attempting to clone/pull dotfiles! 1>&2
     exit $git_exit_status
 fi
 
-# Find the files that we need to move
-echo Copying dotfiles into ${HOME}
-cp -rf ./.dotfiles/${dotfiles_folder}/. $HOME/
-copy_exit_status=$?
+# Symlink all the files
+echo Symlinking dotfiles into ${HOME}
+ln -sf $HOME/.dotfiles/dotfiles/.[!.]* $HOME
 
-# Remove the tempory folder that the dotfiles were cloned into
-rm -rf ./.dotfiles
+if [ ! -d "$HOME/.vim/bundle/vundle" ]; then
+    echo "Installing Vundle (plugin manager)"
+    git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/vundle > /dev/null 2>&1
+fi
 
-# Install vundle and then update dotfiles
-rm -rf $HOME/.vim/bundle/*
-
-echo "Installing Vundle (plugin manager)"
-git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/vundle > /dev/null 2>&1
-
-echo Attempting to install vim plugins.
 echo Run :BundleInstall upon starting vim if plugins aren\'t installed.
-vim -E -c BundleInstall! -c qa! > /dev/null
-echo Finished installing vim plugins
 
-echo Finished copying dotfiles. Please source the relevant files for your shell.
+echo Finished installing dotfiles. Please source the relevant files for your shell.

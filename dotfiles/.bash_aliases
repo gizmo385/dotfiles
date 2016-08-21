@@ -79,7 +79,7 @@ GIT_FILE_HOST="https://raw.githubusercontent.com"
 GIT_USER="gizmo385"
 REPO_NAME="dotfiles"
 REPO_BRANCH="master"
-alias update_dotfiles='curl ${GIT_FILE_HOST}/${GIT_USER}/${REPO_NAME}/${REPO_BRANCH}/update_dotfiles | sh'
+alias update_dotfiles="cd ${HOME}/.dotfiles && git pull"
 
 # Application aliases which have dependencies
 if command -v pygmentize > /dev/null; then
