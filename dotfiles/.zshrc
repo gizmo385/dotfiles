@@ -72,4 +72,4 @@ else
     export EDITOR='mvim'
 fi
 
-command -v fortune cowsay && fortune -n 160 | cowsay -f ren
+command -v fortune cowsay > /dev/null && fortune -n 160 | cowsay -f ren
