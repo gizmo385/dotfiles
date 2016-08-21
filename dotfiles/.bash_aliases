@@ -81,6 +81,16 @@ REPO_NAME="dotfiles"
 REPO_BRANCH="master"
 alias update_dotfiles='curl ${GIT_FILE_HOST}/${GIT_USER}/${REPO_NAME}/${REPO_BRANCH}/update_dotfiles | sh'
 
+# Application aliases which have dependencies
+if command -v pygmentize > /dev/null; then
+    # Replaces cat with a version that includes syntax highlighting
+    _cat_func() {
+        cat "$@" | pygmentize -O style=monokai -f console256 -g
+    }
+    alias cat=_cat_func
+fi
+
+
 # Operating System specific aliases
 OS=`uname`
 case $OS in
