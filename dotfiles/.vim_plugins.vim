@@ -48,7 +48,7 @@ Bundle 'mtth/scratch.vim'
 Bundle 'hynek/vim-python-pep8-indent'
 
 " Control spotify from vim
-Bundle 'gizmo385/spotify.vim'
+"Bundle 'gizmo385/spotify.vim'
 
 """""""""""""""""""""""""""""""""
 "Clojure stuff
