@@ -87,7 +87,7 @@ if command -v pygmentize > /dev/null; then
     _cat_func() {
         cat "$@" | pygmentize -O style=monokai -f console256 -g
     }
-    alias cat=_cat_func
+    alias ccat=_cat_func
 fi
 
 
