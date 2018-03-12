@@ -68,6 +68,9 @@ vmap <silent> <expr> p <sid>Repl()
 " Copying to system clipboard (if installed)
 vnoremap <C-c> "+y
 
+" Toggle paste mode
+nnoremap <C-p> :set paste!<cr>
+
 """""""""""""""""""""""""""""
 " Mode bindings
 """""""""""""""""""""""""""""
