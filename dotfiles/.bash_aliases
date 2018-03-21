@@ -43,6 +43,7 @@ alias cdof='cdof_func'
 alias sgradle='gradle --build-file $(find $(git rev-parse --show-toplevel) -name "build.gradle") $1'
 alias latex='pdflatex -interaction=nonstopmode'
 alias untar='tar -xf'
+alias commajoin='paste -s -d","'
 
 # Screen aliases
 alias lscreen='screen -ls' # List screens
