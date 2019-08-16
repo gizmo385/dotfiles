@@ -11,20 +11,11 @@ alias l='ls -CF'
 # Tree-structured ls
 alias lst="find . -name '*' | sed -e 's/^/|-/' -e 's/[^-][^\/]*\//|   /g' -e 's/|   \([A-Za-z0-9_.]\)/|   +--\1/'"
 
-# Make cpr copy with the recursive flag
-alias cpr='cp -r'
-
 # Directory tree
 alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 
 # Remove files created by vim (.swp & .un~)
 alias clean='python $HOME/.scripts/clean_files.py'
-
-# Compile files
-alias compile='bash $HOME/.scripts/compile'
-
-# Easily access the C section of man
-alias cman='man 3'
 
 # Create new latex files easily
 alias newlatex='cat ~/.scripts/template.tex >'
@@ -40,35 +31,12 @@ cdof_func() {
 alias cdof='cdof_func'
 
 # Application aliases
-alias sgradle='gradle --build-file $(find $(git rev-parse --show-toplevel) -name "build.gradle") $1'
 alias latex='pdflatex -interaction=nonstopmode'
 alias untar='tar -xf'
 alias commajoin='paste -s -d","'
 
-# Screen aliases
-alias lscreen='screen -ls' # List screens
-alias rscreen='screen -r' # Attach to a screen
-
-# Kills a detached named screen
-_screen_kill() {
-    if [ -z $1 ]; then
-        echo Please supply a screen name!
-        exit 1
-    else
-        screen -X -S $1 quit
-    fi
-}
-alias qscreen='_screen_kill'
-
-# Starts a detached named screen and executes the arguments after the first argument
-_bg_screen() {
-    screen -S $1 -dm bash -c "'${@:2}'; exec ${SHELL}"
-}
-alias bgscreen='_bg_screen'
-
 # Git aliases
 alias groot='cd "$(git rev-parse --show-toplevel)"'
-alias gdd='view +:Gdiff +":nmap q :qa<CR>"'
 alias gs='git status'
 
 # Package manager upgrades
