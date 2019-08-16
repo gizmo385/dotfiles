@@ -48,7 +48,7 @@ set showmatch                   " jump to matching brackets
 " Cursor, line formatting, column highlight
 """"""""""""""""""""""""""""""""""""""""""""""""""
 set cursorcolumn
-set cursorline
+"set cursorline
 
 set wrap                        " wrap lines
 set textwidth=100               " max width is 100 characters
@@ -71,3 +71,6 @@ set shiftround                  " round my spaces to a multiple of shiftwidth
 
 set autoindent                  " give me some indent
 set smartindent                 " make good indentation choices
+
+" Other settings
+set lazyredraw
