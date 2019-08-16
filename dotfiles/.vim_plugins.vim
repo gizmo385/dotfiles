@@ -10,12 +10,10 @@ Bundle 'gmarik/vundle'
 Bundle 'croaker/mustang-vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'vim-scripts/xoria256.vim'
+Bundle 'morhetz/gruvbox'
 
 "rainbow parenthesis -- Coloring of nested parenthesis
 Bundle 'kien/rainbow_parentheses.vim'
-
-" Taglist - displays important code elements
-Bundle 'vim-scripts/taglist.vim'
 
 "NERDTree -- File browser in vim
 Bundle 'scrooloose/nerdtree'
@@ -29,9 +27,6 @@ Bundle 'terryma/vim-multiple-cursors'
 "Ctlr-P Stuff
 Bundle 'kien/ctrlp.vim'
 
-" Neocomplete with cache
-Bundle 'Shougo/neocomplcache.vim'
-
 " vim-airline
 Bundle 'bling/vim-airline'
 
@@ -40,9 +35,6 @@ Bundle 'shime/vim-livedown'
 
 " fugitive: git plugin
 Bundle 'tpope/vim-fugitive'
-
-" Scratch pad for vim
-Bundle 'mtth/scratch.vim'
 
 " Proper pep8 indents for python
 Bundle 'hynek/vim-python-pep8-indent'
@@ -53,9 +45,6 @@ Bundle 'hynek/vim-python-pep8-indent'
 """""""""""""""""""""""""""""""""
 "Clojure stuff
 """""""""""""""""""""""""""""""""
-" Typed clojure support
-Bundle 'typedclojure/vim-typedclojure'
-
 " Clojure REPL and auto-execute
 Bundle 'tpope/vim-fireplace'
 

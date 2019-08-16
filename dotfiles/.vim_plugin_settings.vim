@@ -1,8 +1,8 @@
 " Colorscheme
 ":silent! colorscheme monokai
 let g:solarized_termcolors=256
-colorscheme solarized
-set background=light
+colorscheme gruvbox
+set background=dark
 
 
 " Rainbow Parenthesis
@@ -22,28 +22,11 @@ autocmd VimEnter,BufEnter *.py,*.java RainbowParenthesesLoadRound
 autocmd VimEnter,BufEnter *.py,*.java RainbowParenthesesLoadSquare
 autocmd VimEnter,BufEnter *.py,*.java RainbowParenthesesLoadBraces
 
+autocmd Syntax clojure EnableSyntaxExtension
+
 filetype plugin indent on
 filetype plugin on
 
-" -- Rainbow parenthesis colors
-let g:rbpt_colorpairs = [
-    \ ['darkyellow',  'RoyalBlue3'],
-    \ ['darkgreen',   'SeaGreen3'],
-    \ ['darkcyan',    'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['DarkMagenta', 'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkyellow',  'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['DarkMagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkyellow',  'DarkOrchid3'],
-    \ ['darkred',     'firebrick3'],
-    \ ]
 
 let &t_Co=256
 syntax enable
@@ -57,7 +40,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " Ctrl-P stuff
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 set wildignore+=*.class,*.o,*.a,*.pyc
-let g:ctrlp_custom_ignore= '\v(.*[\/](doc|build|bin|gen|res)[\/].*)|(*.(o|class))'
+let g:ctrlp_custom_ignore= '\v(.*[\/](node_modules|doc|build|bin|gen|res)[\/].*)|(*.(o|class))'
 
  "Neocomplete
 let g:neocomplcache_enable_at_startup = 1
