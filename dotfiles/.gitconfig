@@ -1,7 +1,7 @@
 [user]
-	name = Christopher Chapline
+    name = Christopher Chapline
 [core]
-	editor = vim
-	excludesfile = ~/.global_gitignore
+    editor = /usr/bin/vim
+    excludesfile = ~/.global_gitignore
 [alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
