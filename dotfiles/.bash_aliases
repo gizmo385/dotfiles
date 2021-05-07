@@ -70,7 +70,7 @@ case $OS in
         ;;
     'Darwin')
         alias search="brew search"
-        alias vim="mvim -v"
+        #alias vim="mvim -v"
         alias clip="pbcopy"
         alias alert="terminal-notifier -message"
         ;;

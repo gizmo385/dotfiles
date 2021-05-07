@@ -39,9 +39,6 @@ Bundle 'tpope/vim-fugitive'
 " Proper pep8 indents for python
 Bundle 'hynek/vim-python-pep8-indent'
 
-" Control spotify from vim
-"Bundle 'gizmo385/spotify.vim'
-
 """""""""""""""""""""""""""""""""
 "Clojure stuff
 """""""""""""""""""""""""""""""""
@@ -55,4 +52,4 @@ Bundle 'tpope/vim-leiningen'
 Bundle 'vim-scripts/paredit.vim'
 
 Bundle 'guns/vim-clojure-static'
-Bundle 'guns/vim-clojure-highlight'
+Bundle 'gizmo385/vim-clojure-highlight'

@@ -31,7 +31,7 @@ set undofile                    " make my undos persistent
 
 set noeb vb t_vb=               " nothing should beep or flash
 
-fixdel                          " makes the delete key work better
+"fixdel                          " makes the delete key work better
 
 set mouse=a
 
