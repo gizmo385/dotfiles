@@ -40,7 +40,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'hynek/vim-python-pep8-indent'
 
 """""""""""""""""""""""""""""""""
-"Clojure stuff
+" Clojure stuff
 """""""""""""""""""""""""""""""""
 " Clojure REPL and auto-execute
 Bundle 'tpope/vim-fireplace'
@@ -51,5 +51,11 @@ Bundle 'tpope/vim-leiningen'
 " Slurp, spit, and general LISP editing tools
 Bundle 'vim-scripts/paredit.vim'
 
+" Syntax highlighting
 Bundle 'guns/vim-clojure-static'
 Bundle 'gizmo385/vim-clojure-highlight'
+
+"""""""""""""""""""""""""""""""""
+" Other language plugins
+"""""""""""""""""""""""""""""""""
+Bundle 'LnL7/vim-nix'
