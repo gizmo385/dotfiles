@@ -5,7 +5,6 @@
   environment.systemPackages =
     [
       pkgs.awscli
-      pkgs.chunkwm
       pkgs.clojure
       pkgs.docker
       pkgs.fira-code
@@ -18,6 +17,7 @@
       pkgs.skhd
       pkgs.tmux
       pkgs.vim
+      pkgs.yabai
     ];
 
     nixpkgs.overlays = [
@@ -45,4 +45,9 @@
 
   # Enable/Disable services
   services.skhd.enable = true;
+  services.yabai = {
+    enable = true;
+    package = pkgs.yabai;
+  };
+
 }
