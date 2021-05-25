@@ -357,17 +357,6 @@ octave-workspace
 tmtags
 
 
-### https://raw.github.com/github/gitignore/785fcb765a09e0800b9133e64a79fe60c6a205ab/Global/Dreamweaver.gitignore
-
-# DW Dreamweaver added files
-_notes
-_compareTemp
-configs/
-dwsync.xml
-dw_php_codehinting.config
-*.mno
-
-
 ### https://raw.github.com/github/gitignore/785fcb765a09e0800b9133e64a79fe60c6a205ab/Global/Mercurial.gitignore
 
 .hg/
