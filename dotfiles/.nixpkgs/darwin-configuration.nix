@@ -7,9 +7,12 @@
       pkgs.awscli
       pkgs.clojure
       pkgs.docker
+      pkgs.docker-compose
       pkgs.fira-code
+      pkgs.fzf
       pkgs.htop
       pkgs.jq
+      pkgs.kubectl
       pkgs.mosh
       pkgs.neovim
       pkgs.nodejs
@@ -17,6 +20,7 @@
       pkgs.skhd
       pkgs.tmux
       pkgs.vim
+      pkgs.watch
       pkgs.yabai
     ];
 
