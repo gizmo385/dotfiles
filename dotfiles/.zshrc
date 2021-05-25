@@ -39,8 +39,8 @@ zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
 # Disable retrieving git status in prompt
-git config --global --add oh-my-zsh.hide-status 1
-git config --global --add oh-my-zsh.hide-dirty 1
+git config --global --replace-all oh-my-zsh.hide-status 1
+git config --global --replace-all oh-my-zsh.hide-dirty 1
 
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
