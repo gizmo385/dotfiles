@@ -100,3 +100,6 @@ alt + shift - f : yabai -m window --toggle zoom-fullscreen
 
 # Toggle window split type
 alt - e : yabai -m window --toggle split
+
+# Toggle gaps in the current workspace
+alt + shift - a : yabai -m space --toggle padding; yabai -m space --toggle gap
