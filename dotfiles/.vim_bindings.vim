@@ -93,8 +93,8 @@ inoremap JJ <ESC>
 """""""""""""""""""""""""""""
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>t :TlistToggle<CR>
-nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap gm :LivedownPreview<CR>
+nnoremap <C-P> :GFiles<CR>
 
 " Fugitive git commands
 nnoremap gs :Gstatus<CR>

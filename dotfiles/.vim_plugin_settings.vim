@@ -38,9 +38,9 @@ let Tlist_WinWidth = 60
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Ctrl-P stuff
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-set wildignore+=*.class,*.o,*.a,*.pyc
-let g:ctrlp_custom_ignore= '\v(.*[\/](node_modules|doc|build|bin|gen|res)[\/].*)|(*.(o|class))'
+" set runtimepath^=~/.vim/bundle/ctrlp.vim
+" set wildignore+=*.class,*.o,*.a,*.pyc
+" let g:ctrlp_custom_ignore= '\v(.*[\/](node_modules|doc|build|bin|gen|res)[\/].*)|(*.(o|class))'
 
  "Neocomplete
 let g:neocomplcache_enable_at_startup = 1

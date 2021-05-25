@@ -12,20 +12,22 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'vim-scripts/xoria256.vim'
 Bundle 'morhetz/gruvbox'
 
-"rainbow parenthesis -- Coloring of nested parenthesis
+" rainbow parenthesis -- Coloring of nested parenthesis
 Bundle 'kien/rainbow_parentheses.vim'
 
-"NERDTree -- File browser in vim
+" NERDTree -- File browser in vim
 Bundle 'scrooloose/nerdtree'
 
-"NERDcommenter -- Auto comment out lines
+" NERDcommenter -- Auto comment out lines
 Bundle 'scrooloose/nerdcommenter'
 
 " Multiple cursors
 Bundle 'terryma/vim-multiple-cursors'
 
-"Ctlr-P Stuff
-Bundle 'kien/ctrlp.vim'
+" Fuzzy file finding
+"Bundle 'kien/ctrlp.vim'
+Bundle 'junegunn/fzf'
+Bundle 'junegunn/fzf.vim'
 
 " vim-airline
 Bundle 'bling/vim-airline'
