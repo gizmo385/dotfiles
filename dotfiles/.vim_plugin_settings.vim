@@ -50,6 +50,7 @@ let g:neocomplcache_force_overwrite_completefunc = 1
 
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType python setlocal colorcolumn=120
 au BufNewFile,BufRead *.gradle setf groovy
 
 
