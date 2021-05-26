@@ -41,8 +41,14 @@ if [ ! -d "$HOME/.vim/bundle/vundle" ]; then
     git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/vundle > /dev/null 2>&1
 fi
 
-# Symlink nixpkgs file
-ln -s dotfiles/.nixpkgs/darwin-configuration.nix $HOME/.nixpkgs/darwin-configuration.nix
+# Symlink nixpkgs configurations
+echo "Symlinking nix Darwin configs"
+mkdir -p $HOME/.nixpkgs
+ln -sf $HOME/.dotfiles/dotfiles/nixpkgs/darwin-configuration.nix $HOME/.nixpkgs/darwin-configuration.nix
+
+# Symlink nvim configs
+echo "Symlinking nvim configs"
+ln -sf $HOME/.dotfiles/dotfiles/config/nvim/* $HOME/.config/nvim
 
 echo Run :BundleInstall upon starting vim if plugins aren\'t installed.
 
