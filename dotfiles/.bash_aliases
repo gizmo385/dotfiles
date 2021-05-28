@@ -51,14 +51,9 @@ REPO_BRANCH="master"
 alias update_dotfiles="cd ${HOME}/.dotfiles && git pull"
 
 # Application aliases which have dependencies
-if command -v pygmentize > /dev/null; then
-    # Replaces cat with a version that includes syntax highlighting
-    _cat_func() {
-        cat "$@" | pygmentize -O style=monokai -f console256 -g
-    }
-    alias ccat=_cat_func
+if command -v bat >> /dev/null 2>&1; then
+    alias cat=bat
 fi
-
 
 # Operating System specific aliases
 OS=`uname`
