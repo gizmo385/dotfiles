@@ -1,15 +1,18 @@
 { config, pkgs, ... }:
 
-  {
+{
+
   # List packages installed in system profile. To search by name, run:
   environment.systemPackages =
     [
       pkgs.awscli
+      pkgs.bat
       pkgs.clojure
       pkgs.docker
       pkgs.docker-compose
       pkgs.fira-code
       pkgs.fzf
+      pkgs.gitAndTools.delta
       pkgs.htop
       pkgs.jq
       pkgs.kubectl
