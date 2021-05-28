@@ -82,19 +82,11 @@ inoremap jj <ESC>
 inoremap JJ <ESC>
 
 """""""""""""""""""""""""""""
-" Custom commands
-"""""""""""""""""""""""""""""
-" Allow saving of files as sudo when I forgot to start vim using sudo.
- cmap w!! w !sudo tee > /dev/null %
-
-
-"""""""""""""""""""""""""""""
 " Plugin bindings
 """""""""""""""""""""""""""""
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>t :TlistToggle<CR>
 nnoremap gm :LivedownPreview<CR>
-nnoremap <C-P> :GFiles<CR>
 
 " Fugitive git commands
 nnoremap gs :Gstatus<CR>
@@ -104,11 +96,13 @@ nnoremap gc :Gcommit<CR>
 nnoremap gd :Gdiff<CR>
 nnoremap gb :Gblame<CR>
 
-" Scratch pad
-nnoremap sp :ScratchInsert<CR>
-nnoremap cp :ScratchInsert!<CR>
-xnoremap sp :ScratchSelection<CR>
-xnoremap cp :ScratchSelection!<CR>
+" Neovim specific bindings
+if has('nvim')
+    nnoremap <C-p> <cmd>:Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍<cr>
+    nnoremap <C-f> <cmd>:Telescope live_grep grep_open_files=true<cr>
+endif
 
-" Necomplete
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" Regular vim specific bindings
+if ! has('nvim')
+    nnoremap <C-P> :GFiles<CR>
+endif
