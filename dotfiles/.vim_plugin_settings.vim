@@ -4,7 +4,6 @@ let g:solarized_termcolors=256
 colorscheme gruvbox
 set background=dark
 
-
 " Rainbow Parenthesis
 au VimEnter * RainbowParenthesesToggle
 au VimEnter * RainbowParenthesesLoadBraces
@@ -27,7 +26,6 @@ autocmd Syntax clojure EnableSyntaxExtension
 filetype plugin indent on
 filetype plugin on
 
-
 let &t_Co=256
 syntax enable
 
@@ -36,11 +34,6 @@ let Tlist_WinWidth = 60
 
 " Nerdtree settings
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-" Ctrl-P stuff
-" set runtimepath^=~/.vim/bundle/ctrlp.vim
-" set wildignore+=*.class,*.o,*.a,*.pyc
-" let g:ctrlp_custom_ignore= '\v(.*[\/](node_modules|doc|build|bin|gen|res)[\/].*)|(*.(o|class))'
 
  "Neocomplete
 let g:neocomplcache_enable_at_startup = 1
@@ -52,10 +45,6 @@ autocmd FileType java setlocal omnifunc=javacomplete#Complete
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType python setlocal colorcolumn=120
 au BufNewFile,BufRead *.gradle setf groovy
-
-
-" Scratch pad for vim
-let g:scratch_no_mappings = 1
 
 " Clojure stuff
 let g:clojure_fuzzy_indent = 1
