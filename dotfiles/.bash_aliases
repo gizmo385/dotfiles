@@ -51,9 +51,19 @@ REPO_BRANCH="master"
 alias update_dotfiles="cd ${HOME}/.dotfiles && git pull"
 
 # Application aliases which have dependencies
-if command -v bat >> /dev/null 2>&1; then
+function command_exists {
+    command -v $1 > /dev/null 2>&1
+    return $?
+}
+
+if command_exists bat; then
     alias cat=bat
 fi
+
+if command_exists nvim; then
+    alias vim=nvim
+fi
+
 
 # Operating System specific aliases
 OS=`uname`
