@@ -48,7 +48,8 @@ ln -sf $HOME/.dotfiles/dotfiles/nixpkgs/darwin-configuration.nix $HOME/.nixpkgs/
 
 # Symlink nvim configs
 echo "Symlinking nvim configs"
-ln -sf $HOME/.dotfiles/dotfiles/config/nvim/* $HOME/.config/nvim
+mkdir -p $HOME/.config/nvim
+ln -sf $HOME/.dotfiles/dotfiles/config/nvim/init.vim $HOME/.config/nvim/init.vim
 
 echo Run :BundleInstall upon starting vim if plugins aren\'t installed.
 
