@@ -1,63 +1,78 @@
-" Setting up Vundle
-filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" Setting up vim-plug (https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation)
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
 
 " Colorschemes
-Bundle 'croaker/mustang-vim'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'vim-scripts/xoria256.vim'
-Bundle 'morhetz/gruvbox'
+Plug 'croaker/mustang-vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'vim-scripts/xoria256.vim'
+Plug 'morhetz/gruvbox'
 
 " rainbow parenthesis -- Coloring of nested parenthesis
-Bundle 'kien/rainbow_parentheses.vim'
+Plug 'kien/rainbow_parentheses.vim'
 
 " NERDTree -- File browser in vim
-Bundle 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 " NERDcommenter -- Auto comment out lines
-Bundle 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 
 " Multiple cursors
-Bundle 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors'
 
-" Fuzzy file finding
-"Bundle 'kien/ctrlp.vim'
-Bundle 'junegunn/fzf'
-Bundle 'junegunn/fzf.vim'
-
-" vim-airline
-Bundle 'bling/vim-airline'
+" Bottom bar line in vim
+Plug 'bling/vim-airline'
 
 " Vim auto previews for markdown
-Bundle 'shime/vim-livedown'
+Plug 'shime/vim-livedown'
 
 " fugitive: git plugin
-Bundle 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " Proper pep8 indents for python
-Bundle 'hynek/vim-python-pep8-indent'
+Plug 'hynek/vim-python-pep8-indent'
 
 """""""""""""""""""""""""""""""""
 " Clojure stuff
 """""""""""""""""""""""""""""""""
 " Clojure REPL and auto-execute
-Bundle 'tpope/vim-fireplace'
+Plug 'tpope/vim-fireplace'
 
 " Support for the leiningen build system
-Bundle 'tpope/vim-leiningen'
+Plug 'tpope/vim-leiningen'
 
 " Slurp, spit, and general LISP editing tools
-Bundle 'vim-scripts/paredit.vim'
+Plug 'vim-scripts/paredit.vim'
 
 " Syntax highlighting
-Bundle 'guns/vim-clojure-static'
-Bundle 'gizmo385/vim-clojure-highlight'
+Plug 'guns/vim-clojure-static'
+Plug 'gizmo385/vim-clojure-highlight'
 
 """""""""""""""""""""""""""""""""
-" Other language plugins
+" Language syntax highlighting
 """""""""""""""""""""""""""""""""
-Bundle 'LnL7/vim-nix'
+Plug 'LnL7/vim-nix'
+Plug 'pangloss/vim-javascript'
+
+" If we're running in neovim, we'll install some additional nvim plugins
+if has('nvim')
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+endif
+
+" Alternatives to nvim plugins
+if ! has('nvim')
+    Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf.vim'
+endif
+
+call plug#end()

@@ -36,11 +36,6 @@ fi
 echo Symlinking dotfiles into ${HOME}
 ln -sf $HOME/.dotfiles/dotfiles/.[!.]* $HOME
 
-if [ ! -d "$HOME/.vim/bundle/vundle" ]; then
-    echo "Installing Vundle (plugin manager)"
-    git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/vundle > /dev/null 2>&1
-fi
-
 # Symlink nixpkgs configurations
 echo "Symlinking nix Darwin configs"
 mkdir -p $HOME/.nixpkgs

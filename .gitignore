@@ -8,3 +8,5 @@ Session.vim
 *~
 
 dotfiles/.vim/bundle
+dotfiles/.vim/autoload
+dotfiles/.vim/plugged
