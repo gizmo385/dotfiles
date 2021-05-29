@@ -64,13 +64,25 @@ Plug 'pangloss/vim-javascript'
 
 " If we're running in neovim, we'll install some additional nvim plugins
 if has('nvim')
+    " Telescope, a file-finder plugin
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
+
+    " Tree-sitter is a parser tool
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/playground'
+
+    " Language Server Protocol Plugins
+    Plug 'neovim/nvim-lspconfig'
+
+    " Auto-completion plugin
+    Plug 'hrsh7th/nvim-compe'
 endif
 
 " Alternatives to nvim plugins
 if ! has('nvim')
+    " FZF is a file-finder plugin
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
 endif
