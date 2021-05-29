@@ -98,7 +98,7 @@ nnoremap gb :Gblame<CR>
 
 " Neovim specific bindings
 if has('nvim')
-    nnoremap <C-p> <cmd>:Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍<cr>
+    nnoremap <C-p> <cmd>:Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>
     nnoremap <C-f> <cmd>:Telescope live_grep grep_open_files=true<cr>
 endif
 
