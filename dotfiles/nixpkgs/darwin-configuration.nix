@@ -25,6 +25,7 @@
       pkgs.vim
       pkgs.watch
       pkgs.yabai
+      (pkgs.callPackage ../custom-nix-packages/coder.nix { })
     ];
 
     nixpkgs.overlays = [
