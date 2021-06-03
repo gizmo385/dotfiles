@@ -89,12 +89,12 @@ nnoremap <leader>t :TlistToggle<CR>
 nnoremap gm :LivedownPreview<CR>
 
 " Fugitive git commands
-nnoremap gs :Gstatus<CR>
+nnoremap gs :Git status<CR>
 nnoremap ga :Gwrite<CR>
 nnoremap gw :Gwrite<CR>
-nnoremap gc :Gcommit<CR>
-nnoremap gd :Gdiff<CR>
-nnoremap gb :Gblame<CR>
+nnoremap gc :Git commit<CR>
+nnoremap gd :Git diff<CR>
+nnoremap gb :Git blame<CR>
 
 " Neovim specific bindings
 if has('nvim')
