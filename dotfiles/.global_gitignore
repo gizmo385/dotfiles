@@ -463,9 +463,6 @@ local.properties
 
 ### https://raw.github.com/github/gitignore/785fcb765a09e0800b9133e64a79fe60c6a205ab/Global/ModelSim.gitignore
 
-# ignore ModelSim generated files and directories (temp files and so on)
-[_@]*
-
 # ignore compilation output of ModelSim
 *.mti
 *.dat
