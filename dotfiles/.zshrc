@@ -12,7 +12,12 @@ source $ZSH/oh-my-zsh.sh
 source $HOME/.bash_aliases
 
 # User configuration
-export VISUAL=vim
+if command -v nvim > /dev/null 2>&1; then
+    export VISUAL=nvim
+else
+    export VISUAL=vim
+fi
+
 export EDITOR="$VISUAL"
 
 # Forming the path
