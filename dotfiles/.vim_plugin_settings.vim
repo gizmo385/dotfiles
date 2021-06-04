@@ -1,8 +1,3 @@
-" Colorscheme
-":silent! colorscheme monokai
-let g:solarized_termcolors=256
-colorscheme gruvbox
-set background=dark
 
 " Rainbow Parenthesis
 au VimEnter * RainbowParenthesesToggle
@@ -26,11 +21,7 @@ autocmd Syntax clojure EnableSyntaxExtension
 filetype plugin indent on
 filetype plugin on
 
-let &t_Co=256
 syntax enable
-
-" Taglist settings
-let Tlist_WinWidth = 60
 
 " Nerdtree settings
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -64,6 +55,14 @@ endfunction
 autocmd BufNewFile,BufRead *.clj call SetClojureOptions()
 
 au BufNewFile,BufRead *.clj setlocal sw=2 ts=2 expandtab
+
+" Setting the Colorscheme
+let t_Co=256
+set background=dark
+set termguicolors
+let g:edge_style = 'neon'
+let g:everforest_background = 'hard'
+colorscheme everforest
 
 " Neovim specific configurations
 if has('nvim')

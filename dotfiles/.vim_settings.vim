@@ -28,6 +28,7 @@ set ttyfast                     " fast terminal = moar characters sent
 set backspace=indent,eol,start  " delete anything
 set laststatus=2                " always have a status line
 set undofile                    " make my undos persistent
+set noswapfile                  " disable swap files
 
 set noeb vb t_vb=               " nothing should beep or flash
 

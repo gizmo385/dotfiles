@@ -11,10 +11,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Colorschemes
-Plug 'croaker/mustang-vim'
-Plug 'altercation/vim-colors-solarized'
-Plug 'vim-scripts/xoria256.vim'
-Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 
 " rainbow parenthesis -- Coloring of nested parenthesis
 Plug 'kien/rainbow_parentheses.vim'
@@ -78,6 +75,12 @@ if has('nvim')
 
     " Auto-completion plugin
     Plug 'hrsh7th/nvim-compe'
+
+    " Neovim specific colorschemes
+    Plug 'sainnhe/edge'
+    Plug 'sainnhe/everforest'
+    Plug 'rktjmp/lush.nvim'
+    Plug 'lourenci/github-colors'
 endif
 
 " Alternatives to nvim plugins

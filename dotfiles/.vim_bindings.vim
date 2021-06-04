@@ -6,11 +6,8 @@ let mapleader = ","     " make , the <leader> instead of \
 " ,ww strips trailing whitespace
 nnoremap <leader>ww :%s/\s\+$//<cr>:let @/=''<CR>
 
-" Open in a separate buffer
-"nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC <CR>
-
 "Open in the same buffer
-nnoremap <leader>ev :e $MYVIMRC <CR>
+nnoremap <leader>ev :e ~/.vimrc <CR>
 
 """""""""""""""""""""""""""""
 " Search and Replace bindings
@@ -85,7 +82,6 @@ inoremap JJ <ESC>
 " Plugin bindings
 """""""""""""""""""""""""""""
 nnoremap <leader>n :NERDTreeToggle<CR>
-nnoremap <leader>t :TlistToggle<CR>
 nnoremap gm :LivedownPreview<CR>
 
 " Fugitive git commands
