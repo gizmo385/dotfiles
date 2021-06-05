@@ -24,7 +24,9 @@
       pkgs.tmux
       pkgs.vim
       pkgs.watch
+      pkgs.wget
       pkgs.yabai
+      pkgs.yq
       (pkgs.callPackage ../custom-nix-packages/coder.nix { })
     ];
 
