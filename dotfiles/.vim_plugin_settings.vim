@@ -65,7 +65,7 @@ let g:everforest_background = 'hard'
 colorscheme everforest
 
 " Neovim specific configurations
-if has('nvim')
+if has('nvim-0.5')
 lua << EOF
 require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages

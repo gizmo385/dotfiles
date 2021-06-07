@@ -59,8 +59,8 @@ Plug 'gizmo385/vim-clojure-highlight'
 Plug 'LnL7/vim-nix'
 Plug 'pangloss/vim-javascript'
 
-" If we're running in neovim, we'll install some additional nvim plugins
-if has('nvim')
+" If we're running in neovim (version > 0.5), we'll install some additional nvim plugins
+if has('nvim-0.5')
     " Telescope, a file-finder plugin
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
@@ -81,10 +81,7 @@ if has('nvim')
     Plug 'sainnhe/everforest'
     Plug 'rktjmp/lush.nvim'
     Plug 'lourenci/github-colors'
-endif
-
-" Alternatives to nvim plugins
-if ! has('nvim')
+else
     " FZF is a file-finder plugin
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'

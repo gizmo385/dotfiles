@@ -92,13 +92,11 @@ nnoremap gc :Git commit<CR>
 nnoremap gd :Git diff<CR>
 nnoremap gb :Git blame<CR>
 
-" Neovim specific bindings
-if has('nvim')
+if has('nvim-0.5')
+    " Neovim specific bindings
     nnoremap <C-p> <cmd>:Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>
     nnoremap <C-f> <cmd>:Telescope live_grep grep_open_files=true<cr>
-endif
-
-" Regular vim specific bindings
-if ! has('nvim')
+else
+    " Regular vim specific bindings
     nnoremap <C-P> :GFiles<CR>
 endif
