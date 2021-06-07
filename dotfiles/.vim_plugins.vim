@@ -73,9 +73,6 @@ if has('nvim-0.5')
     " Language Server Protocol Plugins
     Plug 'neovim/nvim-lspconfig'
 
-    " Auto-completion plugin
-    Plug 'hrsh7th/nvim-compe'
-
     " Neovim specific colorschemes
     Plug 'sainnhe/edge'
     Plug 'sainnhe/everforest'
