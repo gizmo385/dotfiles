@@ -48,7 +48,7 @@ GIT_FILE_HOST="https://raw.githubusercontent.com"
 GIT_USER="gizmo385"
 REPO_NAME="dotfiles"
 REPO_BRANCH="master"
-alias update_dotfiles="cd ${HOME}/.dotfiles && git pull"
+alias update_dotfiles="pushd > /dev/null && cd ${HOME}/.dotfiles && git pull && popd > /dev/null"
 
 # Application aliases which have dependencies
 function command_exists {
