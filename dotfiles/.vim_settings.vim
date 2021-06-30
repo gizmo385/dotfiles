@@ -32,9 +32,8 @@ set noswapfile                  " disable swap files
 
 set noeb vb t_vb=               " nothing should beep or flash
 
-"fixdel                          " makes the delete key work better
-
 set mouse=a
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Search/Replace settings
@@ -75,3 +74,13 @@ set smartindent                 " make good indentation choices
 
 " Other settings
 set lazyredraw
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Other useful settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Triger `autoread` when files changes on disk
+" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+" https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
+set autoread
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
+            \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
