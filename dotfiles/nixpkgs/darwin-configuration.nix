@@ -14,6 +14,7 @@
       pkgs.fzf
       pkgs.gitAndTools.delta
       pkgs.htop
+      pkgs.j
       pkgs.jq
       pkgs.kubectl
       pkgs.mosh
