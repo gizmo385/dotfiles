@@ -21,15 +21,16 @@ fi
 export EDITOR="$VISUAL"
 
 # Forming the path
-export PATH=".scripts":$PATH
-export PATH="/bin":$PATH
-export PATH="/opt/local/bin":$PATH
-export PATH="/sbin":$PATH
-export PATH="/usr/bin":$PATH
-export PATH="/usr/games":$PATH
-export PATH="/usr/local/bin":$PATH
-export PATH="/usr/local/sbin":$PATH
-export PATH="/usr/sbin":$PATH
+export PATH=$PATH:".scripts"
+export PATH=$PATH:"/bin"
+export PATH=$PATH:"/opt/local/bin"
+export PATH=$PATH:"/sbin"
+export PATH=$PATH:"/usr/bin"
+export PATH=$PATH:"/usr/games"
+export PATH=$PATH:"/usr/local/bin"
+export PATH=$PATH:"/usr/local/sbin"
+export PATH=$PATH:"/usr/sbin"
+export PATH=$PATH:"$HOME/.gem/ruby/2.6.0/bin"
 
 fancy-ctrl-z () {
   if [[ $#BUFFER -eq 0 ]]; then
