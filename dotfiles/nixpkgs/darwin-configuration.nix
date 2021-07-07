@@ -31,18 +31,6 @@
       (pkgs.callPackage ../custom-nix-packages/coder.nix { })
     ];
 
-    nixpkgs.overlays = [
-      (import (builtins.fetchTarball {
-        url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-      }))
-      (self: super: {
-        neovim = super.neovim.override {
-          viAlias = true;
-          vimAlias = true;
-        };
-      })
-    ];
-
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
