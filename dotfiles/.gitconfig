@@ -17,6 +17,7 @@
     reflog = delta
     show = delta
     branch = delta
+    tag = delta
 [delta]
     side-by-side = true
     plus-style = "syntax #012800"
