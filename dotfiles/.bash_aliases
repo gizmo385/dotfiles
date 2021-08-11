@@ -1,6 +1,7 @@
 # Fix my typos
 alias cd..='cd ..'
 alias celar='clear'
+alias gits='git'
 
 # Aliases for ls
 alias ll='ls -alF'
@@ -75,7 +76,6 @@ case $OS in
         ;;
     'Darwin')
         alias search="brew search"
-        #alias vim="mvim -v"
         alias clip="pbcopy"
         alias alert="terminal-notifier -message"
         ;;

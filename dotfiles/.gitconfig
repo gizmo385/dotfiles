@@ -6,6 +6,7 @@
 [alias]
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     addp = add --patch
+    tatus = status
 [init]
 	defaultBranch = main
 [oh-my-zsh]
