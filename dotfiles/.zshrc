@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="amuse"
 
 # The plugins to load
-plugins=(git)
+plugins=()
 
 source $ZSH/oh-my-zsh.sh
 
