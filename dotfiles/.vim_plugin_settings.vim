@@ -79,4 +79,8 @@ require'nvim-treesitter.configs'.setup {
     },
 }
 EOF
+
+lua << EOF
+require'lspconfig'.pyright.setup{}
+EOF
 endif

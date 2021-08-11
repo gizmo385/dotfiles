@@ -20,6 +20,7 @@
       pkgs.mosh
       pkgs.neovim
       pkgs.nodejs
+      pkgs.nodePackages.pyright
       pkgs.ripgrep
       pkgs.skhd
       pkgs.tmux

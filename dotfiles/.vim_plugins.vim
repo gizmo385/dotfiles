@@ -31,9 +31,6 @@ Plug 'bling/vim-airline'
 " Vim auto previews for markdown
 Plug 'shime/vim-livedown'
 
-" fugitive: git plugin
-Plug 'tpope/vim-fugitive'
-
 " Proper pep8 indents for python
 Plug 'hynek/vim-python-pep8-indent'
 
