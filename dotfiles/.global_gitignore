@@ -590,11 +590,6 @@ flycheck_*.el
 test-results/
 
 
-### https://raw.github.com/github/gitignore/785fcb765a09e0800b9133e64a79fe60c6a205ab/Global/VisualStudioCode.gitignore
-
-.vscode
-
-
 
 ### https://raw.github.com/github/gitignore/785fcb765a09e0800b9133e64a79fe60c6a205ab/Global/Ensime.gitignore
 
