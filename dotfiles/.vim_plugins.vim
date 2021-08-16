@@ -31,9 +31,6 @@ Plug 'bling/vim-airline'
 " Vim auto previews for markdown
 Plug 'shime/vim-livedown'
 
-" Proper pep8 indents for python
-Plug 'hynek/vim-python-pep8-indent'
-
 """""""""""""""""""""""""""""""""
 " Clojure stuff
 """""""""""""""""""""""""""""""""
@@ -55,6 +52,7 @@ Plug 'gizmo385/vim-clojure-highlight'
 """""""""""""""""""""""""""""""""
 Plug 'LnL7/vim-nix'
 Plug 'pangloss/vim-javascript'
+Plug 'raimon49/requirements.txt.vim'
 
 " If we're running in neovim (version > 0.5), we'll install some additional nvim plugins
 if has('nvim-0.5')
