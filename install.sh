@@ -3,7 +3,7 @@
 # Set the location of the repository on github
 repository_host="github.com"
 repository_location="gizmo385/dotfiles"
-repository_branch="master"
+repository_branch="main"
 
 # In the repository, this is the folder that contains the dotfiles to copy
 dotfiles_folder="dotfiles"
