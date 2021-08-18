@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Set the location of the repository on github
+repository_host="github.com"
 repository_location="gizmo385/dotfiles"
 repository_branch="master"
 
@@ -18,12 +19,12 @@ fi
 if [ ! -d "$HOME/.dotfiles" ]; then
     # Clone the dotfiles
     echo Cloning remote dotfiles...
-    git clone --recursive https://github.com/${repository_location} -b ${repository_branch} ${HOME}/.dotfiles
+    git clone --recursive https://${repository_host}/${repository_location} -b ${repository_branch} ${HOME}/.dotfiles
     git_exit_status=$?
 fi
 
 # Pull the most updated copy
-cd $HOME/.dotfiles && git pull
+git --git-dir $HOME/.dotfiles/.git pull
 git_exit_status=$?
 
 # If the clone/pull operation failed, exit with the exit status provided by git
@@ -32,7 +33,7 @@ if (( $git_exit_status != 0 )) ; then
     exit $git_exit_status
 fi
 
-# Symlink all the files
+# Symlink all the normal dotfiles
 echo Symlinking dotfiles into ${HOME}
 ln -sf $HOME/.dotfiles/dotfiles/.[!.]* $HOME
 
@@ -45,5 +46,8 @@ ln -sf $HOME/.dotfiles/dotfiles/nixpkgs/darwin-configuration.nix $HOME/.nixpkgs/
 echo "Symlinking nvim configs"
 mkdir -p $HOME/.config/nvim
 ln -sf $HOME/.dotfiles/dotfiles/config/nvim/init.vim $HOME/.config/nvim/init.vim
+
+# Install/update vim plugins
+vim +PlugUpgrade +PlugInstall +PlugUpdate +TSUpdate +qall
 
 echo Finished installing dotfiles. Please source the relevant files for your shell.
