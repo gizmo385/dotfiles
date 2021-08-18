@@ -45,11 +45,7 @@ alias pipupgrade='pip list | grep -Po "^[A-Za-z0-9\-]+" | xargs sudo -H pip inst
 alias globalignore='gibo --upgrade --list | grep -A 30 Global | tail -n +3 | tr "\n" " " | xargs gibo'
 
 # Managing dotfiles
-GIT_FILE_HOST="https://raw.githubusercontent.com"
-GIT_USER="gizmo385"
-REPO_NAME="dotfiles"
-REPO_BRANCH="master"
-alias update_dotfiles="pushd > /dev/null && cd ${HOME}/.dotfiles && git pull && popd > /dev/null"
+alias update_dotfiles="git --git-dir ${HOME}/.dotfiles/.git pull"
 
 # Application aliases which have dependencies
 function command_exists {
