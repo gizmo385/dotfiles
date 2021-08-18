@@ -44,4 +44,9 @@ echo "Symlinking nvim configs"
 mkdir -p $HOME/.config/nvim
 ln -sf $HOME/.dotfiles/dotfiles/config/nvim/init.vim $HOME/.config/nvim/init.vim
 
+if [[ -z $CODER_ENVIRONMENT_NAME ]]; then
+    echo "Running coder personalization"
+    ./coder_personalize.sh
+fi
+
 echo Finished installing dotfiles. Please source the relevant files for your shell.
