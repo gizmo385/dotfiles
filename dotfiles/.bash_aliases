@@ -46,6 +46,7 @@ alias globalignore='gibo --upgrade --list | grep -A 30 Global | tail -n +3 | tr 
 
 # Managing dotfiles
 alias update_dotfiles="git --git-dir ${HOME}/.dotfiles/.git pull"
+alias reinstall_dotfiles="${HOME}/.dotfiles/install.sh"
 
 # Application aliases which have dependencies
 function command_exists {
