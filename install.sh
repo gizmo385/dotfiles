@@ -5,9 +5,6 @@ repository_host="github.com"
 repository_location="gizmo385/dotfiles"
 repository_branch="main"
 
-# In the repository, this is the folder that contains the dotfiles to copy
-dotfiles_folder="dotfiles"
-
 # Check that git is installed
 command -v git > /dev/null 2>&1
 if (( $? != 0 )) ; then
@@ -46,8 +43,5 @@ ln -sf $HOME/.dotfiles/dotfiles/nixpkgs/darwin-configuration.nix $HOME/.nixpkgs/
 echo "Symlinking nvim configs"
 mkdir -p $HOME/.config/nvim
 ln -sf $HOME/.dotfiles/dotfiles/config/nvim/init.vim $HOME/.config/nvim/init.vim
-
-# Install/update vim plugins
-vim +PlugUpgrade +PlugInstall +PlugUpdate +TSUpdate +qall
 
 echo Finished installing dotfiles. Please source the relevant files for your shell.
