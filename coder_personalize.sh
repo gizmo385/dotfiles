@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-echo "Installing nix packages"
-
 NIX_ENV_LOCATION=$HOME/.nix-profile/bin/nix-env
-if [[ -d $NIX_ENV_LOCATION ]]; then
+if [[ -f $NIX_ENV_LOCATION ]]; then
     echo "Installing nix packages"
     $NIX_ENV_LOCATION -iA nixpkgs.bat nixpkgs.fzf nixpkgs.gitAndTools.delta nixpkgs.neovim nixpkgs.nodePackages.pyright nixpkgs.ripgrep nixpkgs.tmux
 fi
