@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-NIX_ENV_LOCATION=$HOME/.nix-profile/bin/nix-env
-if [[ -f $NIX_ENV_LOCATION ]]; then
+NIX_BIN_LOCATION=$HOME/.nix-profile/bin
+if [[ -f $NIX_BIN_LOCATION/nix-env ]]; then
     echo "Installing nix packages"
-    $NIX_ENV_LOCATION -iA nixpkgs.bat nixpkgs.fzf nixpkgs.gitAndTools.delta nixpkgs.neovim nixpkgs.nodePackages.pyright nixpkgs.ripgrep nixpkgs.tmux
+    $NIX_BIN_LOCATION/nix-channel --update
+    $NIX_BIN_LOCATION/nix-env --upgrade
+    $NIX_BIN_LOCATION/nix-env -iA nixpkgs.bat nixpkgs.fzf nixpkgs.gitAndTools.delta nixpkgs.neovim nixpkgs.nodePackages.pyright nixpkgs.ripgrep nixpkgs.tmux
 fi
 
 echo "Changing shell to zsh"
