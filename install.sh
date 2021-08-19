@@ -1,4 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Utility functions
+function command_exists {
+    command -v $1 > /dev/null 2>&1
+    return $?
+}
 
 # Set the location of the repository on github
 repository_host="github.com"
@@ -44,6 +50,13 @@ echo "Symlinking nvim configs"
 mkdir -p $HOME/.config/nvim
 ln -sf $HOME/.dotfiles/dotfiles/config/nvim/init.vim $HOME/.config/nvim/init.vim
 
+# Install oh-my-zsh if it does not exist
+if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
+    echo "Installing oh-my-zsh"
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
+fi
+
+# If we're running in coder, we'll run that personalization script
 if [[ -n $CODER_ENVIRONMENT_NAME ]]; then
     echo "Running coder personalization"
     ./coder_personalize.sh
