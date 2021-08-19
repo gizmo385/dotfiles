@@ -1,16 +1,10 @@
 #!/usr/bin/env bash
 echo "Installing nix packages"
 
-if [[ -d "$HOME/.nix-profile/bin/nix-env" ]]; then
+NIX_ENV_LOCATION=$HOME/.nix-profile/bin/nix-env
+if [[ -d $NIX_ENV_LOCATION ]]; then
     echo "Installing nix packages"
-    $HOME/.nix-profile/bin/nix-env -iA \
-        nixpkgs.bat \
-        nixpkgs.fzf \
-        nixpkgs.gitAndTools.delta \
-        nixpkgs.neovim \
-        nixpkgs.nodePackages.pyright \
-        nixpkgs.ripgrep \
-        nixpkgs.tmux
+    $NIX_ENV_LOCATION -iA nixpkgs.bat nixpkgs.fzf nixpkgs.gitAndTools.delta nixpkgs.neovim nixpkgs.nodePackages.pyright nixpkgs.ripgrep nixpkgs.tmux
 fi
 
 echo "Changing shell to zsh"
