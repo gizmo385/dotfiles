@@ -12,6 +12,7 @@ call plug#begin('~/.vim/plugged')
 
 " Colorschemes
 Plug 'gruvbox-community/gruvbox'
+Plug 'sainnhe/everforest'
 
 " rainbow parenthesis -- Coloring of nested parenthesis
 Plug 'kien/rainbow_parentheses.vim'
@@ -70,7 +71,6 @@ if has('nvim-0.5')
 
     " Neovim specific colorschemes
     Plug 'sainnhe/edge'
-    Plug 'sainnhe/everforest'
     Plug 'rktjmp/lush.nvim'
     Plug 'lourenci/github-colors'
 else
