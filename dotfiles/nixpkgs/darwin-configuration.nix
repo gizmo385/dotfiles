@@ -17,6 +17,7 @@
       pkgs.j
       pkgs.jq
       pkgs.kubectl
+      pkgs.leiningen
       pkgs.mosh
       pkgs.neovim
       pkgs.nodejs
