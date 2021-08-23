@@ -8,7 +8,7 @@ All of my configurations for vim/nix/bash/zsh/etc.
 To quickly install these run the following command:
 
 ```bash
-curl https://raw.githubusercontent.com/gizmo385/dotfiles/master/install.sh | sh
+curl https://raw.githubusercontent.com/gizmo385/dotfiles/main/install.sh | sh
 ```
 
 After you have the files installed, you can run the `update_dotfiles` alias to pull the latest
