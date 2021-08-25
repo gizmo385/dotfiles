@@ -22,6 +22,7 @@
       pkgs.neovim
       pkgs.nodejs
       pkgs.nodePackages.pyright
+      pkgs.nodePackages.typescript-language-server
       pkgs.ripgrep
       pkgs.skhd
       pkgs.tmux

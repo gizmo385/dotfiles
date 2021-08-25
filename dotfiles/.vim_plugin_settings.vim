@@ -78,9 +78,15 @@ require'nvim-treesitter.configs'.setup {
         disable = {"python"}
     },
 }
-EOF
 
-lua << EOF
-require'lspconfig'.pyright.setup{}
+require'lspconfig'.pyright.setup{} -- Python language server setup
+
+-- Typescript language server
+require'lspconfig'.tsserver.setup {
+    on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+        on_attach(client)
+    end
+}
 EOF
 endif
