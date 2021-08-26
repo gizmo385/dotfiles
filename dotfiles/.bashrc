@@ -135,3 +135,4 @@ function git_branch {
 }
 
 PS1="[\[\033[1;32m\]\w\[\033[0m\]] \[\033[0m\]\[\033[1;36m\]\$(git_branch)\[\033[0;33m\]\[\033[0m\]\[$txtred\]\$git_dirty\[$txtrst\]$ "
+. "$HOME/.cargo/env"

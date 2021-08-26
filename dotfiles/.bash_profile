@@ -6,3 +6,4 @@
 export PATH=/bin:/usr/bin:/Library/Frameworks/Python.framework/Versions/3.3/bin:.scripts:$PATH
 
 if [ -e /Users/gizmo385/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/gizmo385/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+. "$HOME/.cargo/env"

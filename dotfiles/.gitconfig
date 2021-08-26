@@ -2,12 +2,14 @@
 	name = Christopher Chapline
 	email = cachapline8@gmail.com
 [core]
-	excludesfile = /Users/gizmo385/.global_gitignore
+	excludesfile = ~/.global_gitignore
 [alias]
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     addp = add --patch
     tatus = status
     stats = status
+[url "\"git@github.com:\""]
+	insteadOf = \"https://github.com/\"
 [init]
 	defaultBranch = main
 [oh-my-zsh]
