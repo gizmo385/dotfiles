@@ -18,22 +18,27 @@ if (( $? != 0 )) ; then
     exit 1
 fi
 
+DOTFILE_REPO_LOCATION="${HOME}/.dotfiles"
+DOTFILE_REPO_GIT_DIR="${HOME}/.dotfiles/.git"
+
 # Clone dotfiles if they aren't present
 if [ ! -d "$HOME/.dotfiles" ]; then
     # Clone the dotfiles
     echo Cloning remote dotfiles...
-    git clone --recursive https://${repository_host}/${repository_location} -b ${repository_branch} ${HOME}/.dotfiles
-    git_exit_status=$?
+    git clone --recursive https://${repository_host}/${repository_location} -b ${repository_branch} ${DOTFILE_REPO_LOCATION}
 fi
 
 # Pull the most updated copy
-git --git-dir $HOME/.dotfiles/.git pull
-git_exit_status=$?
+
+git --git-dir ${DOTFILE_REPO_GIT_DIR} stash > /dev/null
+git --git-dir ${DOTFILE_REPO_GIT_DIR} pull
+git_pull_exit_status=$?
+git --git-dir ${DOTFILE_REPO_GIT_DIR} stash pop > /dev/null
 
 # If the clone/pull operation failed, exit with the exit status provided by git
-if (( $git_exit_status != 0 )) ; then
+if (( $git_pull_exit_status != 0 )) ; then
     echo There was an error while attempting to clone/pull dotfiles! 1>&2
-    exit $git_exit_status
+    exit $git_pull_exit_status
 fi
 
 # Symlink all the normal dotfiles
