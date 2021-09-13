@@ -93,9 +93,11 @@ else
     nnoremap <C-P> :GFiles<CR>
 endif
 
+"Neovim specific settings
 if has('nvim-0.5')
-    lua << EOF
-local nvim_lsp = require('lspconfig')
+
+"Neovim lua settings
+lua << EOF
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -124,16 +126,16 @@ local on_attach = function(client, bufnr)
 
 end
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer', 'tsserver' }
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    }
-  }
-end
 EOF
 endif
+
+" Autocompletion
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c

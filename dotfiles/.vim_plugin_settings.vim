@@ -26,14 +26,6 @@ syntax enable
 " Nerdtree settings
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
- "Neocomplete
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplcache_force_overwrite_completefunc = 1
-
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType python setlocal colorcolumn=120
 au BufNewFile,BufRead *.gradle setf groovy
 
@@ -66,11 +58,24 @@ colorscheme everforest
 
 " Neovim specific configurations
 if has('nvim-0.5')
+    autocmd BufEnter * lua require'completion'.on_attach()
+    " Configure the completion chains
+	let g:completion_chain_complete_list = {
+	    \ 'default': [
+	    \   {'complete_items': ['lsp', 'ts']},
+	    \]
+	    \}
+
+" Lua specific configuration
 lua << EOF
+local nvim_lsp = require('lspconfig')
+
+-- Treesitter
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = "maintained",
     highlight = {
-        enable = true,              -- false will disable the whole extension
+        enable = true,
         disable = { "clojure" }
     },
     indent = {
@@ -79,14 +84,28 @@ require'nvim-treesitter.configs'.setup {
     },
 }
 
-require'lspconfig'.pyright.setup{} -- Python language server setup
+ -- Python language server setup
+nvim_lsp.pyright.setup{}
 
 -- Typescript language server
-require'lspconfig'.tsserver.setup {
+nvim_lsp.tsserver.setup {
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = false
         on_attach(client)
     end
 }
+
+-- Use a loop to conveniently call 'setup' on multiple servers and map buffer local keybindings
+-- when the language server attaches
+local servers = { 'pyright', 'rust_analyzer', 'tsserver' }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+  }
+end
+
 EOF
 endif

@@ -69,6 +69,10 @@ if has('nvim-0.5')
     " Language Server Protocol Plugins
     Plug 'neovim/nvim-lspconfig'
 
+    " Auto complete
+    Plug 'nvim-lua/completion-nvim'
+    Plug 'nvim-treesitter/completion-treesitter'
+
     " Neovim specific colorschemes
     Plug 'sainnhe/edge'
     Plug 'rktjmp/lush.nvim'
