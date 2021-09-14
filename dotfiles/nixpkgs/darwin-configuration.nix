@@ -17,6 +17,7 @@
       pkgs.j
       pkgs.jq
       pkgs.kubectl
+      pkgs.kubernetes-helm
       pkgs.leiningen
       pkgs.mosh
       pkgs.neovim
