@@ -6,6 +6,3 @@ if [[ -f $NIX_BIN_LOCATION/nix-env ]]; then
     $NIX_BIN_LOCATION/nix-env --upgrade
     $NIX_BIN_LOCATION/nix-env -iA nixpkgs.bat nixpkgs.fzf nixpkgs.gitAndTools.delta nixpkgs.neovim nixpkgs.nodePackages.pyright nixpkgs.ripgrep nixpkgs.tmux
 fi
-
-echo "Changing shell to zsh"
-sudo chsh -s $(which zsh) $USER
