@@ -45,8 +45,13 @@ alias pipupgrade='pip list | grep -Po "^[A-Za-z0-9\-]+" | xargs sudo -H pip inst
 alias globalignore='gibo --upgrade --list | grep -A 30 Global | tail -n +3 | tr "\n" " " | xargs gibo'
 
 # Managing dotfiles
-alias update_dotfiles="git --git-dir ${HOME}/.dotfiles/.git pull"
-alias reinstall_dotfiles="${HOME}/.dotfiles/install.sh"
+alias update_dotfiles="${HOME}/.update_dotfiles.sh"
+alias reinstall_dotfiles="${HOME}/.install_dotfiles.sh"
+
+# Useful functions
+full_path() {
+    python3 -c "import pathlib; print(pathlib.Path('$1').expanduser().resolve().parent)"
+}
 
 # Application aliases which have dependencies
 function command_exists {

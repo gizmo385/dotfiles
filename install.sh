@@ -1,59 +1,39 @@
 #!/usr/bin/env bash
-
-# Utility functions
-function command_exists {
-    command -v $1 > /dev/null 2>&1
-    return $?
+# Useful functions
+full_path() {
+    python3 -c "import pathlib; print(pathlib.Path('$1').expanduser().resolve().parent)"
 }
 
-# Set the location of the repository on github
-repository_host="github.com"
-repository_location="gizmo385/dotfiles"
-repository_branch="main"
+DOTFILES_DIR=$(full_path ${BASH_SOURCE[0]})
+DOTFILES_GIT_DIR="${DOTFILES_DIR}/.git"
 
-# Check that git is installed
-command -v git > /dev/null 2>&1
-if (( $? != 0 )) ; then
-    echo Git is required to update dotfiles 1>&2
+if [ ! -d $DOTFILES_GIT_DIR ]; then
+    echo "Expected ${DOTFILES_DIR} to be dotfiles git repo, but found no git directory! Aborting..."
     exit 1
 fi
 
-DOTFILE_REPO_LOCATION="${HOME}/.dotfiles"
-DOTFILE_REPO_GIT_DIR="${HOME}/.dotfiles/.git"
-
-# Clone dotfiles if they aren't present
-if [ ! -d "$HOME/.dotfiles" ]; then
-    # Clone the dotfiles
-    echo Cloning remote dotfiles...
-    git clone --recursive https://${repository_host}/${repository_location} -b ${repository_branch} ${DOTFILE_REPO_LOCATION}
-fi
-
 # Pull the most updated copy
-
-git --git-dir ${DOTFILE_REPO_GIT_DIR} stash > /dev/null
-git --git-dir ${DOTFILE_REPO_GIT_DIR} pull
-git_pull_exit_status=$?
-git --git-dir ${DOTFILE_REPO_GIT_DIR} stash pop > /dev/null
-
-# If the clone/pull operation failed, exit with the exit status provided by git
-if (( $git_pull_exit_status != 0 )) ; then
-    echo There was an error while attempting to clone/pull dotfiles! 1>&2
-    exit $git_pull_exit_status
-fi
+git --git-dir ${DOTFILES_GIT_DIR} stash > /dev/null
+git --git-dir ${DOTFILES_GIT_DIR} pull
+git --git-dir ${DOTFILES_GIT_DIR} stash pop > /dev/null
 
 # Symlink all the normal dotfiles
-echo Symlinking dotfiles into ${HOME}
-ln -sf $HOME/.dotfiles/dotfiles/.[!.]* $HOME
+echo "Symlinking ${DOTFILES_DIR}/dotfiles/.[!.]* into ${HOME}"
+ln -sf ${DOTFILES_DIR}/dotfiles/.[!.]* $HOME
 
 # Symlink nixpkgs configurations
 echo "Symlinking nix Darwin configs"
 mkdir -p $HOME/.nixpkgs
-ln -sf $HOME/.dotfiles/dotfiles/nixpkgs/darwin-configuration.nix $HOME/.nixpkgs/darwin-configuration.nix
+ln -sf ${DOTFILES_DIR}/dotfiles/nixpkgs/darwin-configuration.nix $HOME/.nixpkgs/darwin-configuration.nix
 
-# Symlink nvim configs
-echo "Symlinking nvim configs"
+# Symlink Neovim configs
+echo "Symlinking Neovim configs"
 mkdir -p $HOME/.config/nvim
-ln -sf $HOME/.dotfiles/dotfiles/config/nvim/init.vim $HOME/.config/nvim/init.vim
+ln -sf ${DOTFILES_DIR}/dotfiles/config/nvim/init.vim $HOME/.config/nvim/init.vim
+
+# Symlink the dotfile management scripts
+ln -sf ${DOTFILES_DIR}/update.sh $HOME/.update_dotfiles.sh
+ln -sf ${DOTFILES_DIR}/install.sh $HOME/.install_dotfiles.sh
 
 # Install oh-my-zsh if it does not exist
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
