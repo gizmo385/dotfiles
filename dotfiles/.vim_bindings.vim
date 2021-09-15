@@ -81,16 +81,18 @@ inoremap JJ <ESC>
 """""""""""""""""""""""""""""
 " Plugin bindings
 """""""""""""""""""""""""""""
-nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap gm :LivedownPreview<CR>
 
 if has('nvim-0.5')
     " Neovim specific bindings
     nnoremap <C-p> <cmd>:Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>
     nnoremap <C-f> <cmd>:Telescope live_grep grep_open_files=true<cr>
+    nnoremap <leader>n :NvimTreeToggle<CR>
+    nnoremap <leader>N :NvimTreeFindFile<CR>
 else
     " Regular vim specific bindings
     nnoremap <C-P> :GFiles<CR>
+    nnoremap <leader>n :NERDTreeToggle<CR>
 endif
 
 "Neovim specific settings

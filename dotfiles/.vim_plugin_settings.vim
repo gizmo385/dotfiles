@@ -23,9 +23,6 @@ filetype plugin on
 
 syntax enable
 
-" Nerdtree settings
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
 autocmd FileType python setlocal colorcolumn=120
 au BufNewFile,BufRead *.gradle setf groovy
 
