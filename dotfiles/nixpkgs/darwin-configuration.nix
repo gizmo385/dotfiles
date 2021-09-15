@@ -10,7 +10,7 @@
       pkgs.clojure
       pkgs.docker
       pkgs.docker-compose
-      pkgs.fira-code
+      pkgs.font-awesome
       pkgs.fzf
       pkgs.gitAndTools.delta
       pkgs.htop
@@ -21,9 +21,10 @@
       pkgs.leiningen
       pkgs.mosh
       pkgs.neovim
-      pkgs.nodejs
+      pkgs.nerdfonts
       pkgs.nodePackages.pyright
       pkgs.nodePackages.typescript-language-server
+      pkgs.nodejs
       pkgs.ripgrep
       pkgs.skhd
       pkgs.tmux
@@ -41,7 +42,7 @@
  # Fonts
  fonts = {
    enableFontDir = true;
-   fonts = [ pkgs.fira-code ];
+   fonts = [ pkgs.nerdfonts pkgs.font-awesome ];
  };
 
   # Shell
