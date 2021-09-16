@@ -2,7 +2,7 @@
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
-ZSH_THEME="amuse"
+ZSH_THEME="crcandy"
 
 # The plugins to load
 plugins=()
