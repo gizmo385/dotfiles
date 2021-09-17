@@ -51,6 +51,7 @@ Plug 'LnL7/vim-nix'
 Plug 'pangloss/vim-javascript'
 Plug 'raimon49/requirements.txt.vim'
 Plug 'google/vim-jsonnet'
+Plug 'dag/vim-fish'
 
 " If we're running in neovim (version > 0.5), we'll install some additional nvim plugins
 if has('nvim-0.5')
