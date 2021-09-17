@@ -10,6 +10,8 @@
       pkgs.clojure
       pkgs.docker
       pkgs.docker-compose
+      pkgs.fd
+      pkgs.fish
       pkgs.font-awesome
       pkgs.fzf
       pkgs.gitAndTools.delta
@@ -48,6 +50,7 @@
   # Shell
   programs.bash.enable = false;
   programs.zsh.enable = true;
+  programs.fish.enable = true;
 
   # Enable/Disable services
   services.skhd.enable = true;
