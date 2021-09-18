@@ -8,7 +8,7 @@ if status is-interactive
 
     # Faster git prompt, only show the branch
     function fish_git_prompt
-        if test -e ".git";
+        if git branch --show-current > /dev/null 2>&1;
             set_color yellow; printf '[%s] ' (git branch --show-current); set_color normal;
         end
     end
