@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-set -eo pipefail
-
-# Useful functions
 full_path() {
     python3 -c "import pathlib; print(pathlib.Path('$1').expanduser().resolve().parent)"
 }
