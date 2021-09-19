@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
+set -eo pipefail
+
 # Useful functions
 full_path() {
     python3 -c "import pathlib; print(pathlib.Path('$1').expanduser().resolve().parent)"
 }
-
 
 ###################################################################################################
 ### Update the dotfiles repo
@@ -22,15 +23,31 @@ git --git-dir ${DOTFILES_GIT_DIR} pull
 git --git-dir ${DOTFILES_GIT_DIR} stash pop > /dev/null
 
 ###################################################################################################
-### Symlinking configs
+### Installing nix
+###################################################################################################
+curl -L https://nixos.org/nix/install | sh
+source $HOME/.nix-profile/etc/profile.d/nix.sh
+
+###################################################################################################
+### Symlinking and setting up the necessary configs
 ###################################################################################################
 echo "Symlinking ${DOTFILES_DIR}/dotfiles/.[!.]* into ${HOME}"
 ln -sf ${DOTFILES_DIR}/dotfiles/.[!.]* $HOME
 
-# Symlink nixpkgs configurations
-echo "Symlinking nix Darwin configs"
-mkdir -p $HOME/.nixpkgs
-ln -sf ${DOTFILES_DIR}/dotfiles/nixpkgs/darwin-configuration.nix $HOME/.nixpkgs/darwin-configuration.nix
+# Install and update the nix-darwin configurations
+if [[ $OSTYPE == 'darwin'* ]]; then
+    # Install nix-darwin
+    nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
+    ./result/bin/darwin-installer
+
+    # Symlink nixpkgs configurations
+    echo "Symlinking nix Darwin configs"
+    mkdir -p $HOME/.nixpkgs
+    ln -sf $DOTFILES_DIR/dotfiles/nixpkgs/darwin-configuration.nix $HOME/.nixpkgs/darwin-configuration.nix
+
+    darwin-rebuild switch
+fi
+
 
 # Symlink Neovim configs
 echo "Symlinking Neovim configs"
