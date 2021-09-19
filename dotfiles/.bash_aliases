@@ -26,7 +26,3 @@ alias clip="xclip -sel clip"
 alias update_dotfiles="$HOME/.update_dotfiles.sh"
 alias reinstall_dotfiles="$HOME/.install_dotfiles.sh"
 
-# Application aliases which have dependencies
-bat --help > /dev/null && alias cat=bat
-nvim --version > /dev/null && alias vim=nvim
-
