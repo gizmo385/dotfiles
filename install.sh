@@ -22,8 +22,10 @@ git --git-dir ${DOTFILES_GIT_DIR} stash pop > /dev/null
 ###################################################################################################
 ### Installing nix
 ###################################################################################################
-curl -L https://nixos.org/nix/install | sh
-source $HOME/.nix-profile/etc/profile.d/nix.sh
+if [[ ! -d "$HOME/.nix-profile" ]]; then
+    curl -L https://nixos.org/nix/install | sh
+    source $HOME/.nix-profile/etc/profile.d/nix.sh
+fi
 
 ###################################################################################################
 ### Symlinking and setting up the necessary configs
@@ -68,9 +70,12 @@ fi
 ### Fish-Shell setup (specifically oh-my-fish and fisher)
 ###################################################################################################
 # Install oh-my-fish if it does not exist
-if [[ ! -d "$HOME/.config/omf" ]]; then
+OMF_INSTALL_LOCATION=$HOME/.local/share/omf
+if [[ ! -d $OMF_INSTALL_LOCATION ]]; then
     echo "Installing oh-my-fish"
-    curl -L https://get.oh-my.fish | fish
+    curl -L https://get.oh-my.fish > omf_install
+    fish omf_install --path=$OMF_INSTALL_LOCATION --noninteractive
+    rm omf_install
 fi
 
 # Install the fisher plugin manager
@@ -83,6 +88,9 @@ fi
 # Install plugins for fish
 fish -c "source $HOME/.fisher && fisher install PatrickF1/fzf.fish && fzf_configure_bindings"
 
+# Install OMF themes
+fish -c "omf install coffeeandcode 2> /dev/null"
+
 # Symlink the fish config
 mkdir -p $HOME/.config/fish
 ln -sf ${DOTFILES_DIR}/dotfiles/config/fish/config.fish $HOME/.config/fish/config.fish
@@ -91,6 +99,7 @@ ln -sf ${DOTFILES_DIR}/dotfiles/config/fish/config.fish $HOME/.config/fish/confi
 ### Coder specific setup instructions
 ###################################################################################################
 if [[ -n $CODER_ENVIRONMENT_NAME ]]; then
+    NIX_BIN_LOCATION=$HOME/.nix-profile/bin
     echo "Running coder personalization"
     echo "Installing nix Coder packages"
     $NIX_BIN_LOCATION/nix-channel --update
@@ -99,9 +108,9 @@ if [[ -n $CODER_ENVIRONMENT_NAME ]]; then
 
     echo "Installing neovim"
     $NIX_BIN_LOCATION/nix-channel --update
-    sudo add-apt-repository ppa:neovim-ppa/unstable
+    sudo add-apt-repository ppa:neovim-ppa/unstable -y
     sudo apt-get update
-    sudo apt-get install neovim
+    sudo apt-get install neovim -y
 fi
 
 echo Finished installing dotfiles. Please source the relevant files for your shell.
