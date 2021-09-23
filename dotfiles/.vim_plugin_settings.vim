@@ -44,6 +44,7 @@ endfunction
 autocmd BufNewFile,BufRead *.clj call SetClojureOptions()
 
 au BufNewFile,BufRead *.clj setlocal sw=2 ts=2 expandtab
+au BufNewFile,BufRead *.ts,*.js setlocal sw=2 ts=2 expandtab
 
 " Setting the Colorscheme
 let t_Co=256
