@@ -86,7 +86,7 @@ nnoremap gm :LivedownPreview<CR>
 if has('nvim-0.5')
     " Neovim specific bindings
     nnoremap <C-p> <cmd>:Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>
-    nnoremap <C-f> <cmd>:Telescope live_grep grep_open_files=true<cr>
+    nnoremap <C-f> <cmd>:Telescope live_grep<cr>
     nnoremap <leader>n :NvimTreeToggle<CR>
     nnoremap <leader>N :NvimTreeFindFile<CR>
 else
