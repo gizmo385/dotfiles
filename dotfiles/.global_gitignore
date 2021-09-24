@@ -182,7 +182,6 @@ vendor
 # These can be changed by user in Lazarus/project options.
 backup/
 *.bak
-lib/
 
 # Application bundle for Mac OS
 *.app/
@@ -524,7 +523,6 @@ translations/*.qm
 .Python
 [Bb]in
 [Ii]nclude
-[Ll]ib
 [Ll]ib64
 [Ll]ocal
 [Ss]cripts
@@ -837,4 +835,4 @@ cwallet.sso.lck
 
 .redcar
 
-
+node_modules/*
