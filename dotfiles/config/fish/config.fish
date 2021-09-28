@@ -10,8 +10,10 @@ if status is-interactive
         alias cat bat
     end
 
+    export EDITOR=vim
     if type -q nvim
         alias vim nvim
+        export EDITOR=nvim
     end
 
     # Faster git prompt, only show the branch
