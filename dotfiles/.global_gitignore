@@ -525,7 +525,6 @@ translations/*.qm
 [Ii]nclude
 [Ll]ib64
 [Ll]ocal
-[Ss]cripts
 pyvenv.cfg
 .venv
 pip-selfcheck.json
