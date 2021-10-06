@@ -85,6 +85,9 @@ require'nvim-treesitter.configs'.setup {
  -- Python language server setup
 nvim_lsp.pyright.setup{}
 
+-- Setting up NvimTree
+require'nvim-tree'.setup {}
+
 -- Typescript language server
 nvim_lsp.tsserver.setup {
     on_attach = function(client)
