@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 {
-
   # List packages installed in system profile. To search by name, run:
   environment.systemPackages =
     [
@@ -15,13 +14,13 @@
       pkgs.font-awesome
       pkgs.fzf
       pkgs.gitAndTools.delta
+      pkgs.gleam
       pkgs.htop
       pkgs.j
       pkgs.jq
       pkgs.kubectl
       pkgs.kubernetes-helm
       pkgs.leiningen
-      pkgs.mosh
       pkgs.neovim
       pkgs.nerdfonts
       pkgs.nodePackages.pyright
