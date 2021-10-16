@@ -26,6 +26,7 @@
       pkgs.nodePackages.pyright
       pkgs.nodePackages.typescript-language-server
       pkgs.nodejs
+      pkgs.opam
       pkgs.ripgrep
       pkgs.skhd
       pkgs.tmux

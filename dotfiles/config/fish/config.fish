@@ -28,4 +28,7 @@ if status is-interactive
     if test -z "$TMUX" -a -n "$SSH_CONNECTION"
         tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
     end
+
+    # opam configuration
+    source $HOME/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 end
