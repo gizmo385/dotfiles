@@ -64,6 +64,16 @@ if has('nvim-0.5')
 	    \]
 	    \}
 
+" Neoformat settings
+let g:opambin = substitute(system('opam config var bin'),'\n$','','''')
+let g:neoformat_ocaml_ocamlformat = {
+            \ 'exe': g:opambin . '/ocamlformat',
+            \ 'no_append': 1,
+            \ 'stdin': 1,
+            \ }
+
+let g:neoformat_enabled_ocaml = ['ocamlformat']
+
 " Lua specific configuration
 lua << EOF
 local nvim_lsp = require('lspconfig')
