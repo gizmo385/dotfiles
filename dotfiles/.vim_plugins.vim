@@ -21,7 +21,7 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'scrooloose/nerdcommenter'
 
 " Multiple cursors
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
 
 " Bottom bar line in vim
 Plug 'bling/vim-airline'
@@ -39,14 +39,13 @@ Plug 'tpope/vim-leiningen'
 Plug 'vim-scripts/paredit.vim'
 
 " Syntax highlighting
-Plug 'guns/vim-clojure-static'
-Plug 'gizmo385/vim-clojure-highlight'
-
 Plug 'ryanoasis/vim-devicons'
 
 """""""""""""""""""""""""""""""""
 " Language syntax highlighting
 """""""""""""""""""""""""""""""""
+Plug 'guns/vim-clojure-static'
+Plug 'gizmo385/vim-clojure-highlight'
 Plug 'LnL7/vim-nix'
 Plug 'pangloss/vim-javascript'
 Plug 'raimon49/requirements.txt.vim'

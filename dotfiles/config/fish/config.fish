@@ -23,12 +23,6 @@ if status is-interactive
         end
     end
 
-    # If we're running on an SSH host, let's automatically connect to a tmux session that can
-    # maintain our status between disconnects
-    if test -z "$TMUX" -a -n "$SSH_CONNECTION"
-        tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
-    end
-
     # opam configuration
     source $HOME/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 end
