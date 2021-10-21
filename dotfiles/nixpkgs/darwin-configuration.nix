@@ -14,7 +14,7 @@
       pkgs.font-awesome
       pkgs.fzf
       pkgs.gitAndTools.delta
-      pkgs.gleam
+      pkgs.gmp6
       pkgs.htop
       pkgs.j
       pkgs.jq
@@ -23,10 +23,9 @@
       pkgs.leiningen
       pkgs.neovim
       pkgs.nerdfonts
-      pkgs.nodePackages.pyright
-      pkgs.nodePackages.typescript-language-server
       pkgs.nodejs
       pkgs.opam
+      pkgs.pkg-config
       pkgs.ripgrep
       pkgs.skhd
       pkgs.tmux
@@ -35,6 +34,10 @@
       pkgs.wget
       pkgs.yabai
       pkgs.yq
+
+      # Node Packages
+      pkgs.nodePackages.pyright
+      pkgs.nodePackages.typescript-language-server
     ];
 
   # Used for backwards compatibility, please read the changelog before changing.
