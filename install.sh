@@ -95,7 +95,8 @@ if [[ ! -f "$HOME/.fisher" ]]; then
 fi
 
 # Install plugins for fish
-fish -c "source $HOME/.fisher && fisher install PatrickF1/fzf.fish && fzf_configure_bindings"
+fish -c "source $HOME/.fisher && fisher install PatrickF1/fzf.fish " # && fzf_configure_bindings"
+fish "$HOME/.config/fish/functions/fzf_configure_bindings.fish"
 fish -c "source $HOME/.fisher && fisher install lilyball/nix-env.fish"
 
 # Install OMF themes
