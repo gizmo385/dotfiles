@@ -19,8 +19,8 @@ WORKDIR /home/gizmo
 RUN mkdir -p workspaces/dotfiles
 COPY . workspaces/dotfiles
 WORKDIR /home/gizmo/workspaces/dotfiles
-RUN ls
-
 RUN ./install.sh
 
+# Swap back to the home directory and setup the entrypoint command
+WORKDIR home/gizmo
 CMD ["/home/gizmo/.nix-profile/bin/fish"]
