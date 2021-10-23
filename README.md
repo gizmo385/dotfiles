@@ -1,44 +1,46 @@
 Gizmo385's Dotfiles
 =======
 
-All of my configurations for vim/nix/bash/zsh/etc.
+All of my configurations for vim/nix/bash/zsh/fish/etc.
 
+## Try em out!
+
+[![Create and publish a Docker image](https://github.com/gizmo385/dotfiles/actions/workflows/docker-image.yml/badge.svg?branch=main)](https://github.com/gizmo385/dotfiles/actions/workflows/docker-image.yml)
+
+If you'd like to try out my dotfiles, you can run them in a docker container that is published on every commit to GHCR! There are 2 ways to do this:
+
+##### Using the Prebuilt Image:
+
+1. Clone the git repo locally
+2. Run `./run-in-docker.sh`. This will pull the latest image from GHCR (`ghcr.io/gizmo385/dotfiles:main`) and launch a container.
+
+##### Building the Image Locally
+
+1. Clone the git repo
+2. Build the docker image with `docker build .`
+3. Run the image with `docker run <image-id>` where `<image-id` is the ID of the built image.
+ 
 ### Installation
 
-To quickly install these run the following command:
+1. Clone the git repo
+2. Run `./install.sh`
+3. Source whichever shell RC file matches your shell (`bash`, `zsh`, or `fish`) or restart your shell.
 
-```bash
-curl https://raw.githubusercontent.com/gizmo385/dotfiles/main/install.sh | sh
-```
+Vim plugins will install on first launch.
 
-After you have the files installed, you can run the `update_dotfiles` alias to pull the latest
-changes from git. If you need to relink dotfiles, you can run `reinstall_dotfiles` and it will
-reinstall/relink everything.
+## Updating Installed Packages
 
+I use [nix](https://github.com/NixOS/nix) to manage my system dependencies. For MacOS systems, I use [nix-darwin](https://github.com/LnL7/nix-darwin) and for Linux systems I use `nix-env`. The list of packages that are installed can be found in [`packages.nix`](https://github.com/gizmo385/dotfiles/blob/main/dotfiles/nix/packages.nix). To update the pacakges installed on your system:
 
-### Forking the Project
-If you wish to fork these dotfiles for yourself, there are a few areas you might wish to change:
+1. Pull the latest verison of the nix channels: `nix-channel --update`
 
-* In the `install.sh` script, change the variable to point the script towards your fork and
-  branch
+2. Update the installed packages:
+- **Linux**: `nix-env -if <dotfiles-repo>/dotfiles/nix/dev-env.nix`
 
-## Updating MacOS Packages
+- **MacOS**: `darwin-rebuild switch`
 
-I use [nix-darwin](https://github.com/LnL7/nix-darwin) to manage system packages. To update the nix
-channels, you can run:
-
-```bash
-nix-channel --update
-```
-
-And then you can update installed packages with:
-
-```bash
-darwin-rebuild switch
-```
 
 ## Additional Package Managers
-
 
 #### OCaml
 
