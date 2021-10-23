@@ -23,4 +23,4 @@ RUN ls
 
 RUN ./install.sh
 
-CMD ["/home/gizmo/.nix-profile/bin/zsh"]
+CMD ["/home/gizmo/.nix-profile/bin/fish"]
