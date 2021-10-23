@@ -1,45 +1,11 @@
 { config, pkgs, ... }:
 
+let
+  packages = import ./packages.nix;
+in
 {
-  # List packages installed in system profile. To search by name, run:
-  environment.systemPackages =
-    [
-      ./dev.nix
-      pkgs.awscli
-      pkgs.bat
-      pkgs.clojure
-      pkgs.docker
-      pkgs.docker-compose
-      pkgs.fd
-      pkgs.fish
-      pkgs.font-awesome
-      pkgs.fzf
-      pkgs.gitAndTools.delta
-      pkgs.gmp6
-      pkgs.htop
-      pkgs.j
-      pkgs.jq
-      pkgs.kubectl
-      pkgs.kubernetes-helm
-      pkgs.leiningen
-      pkgs.neovim
-      pkgs.nerdfonts
-      pkgs.nodejs
-      pkgs.opam
-      pkgs.pkg-config
-      pkgs.ripgrep
-      pkgs.skhd
-      pkgs.tmux
-      pkgs.vim
-      pkgs.watch
-      pkgs.wget
-      pkgs.yabai
-      pkgs.yq
-
-      # Node Packages
-      pkgs.nodePackages.pyright
-      pkgs.nodePackages.typescript-language-server
-    ];
+  # List packages installed in system profile.
+  environment.systemPackages = packages.packagesToInstall;
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog

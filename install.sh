@@ -17,9 +17,7 @@ if [ ! -d $DOTFILES_GIT_DIR ]; then
 fi
 
 # Pull the most updated copy
-git --git-dir ${DOTFILES_GIT_DIR} stash > /dev/null
-git --git-dir ${DOTFILES_GIT_DIR} pull
-git --git-dir ${DOTFILES_GIT_DIR} stash pop > /dev/null
+git --git-dir ${DOTFILES_GIT_DIR} stash push -u > /dev/null && git --git-dir ${DOTFILES_GIT_DIR} pull && git --git-dir ${DOTFILES_GIT_DIR} stash pop > /dev/null
 
 ###################################################################################################
 ### Installing nix if necessary and sourcing the nix environment
@@ -46,8 +44,10 @@ ln -sf $DOTFILES_DIR/dotfiles/nix/dev-env.nix $HOME/.nixpkgs/dev-env.nix
 # Install and update the nix-darwin configurations
 if [[ $OSTYPE == 'darwin'* ]]; then
     # Install nix-darwin
-    nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
-    ./result/bin/darwin-installer
+    if ! command -v darwin-rebuild; then
+        nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
+        ./result/bin/darwin-installer
+    fi
 
     # Install system packages
     darwin-rebuild switch
