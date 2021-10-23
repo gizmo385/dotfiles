@@ -9,7 +9,6 @@ let
     pkgs.fd
     pkgs.ffmpeg
     pkgs.fish
-    pkgs.font-awesome
     pkgs.fzf
     pkgs.gcc
     pkgs.git
@@ -20,7 +19,6 @@ let
     pkgs.kubernetes-helm
     pkgs.leiningen
     pkgs.neovim
-    pkgs.nerdfonts
     pkgs.nodePackages.pyright
     pkgs.nodePackages.typescript-language-server
     pkgs.nodejs
@@ -42,8 +40,10 @@ let
   ];
   # MacOS-specific packages
   darwinPackages = [
-    pkgs.yabai
+    pkgs.font-awesome
+    pkgs.nerdfonts
     pkgs.skhd
+    pkgs.yabai
   ];
   packagesToInstall = commonPackages
   ++ (if pkgs.stdenv.isLinux then linuxPackages else [])
