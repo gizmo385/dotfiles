@@ -12,10 +12,10 @@ let
     pkgs.fish
     pkgs.font-awesome
     pkgs.fzf
+    pkgs.gcc
     pkgs.git
     pkgs.gitAndTools.delta
     pkgs.htop
-    pkgs.j
     pkgs.jq
     pkgs.kubectl
     pkgs.kubernetes-helm
@@ -25,6 +25,7 @@ let
     pkgs.nodePackages.pyright
     pkgs.nodePackages.typescript-language-server
     pkgs.nodejs
+    pkgs.opam
     pkgs.python3Full
     pkgs.ripgrep
     pkgs.rustup
@@ -33,7 +34,9 @@ let
     pkgs.watch
     pkgs.wget
     pkgs.yq
+    pkgs.zsh
   ];
+
   # Linux-specific packages
   linuxPackages = [
     pkgs.terminator
@@ -47,6 +50,7 @@ let
   packagesToInstall = commonPackages
   ++ (if pkgs.stdenv.isLinux then linuxPackages else [])
   ++ (if pkgs.stdenv.isDarwin then darwinPackages else []);
+
 in
 pkgs.buildEnv {
   name = "dev-env";

@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -euo pipefail
+
 full_path() {
     python3 -c "import pathlib; print(pathlib.Path('$1').expanduser().resolve().parent)"
 }
@@ -20,12 +22,14 @@ git --git-dir ${DOTFILES_GIT_DIR} pull
 git --git-dir ${DOTFILES_GIT_DIR} stash pop > /dev/null
 
 ###################################################################################################
-### Installing nix
+### Installing nix if necessary and sourcing the nix environment
 ###################################################################################################
+NIX_BIN=$HOME/.nix-profile/bin
 if [[ ! -d "$HOME/.nix-profile" ]]; then
     curl -L https://nixos.org/nix/install | sh
-    source $HOME/.nix-profile/etc/profile.d/nix.sh
 fi
+
+. $HOME/.nix-profile/etc/profile.d/nix.sh
 
 ###################################################################################################
 ### Symlinking and setting up the necessary configs
@@ -33,18 +37,23 @@ fi
 echo "Symlinking ${DOTFILES_DIR}/dotfiles/.[!.]* into ${HOME}"
 ln -sf ${DOTFILES_DIR}/dotfiles/.[!.]* $HOME
 
+# Symlink nixpkgs configurations
+echo "Symlinking nix configs"
+mkdir -p $HOME/.nixpkgs
+ln -sf $DOTFILES_DIR/dotfiles/nix/darwin-configuration.nix $HOME/.nixpkgs/darwin-configuration.nix
+ln -sf $DOTFILES_DIR/dotfiles/nix/dev-env.nix $HOME/.nixpkgs/dev-env.nix
+
 # Install and update the nix-darwin configurations
 if [[ $OSTYPE == 'darwin'* ]]; then
     # Install nix-darwin
     nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
     ./result/bin/darwin-installer
 
-    # Symlink nixpkgs configurations
-    echo "Symlinking nix Darwin configs"
-    mkdir -p $HOME/.nixpkgs
-    ln -sf $DOTFILES_DIR/dotfiles/nixpkgs/darwin-configuration.nix $HOME/.nixpkgs/darwin-configuration.nix
-
+    # Install system packages
     darwin-rebuild switch
+else
+    $NIX_BIN/nix-channel --update
+    $NIX_BIN/nix-env -i -f "$HOME/.nixpkgs/dev-env.nix"
 fi
 
 
@@ -95,23 +104,5 @@ fish -c "omf install coffeeandcode 2> /dev/null"
 # Symlink the fish config
 mkdir -p $HOME/.config/fish
 ln -sf ${DOTFILES_DIR}/dotfiles/config/fish/config.fish $HOME/.config/fish/config.fish
-
-###################################################################################################
-### Coder specific setup instructions
-###################################################################################################
-if [[ -n $CODER_ENVIRONMENT_NAME ]]; then
-    NIX_BIN_LOCATION=$HOME/.nix-profile/bin
-    echo "Running coder personalization"
-    echo "Installing nix Coder packages"
-    $NIX_BIN_LOCATION/nix-channel --update
-    $NIX_BIN_LOCATION/nix-env --upgrade
-    $NIX_BIN_LOCATION/nix-env -iA nixpkgs.bat nixpkgs.fzf nixpkgs.gitAndTools.delta nixpkgs.nodePackages.pyright nixpkgs.ripgrep nixpkgs.tmux
-
-    echo "Installing neovim"
-    $NIX_BIN_LOCATION/nix-channel --update
-    sudo add-apt-repository ppa:neovim-ppa/unstable -y
-    sudo apt-get update
-    sudo apt-get install neovim -y
-fi
 
 echo Finished installing dotfiles. Please source the relevant files for your shell.

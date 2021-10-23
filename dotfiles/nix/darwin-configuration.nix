@@ -4,6 +4,7 @@
   # List packages installed in system profile. To search by name, run:
   environment.systemPackages =
     [
+      ./dev.nix
       pkgs.awscli
       pkgs.bat
       pkgs.clojure
