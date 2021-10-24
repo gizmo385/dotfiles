@@ -106,4 +106,7 @@ fish -c "omf install coffeeandcode 2> /dev/null"
 mkdir -p $HOME/.config/fish
 ln -sf ${DOTFILES_DIR}/dotfiles/config/fish/config.fish $HOME/.config/fish/config.fish
 
+# Setup (neo)vim
+nvim --headless +PlugInstall +qa
+
 echo Finished installing dotfiles. Please source the relevant files for your shell.

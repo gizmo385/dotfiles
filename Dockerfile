@@ -9,18 +9,17 @@ RUN useradd -ms /bin/bash gizmo
 
 # Setup the nix mount and make gizmo the owner
 RUN mkdir -m 0755 /nix && chown gizmo /nix
+RUN mkdir /home/gizmo/.vim && chown gizmo /home/gizmo/.vim
 
 # Switch to gizmo
 USER gizmo
 ENV USER=gizmo
-WORKDIR /home/gizmo
 
 # Copy the dotfiles and install them
-RUN mkdir -p workspaces/dotfiles
-COPY . workspaces/dotfiles
 WORKDIR /home/gizmo/workspaces/dotfiles
+COPY . .
 RUN ./install.sh
 
 # Swap back to the home directory and setup the entrypoint command
-WORKDIR home/gizmo
+WORKDIR /home/gizmo
 CMD ["/home/gizmo/.nix-profile/bin/fish"]
