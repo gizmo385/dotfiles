@@ -18,7 +18,6 @@ ENV USER=gizmo
 # Copy the dotfiles and install them
 WORKDIR /home/gizmo/workspaces/dotfiles
 COPY . .
-RUN sudo chown -R gizmo .
 RUN ./install.sh
 
 # Swap back to the home directory and setup the entrypoint command
