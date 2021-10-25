@@ -17,7 +17,8 @@ if [ ! -d $DOTFILES_GIT_DIR ]; then
 fi
 
 # Pull the most updated copy
-git --git-dir ${DOTFILES_GIT_DIR} stash push -u > /dev/null && git --git-dir ${DOTFILES_GIT_DIR} pull && git --git-dir ${DOTFILES_GIT_DIR} stash pop > /dev/null
+git --git-dir ${DOTFILES_GIT_DIR} fetch
+git --git-dir ${DOTFILES_GIT_DIR} rebase --autostash FETCH_HEAD
 
 ###################################################################################################
 ### Installing nix if necessary and sourcing the nix environment
