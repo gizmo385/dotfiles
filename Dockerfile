@@ -14,6 +14,7 @@ RUN mkdir /home/gizmo/.vim && chown gizmo /home/gizmo/.vim
 # Switch to gizmo
 USER gizmo
 ENV USER=gizmo
+ENV BUILDING_DOTFILES_CONTAINER=1
 
 # Copy the dotfiles and install them
 WORKDIR /home/gizmo/workspaces/dotfiles
