@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+set -x
 
 full_path() {
     python3 -c "import pathlib; print(pathlib.Path('$1').expanduser().resolve().parent)"
@@ -17,10 +18,10 @@ if [ ! -d $DOTFILES_GIT_DIR ]; then
 fi
 
 # Pull the most updated copy
-if [ ! -z $BUILDING_DOTFILES_CONTAINER ]; then
-    git --git-dir ${DOTFILES_GIT_DIR} fetch
-    git --git-dir ${DOTFILES_GIT_DIR} rebase --autostash origin/main
-fi
+#if [ ! -z $BUILDING_DOTFILES_CONTAINER ]; then
+    #git --git-dir ${DOTFILES_GIT_DIR} fetch
+    #git --git-dir ${DOTFILES_GIT_DIR} rebase --autostash origin/main
+#fi
 
 ###################################################################################################
 ### Installing nix if necessary and sourcing the nix environment
