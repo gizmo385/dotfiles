@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -eo pipefail
-set -x
+
+# Let's get some more verbose output when we're building the container
+if [! -z $BUILDING_DOTFILES_CONTAINER ]; then
+    set -x
+fi
 
 full_path() {
     python3 -c "import pathlib; print(pathlib.Path('$1').expanduser().resolve().parent)"
