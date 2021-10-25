@@ -20,7 +20,7 @@ fi
 # Pull the most updated copy
 if [ -z $BUILDING_DOTFILES_CONTAINER ]; then
     git --git-dir ${DOTFILES_GIT_DIR} fetch
-    git --git-dir ${DOTFILES_GIT_DIR} rebase --autostash origin/main
+    git --git-dir ${DOTFILES_GIT_DIR} rebase --autostash FETCH_HEAD
 fi
 
 ###################################################################################################
