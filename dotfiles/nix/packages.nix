@@ -3,6 +3,7 @@ let
   commonPackages = [
     pkgs.awscli
     pkgs.bat
+    pkgs.cabal-install
     pkgs.clojure
     pkgs.docker
     pkgs.docker-compose
@@ -11,6 +12,7 @@ let
     pkgs.fish
     pkgs.fzf
     pkgs.gcc
+    pkgs.ghc
     pkgs.git
     pkgs.gitAndTools.delta
     pkgs.htop
