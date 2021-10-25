@@ -18,7 +18,7 @@ fi
 
 # Pull the most updated copy
 git --git-dir ${DOTFILES_GIT_DIR} fetch
-git --git-dir ${DOTFILES_GIT_DIR} rebase --autostash FETCH_HEAD
+git --git-dir ${DOTFILES_GIT_DIR} rebase --autostash origin/main
 
 ###################################################################################################
 ### Installing nix if necessary and sourcing the nix environment
