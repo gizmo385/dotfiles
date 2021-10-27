@@ -3,7 +3,7 @@ let
   commonPackages = [
     pkgs.awscli
     pkgs.bat
-    pkgs.cabal-install
+    #pkgs.cabal-install
     pkgs.clojure
     pkgs.docker
     pkgs.docker-compose
@@ -11,23 +11,22 @@ let
     pkgs.ffmpeg
     pkgs.fish
     pkgs.fzf
-    pkgs.gcc
+    #pkgs.gcc
     pkgs.ghc
     pkgs.git
     pkgs.gitAndTools.delta
     pkgs.htop
     pkgs.jq
-    pkgs.kubectl
-    pkgs.kubernetes-helm
+    #pkgs.kubectl
+    #pkgs.kubernetes-helm
     pkgs.leiningen
     pkgs.neovim
     pkgs.nodePackages.pyright
     pkgs.nodePackages.typescript-language-server
     pkgs.nodejs
-    pkgs.opam
-    pkgs.python3Full
+    #pkgs.opam
+    #pkgs.python3Full
     pkgs.ripgrep
-    pkgs.rustup
     pkgs.tmux
     pkgs.vim
     pkgs.watch
@@ -38,7 +37,7 @@ let
 
   # Linux-specific packages
   linuxPackages = [
-    pkgs.terminator
+    #pkgs.terminator
   ];
   # MacOS-specific packages
   darwinPackages = [
