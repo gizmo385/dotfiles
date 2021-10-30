@@ -18,6 +18,7 @@ let
     pkgs.jq
     pkgs.leiningen
     pkgs.neovim
+    pkgs.nodePackages.livedown
     pkgs.nodePackages.pyright
     pkgs.nodePackages.typescript-language-server
     pkgs.nodejs
