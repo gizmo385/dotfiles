@@ -25,4 +25,7 @@ if status is-interactive
 
     # opam configuration
     source $HOME/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+
+
+    set -U fish_user_paths "$HOME/.cargo/bin" $fish_user_paths
 end
