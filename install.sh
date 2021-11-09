@@ -90,7 +90,7 @@ fi
 OMF_INSTALL_LOCATION=$HOME/.local/share/omf
 if [[ ! -d $OMF_INSTALL_LOCATION ]]; then
     echo "Installing oh-my-fish"
-    curl -L https://get.oh-my.fish > omf_install
+    curl -L https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install > omf_install
     fish omf_install --path=$OMF_INSTALL_LOCATION --noninteractive
     rm omf_install
 fi
