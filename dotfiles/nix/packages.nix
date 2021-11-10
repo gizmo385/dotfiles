@@ -24,6 +24,7 @@ let
     pkgs.nodejs
     pkgs.python3Full
     pkgs.ripgrep
+    pkgs.rust-analyzer
     pkgs.tmux
     pkgs.vim
     pkgs.watch
