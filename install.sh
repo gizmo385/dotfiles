@@ -117,4 +117,7 @@ ln -sf ${DOTFILES_DIR}/dotfiles/config/fish/config.fish $HOME/.config/fish/confi
 # Setup (neo)vim
 nvim --headless +PlugInstall +qa
 
+# Install YouCompleteMe
+python3 $HOME/.vim/plugged/YouCompleteMe/install.py --ts-completer --rust-completer
+
 echo Finished installing dotfiles. Please source the relevant files for your shell.

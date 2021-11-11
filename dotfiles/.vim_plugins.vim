@@ -68,12 +68,11 @@ if has('nvim-0.5')
     " Language Server Protocol Plugins
     Plug 'neovim/nvim-lspconfig'
 
+    " Auto-complete
+    Plug 'ycm-core/YouCompleteMe'
+
     " Formatting
     Plug 'sbdchd/neoformat'
-
-    " Auto complete
-    Plug 'nvim-lua/completion-nvim'
-    Plug 'nvim-treesitter/completion-treesitter'
 
     " File Explorer
     Plug 'kyazdani42/nvim-web-devicons'

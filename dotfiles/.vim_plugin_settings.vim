@@ -56,24 +56,6 @@ colorscheme everforest
 
 " Neovim specific configurations
 if has('nvim-0.5')
-    autocmd BufEnter * lua require'completion'.on_attach()
-    " Configure the completion chains
-	let g:completion_chain_complete_list = {
-	    \ 'default': [
-	    \   {'complete_items': ['lsp', 'ts']},
-	    \]
-	    \}
-
-" Neoformat settings
-let g:opambin = substitute(system('opam config var bin'),'\n$','','''')
-let g:neoformat_ocaml_ocamlformat = {
-            \ 'exe': g:opambin . '/ocamlformat',
-            \ 'no_append': 1,
-            \ 'stdin': 1,
-            \ }
-
-let g:neoformat_enabled_ocaml = ['ocamlformat']
-
 " Lua specific configuration
 lua << EOF
 local nvim_lsp = require('lspconfig')

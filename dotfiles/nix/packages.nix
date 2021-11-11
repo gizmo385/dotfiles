@@ -5,6 +5,7 @@ let
     pkgs.bat
     pkgs.cabal-install
     pkgs.clojure
+    pkgs.cmake
     pkgs.docker
     pkgs.docker-compose
     pkgs.fd
@@ -29,6 +30,7 @@ let
     pkgs.vim
     pkgs.watch
     pkgs.wget
+    pkgs.ycmd
     pkgs.yq
     pkgs.zsh
   ];
