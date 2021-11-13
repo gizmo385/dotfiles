@@ -52,7 +52,7 @@ Plug 'raimon49/requirements.txt.vim'
 Plug 'google/vim-jsonnet'
 Plug 'dag/vim-fish'
 Plug 'ocaml/vim-ocaml'
-Plug 'rust-lang/rust.vim'
+Plug 'simrat39/rust-tools.nvim'
 
 " If we're running in neovim (version > 0.5), we'll install some additional nvim plugins
 if has('nvim-0.5')
@@ -69,7 +69,11 @@ if has('nvim-0.5')
     Plug 'neovim/nvim-lspconfig'
 
     " Auto-complete
-    Plug 'ycm-core/YouCompleteMe'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/nvim-cmp'
 
     " Formatting
     Plug 'sbdchd/neoformat'

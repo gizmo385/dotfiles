@@ -58,7 +58,6 @@ colorscheme everforest
 if has('nvim-0.5')
 " Lua specific configuration
 lua << EOF
-local nvim_lsp = require('lspconfig')
 
 -- Treesitter
 require'nvim-treesitter.configs'.setup {
@@ -74,31 +73,70 @@ require'nvim-treesitter.configs'.setup {
     },
 }
 
- -- Python language server setup
-nvim_lsp.pyright.setup{}
-
 -- Setting up NvimTree
 require'nvim-tree'.setup {}
 
--- Typescript language server
-nvim_lsp.tsserver.setup {
-    on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
-        on_attach(client)
-    end
+local nvim_lsp = require('lspconfig')
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<leader>lt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<leader>ll', '<cmd>lua require("telescope.builtin").lsp_code_actions()<CR>', opts)
+  buf_set_keymap('n', '<leader>la', '<cmd>lua require("telescope.builtin").lsp_code_actions()<CR>', opts)
+  buf_set_keymap('n', '<leader>le', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<leader>lq', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap("n", "[e", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+  buf_set_keymap("n", "]e", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+
+  vim.api.nvim_command [[autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()]]
+  vim.api.nvim_command [[autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
+  vim.api.nvim_command [[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
+end
+
+local rust_tools = require('rust-tools')
+local servers = { 'rust_analyzer', 'pylsp' }
+local cmp = require('cmp')
+
+cmp.setup {
+    mapping = {
+        ['<S-k>'] = cmp.mapping.select_prev_item(),
+        ['<S-j>'] = cmp.mapping.select_next_item(),
+        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+        ['<TAB>'] = cmp.mapping.confirm({ select = true }),
+        ['<CR>'] = cmp.mapping.confirm({ select = true })
+    },
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'buffer' },
+        { name = 'path' },
+    }
 }
 
--- Use a loop to conveniently call 'setup' on multiple servers and map buffer local keybindings
--- when the language server attaches
-local servers = { 'pyright', 'rust_analyzer', 'tsserver' }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
+    nvim_lsp[lsp].setup {
+        capabilities = capabilities,
+        on_attach = on_attach
     }
-  }
 end
+
+-- rust_tools.setup({server = { on_attach = on_attach }, tools = {inlay_hints = {show_parameter_hints = false}}})
+-- nvim_lsp.pylsp.setup {
+--   cmd = {'pylsp'},
+--   on_attach = on_attach,
+--   settings = { plugins = { pylsp_mypy = { enabled = true, live_mode = false } } }
+-- }
 
 EOF
 endif

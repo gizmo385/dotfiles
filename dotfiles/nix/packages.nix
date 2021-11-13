@@ -19,20 +19,16 @@ let
     pkgs.jq
     pkgs.leiningen
     pkgs.neovim
-    pkgs.nodePackages.livedown
-    pkgs.nodePackages.pyright
-    pkgs.nodePackages.typescript-language-server
     pkgs.nodejs
     pkgs.python3Full
+    pkgs.python39Packages.python-lsp-server
     pkgs.ripgrep
     pkgs.rust-analyzer
     pkgs.tmux
     pkgs.vim
     pkgs.watch
     pkgs.wget
-    pkgs.ycmd
     pkgs.yq
-    pkgs.zsh
   ];
 
   # Linux-specific packages

@@ -19,7 +19,6 @@ in
 
   # Shell
   programs.bash.enable = false;
-  programs.zsh.enable = true;
   programs.fish.enable = true;
 
   # Enable/Disable services
