@@ -29,6 +29,7 @@ let
     pkgs.watch
     pkgs.wget
     pkgs.yq
+    pkgs.zsh
   ];
 
   # Linux-specific packages
