@@ -62,6 +62,10 @@ if [[ $OSTYPE == 'darwin'* ]]; then
 else
     $NIX_BIN/nix-channel --update
     $NIX_BIN/nix-env -i -f "$HOME/.nixpkgs/dev-env.nix"
+
+    sudo add-apt-repository ppa:neovim-ppa/unstable
+    sudo apt-get update
+    sudo apt-get install neovim
 fi
 
 

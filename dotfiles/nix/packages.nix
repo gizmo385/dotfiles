@@ -18,7 +18,6 @@ let
     pkgs.htop
     pkgs.jq
     pkgs.leiningen
-    pkgs.neovim
     pkgs.nodejs
     pkgs.python3Full
     pkgs.python39Packages.python-lsp-server
@@ -40,6 +39,7 @@ let
     pkgs.nerdfonts
     pkgs.skhd
     pkgs.yabai
+    pkgs.neovim
   ];
   packagesToInstall = commonPackages
   ++ (if pkgs.stdenv.isLinux then linuxPackages else [])
