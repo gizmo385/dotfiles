@@ -4,7 +4,6 @@ let
     pkgs.awscli
     pkgs.bat
     pkgs.cabal-install
-    pkgs.clojure
     pkgs.cmake
     pkgs.docker
     pkgs.docker-compose
