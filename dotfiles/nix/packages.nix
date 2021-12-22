@@ -36,8 +36,6 @@ let
   darwinPackages = [
     pkgs.font-awesome
     pkgs.nerdfonts
-    pkgs.skhd
-    pkgs.yabai
     pkgs.neovim
   ];
   packagesToInstall = commonPackages

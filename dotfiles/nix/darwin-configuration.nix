@@ -20,12 +20,4 @@ in
   # Shell
   programs.bash.enable = false;
   programs.fish.enable = true;
-
-  # Enable/Disable services
-  services.skhd.enable = true;
-  services.yabai = {
-    enable = true;
-    package = pkgs.yabai;
-  };
-
 }
