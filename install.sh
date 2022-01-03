@@ -50,23 +50,8 @@ ln -sf $DOTFILES_DIR/dotfiles/nix/darwin-configuration.nix $HOME/.nixpkgs/darwin
 ln -sf $DOTFILES_DIR/dotfiles/nix/dev-env.nix $HOME/.nixpkgs/dev-env.nix
 
 # Install and update the nix-darwin configurations
-if [[ $OSTYPE == 'darwin'* ]]; then
-    # Install nix-darwin
-    if ! command -v darwin-rebuild; then
-        nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
-        ./result/bin/darwin-installer
-    fi
-
-    # Install system packages
-    darwin-rebuild switch
-else
-    $NIX_BIN/nix-channel --update
-    $NIX_BIN/nix-env -i -f "$HOME/.nixpkgs/dev-env.nix"
-
-    sudo add-apt-repository ppa:neovim-ppa/unstable
-    sudo apt-get update
-    sudo apt-get install -y neovim
-fi
+$NIX_BIN/nix-channel --update
+$NIX_BIN/nix-env -i -f "$HOME/.nixpkgs/dev-env.nix"
 
 
 # Symlink Neovim configs

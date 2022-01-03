@@ -15,23 +15,24 @@ let
     pkgs.git
     pkgs.gitAndTools.delta
     pkgs.htop
-    pkgs.jq
     pkgs.leiningen
-    pkgs.nodejs
-    pkgs.python3Full
     pkgs.python39Packages.python-lsp-server
     pkgs.ripgrep
     pkgs.rust-analyzer
     pkgs.tmux
     pkgs.vim
     pkgs.watch
-    pkgs.wget
     pkgs.yq
     pkgs.zsh
   ];
 
   # Linux-specific packages
-  linuxPackages = [];
+  linuxPackages = [
+    pkgs.python3Full
+    pkgs.jq
+    pkgs.nodejs
+    pkgs.wget
+  ];
   # MacOS-specific packages
   darwinPackages = [
     pkgs.font-awesome
