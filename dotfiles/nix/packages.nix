@@ -1,5 +1,7 @@
 let
   pkgs = import <nixpkgs> {};
+  nixRelease = hash: (import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/${hash}.tar.gz"));
+  neovim_pin = nixRelease "7e9b0dff974c89e070da1ad85713ff3c20b0ca97" {};
   commonPackages = [
     pkgs.awscli
     pkgs.bat
@@ -37,7 +39,7 @@ let
   darwinPackages = [
     pkgs.font-awesome
     pkgs.nerdfonts
-    pkgs.neovim
+    neovim_pin.neovim 
   ];
   packagesToInstall = commonPackages
   ++ (if pkgs.stdenv.isLinux then linuxPackages else [])

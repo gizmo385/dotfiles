@@ -18,8 +18,4 @@ git --git-dir ${DOTFILES_GIT_DIR} rebase --autostash FETCH_HEAD
 
 # Update nix packages
 $NIX_BIN/nix-channel --update
-if [[ $OSTYPE == 'darwin'* ]]; then
-    darwin-rebuild switch
-else
-    $NIX_BIN/nix-env -i -f "$HOME/.nixpkgs/dev-env.nix"
-fi
+$NIX_BIN/nix-env -i -f "$HOME/.nixpkgs/dev-env.nix" --show-trace

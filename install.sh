@@ -51,7 +51,7 @@ ln -sf $DOTFILES_DIR/dotfiles/nix/dev-env.nix $HOME/.nixpkgs/dev-env.nix
 
 # Install and update the nix-darwin configurations
 $NIX_BIN/nix-channel --update
-$NIX_BIN/nix-env -i -f "$HOME/.nixpkgs/dev-env.nix"
+$NIX_BIN/nix-env --show-trace -i -f "$HOME/.nixpkgs/dev-env.nix"
 
 
 # Symlink Neovim configs
