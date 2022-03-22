@@ -62,7 +62,7 @@ if has('nvim-0.5')
     Plug 'nvim-telescope/telescope.nvim'
 
     " Tree-sitter is a parser tool
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/nvim-treesitter'
     Plug 'nvim-treesitter/playground'
 
     " Language Server Protocol Plugins
