@@ -14,7 +14,6 @@ let
     pkgs.fish
     pkgs.fzf
     pkgs.ghc
-    pkgs.git
     pkgs.gitAndTools.delta
     pkgs.htop
     pkgs.leiningen
@@ -31,6 +30,7 @@ let
   # Linux-specific packages
   linuxPackages = [
     pkgs.python3Full
+    pkgs.git
     pkgs.jq
     pkgs.nodejs
     pkgs.wget
