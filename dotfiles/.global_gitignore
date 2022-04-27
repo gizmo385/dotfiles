@@ -459,31 +459,6 @@ local.properties
 # Code Recommenders
 .recommenders/
 
-
-### https://raw.github.com/github/gitignore/785fcb765a09e0800b9133e64a79fe60c6a205ab/Global/ModelSim.gitignore
-
-# ignore compilation output of ModelSim
-*.mti
-*.dat
-*.dbs
-*.psm
-*.bak
-*.cmp
-*.jpg
-*.html
-*.bsf
-
-# ignore simulation output of ModelSim
-wlf*
-*.wlf
-*.vstf
-*.ucdb
-cov*/
-transcript*
-sc_dpiheader.h
-vsim.dbg
-
-
 ### https://raw.github.com/github/gitignore/785fcb765a09e0800b9133e64a79fe60c6a205ab/Global/Vim.gitignore
 
 # swap

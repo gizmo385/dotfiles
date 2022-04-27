@@ -15,10 +15,12 @@ RUN mkdir /home/gizmo/.vim && chown gizmo /home/gizmo/.vim
 USER gizmo
 ENV USER=gizmo
 ENV BUILDING_DOTFILES_CONTAINER=1
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
 
 # Copy the dotfiles and install them
 WORKDIR /home/gizmo/workspaces/dotfiles
-COPY . .
+COPY --chown=gizmo . .
 RUN ./install.sh
 
 # Swap back to the home directory and setup the entrypoint command

@@ -25,4 +25,4 @@ alias clip="xclip -sel clip"
 # Managing dotfiles
 alias update_dotfiles="$HOME/.update_dotfiles.sh"
 alias reinstall_dotfiles="$HOME/.install_dotfiles.sh"
-
+alias dfs="~/.dotfiles/cli/dfs"
