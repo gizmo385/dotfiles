@@ -17,10 +17,9 @@ let
     pkgs.htop
     pkgs.jq
     pkgs.leiningen
-    pkgs.neovim
     pkgs.nodejs
-    pkgs.python39Packages.python-lsp-server
     pkgs.python3Full
+    pkgs.python39Packages.python-lsp-server
     pkgs.ripgrep
     pkgs.rust-analyzer
     pkgs.tmux
@@ -32,11 +31,12 @@ let
   ];
 
   # Linux-specific packages
-  linuxPackages = [pkgs.gcc];
+  linuxPackages = [];
   # MacOS-specific packages
   darwinPackages = [
     pkgs.font-awesome
     pkgs.nerdfonts
+    pkgs.neovim
   ];
   packagesToInstall = commonPackages
   ++ (if pkgs.stdenv.isLinux then linuxPackages else [])
