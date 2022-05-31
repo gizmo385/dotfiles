@@ -64,3 +64,9 @@ if [ -n "${commands[fzf-share]}" ]; then
 fi
 
 if [ -e /Users/gizmo385/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/gizmo385/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+if [[ ! -z "$CODER_WORKSPACE_NAME" ]]; then
+    PROMPT=$'
+%{$fg_bold[green]%}%n@%$CODER_WORKSPACE_NAME %{$fg[blue]%}%D{[%H:%M:%S]} %{$reset_color%}%{$fg[white]%}[%~]%{$reset_color%} $(git_prompt_info)\
+%{$fg[blue]%}->%{$fg_bold[blue]%} %#%{$reset_color%} '
+fi
