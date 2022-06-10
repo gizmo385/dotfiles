@@ -3,9 +3,9 @@ Gizmo385's Dotfiles
 
 All of my configurations for vim/nix/bash/zsh/fish/etc.
 
-## Try em out!
+## Try them out!
 
-[![Create and publish a Docker image](https://github.com/gizmo385/dotfiles/actions/workflows/docker-image.yml/badge.svg?branch=main)](https://github.com/gizmo385/dotfiles/actions/workflows/docker-image.yml)
+[![Dev Env Dockerfile](https://github.com/gizmo385/dotfiles/actions/workflows/docker-image.yml/badge.svg?branch=main)](https://github.com/gizmo385/dotfiles/actions/workflows/docker-image.yml)
 
 If you'd like to try out my dotfiles, you can run them in a docker container that is published on every commit to GHCR! There are 2 ways to do this:
 
@@ -19,22 +19,20 @@ If you'd like to try out my dotfiles, you can run them in a docker container tha
 1. Clone the git repo
 2. Build the docker image with `docker build .`
 3. Run the image with `docker run <image-id>` where `<image-id` is the ID of the built image.
- 
+
 ### Installation
 
 1. Clone the git repo
 2. Run `./install.sh`
 3. Source whichever shell RC file matches your shell (`bash`, `zsh`, or `fish`) or restart your shell.
 
-Vim plugins will install on first launch.
+Once the install has been completed, you can interact with the dotfile installation via the `dfs`
+CLI tool that is added to the path. Any required Vim plugins will install on first launch.
 
 ## Updating Installed Packages
 
-I use [nix](https://github.com/NixOS/nix) to manage my system dependencies. For MacOS systems, I use [nix-darwin](https://github.com/LnL7/nix-darwin) and for Linux systems I use `nix-env`. The list of packages that are installed can be found in [`packages.nix`](https://github.com/gizmo385/dotfiles/blob/main/dotfiles/nix/packages.nix). To update the pacakges installed on your system:
+I use [nix](https://github.com/NixOS/nix) to manage my system dependencies, leveraging a combination of `nix-env` and `nix-shell`. The list of packages installed system-wide via `nix-env` is found in [`packages.nix`](https://github.com/gizmo385/dotfiles/blob/main/dotfiles/nix/packages.nix) and the list of packages that lazily installed shells are created for is available in [`lazy_shells.json`](https://github.com/gizmo385/dotfiles/blob/main/cli/lazy_shells.json). Useful operations are noted below:
 
-1. Pull the latest verison of the nix channels: `nix-channel --update`
-
-2. Update the installed packages:
-- **Linux**: `nix-env -if <dotfiles-repo>/dotfiles/nix/dev-env.nix`
-
-- **MacOS**: `darwin-rebuild switch`
+* Installing system-wide packages: `dfs dotfiles nix`
+* Updating to the newest version of system-wide pacakges: `dfs dotfiles nix --update`
+* Updating the set of lazily installed shells: `dfs dotfiles lazy-shells`
