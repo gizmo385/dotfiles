@@ -8,6 +8,7 @@
     addp = add --patch
     tatus = status
     stats = status
+    barnch = branch
 [url "\"git@github.com:\""]
 	insteadOf = \"https://github.com/\"
 [init]
