@@ -4,6 +4,7 @@ let
     pkgs.fish
     pkgs.fzf
     pkgs.neovim
+    pkgs.ripgrep
     pkgs.vim
     pkgs.zsh
   ];

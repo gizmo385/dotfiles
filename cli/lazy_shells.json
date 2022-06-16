@@ -18,7 +18,6 @@
     "mtr": ["mtr"],
     "node": ["nodejs"],
     "python3": ["python3Full", "python39Packages.python-lsp-server"],
-    "rg": ["ripgrep"],
     "rust-analyzer": ["rust-analyzer"],
     "tmux": ["tmux"],
     "watch": ["watch"],
