@@ -21,4 +21,4 @@ fi
 
 # Run the CLI
 cd $SCRIPT_DIR
-nix-shell  --run "cargo run $*"
+nix-shell  --run "cargo run --quiet -- $*"
