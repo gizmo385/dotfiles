@@ -1,20 +1,24 @@
 use clap::{Parser, Subcommand};
 use dirs::home_dir;
+use glob::glob;
 use log::{LevelFilter, debug, info};
+use serde_json;
 use std::collections::HashMap;
 use std::fs::{File, create_dir_all, remove_dir_all, remove_file, read_to_string, set_permissions};
-use std::os::unix;
-use std::os::unix::fs::PermissionsExt;
 use std::io::Write;
-use serde_json;
-use std::str::FromStr;
+use std::os::unix::fs::PermissionsExt;
+use std::os::unix;
 use std::process::{Command, Output};
+use std::str::FromStr;
 use std::{env, io, path};
 use reqwest;
 
 
 // Constants
 const EXEC: u32 = 0o744;
+const OMF_INSTALL_URL: &str = "https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install";
+const OMZ_INSTALL_URL: &str = "https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh";
+const FISHER_INSTALL_URL: &str = "https://git.io/fisher";
 
 // Logger implementation
 struct SimpleLogger;
@@ -88,11 +92,11 @@ enum SubCommand {
 }
 
 fn symlink(original: &path::Path, link: &path::Path) {
-    info!("Symlinking {:?} -> {:?}", link, original);
     if link.is_file() {
         debug!("Removing existing file @ {:?}", link);
         remove_file(link).expect("Could not remove existing symlink file");
     }
+    debug!("Symlinking {:?} -> {:?}", link, original);
     unix::fs::symlink(original, link).expect("Could not symlink files!")
 }
 
@@ -177,24 +181,76 @@ fn setup_lazy_shells(app_state: &AppState) {
 }
 
 fn setup_fish(app_state: &AppState) {
-    debug!("Setting up fish");
+    info!("Setting up fish shell");
+
+    // Setting up oh-my-fish
+    let omf_install_path = app_state.home_dir.join(".local/share/omf");
+    if ! omf_install_path.is_dir() {
+        info!("Installing Oh-My-Fish");
+        with_file_created(".oh-my-fish-install", EXEC, true, |f, filename| {
+            download_to_file(OMF_INSTALL_URL, f);
+            execute_command("fish", vec!(filename, "--noninteractive"));
+        });
+    }
+
+    // Setting up fisher
+    let fisher_install_path = app_state.home_dir.join(".fisher");
+    if ! fisher_install_path.is_file() {
+        info!("Installing Fisher plugin manager");
+        with_file_created(&fisher_install_path, 0o644, false, |f, _| {
+            download_to_file(FISHER_INSTALL_URL, f);
+        });
+    }
+    let plugins = vec!("jorgebucaran/fisher", "PatrickF1/fzf.fish", "lilyball/nix-env.fish");
+    let fisher_displayable_install_path = fisher_install_path.as_path().display();
+    for plugin in plugins {
+        let cmd = format!("source {} && fisher install {}", fisher_displayable_install_path, plugin);
+        execute_command("fish", vec!("-c", &cmd));
+    }
+
+    // Configure FZF
+    let fzf_config = app_state.home_dir.join(".config/fish/functions/fzf_configure_bindings.fish");
+    execute_command("fish", vec!(fzf_config.to_str().unwrap()));
+
+    // Install themes
+    execute_command("fish", vec!("-c", "omf install coffeeandcode 2> /dev/null"));
 }
 
 fn setup_zsh(app_state: &AppState) {
-    if app_state.home_dir.join(".oh-my-zsh").is_dir() {
-        info!("Oh-My-Zsh already installed");
-    } else {
+    if ! app_state.home_dir.join(".oh-my-zsh").is_dir() {
         info!("Installing Oh-My-Zsh");
         with_file_created(".oh-my-zsh-install", EXEC, true, |f, filename| {
-            let install_url = "https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh";
-            download_to_file(install_url, f);
+            download_to_file(OMZ_INSTALL_URL, f);
             execute_command("bash", vec!(filename, "--unattended", "--keep-zshrc"));
         });
+    } else {
+        info!("Oh-My-Zsh is already installed");
     }
 }
 
 fn setup_symlinks(app_state: &AppState) {
-    debug!("Setting up symlinks");
+    info!("Symlinking dotfiles");
+    // Symlink normal dotfiles
+    let glob_pattern_path = app_state.dotfile_dir.join(".*");
+    let glob_pattern = glob_pattern_path.to_str().unwrap();
+    for dotfile in glob(glob_pattern).unwrap().filter_map(Result::ok) {
+        if dotfile.is_file() {
+            let dest = app_state.home_dir.join(dotfile.file_name().unwrap());
+            symlink(&dotfile, &dest);
+        }
+    }
+
+    // Symlink neovim config
+    symlink(
+        &app_state.dotfile_dir.join("config/nvim/init.vim"),
+        &app_state.home_dir.join(".config/nvim/init.vim"),
+    );
+
+    // Symlink fish config
+    symlink(
+        &app_state.dotfile_dir.join("config/fish/config.fish"),
+        &app_state.home_dir.join(".config/fish/config.fish")
+    );
 }
 
 fn setup_all_the_things(app_state: &AppState) {
