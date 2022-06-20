@@ -1,3 +1,0 @@
-[submodule "cli/pip2nix"]
-	path = cli/pip2nix
-	url = https://github.com/nix-community/pip2nix.git
