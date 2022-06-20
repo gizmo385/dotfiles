@@ -28,4 +28,4 @@ if [ -z $BUILDING_DOTFILES_CONTAINER ]; then
 fi
 
 cd cli/
-./dfs
+./dfs --log-level debug

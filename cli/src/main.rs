@@ -149,7 +149,7 @@ fn setup_lazy_shells(app_state: &AppState) {
     info!("Creating lazy shells");
 
     // Parse lazy shell config
-    let lazy_shells_config = app_state.repo_root.join("rust-cli/lazy_shells.json");
+    let lazy_shells_config = app_state.repo_root.join("cli/lazy_shells.json");
     let lazy_shells: HashMap<String, Vec<String>> = serde_json::from_str(
         &read_to_string(lazy_shells_config).expect("Could not read lazy shells!")
     ).expect("Could not deserialize lazy shells JSON");
