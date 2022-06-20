@@ -142,7 +142,7 @@ fn setup_nix(app_state: &AppState, update: bool) {
 }
 
 fn setup_lazy_shells(app_state: &AppState) {
-    debug!("Setting lazy shells");
+    info!("Creating lazy shells");
 
     // Parse lazy shell config
     let lazy_shells_config = app_state.repo_root.join("rust-cli/lazy_shells.json");
