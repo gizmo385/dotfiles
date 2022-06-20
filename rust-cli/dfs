@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Get the location of the script so we know where to set things up from
+SCRIPT_NAME=${BASH_SOURCE[0]}
+SCRIPT_DIR=$( cd -- "$( dirname -- "$SCRIPT_NAME" )" &> /dev/null && pwd )
+
+# Create a link to this script in the home dir
+if [[ ! -e "$HOME/.dotfiles" ]]; then
+    ln -s $SCRIPT_DIR/.. $HOME/.dotfiles
+fi
+
+# Install nix if necessary
+NIX_BIN="$HOME/.nix-profile/bin"
+if [[ ! -d "$HOME/.nix-profile" ]]; then
+    curl -L https://nixos.org/nix/install | sh
+    $NIX_BIN/nix-channel --update
+fi
+
+. $HOME/.nix-profile/etc/profile.d/nix.sh
+
+# Run the CLI
+cd $SCRIPT_DIR
+nix-shell  --run "cargo run $*"
