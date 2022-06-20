@@ -96,6 +96,7 @@ fn symlink(original: &path::Path, link: &path::Path) {
         debug!("Removing existing file @ {:?}", link);
         remove_file(link).expect("Could not remove existing symlink file");
     }
+    create_dir_all(link.parent().expect("No parent to link")).expect("Could not create parent dirs");
     debug!("Symlinking {:?} -> {:?}", link, original);
     unix::fs::symlink(original, link).expect("Could not symlink files!")
 }
