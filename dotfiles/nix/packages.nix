@@ -29,7 +29,7 @@ let
 
   # Linux-specific packages
   linuxPackages = [
-    pkgs.python3Full
+    pkgs.python37Full
     pkgs.git
     pkgs.jq
     pkgs.nodejs
