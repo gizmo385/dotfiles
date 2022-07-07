@@ -54,6 +54,14 @@ $NIX_BIN/nix-channel --update
 $NIX_BIN/nix-env --show-trace -i -f "$HOME/.nixpkgs/dev-env.nix"
 
 
+# Install neovim on Linux
+if [[ $OSTYPE == 'linux'* ]]; then
+    sudo add-apt-repository -y ppa:neovim-ppa/unstable
+    sudo apt-get update -y
+    sudo apt-get install -y neovim
+fi
+
+
 # Symlink Neovim configs
 echo "Symlinking Neovim configs"
 mkdir -p $HOME/.config/nvim
