@@ -33,6 +33,8 @@ fi
 NIX_BIN=$HOME/.nix-profile/bin
 if [[ ! -d "$HOME/.nix-profile" ]]; then
     curl -L https://nixos.org/nix/install | sh
+    . $HOME/.nix-profile/etc/profile.d/nix.sh
+    $NIX_BIN/nix-channel --update
 fi
 
 . $HOME/.nix-profile/etc/profile.d/nix.sh
@@ -50,7 +52,6 @@ ln -sf $DOTFILES_DIR/dotfiles/nix/darwin-configuration.nix $HOME/.nixpkgs/darwin
 ln -sf $DOTFILES_DIR/dotfiles/nix/dev-env.nix $HOME/.nixpkgs/dev-env.nix
 
 # Install and update the nix-darwin configurations
-$NIX_BIN/nix-channel --update
 $NIX_BIN/nix-env --show-trace -i -f "$HOME/.nixpkgs/dev-env.nix"
 
 
