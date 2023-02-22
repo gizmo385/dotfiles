@@ -28,5 +28,4 @@ if status is-interactive
 
 
     set -U fish_user_paths "$HOME/.cargo/bin" $fish_user_paths
-    set -U fish_user_paths "$HOME/.lazy_shells" $fish_user_paths
 end
