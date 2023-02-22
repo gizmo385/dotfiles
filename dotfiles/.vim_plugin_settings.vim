@@ -61,6 +61,7 @@ lua << EOF
 
 -- Treesitter
 require'nvim-treesitter.configs'.setup {
+    -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     ensure_installed = "python",
     highlight = {
         enable = true,
@@ -92,7 +93,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<leader>ll', '<cmd>lua require("telescope.builtin").lsp_code_actions()<CR>', opts)
   buf_set_keymap('n', '<leader>la', '<cmd>lua require("telescope.builtin").lsp_code_actions()<CR>', opts)
-  buf_set_keymap('n', '<leader>le', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '<leader>le', '<cmd>lua vim.lsp.diagnostic.show_line_dijgnostics()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<leader>lq', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
@@ -104,13 +105,19 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_command [[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
 end
 
+local rust_tools = require('rust-tools')
 local servers = { 'rust_analyzer', 'pylsp' }
 local cmp = require('cmp')
 
 cmp.setup {
+    snippet = {
+        expand = function(args)
+            require('snippy').expand_snippet(args.body)
+        end,
+    },
     mapping = {
-        ['<S-k>'] = cmp.mapping.select_prev_item(),
-        ['<S-j>'] = cmp.mapping.select_next_item(),
+        ['<up>'] = cmp.mapping.select_prev_item(),
+        ['<down>'] = cmp.mapping.select_next_item(),
         ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
         ['<TAB>'] = cmp.mapping.confirm({ select = true }),
         ['<CR>'] = cmp.mapping.confirm({ select = true })
@@ -122,6 +129,7 @@ cmp.setup {
     }
 }
 
+
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         capabilities = capabilities,
@@ -129,12 +137,8 @@ for _, lsp in ipairs(servers) do
     }
 end
 
--- rust_tools.setup({server = { on_attach = on_attach }, tools = {inlay_hints = {show_parameter_hints = false}}})
--- nvim_lsp.pylsp.setup {
---   cmd = {'pylsp'},
---   on_attach = on_attach,
---   settings = { plugins = { pylsp_mypy = { enabled = true, live_mode = false } } }
--- }
+rust_tools.setup({server = { on_attach = on_attach }, tools = {inlay_hints = {show_parameter_hints = false}}})
+
 
 EOF
 endif

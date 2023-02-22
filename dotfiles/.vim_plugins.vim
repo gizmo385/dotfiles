@@ -10,6 +10,9 @@ endif
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
+" Tools for building other plugins
+Plug 'prabirshrestha/async.vim'
+
 " Colorschemes
 Plug 'gruvbox-community/gruvbox'
 Plug 'sainnhe/everforest'
@@ -51,7 +54,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'raimon49/requirements.txt.vim'
 Plug 'google/vim-jsonnet'
 Plug 'dag/vim-fish'
-Plug 'ocaml/vim-ocaml'
 Plug 'simrat39/rust-tools.nvim'
 
 " If we're running in neovim (version > 0.5), we'll install some additional nvim plugins
@@ -62,7 +64,7 @@ if has('nvim-0.5')
     Plug 'nvim-telescope/telescope.nvim'
 
     " Tree-sitter is a parser tool
-    Plug 'nvim-treesitter/nvim-treesitter'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-treesitter/playground'
 
     " Language Server Protocol Plugins
@@ -74,6 +76,7 @@ if has('nvim-0.5')
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
+    Plug 'dcampos/nvim-snippy'
 
     " Formatting
     Plug 'sbdchd/neoformat'
@@ -86,6 +89,10 @@ if has('nvim-0.5')
     Plug 'sainnhe/edge'
     Plug 'rktjmp/lush.nvim'
     Plug 'lourenci/github-colors'
+
+    " Taglists
+    Plug 'preservim/tagbar'
+    Plug 'tenfyzhong/tagbar-ext.vim'
 else
     " FZF is a file-finder plugin
     Plug 'junegunn/fzf'
