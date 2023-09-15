@@ -48,10 +48,9 @@ ln -sf ${DOTFILES_DIR}/dotfiles/.[!.]* $HOME
 # Symlink nixpkgs configurations
 echo "Symlinking nix configs"
 mkdir -p $HOME/.nixpkgs
-ln -sf $DOTFILES_DIR/dotfiles/nix/darwin-configuration.nix $HOME/.nixpkgs/darwin-configuration.nix
 ln -sf $DOTFILES_DIR/dotfiles/nix/dev-env.nix $HOME/.nixpkgs/dev-env.nix
 
-# Install and update the nix-darwin configurations
+# Install and update the dev env configurations
 $NIX_BIN/nix-env --show-trace -i -f "$HOME/.nixpkgs/dev-env.nix"
 
 
