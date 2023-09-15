@@ -9,7 +9,7 @@ let
     pkgs.ctags
     pkgs.docker
     pkgs.docker-compose
-    pkgs.exa
+    pkgs.eza
     pkgs.fd
     pkgs.ffmpeg
     pkgs.fish
