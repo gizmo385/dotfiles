@@ -4,10 +4,11 @@ alias celar='clear'
 alias gits='git'
 
 # Aliases for ls
-alias ll='ls -alF'
-alias la='ls -A'
-alias lsa='ls -ACF'
-alias l='ls -CF'
+alias ls='eza'
+alias ll='eza -alF'
+alias la='eza -A'
+alias lsa='eza -ACF'
+alias l='eza -F'
 
 # Tree-structured ls
 alias lst="find . -name '*' | sed -e 's/^/|-/' -e 's/[^-][^\/]*\//|   /g' -e 's/|   \([A-Za-z0-9_.]\)/|   +--\1/'"
