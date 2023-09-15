@@ -4,23 +4,19 @@ let
   neovim_pin = nixRelease "3e656f7c1d52a257325d28cfb9154c4448f5c69a" {};
   commonPackages = [
     pkgs.bat
-    pkgs.cabal-install
     pkgs.cmake
     pkgs.ctags
     pkgs.docker
     pkgs.docker-compose
     pkgs.eza
     pkgs.fd
-    pkgs.ffmpeg
     pkgs.fish
     pkgs.fzf
-    pkgs.ghc
     pkgs.gitAndTools.delta
     pkgs.htop
     pkgs.leiningen
     pkgs.python310Packages.python-lsp-server
     pkgs.ripgrep
-    pkgs.rust-analyzer
     pkgs.tmux
     pkgs.vim
     pkgs.watch
