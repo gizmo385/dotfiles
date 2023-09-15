@@ -18,6 +18,7 @@ ENV USER=gizmo
 ENV BUILDING_DOTFILES_CONTAINER=1
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Copy the dotfiles and install them
 WORKDIR /home/gizmo/workspaces/dotfiles

@@ -57,10 +57,13 @@ $NIX_BIN/nix-env --show-trace -i -f "$HOME/.nixpkgs/dev-env.nix"
 # Install neovim on Linux
 if [[ $OSTYPE == 'linux'* ]]; then
     if grep -sq 'docker\|lxc' /proc/1/cgroup; then
-        add-apt-repository -y ppa:neovim-ppa/unstable
-        apt-get update -y
-        apt-get install -y neovim
+        sudo apt-get update -y --fix-missing
+        sudo DEBIAN_FRONTEND=noninteractive apt-get -y install software-properties-common
+        sudo add-apt-repository -y ppa:neovim-ppa/unstable
+        sudo apt-get update -y
+        sudo apt-get install -y neovim
     else
+        apt-get install software-properties-common
         sudo add-apt-repository -y ppa:neovim-ppa/unstable
         sudo apt-get update -y
         sudo apt-get install -y neovim
