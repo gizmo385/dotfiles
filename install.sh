@@ -57,9 +57,16 @@ $NIX_BIN/nix-env --show-trace -i -f "$HOME/.nixpkgs/dev-env.nix"
 
 # Install neovim on Linux
 if [[ $OSTYPE == 'linux'* ]]; then
-    sudo add-apt-repository -y ppa:neovim-ppa/unstable
-    sudo apt-get update -y
-    sudo apt-get install -y neovim
+    if [ "$EUID" -ne 0 ]
+        sudo add-apt-repository -y ppa:neovim-ppa/unstable
+        sudo apt-get update -y
+        sudo apt-get install -y neovim
+    else
+        add-apt-repository -y ppa:neovim-ppa/unstable
+        apt-get update -y
+        apt-get install -y neovim
+    fi
+
 fi
 
 
