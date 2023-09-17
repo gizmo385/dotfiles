@@ -27,3 +27,20 @@ alias clip="xclip -sel clip"
 alias update_dotfiles="$HOME/.update_dotfiles.sh"
 alias reinstall_dotfiles="$HOME/.install_dotfiles.sh"
 alias dfs="~/.dotfiles/cli/dfs"
+
+# Git aliases
+alias gs="git status"
+alias gc="git commit"
+alias ga="git add"
+alias gap="git add --patch"
+
+alias gco="git checkout"
+alias gcob="git checkout -b"
+alias gb="git branch -vv"
+alias gbd="git branch -D"
+
+alias gd="git diff"
+alias gds="git diff --staged"
+alias gdp="git --no-pager diff --patch"
+
+alias gmb="git merge-base --fork-point origin/main HEAD"
