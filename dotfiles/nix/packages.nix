@@ -15,7 +15,7 @@ let
     pkgs.gitAndTools.delta
     pkgs.htop
     pkgs.leiningen
-    pkgs.python310Packages.python-lsp-server
+    pkgs.python3
     pkgs.ripgrep
     pkgs.tmux
     pkgs.vim

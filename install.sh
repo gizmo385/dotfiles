@@ -40,6 +40,13 @@ fi
 . $HOME/.nix-profile/etc/profile.d/nix.sh
 
 ###################################################################################################
+### Installing some python packages
+###################################################################################################
+if [[ $OSTYPE == 'linux*' ]]; then
+    sudo pip install python-lsp-server python-lsp-ruff
+fi
+
+###################################################################################################
 ### Symlinking and setting up the necessary configs
 ###################################################################################################
 echo "Symlinking ${DOTFILES_DIR}/dotfiles/.[!.]* into ${HOME}"
