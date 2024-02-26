@@ -3,9 +3,6 @@
 """""""""""""""""""""""""""""
 let mapleader = ","     " make , the <leader> instead of \
 
-" ,ww strips trailing whitespace
-nnoremap <leader>ww :%s/\s\+$//<cr>:let @/=''<CR>
-
 "Open in the same buffer
 nnoremap <leader>ev :e ~/.vimrc <CR>
 
@@ -29,10 +26,6 @@ nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
 
 " File lines -> editor lines
 nnoremap j gj
@@ -65,9 +58,6 @@ vmap <silent> <expr> p <sid>Repl()
 " Copying to system clipboard (if installed)
 vnoremap <C-c> "+y
 
-" Toggle paste mode
-nnoremap <C-p> :set paste!<cr>
-
 """""""""""""""""""""""""""""
 " Mode bindings
 """""""""""""""""""""""""""""
@@ -89,6 +79,8 @@ if has('nvim-0.5')
     nnoremap <C-f> <cmd>:Telescope live_grep<cr>
     nnoremap <leader>n :NvimTreeToggle<CR>
     nnoremap <leader>N :NvimTreeFindFile<CR>
+
+    nnoremap <leader>a <cmd>lua vim.lsp.buf.code_action({apply = true})<CR>
 else
     " Regular vim specific bindings
     nnoremap <C-P> :GFiles<CR>
@@ -105,3 +97,17 @@ set completeopt=menuone,noinsert,noselect
 
 " Avoid showing message extra message when using completion
 set shortmess+=c
+
+" Taglist
+nnoremap <leader>t :TagbarToggle<CR>
+
+" Vimwiki
+nnoremap <leader>vg <cmd>lua require('telescope').extensions.vw.live_grep()<cr>
+nnoremap <leader>vw <cmd>lua require('telescope').extensions.vw.live_grep()<cr>
+nnoremap <leader>v/ <cmd>lua require('telescope').extensions.vw.live_grep()<cr>
+nnoremap <leader>d  :VimwikiDiaryIndex<cr>:VimwikiDiaryGenerateLinks<cr>
+nnoremap <leader>du :VimwikiDiaryGenerateLinks<cr>
+nnoremap <leader>dn :VimwikiMakeDiaryNote<cr>
+
+autocmd BufEnter *.wiki noremap <buffer> <C-p> <cmd>lua require('telescope').extensions.vimwiki.vimwiki()<cr>
+autocmd BufEnter *.wiki noremap <buffer> <C-f> <cmd>lua require('telescope').extensions.vimwiki.live_grep()<cr>

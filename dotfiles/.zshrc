@@ -9,22 +9,6 @@ plugins=()
 
 source $ZSH/oh-my-zsh.sh
 
-source $HOME/.bash_aliases
-
-# User configuration
-if command -v nvim > /dev/null 2>&1; then
-    export VISUAL=nvim
-    alias vim=nvim
-else
-    export VISUAL=vim
-fi
-export EDITOR="$VISUAL"
-
-if command -v bat > /dev/null 2>&1; then
-    alias cat=bat
-fi
-
-
 # Forming the path
 export PATH=$PATH:".scripts"
 export PATH=$PATH:"/bin"
@@ -63,10 +47,17 @@ if [ -n "${commands[fzf-share]}" ]; then
   source "$(fzf-share)/completion.zsh"
 fi
 
-if [ -e /Users/gizmo385/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/gizmo385/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+source $HOME/.bash_aliases
 
-if [[ ! -z "$CODER_WORKSPACE_NAME" ]]; then
-    PROMPT=$'
-%{$fg_bold[green]%}%n@%{$CODER_WORKSPACE_NAME%} %{$fg[blue]%}%D{[%H:%M:%S]} %{$reset_color%}%{$fg[white]%}[%~]%{$reset_color%} $(git_prompt_info)\
-%{$fg[blue]%}->%{$fg_bold[blue]%} %#%{$reset_color%} '
+# User configuration
+if command -v nvim > /dev/null 2>&1; then
+    export VISUAL=nvim
+    alias vim=nvim
+else
+    export VISUAL=vim
+fi
+export EDITOR="$VISUAL"
+
+if command -v bat > /dev/null 2>&1; then
+    alias cat=bat
 fi

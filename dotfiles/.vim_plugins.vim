@@ -43,6 +43,7 @@ Plug 'vim-scripts/paredit.vim'
 
 " Syntax highlighting
 Plug 'ryanoasis/vim-devicons'
+Plug 'hashivim/vim-terraform'
 
 """""""""""""""""""""""""""""""""
 " Language syntax highlighting
@@ -56,12 +57,17 @@ Plug 'google/vim-jsonnet'
 Plug 'dag/vim-fish'
 Plug 'simrat39/rust-tools.nvim'
 
+" Knowledge management
+Plug 'vimwiki/vimwiki'
+
 " If we're running in neovim (version > 0.5), we'll install some additional nvim plugins
 if has('nvim-0.5')
     " Telescope, a file-finder plugin
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-fzf-native.nvim'
+    Plug 'ElPiloto/telescope-vimwiki.nvim'
 
     " Tree-sitter is a parser tool
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}

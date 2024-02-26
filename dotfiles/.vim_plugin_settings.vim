@@ -62,7 +62,7 @@ lua << EOF
 -- Treesitter
 require'nvim-treesitter.configs'.setup {
     -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-    ensure_installed = "python",
+    ensure_installed = { "python", "bash", "terraform" },
     highlight = {
         enable = true,
         disable = { "clojure" }
@@ -105,8 +105,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_command [[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
 end
 
-local rust_tools = require('rust-tools')
-local servers = { 'rust_analyzer', 'pylsp' }
+local servers = { 'pylsp' }
 local cmp = require('cmp')
 
 cmp.setup {
@@ -136,8 +135,6 @@ for _, lsp in ipairs(servers) do
         on_attach = on_attach
     }
 end
-
-rust_tools.setup({server = { on_attach = on_attach }, tools = {inlay_hints = {show_parameter_hints = false}}})
 
 
 EOF
