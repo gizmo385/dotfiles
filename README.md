@@ -1,4 +1,4 @@
-Gizmo385's Dotfiles
+Gizmo's Dotfiles
 =======
 
 All of my configurations for vim/nix/bash/zsh/fish/etc.
