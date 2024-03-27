@@ -12,6 +12,7 @@ let
     pkgs.fd
     pkgs.fish
     pkgs.fzf
+    pkgs.gcc9
     pkgs.gitAndTools.delta
     pkgs.htop
     pkgs.leiningen
