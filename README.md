@@ -31,8 +31,4 @@ CLI tool that is added to the path. Any required Vim plugins will install on fir
 
 ## Updating Installed Packages
 
-I use [nix](https://github.com/NixOS/nix) to manage my system dependencies, leveraging a combination of `nix-env` and `nix-shell`. The list of packages installed system-wide via `nix-env` is found in [`packages.nix`](https://github.com/gizmo385/dotfiles/blob/main/dotfiles/nix/packages.nix) and the list of packages that lazily installed shells are created for is available in [`lazy_shells.json`](https://github.com/gizmo385/dotfiles/blob/main/cli/lazy_shells.json). Useful operations are noted below:
-
-* Installing system-wide packages: `dfs dotfiles nix`
-* Updating to the newest version of system-wide pacakges: `dfs dotfiles nix --update`
-* Updating the set of lazily installed shells: `dfs dotfiles lazy-shells`
+I primarily use [nix](https://github.com/NixOS/nix) to manage my system dependencies. The list of packages installed system-wide via `nix-env` is found in [`packages.nix`](https://github.com/gizmo385/dotfiles/blob/main/dotfiles/nix/packages.nix).
