@@ -71,27 +71,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -110,16 +89,6 @@ fi
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 
-# pip bash completion start
-_pip_completion()
-{
-    COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
-                   COMP_CWORD=$COMP_CWORD \
-                   PIP_AUTO_COMPLETE=1 $1 ) )
-}
-complete -o default -F _pip_completion pip
-# pip bash completion end
-
 export WORKON_HOME=
 source /usr/local/bin/virtualenvwrapper.sh
 export PIP_VIRTUALENV_BASE=
@@ -127,7 +96,14 @@ export PIP_VIRTUALENV_BASE=
 export GITAWAREPROMPT=~/.bash/git-aware-prompt
 source $GITAWAREPROMPT/main.sh
 
-#export PS1="\[$txtcyn\]\u@\h \[$txtylw\]\w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
+# Use neovim if it's installed
+if command -v nvim > /dev/null 2>&1; then
+    export VISUAL=nvim
+    alias vim=nvim
+else
+    export VISUAL=vim
+fi
+export EDITOR="$VISUAL"
 
 function git_branch {
     ref=$(git symbolic-ref HEAD 2> /dev/null) || return;
@@ -136,3 +112,4 @@ function git_branch {
 
 PS1="[\[\033[1;32m\]\w\[\033[0m\]] \[\033[0m\]\[\033[1;36m\]\$(git_branch)\[\033[0;33m\]\[\033[0m\]\[$txtred\]\$git_dirty\[$txtrst\]$ "
 . "$HOME/.cargo/env"
+
