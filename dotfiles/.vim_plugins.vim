@@ -57,6 +57,8 @@ Plug 'google/vim-jsonnet'
 Plug 'dag/vim-fish'
 Plug 'simrat39/rust-tools.nvim'
 
+Plug 'gizmo385/rye-vim'
+
 " Knowledge management
 Plug 'vimwiki/vimwiki'
 

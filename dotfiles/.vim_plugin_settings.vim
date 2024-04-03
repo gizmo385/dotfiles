@@ -26,6 +26,8 @@ syntax enable
 autocmd FileType python setlocal colorcolumn=120
 au BufNewFile,BufRead *.gradle setf groovy
 
+au BufNewFile,BufRead *.rye setf rye
+
 " Clojure stuff
 let g:clojure_fuzzy_indent = 1
 let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^go']
