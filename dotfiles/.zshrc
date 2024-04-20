@@ -19,6 +19,7 @@ export PATH=$PATH:"/usr/games"
 export PATH=$PATH:"/usr/local/bin"
 export PATH=$PATH:"/usr/local/sbin"
 export PATH=$PATH:"/usr/sbin"
+export PATH=$PATH:"/nix/var/nix/profiles/default/bin/"
 
 fancy-ctrl-z () {
   if [[ $#BUFFER -eq 0 ]]; then
