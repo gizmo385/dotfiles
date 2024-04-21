@@ -1,7 +1,6 @@
 let
   pkgs = import <nixpkgs> {};
   nixRelease = hash: (import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/${hash}.tar.gz"));
-  neovim_pin = nixRelease "3e656f7c1d52a257325d28cfb9154c4448f5c69a" {};
   ryelang = import ./ryelang.nix { pkgs=pkgs; };
   commonPackages = [
     pkgs.bat
@@ -37,7 +36,7 @@ let
   darwinPackages = [
     pkgs.font-awesome
     pkgs.nerdfonts
-    neovim_pin.neovim
+    pkgs.neovim
   ];
   packagesToInstall = commonPackages
   ++ (if pkgs.stdenv.isLinux then linuxPackages else [])
