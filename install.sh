@@ -30,14 +30,23 @@ fi
 ###################################################################################################
 ### Installing nix if necessary and sourcing the nix environment
 ###################################################################################################
-NIX_BIN=$HOME/.nix-profile/bin
-if [[ ! -d "$HOME/.nix-profile" ]]; then
-    curl -L https://nixos.org/nix/install | sh
-    . $HOME/.nix-profile/etc/profile.d/nix.sh
-    $NIX_BIN/nix-channel --update
-fi
+NIX_SOURCE_SCRIPT=""
+find_nix_install() {
+    # Figure out which script to source
+    if [[ -f $HOME/.nix-profile/etc/profile.d/nix.sh ]]; then
+        export NIX_SOURCE_SCRIPT="$HOME/.nix-profile/etc/profile.d/nix.sh"
+    elif [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
+        export NIX_SOURCE_SCRIPT="/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+    fi
+}
 
-. $HOME/.nix-profile/etc/profile.d/nix.sh
+## Install nix, update the channel, source the vars
+if [[ -z "${NIX_BIN}" ]]; then
+    curl -L https://nixos.org/nix/install | sh
+    find_nix_install
+    . $NIX_SOURCE_SCRIPT
+    nix-channel --update
+fi
 
 ###################################################################################################
 ### Installing some python packages
@@ -58,7 +67,7 @@ mkdir -p $HOME/.nixpkgs
 ln -sf $DOTFILES_DIR/dotfiles/nix/dev-env.nix $HOME/.nixpkgs/dev-env.nix
 
 # Install and update the dev env configurations
-$NIX_BIN/nix-env --show-trace -i -f "$HOME/.nixpkgs/dev-env.nix"
+nix-env --show-trace -i -f "$HOME/.nixpkgs/dev-env.nix"
 
 
 # Install neovim on Linux
