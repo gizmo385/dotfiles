@@ -17,6 +17,7 @@ let
     pkgs.leiningen
     pkgs.python3
     pkgs.ripgrep
+    pkgs.tldr
     pkgs.tmux
     pkgs.vim
     pkgs.watch
