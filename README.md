@@ -31,4 +31,4 @@ CLI tool that is added to the path. Any required Vim plugins will install on fir
 
 ## Updating Installed Packages
 
-I primarily use [nix](https://github.com/NixOS/nix) to manage my system dependencies. The list of packages installed system-wide via `nix-env` is found in [`packages.nix`](https://github.com/gizmo385/dotfiles/blob/main/dotfiles/nix/packages.nix).
+I primarily use [nix](https://github.com/NixOS/nix) to manage my system dependencies. The list of packages installed system-wide via `nix-env` is found in [`packages.nix`](https://github.com/gizmo385/dotfiles/blob/main/configs/nix/packages.nix).
