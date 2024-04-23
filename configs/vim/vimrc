@@ -1,4 +1,4 @@
-source settings.vim
-source plugins.vim
-source plugin_settings.vim
-source bindings.vim
+source $HOME/settings.vim
+source $HOME/plugins.vim
+source $HOME/plugin_settings.vim
+source $HOME/bindings.vim

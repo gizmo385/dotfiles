@@ -22,7 +22,7 @@ if [ ! -d $DOTFILES_GIT_DIR ]; then
 fi
 
 # Pull the most updated copy
-if [ -z $BUILDING_DOTFILES_CONTAINER ]; then
+if [ -z $BUILDING_DOTFILES_CONTAINER ]; then 
     git --git-dir ${DOTFILES_GIT_DIR} fetch
     git --git-dir ${DOTFILES_GIT_DIR} rebase --autostash FETCH_HEAD
 fi
@@ -33,15 +33,16 @@ fi
 NIX_SOURCE_SCRIPT=""
 find_nix_install() {
     # Figure out which script to source
-    if [[ -f $HOME/.nix-profile/etc/profile.d/nix.sh ]]; then
-        export NIX_SOURCE_SCRIPT="$HOME/.nix-profile/etc/profile.d/nix.sh"
-    elif [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
-        export NIX_SOURCE_SCRIPT="/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+    if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
+        NIX_SOURCE_SCRIPT="/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+    elif [[ -f $HOME/.nix-profile/etc/profile.d/nix.sh ]]; then
+        NIX_SOURCE_SCRIPT="$HOME/.nix-profile/etc/profile.d/nix.sh"
     fi
 }
 
-## Install nix, update the channel, source the vars
-if [[ -z "${NIX_BIN}" ]]; then
+## Install nix if necessary
+find_nix_install
+if [[ -z "${NIX_SOURCE_SCRIPT}" ]]; then
     curl -L https://nixos.org/nix/install | sh
     find_nix_install
     . $NIX_SOURCE_SCRIPT
