@@ -1,0 +1,4 @@
+source settings.vim
+source plugins.vim
+source plugin_settings.vim
+source bindings.vim

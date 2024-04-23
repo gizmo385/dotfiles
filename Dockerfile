@@ -27,4 +27,4 @@ RUN ./install.sh
 
 # Swap back to the home directory and setup the entrypoint command
 WORKDIR /home/gizmo
-CMD ["/home/gizmo/.nix-profile/bin/fish"]
+CMD ["/home/gizmo/.nix-profile/bin/zsh"]
