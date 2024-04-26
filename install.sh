@@ -83,9 +83,11 @@ if [[ $OSTYPE == 'darwin'* ]]; then
 elif [[ $OSTYPE == 'linux'* ]]; then
     mkdir -p $HOME/.config/Code/User/
     mkdir -p $HOME/.vscode-remote/data/Machine
+    mkdir -p $HOME/.vscode-remote/data/User
     ln -s ${DOTFILES_DIR}/configs/vscode/settings.json $HOME/.config/Code/User/settings.json
     # This is specifically for codespaces support
     ln -s ${DOTFILES_DIR}/configs/vscode/settings.json $HOME/.vscode-remote/data/Machine/settings.json
+    ln -s ${DOTFILES_DIR}/configs/vscode/settings.json $HOME/.vscode-remote/data/User/settings.json
 fi
 
 # Install and update the dev env configurations

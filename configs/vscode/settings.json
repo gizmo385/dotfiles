@@ -2,13 +2,8 @@
     "workbench.colorTheme": "everforest",
     "debug.allowBreakpointsEverywhere": true,
     "terminal.explorerKind": "external",
-    "CodeownerInStatusBar.enable": false,
     "vscode-neovim.neovimInitVimPaths.darwin": "~/.config/nvim/init.vim",
     "vscode-neovim.neovimInitVimPaths.linux": "~/.config/nvim/init.vim",
-    "rust-analyzer.checkOnSave.extraArgs": [
-        "--target-dir",
-        "/mnt/cargo-check-ramdisk"
-    ],
     "files.exclude": {
         "node_modules": true,
         "target": true
@@ -18,6 +13,35 @@
     },
     "python.testing.pytestEnabled": true,
     "vim.vimrc.enable": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "j"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                ";"
+            ],
+            "commands": [
+                ":"
+            ]
+        },
+        {
+            "before": [
+                "<C-n>"
+            ],
+            "commands": [
+                ":nohl"
+            ]
+        }
+    ],
     "vim.leader": ",",
     "terminal.integrated.defaultProfile.osx": "zsh",
     "terminal.integrated.defaultProfile.linux": "zsh"
