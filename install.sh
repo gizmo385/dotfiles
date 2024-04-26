@@ -76,6 +76,17 @@ ln -sf ${DOTFILES_DIR}/configs/vim/settings.vim $HOME/settings.vim
 ln -sf ${DOTFILES_DIR}/configs/git/gitconfig $HOME/.gitconfig
 ln -sf ${DOTFILES_DIR}/configs/git/global_gitignore $HOME/.global_gitignore
 
+# Symlink the VSCode config, which is in a different location depending on the system
+if [[ $OSTYPE == 'darwin'* ]]; then
+    mkdir -p "$HOME/Library/Application Support/Code/User"
+    ln -s ${DOTFILES_DIR}/configs/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+elif [[ $OSTYPE == 'linux'* ]]; then
+    mkdir -p $HOME/.config/Code/User/
+    ln -s ${DOTFILES_DIR}/configs/vscode/settings.json $HOME/.config/Code/User/settings.json
+    # This is specifically for codespaces support
+    ln -s ${DOTFILES_DIR}/configs/vscode/settings.json $HOME/.vscode-remote/data/Machine/settings.json
+fi
+
 # Install and update the dev env configurations
 echo "Installing nix packages"
 nix-env --show-trace -i -f ${DOTFILES_DIR}/configs/nix/dev-env.nix
