@@ -1,5 +1,12 @@
 {
   "image": "ghcr.io/gizmo385/dotfiles:main",
   "features": {
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscodevim.vim"
+      ]
+    }
   }
 }
