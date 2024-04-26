@@ -82,6 +82,7 @@ if [[ $OSTYPE == 'darwin'* ]]; then
     ln -s ${DOTFILES_DIR}/configs/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
 elif [[ $OSTYPE == 'linux'* ]]; then
     mkdir -p $HOME/.config/Code/User/
+    mkdir -p $HOME/.vscode-remote/data/Machine
     ln -s ${DOTFILES_DIR}/configs/vscode/settings.json $HOME/.config/Code/User/settings.json
     # This is specifically for codespaces support
     ln -s ${DOTFILES_DIR}/configs/vscode/settings.json $HOME/.vscode-remote/data/Machine/settings.json
