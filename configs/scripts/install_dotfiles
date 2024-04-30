@@ -14,8 +14,6 @@ full_path() {
 ### Update the dotfiles repo
 ###################################################################################################
 DOTFILES_DIR=$(full_path ${BASH_SOURCE[0]}/../..)
-echo $DOTFILES_DIR
-exit 0
 DOTFILES_GIT_DIR="${DOTFILES_DIR}/.git"
 
 if [ ! -d $DOTFILES_GIT_DIR ]; then
@@ -79,7 +77,6 @@ ln -sf ${DOTFILES_DIR}/configs/git/gitconfig $HOME/.gitconfig
 ln -sf ${DOTFILES_DIR}/configs/git/global_gitignore $HOME/.global_gitignore
 ln -sf ${DOTFILES_DIR}/configs/scripts $HOME/scripts
 
-l
 
 # Symlink the VSCode config, which is in a different location depending on the system
 if [[ $OSTYPE == 'darwin'* ]]; then
