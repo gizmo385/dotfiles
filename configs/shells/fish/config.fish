@@ -4,7 +4,7 @@ if status is-interactive
         source $HOME/.fisher
     end
 
-    source $HOME/.bash_aliases
+    source $HOME/shell_aliases
 
     if type -q bat
         alias cat bat
