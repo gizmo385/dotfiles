@@ -109,5 +109,7 @@ nnoremap <leader>d  :VimwikiDiaryIndex<cr>:VimwikiDiaryGenerateLinks<cr>
 nnoremap <leader>du :VimwikiDiaryGenerateLinks<cr>
 nnoremap <leader>dn :VimwikiMakeDiaryNote<cr>
 
+au BufNewFile ~/vimwiki/diary/*.wiki :0r !~/scripts/new_diary_entry.py '%'
+
 autocmd BufEnter *.wiki noremap <buffer> <C-p> <cmd>lua require('telescope').extensions.vimwiki.vimwiki()<cr>
 autocmd BufEnter *.wiki noremap <buffer> <C-f> <cmd>lua require('telescope').extensions.vimwiki.live_grep()<cr>

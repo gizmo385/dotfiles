@@ -75,6 +75,7 @@ ln -sf ${DOTFILES_DIR}/configs/vim/plugins.vim $HOME/plugins.vim
 ln -sf ${DOTFILES_DIR}/configs/vim/settings.vim $HOME/settings.vim
 ln -sf ${DOTFILES_DIR}/configs/git/gitconfig $HOME/.gitconfig
 ln -sf ${DOTFILES_DIR}/configs/git/global_gitignore $HOME/.global_gitignore
+ln -sf ${DOTFILES_DIR}/configs/scripts $HOME/scripts
 
 # Symlink the VSCode config, which is in a different location depending on the system
 if [[ $OSTYPE == 'darwin'* ]]; then
