@@ -20,6 +20,10 @@ export PATH=$PATH:"/usr/local/bin"
 export PATH=$PATH:"/usr/local/sbin"
 export PATH=$PATH:"/usr/sbin"
 export PATH=$PATH:"/nix/var/nix/profiles/default/bin/"
+export PATH=$PATH:"$HOME/.local/bin"
+
+# Shhh don't let anyone know where I keep my monorepo clone :P
+export PATH=$PATH:"$HOME/workspace/discord/.local/bin"
 
 fancy-ctrl-z () {
   if [[ $#BUFFER -eq 0 ]]; then
