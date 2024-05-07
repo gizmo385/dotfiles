@@ -36,6 +36,7 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+bindkey '^F' fzf-file-widget
 
 # Disable retrieving git status in prompt
 git config --global --replace-all oh-my-zsh.hide-status 1
