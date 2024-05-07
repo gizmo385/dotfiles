@@ -1,4 +1,4 @@
-from ubuntu:22.04
+from ubuntu:24.04
 
 # Install some base system dependencies
 RUN apt-get update
