@@ -1,13 +1,11 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 name: Create and publish a Docker image
 
 on:
   push:
     branches: ['*']
+  schedule:
+    # Rebuild the dotfiles every Monday at 16:00 UTC (~ mid-morning mountain time)
+    - cron: "0 16 * * 1"
 
 env:
   REGISTRY: ghcr.io
