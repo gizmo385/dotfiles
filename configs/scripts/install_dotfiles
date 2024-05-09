@@ -76,6 +76,7 @@ ln -sf ${DOTFILES_DIR}/configs/vim/settings.vim $HOME/settings.vim
 ln -sf ${DOTFILES_DIR}/configs/git/gitconfig $HOME/.gitconfig
 ln -sf ${DOTFILES_DIR}/configs/git/global_gitignore $HOME/.global_gitignore
 ln -sf ${DOTFILES_DIR}/configs/scripts $HOME/scripts
+rm ${DOTFILES_DIR}/configs/scripts/scripts
 
 
 # Symlink the VSCode config, which is in a different location depending on the system
