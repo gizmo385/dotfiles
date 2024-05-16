@@ -84,7 +84,7 @@ fi
 # Symlink the VSCode config, which is in a different location depending on the system
 if [[ $OSTYPE == 'darwin'* ]]; then
     mkdir -p "$HOME/Library/Application Support/Code/User"
-    ln -s ${DOTFILES_DIR}/configs/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+    ln -sf ${DOTFILES_DIR}/configs/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
 elif [[ $OSTYPE == 'linux'* ]]; then
     mkdir -p $HOME/.config/Code/User/
     mkdir -p $HOME/.vscode-remote/data/Machine
