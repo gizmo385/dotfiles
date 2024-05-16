@@ -11,3 +11,4 @@ dotfiles/.vim/bundle
 dotfiles/.vim/autoload
 dotfiles/.vim/plugged
 cli/venv
+configs/scripts/scripts
