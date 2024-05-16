@@ -14,6 +14,7 @@ let
     pkgs.fzf
     pkgs.gitAndTools.delta
     pkgs.htop
+    pkgs.kubectx
     pkgs.leiningen
     pkgs.python3
     pkgs.ripgrep
