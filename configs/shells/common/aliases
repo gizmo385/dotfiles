@@ -37,3 +37,7 @@ alias gds="git diff --staged"
 alias gdp="git --no-pager diff --patch"
 
 alias gmb="git merge-base --fork-point origin/main HEAD"
+
+# K8s aliases
+alias kx="kubectx"
+alias kn="kubens"
