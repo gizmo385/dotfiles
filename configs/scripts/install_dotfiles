@@ -100,14 +100,14 @@ echo "Installing nix packages"
 nix-env --show-trace -i -f ${DOTFILES_DIR}/configs/nix/dev-env.nix
 
 # Install neovim on Linux
-if [[ $OSTYPE == 'linux'* ]]; then
-    echo "Installing neovim from apt-get"
-    sudo apt-get update -y --fix-missing
-    sudo DEBIAN_FRONTEND=noninteractive apt-get -y install software-properties-common
-    sudo add-apt-repository -y ppa:neovim-ppa/unstable
-    sudo apt-get update -y
-    sudo apt-get install -y neovim
-fi
+# if [[ $OSTYPE == 'linux'* ]]; then
+#     echo "Installing neovim from apt-get"
+#     sudo apt-get update -y --fix-missing
+#     sudo DEBIAN_FRONTEND=noninteractive apt-get -y install software-properties-common
+#     sudo add-apt-repository -y ppa:neovim-ppa/unstable
+#     sudo apt-get update -y
+#     sudo apt-get install -y neovim
+# fi
 
 # Symlink the dotfile management scripts
 ln -sf ${DOTFILES_DIR}/update.sh $HOME/.update_dotfiles.sh

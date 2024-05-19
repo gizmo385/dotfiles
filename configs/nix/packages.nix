@@ -16,7 +16,7 @@ let
     pkgs.htop
     pkgs.kubectx
     pkgs.leiningen
-    pkgs.python3
+    pkgs.neovim
     pkgs.ripgrep
     pkgs.tldr
     pkgs.tmux
@@ -38,7 +38,7 @@ let
   darwinPackages = [
     pkgs.font-awesome
     pkgs.nerdfonts
-    pkgs.neovim
+    
   ];
   packagesToInstall = commonPackages
   ++ (if pkgs.stdenv.isLinux then linuxPackages else [])
