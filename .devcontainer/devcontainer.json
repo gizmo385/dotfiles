@@ -6,7 +6,8 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "vscodevim.vim"
+        "vscodevim.vim",
+        "bbenoist.Nix"
       ]
     }
   }
