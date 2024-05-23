@@ -10,17 +10,14 @@ let
     pkgs.docker-compose
     pkgs.eza
     pkgs.fd
-    pkgs.fish
     pkgs.fzf
     pkgs.gitAndTools.delta
     pkgs.htop
     pkgs.kubectx
     pkgs.leiningen
-    pkgs.neovim
     pkgs.ripgrep
     pkgs.tldr
     pkgs.tmux
-    pkgs.vim
     pkgs.watch
     pkgs.yq
     pkgs.zsh
@@ -32,7 +29,6 @@ let
     pkgs.git
     pkgs.jq
     pkgs.wget
-    ryelang
   ];
   # MacOS-specific packages
   darwinPackages = [

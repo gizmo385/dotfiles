@@ -1,8 +1,6 @@
 # Setting up oh-my-zsh
-export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="crcandy"
 plugins=()
-source $ZSH/oh-my-zsh.sh
 
 # Forming the path
 export PATH=$PATH:"/bin"
@@ -54,7 +52,10 @@ if [ -n "${commands[fzf-share]}" ]; then
 fi
 
 # Setup home-manager
-source /etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh
+if [[ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]]
+then
+    source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+fi
 
 # Add our aliases
 source $HOME/shell_aliases
