@@ -1,0 +1,26 @@
+FROM ubuntu:24.04
+
+# Install some base system dependencies
+
+RUN apt-get update
+RUN apt-get install git curl xz-utils sudo --yes
+
+
+# Create the gizmo user
+RUN useradd -ms /bin/bash gizmo
+RUN echo "ALL ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+# Setup the nix mount and make gizmo the owner
+RUN mkdir -m 0755 /nix && chown gizmo /nix
+RUN mkdir /home/gizmo/.vim && chown gizmo /home/gizmo/.vim
+
+# Switch to gizmo
+USER gizmo
+ENV USER=gizmo
+ENV BUILDING_DOTFILES_CONTAINER=1
+
+# Install nix and home-manager
+RUN curl -L https://nixos.org/nix/install | sh
+RUN nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+RUN nix-channel --update
+RUN nix-shell '<home-manager>' -A install
