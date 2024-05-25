@@ -2,29 +2,37 @@
 
 let
   packages = import ./nix/packages.nix;
+  username = "gizmo";
+  homeDirectory = "/home/${username}";
+
+  nixvim = import (builtins.fetchGit {
+    url = "https://github.com/nix-community/nixvim";
+    # If you are not running an unstable channel of nixpkgs, select the corresponding branch of nixvim.
+    # ref = "nixos-23.05";
+  });
 in
 {
+
+  imports = [
+    nixvim.homeManagerModules.nixvim
+  ];
+
   home = {
-    username = "gizmo";
-    homeDirectory = "/home/gizmo";
+    inherit username homeDirectory;
     stateVersion = "23.11";
 
-    packages = packages.packagesToInstall;
+    # packages = packages.packagesToInstall;
 
     file = {
       # Shell configs
-      # ".zshrc".source = ./shells/zsh/zshrc;
-      "shell_aliases".source = ./shells/common/aliases;
-      ".config/fish/config.fish".source = ./shells/fish/config.fish;
       ".tmux.conf".source = ./tmux/tmux.conf;
 
       # Editor configs
-      ".config/nvim/init.vim".source = ./nvim/init.vim;
-      ".vimrc".source = ./vim/vimrc;
-      "bindings.vim".source = ./vim/bindings.vim;
-      "plugin_settings.vim".source = ./vim/plugin_settings.vim;
-      "plugins.vim".source = ./vim/plugins.vim;
-      "settings.vim".source = ./vim/settings.vim;
+      # ".vimrc".source = ./vim/vimrc;
+      # "bindings.vim".source = ./vim/bindings.vim;
+      # "plugin_settings.vim".source = ./vim/plugin_settings.vim;
+      # "plugins.vim".source = ./vim/plugins.vim;
+      # "settings.vim".source = ./vim/settings.vim;
 
       # Git configs
       ".gitconfig".source = ./git/gitconfig;
@@ -44,24 +52,24 @@ in
   programs = {
     home-manager.enable = true;
 
-    neovim = {
-      enable = true;
-      vimAlias = true;
-      defaultEditor = true;
+    # neovim = {
+    #   enable = true;
+    #   vimAlias = true;
+    #   defaultEditor = true;
 
-      extraConfig = (builtins.readFile ./nvim/init.vim);
+    #   extraConfig = (builtins.readFile ./nvim/init.vim);
+    # };
+
+    zsh = import ./nix/zsh.nix { inherit homeDirectory pkgs; };
+
+    nixvim = import ./nix/neovim;
+
+    eza = {
+      enable = true;
+      enableZshIntegration = true;
     };
 
-    zsh = {
-      enable = true;
-      oh-my-zsh = {
-        enable = true;
-        plugins = [];
-        theme = "crcandy";
-      };
-
-      initExtra = (builtins.readFile ./shells/zsh/zshrc);
-    };
+    bat.enable = true;
 
     git = {
       enable = true;

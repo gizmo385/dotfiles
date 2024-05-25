@@ -10,16 +10,6 @@ alias la='eza -A'
 alias lsa='eza -ACF'
 alias l='eza -F'
 
-# Tree-structured ls
-alias lst="find . -name '*' | sed -e 's/^/|-/' -e 's/[^-][^\/]*\//|   /g' -e 's/|   \([A-Za-z0-9_.]\)/|   +--\1/'"
-
-# Directory tree
-alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
-
-# Application aliases
-alias untar='tar -xf'
-alias clip="xclip -sel clip"
-
 # Git aliases
 alias gs="git status"
 alias gc="git commit"
