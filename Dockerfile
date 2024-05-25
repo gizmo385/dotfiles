@@ -1,10 +1,12 @@
-FROM alpine
+FROM ubuntu:24_04
 
 # Install some base system dependencies
-RUN apk --no-cache add curl git xz sudo bash
+RUN apt-get update && \
+    apt-get install curl git python3 xz-utils sudo --yes && \
+    rm -rf /var/lib/apt/lists/*
 
 # Create the gizmo user
-RUN adduser gizmo -s /bin/bash -h /home/gizmo -D
+RUN useradd -ms /bin/bash gizmo
 RUN echo "ALL ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # Setup the nix mount and make gizmo the owner
