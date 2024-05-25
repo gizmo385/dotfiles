@@ -1,4 +1,4 @@
-FROM ubuntu:24_04
+FROM ubuntu:24.04
 
 # Install some base system dependencies
 RUN apt-get update && \
