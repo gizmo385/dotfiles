@@ -56,6 +56,9 @@
         kx = "kubectx";
         kn = "kubens";
 
+        # Home-manager aliases
+        hm = "home-manager";
+
         # Replace cat with bat
         cat = "bat";
     };

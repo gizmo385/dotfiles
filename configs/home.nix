@@ -5,10 +5,9 @@ let
   username = "gizmo";
   homeDirectory = "/home/${username}";
 
+  # I use nixvim to manage my neovim configs within nix
   nixvim = import (builtins.fetchGit {
     url = "https://github.com/nix-community/nixvim";
-    # If you are not running an unstable channel of nixpkgs, select the corresponding branch of nixvim.
-    # ref = "nixos-23.05";
   });
 in
 {
@@ -21,24 +20,14 @@ in
     inherit username homeDirectory;
     stateVersion = "23.11";
 
-    # packages = packages.packagesToInstall;
-
     file = {
       # Shell configs
       ".tmux.conf".source = ./tmux/tmux.conf;
 
-      # Editor configs
-      # ".vimrc".source = ./vim/vimrc;
-      # "bindings.vim".source = ./vim/bindings.vim;
-      # "plugin_settings.vim".source = ./vim/plugin_settings.vim;
-      # "plugins.vim".source = ./vim/plugins.vim;
-      # "settings.vim".source = ./vim/settings.vim;
-
-      # Git configs
+      # Git configs (these should probably be pulled into nix)
       ".gitconfig".source = ./git/gitconfig;
       ".global_gitignore".source = ./git/global_gitignore;
       "scripts".source = ./scripts;
-
     };
 
     sessionVariables = {
@@ -52,29 +41,30 @@ in
   programs = {
     home-manager.enable = true;
 
-    # neovim = {
-    #   enable = true;
-    #   vimAlias = true;
-    #   defaultEditor = true;
-
-    #   extraConfig = (builtins.readFile ./nvim/init.vim);
-    # };
-
     zsh = import ./nix/zsh.nix { inherit homeDirectory pkgs; };
 
+    # Import my neovim configuration
     nixvim = import ./nix/neovim;
 
+    # Better shell tooling
+    bat.enable = true; # cat alternative
+    fzf.enable = true; # Fuzzy file finder
+    ripgrep.enable = true; # grep alternative
+    fd.enable = true; # find alternative
     eza = {
+      # ls alternative
       enable = true;
       enableZshIntegration = true;
     };
-
-    bat.enable = true;
+    
 
     git = {
       enable = true;
       userName = "gizmo385";
       userEmail = "gizmo385@users.noreply.github.com";
+
+      # Install delta, a better diff tool
+      delta.enable = true;
     };
   };
 }

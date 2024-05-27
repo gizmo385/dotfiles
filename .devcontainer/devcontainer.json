@@ -1,5 +1,5 @@
 {
-  "image": "ghcr.io/gizmo385/dotfiles:home-manager",
+  "image": "ghcr.io/gizmo385/dotfiles:main",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2.11.0": {}
   },
