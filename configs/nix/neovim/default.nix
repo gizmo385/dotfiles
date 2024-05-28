@@ -1,13 +1,11 @@
 { pkgs, ... }:
 
-let 
-  vimPlugins = pkgs.vimPlugins;
-in
 {
   imports = [
     ./plugins/nvim-tree.nix
     ./plugins/telescope.nix
     ./plugins/treesitter.nix
+    ./plugins/lsp.nix
   ];
 
   enable = true;
@@ -34,6 +32,11 @@ in
     # Use jj to exit from insert mode
     { key = "jj"; action = "<ESC>"; mode = "i"; }
     { key = "JJ"; action = "<ESC>"; mode = "i"; }
+    # Better window movement
+    { key = "<C-h>"; action = "<C-w>h"; mode = "n"; }
+    { key = "<C-j>"; action = "<C-w>j"; mode = "n"; }
+    { key = "<C-k>"; action = "<C-w>k"; mode = "n"; }
+    { key = "<C-l>"; action = "<C-w>l"; mode = "n"; }
   ];
 
   opts = {
@@ -78,6 +81,10 @@ in
     autoindent = true;
     smartindent = true;
 
+    # Display settings
+    background = "dark";
+    termguicolors = true;
+
     # Misc settings
     ttyfast = true;
     lazyredraw = true;
@@ -87,14 +94,12 @@ in
 
   # TODO: Extract these out into modules
   plugins = {
-    # nvim-tree.enable = true;
     nix.enable = true;
     airline.enable = true;
-    multicursors.enable = true;
+    #multicursors.enable = true;
 
     treesitter.enable = true;
 
-    cmp-nvim-lsp.enable = true;
     cmp-buffer.enable = true;
     cmp-path.enable = true;
 
@@ -127,12 +132,6 @@ in
 
     # Knowledge management
     vimwiki
-
-    # Telescope, a file-finder plugin
-    
-
-    # Language Server Protocol Plugins
-    nvim-lspconfig
 
     # Auto-complete
     cmp-buffer

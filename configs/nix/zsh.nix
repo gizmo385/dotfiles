@@ -58,9 +58,13 @@
 
         # Home-manager aliases
         hm = "home-manager";
+        hms = "home-manager switch";
 
         # Replace cat with bat
         cat = "bat";
+
+        # Replace vim with neovim
+        vim = "nvim";
     };
 
     initExtra = ''
