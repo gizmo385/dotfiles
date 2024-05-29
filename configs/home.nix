@@ -2,12 +2,13 @@
 
 let
   packages = import ./nix/packages.nix;
-  username = "gizmo";
+  username = builtins.getEnv "USER";
   homeDirectory = "/home/${username}";
 
   # I use nixvim to manage my neovim configs within nix
   nixvim = import (builtins.fetchGit {
     url = "https://github.com/nix-community/nixvim";
+    ref = "main";
   });
 in
 {
