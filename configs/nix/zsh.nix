@@ -35,7 +35,6 @@
         ls = "eza";
         ll = "eza -alF";
         la = "eza -A";
-        lsa = "eza -ACFjj";
         l = "eza -F";
 
         # Git aliases
