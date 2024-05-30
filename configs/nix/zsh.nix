@@ -1,7 +1,7 @@
 { pkgs, homeDirectory, ... }:
 
 {
-    enable = true;
+  enable = true;
     syntaxHighlighting = {
         enable = true;
     };
@@ -21,6 +21,10 @@
             src = pkgs.zsh-you-should-use;
         }
     ];
+
+    sessionVariables = {
+      PATH = "$PATH:${homeDirectory}/.scripts";
+    };
 
     shellAliases = {
         # Fix my typos

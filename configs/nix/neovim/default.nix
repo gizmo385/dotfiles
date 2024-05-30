@@ -45,6 +45,7 @@
     number = true;
     ruler = true;
     scrolloff = 5;
+    wrap = false;
 
     # Show what mode I'm in
     showmode = true;

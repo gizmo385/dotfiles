@@ -22,13 +22,11 @@ in
     stateVersion = "23.11";
 
     file = {
-      # Shell configs
-      ".tmux.conf".source = ./tmux/tmux.conf;
-
-      # Git configs (these should probably be pulled into nix)
-      ".gitconfig".source = ./git/gitconfig;
-      ".global_gitignore".source = ./git/global_gitignore;
-      "scripts".source = ./scripts;
+      scripts = {
+        source = ./scripts;
+        target = ".scripts";
+        recursive = true;
+      };
     };
 
     sessionVariables = {
@@ -43,29 +41,18 @@ in
     home-manager.enable = true;
 
     zsh = import ./nix/zsh.nix { inherit homeDirectory pkgs; };
-
-    # Import my neovim configuration
+    git = import ./nix/git.nix { inherit pkgs; };
     nixvim = import ./nix/neovim;
 
     # Better shell tooling
-    bat.enable = true; # cat alternative
+    bat.enable = true; # Alternative to cat
     fzf.enable = true; # Fuzzy file finder
-    ripgrep.enable = true; # grep alternative
-    fd.enable = true; # find alternative
+    ripgrep.enable = true; # Alternative to grep
+    fd.enable = true; # Alternative to find
     eza = {
-      # ls alternative
+      # Alternative to ls
       enable = true;
       enableZshIntegration = true;
-    };
-    
-
-    git = {
-      enable = true;
-      userName = "gizmo385";
-      userEmail = "gizmo385@users.noreply.github.com";
-
-      # Install delta, a better diff tool
-      delta.enable = true;
     };
   };
 }
