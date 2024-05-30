@@ -56,6 +56,7 @@
         gmb = "git merge-base --fork-point origin/main HEAD";
 
         # K8s aliases
+        k = "kubectl";
         kx = "kubectx";
         kn = "kubens";
 
