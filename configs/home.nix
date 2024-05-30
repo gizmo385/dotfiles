@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 let
-  packages = import ./nix/packages.nix;
   username = builtins.getEnv "USER";
   homeDirectory = "/home/${username}";
 
