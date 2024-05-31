@@ -52,6 +52,8 @@ if ! command -v home-manager &> /dev/null; then
 fi
 
 # Install home-manager
-mkdir -p $HOME/.config/home-manager/
+mkdir -p $HOME/.config/home-manager
+mkdir -p $HOME/.config/nix
 ln -sf ${DOTFILES_DIR}/configs/home.nix ${HOME}/.config/home-manager/home.nix
+ln -sf ${DOTFILES_DIR}/configs/nix.conf ${HOME}/.config/nix/nix.conf
 home-manager switch
