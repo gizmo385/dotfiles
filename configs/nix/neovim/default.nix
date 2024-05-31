@@ -8,6 +8,7 @@
     ./plugins/treesitter.nix
     ./plugins/lsp.nix
     ./plugins/vimwiki.nix
+    ./plugins/paredit.nix
   ];
 
   enable = true;
