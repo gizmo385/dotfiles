@@ -2,10 +2,12 @@
 
 {
   imports = [
+    # Customized plugins
     ./plugins/nvim-tree.nix
     ./plugins/telescope.nix
     ./plugins/treesitter.nix
     ./plugins/lsp.nix
+    ./plugins/vimwiki.nix
   ];
 
   enable = true;
@@ -130,9 +132,6 @@
     vim-clojure-static
     vim-javascript
     vim-terraform
-
-    # Knowledge management
-    vimwiki
 
     # Auto-complete
     cmp-buffer
