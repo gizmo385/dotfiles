@@ -57,11 +57,16 @@ in
 
     # Better shell tooling
     bat.enable = true; # Alternative to cat
-    fzf.enable = true; # Fuzzy file finder
     ripgrep.enable = true; # Alternative to grep
     fd.enable = true; # Alternative to find
     eza = {
       # Alternative to ls
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    # Fuzzy file finder
+    fzf = {
       enable = true;
       enableZshIntegration = true;
     };

@@ -63,6 +63,7 @@
         # Home-manager aliases
         hm = "home-manager";
         hms = "home-manager switch";
+        hmg = "home-manager generations";
 
         # Replace cat with bat
         cat = "bat";
@@ -73,5 +74,8 @@
 
     initExtra = ''
     . "${homeDirectory}/.nix-profile/etc/profile.d/nix.sh";
+    bindkey '^F' fzf-file-widget
+    bindkey '^R' fzf-history-widget
+    bindkey '^G' fzf-cd-widget
     '';
 }
