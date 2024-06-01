@@ -9,11 +9,14 @@ let
     url = "https://github.com/nix-community/nixvim";
     ref = "main";
   });
+
+  zsh = import ./nix/zsh.nix { inherit pkgs homeDirectory; };
 in
 {
 
   imports = [
     nixvim.homeManagerModules.nixvim
+    zsh
   ];
 
   home = {
@@ -45,7 +48,6 @@ in
   programs = {
     home-manager.enable = true;
 
-    zsh = import ./nix/zsh.nix { inherit homeDirectory pkgs; };
     git = import ./nix/git.nix { inherit pkgs; };
     nixvim = import ./nix/neovim;
 
@@ -56,16 +58,7 @@ in
     bat.enable = true; # Alternative to cat
     ripgrep.enable = true; # Alternative to grep
     fd.enable = true; # Alternative to find
-    eza = {
-      # Alternative to ls
-      enable = true;
-      enableZshIntegration = true;
-    };
-
-    # Fuzzy file finder
-    fzf = {
-      enable = true;
-      enableZshIntegration = true;
-    };
+    eza.enable = true; # Alternative to ls
+    fzf.enable = true; # Fuzzy file finder
   };
 }

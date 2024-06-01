@@ -1,32 +1,34 @@
 { pkgs, homeDirectory, ... }:
 
 {
-  enable = true;
-    syntaxHighlighting = {
+  programs = {
+    zsh = {
+      enable = true;
+      syntaxHighlighting = {
         enable = true;
-    };
-    oh-my-zsh = {
+      };
+      oh-my-zsh = {
         enable = true;
         plugins = [ "gitfast" ];
         theme = "crcandy";
-    };
-    plugins = [
+      };
+      plugins = [
         {
-            name = "vi-mode";
-            src = pkgs.zsh-vi-mode;
-            file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+          name = "vi-mode";
+          src = pkgs.zsh-vi-mode;
+          file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
         }
         {
-            name = "you-should-use";
-            src = pkgs.zsh-you-should-use;
+          name = "you-should-use";
+          src = pkgs.zsh-you-should-use;
         }
-    ];
+      ];
 
-    sessionVariables = {
-      PATH = "$PATH:${homeDirectory}/.scripts";
-    };
+      sessionVariables = {
+        PATH = "$PATH:${homeDirectory}/.scripts";
+      };
 
-    shellAliases = {
+      shellAliases = {
         # Fix my typos
         celar = "clear";
         gits = "git";
@@ -70,12 +72,18 @@
 
         # Replace vim with neovim
         vim = "nvim";
+      };
+
+      initExtra = ''
+      . "${homeDirectory}/.nix-profile/etc/profile.d/nix.sh";
+      bindkey '^F' fzf-file-widget
+      bindkey '^R' fzf-history-widget
+      bindkey '^G' fzf-cd-widget
+      '';
     };
 
-    initExtra = ''
-    . "${homeDirectory}/.nix-profile/etc/profile.d/nix.sh";
-    bindkey '^F' fzf-file-widget
-    bindkey '^R' fzf-history-widget
-    bindkey '^G' fzf-cd-widget
-    '';
+    # Enable some zsh integrations in other tools
+    eza.enableZshIntegration = true;
+    fzf.enableZshIntegration = true;
+  };
 }
