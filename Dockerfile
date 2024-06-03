@@ -32,8 +32,8 @@ RUN mkdir -p $HOME/.config/nix
 # Copy the dotfiles and install them
 WORKDIR /home/gizmo/workspaces/dotfiles
 COPY --chown=gizmo . .
-RUN ln -sf ./modules/home.nix $HOME/.config/home-manager/home.nix
-RUN ln -sf ./configs/nix.conf $HOME/.config/nix/nix.conf
+RUN ln -sf /home/gizmo/workspaces/dotfiles/modules/home.nix $HOME/.config/home-manager/home.nix
+RUN ln -sf /home/gizmo/workspaces/dotfiles/configs/nix.conf $HOME/.config/nix/nix.conf
 
 # Install the flake
 RUN . $HOME/.nix-profile/etc/profile.d/nix.sh && home-manager switch --impure --flake .#docker
