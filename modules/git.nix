@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  programs.git = {
       enable = true;
       userName = "gizmo385";
       userEmail = "gizmo385@users.noreply.github.com";
@@ -29,4 +30,5 @@
         rerere.enabled = true;
         commit.verbose = true;
       };
-    }
+  };
+}

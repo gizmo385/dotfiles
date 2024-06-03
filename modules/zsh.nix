@@ -1,4 +1,4 @@
-{ pkgs, homeDirectory, ... }:
+{ pkgs, ... }:
 
 {
   programs = {
@@ -25,7 +25,7 @@
       ];
 
       sessionVariables = {
-        PATH = "$PATH:${homeDirectory}/.scripts";
+        PATH = "$PATH:$HOME/.scripts";
       };
 
       shellAliases = {
@@ -75,10 +75,11 @@
       };
 
       initExtra = ''
-      . "${homeDirectory}/.nix-profile/etc/profile.d/nix.sh";
       bindkey '^F' fzf-file-widget
       bindkey '^R' fzf-history-widget
       bindkey '^G' fzf-cd-widget
+
+      . "$HOME/.nix-profile/etc/profile.d/nix.sh";
       '';
     };
 

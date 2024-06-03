@@ -25,11 +25,18 @@ RUN $HOME/.nix-profile/bin/nix-channel --add https://github.com/nix-community/ho
 RUN $HOME/.nix-profile/bin/nix-channel --update
 RUN . $HOME/.nix-profile/etc/profile.d/nix.sh && nix-shell '<home-manager>' -A install
 
+# Make some directories
+RUN mkdir -p $HOME/.config/home-manager
+RUN mkdir -p $HOME/.config/nix
+
 # Copy the dotfiles and install them
 WORKDIR /home/gizmo/workspaces/dotfiles
 COPY --chown=gizmo . .
+RUN ln -sf ./modules/home.nix $HOME/.config/home-manager/home.nix
+RUN ln -sf ./configs/nix.conf $HOME/.config/nix/nix.conf
 
-RUN ./install.sh
+# Install the flake
+RUN . $HOME/.nix-profile/etc/profile.d/nix.sh && home-manager switch --impure --flake .#docker
 
 # Swap back to the home directory and setup the entrypoint command
 WORKDIR /home/gizmo
