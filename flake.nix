@@ -30,12 +30,20 @@
       # > Our main home-manager configuration file <
       modules = [./modules/home.nix];
     };
+
+    coderConfiguration = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+      extraSpecialArgs = {inherit inputs outputs;};
+      # > Our main home-manager configuration file <
+      modules = [./options/coder.nix ./modules/home.nix];
+    };
   in {
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-hostname'
     homeConfigurations = {
       "docker" = defaultConfiguration;
-      "gizmo-coder" = defaultConfiguration;
+      "gizmo-coder" = coderConfiguration;
+      "gizmo2" = coderConfiguration;
 
       "gizmo-macbook" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;

@@ -23,6 +23,7 @@ if [ -z $BUILDING_DOTFILES_CONTAINER ]; then
     git --git-dir ${DOTFILES_GIT_DIR} rebase --autostash FETCH_HEAD
 fi
 
+
 ###################################################################################################
 ### Installing nix if necessary and sourcing the nix environment
 ###################################################################################################
@@ -44,16 +45,20 @@ if [[ -z "${NIX_SOURCE_SCRIPT}" ]]; then
 fi
 source $NIX_SOURCE_SCRIPT
 
-# Install home-manager if necessary
+# Copy some configs over
+mkdir -p $HOME/.config/home-manager
+mkdir -p $HOME/.config/nix
+
+# Setup home-manager
 if ! command -v home-manager &> /dev/null; then
     nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
     nix-channel --update
+    # Remove existing configs before we run the install
+    rm -rf ${HOME}/.config/home-manager/home.nix ${HOME}/.config/nix/nix.conf
     nix-shell '<home-manager>' -A install
 fi
 
-# Install home-manager
-mkdir -p $HOME/.config/home-manager
-mkdir -p $HOME/.config/nix
+# Ensure the configs exist
 ln -sf ${DOTFILES_DIR}/modules/home.nix ${HOME}/.config/home-manager/home.nix
 ln -sf ${DOTFILES_DIR}/configs/nix.conf ${HOME}/.config/nix/nix.conf
 home-manager switch --impure --flake ${DOTFILES_DIR}#$(hostname -s)
