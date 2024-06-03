@@ -7,7 +7,7 @@ let
   # I use nixvim to manage my neovim configs within nix
   nixvim = import (builtins.fetchGit {
     url = "https://github.com/nix-community/nixvim";
-    ref = "514413f6316a9a37648ba87e7519b148d66bd042";
+    ref = "main";
   });
 
   inherit (lib) mkOption types;
