@@ -1,16 +1,20 @@
-{ config, pkgs, ... }:
+{ config
+, pkgs
+, lib
+, ... }:
 
 let
-  username = builtins.getEnv "USER";
-  homeDirectory = "/home/${username}";
-
+  isDarwin = pkgs.stdenvNoCC.hostPlatform.isDarwin;
+  #homeDirectory = if isDarwin then "/Users/${username}" else "/home/${username}";
+  username = "gizmo385";
+  homeDirectory = if isDarwin then "/Users/${username}" else "/home/${username}";
   # I use nixvim to manage my neovim configs within nix
   nixvim = import (builtins.fetchGit {
     url = "https://github.com/nix-community/nixvim";
     ref = "main";
   });
 
-  zsh = import ./nix/zsh.nix { inherit pkgs homeDirectory; };
+  zsh = import ./zsh.nix { inherit pkgs homeDirectory; };
 in
 {
 
@@ -25,7 +29,7 @@ in
 
     file = {
       scripts = {
-        source = ./scripts;
+        source = ../scripts;
         target = ".scripts";
         recursive = true;
       };
@@ -48,8 +52,8 @@ in
   programs = {
     home-manager.enable = true;
 
-    git = import ./nix/git.nix { inherit pkgs; };
-    nixvim = import ./nix/neovim;
+    git = import ./git.nix { inherit pkgs; };
+    nixvim = import ./neovim;
 
     # Tool for parsing JSON output
     jq.enable = true;
