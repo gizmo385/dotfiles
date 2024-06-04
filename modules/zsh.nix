@@ -74,7 +74,14 @@
         vim = "nvim";
       };
 
-      initExtra = (builtins.readFile ./zshrc);
+      initExtra = ''
+      . "$(fzf-share)/key-bindings.zsh"
+      . "$(fzf-share)/completion.zsh"
+
+      bindkey '^F' fzf-file-widget
+      bindkey '^R' fzf-history-widget
+      bindkey '^G' fzf-cd-widget
+      '';
     };
 
     # Enable some zsh integrations in other tools
