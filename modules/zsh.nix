@@ -74,19 +74,7 @@
         vim = "nvim";
       };
 
-      initExtra = ''
-      if [[ -f $HOME/.nix-profile/etc/profile.d/nix.sh ]]; then
-        . $HOME/.nix-profile/etc/profile.d/nix.sh
-      fi
-
-      if [[ -f $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh ]]; then
-        . $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
-      fi
-
-      bindkey '^F' fzf-file-widget
-      bindkey '^R' fzf-history-widget
-      bindkey '^G' fzf-cd-widget
-      '';
+      initExtra = (builtins.readFile ./zshrc);
     };
 
     # Enable some zsh integrations in other tools

@@ -18,8 +18,8 @@ in
   {
     imports = [
       nixvim.homeManagerModules.nixvim
-      ./zsh.nix
       ./git.nix
+      ./zsh.nix
     ];
 
     options.gizmo = {
@@ -78,5 +78,7 @@ in
         eza.enable = true; # Alternative to ls
         fzf.enable = true; # Fuzzy file finder
       };
+
+      news.display = "silent";
   };
 }
