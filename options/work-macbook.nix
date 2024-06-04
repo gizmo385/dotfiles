@@ -2,7 +2,7 @@
 
 {
   config.gizmo = {
-    username = "discord";
+    username = "chrischapline";
     work = true;
   };
 }

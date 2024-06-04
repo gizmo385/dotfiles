@@ -41,16 +41,28 @@
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-hostname'
     homeConfigurations = {
+      # Docker is the environment installed in the Dockerfile
       "docker" = defaultConfiguration;
+
+      # Remote development environments
       "gizmo-coder" = coderConfiguration;
       "gizmo2" = coderConfiguration;
 
+      # Work laptop
+      "M1M-CChapline" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+        extraSpecialArgs = {inherit inputs outputs;};
+        # > Our main home-manager configuration file <
+        modules = [./options/work-macbook.nix ./modules/home.nix];
+      };
+
+      # Personal macbook
       "gizmo-macbook" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
         extraSpecialArgs = {inherit inputs outputs;};
         # > Our main home-manager configuration file <
         modules = [./options/gizmo-macbook.nix ./modules/home.nix];
-    };
+      };
   };
 };
 }
