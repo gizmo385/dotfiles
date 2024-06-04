@@ -11,12 +11,13 @@
     ./plugins/paredit.nix
   ];
 
-  enable = true;
+  config = {
+    enable = true;
 
-  colorscheme = "everforest";
+    colorscheme = "everforest";
 
-  globals.mapleader = ",";
-  keymaps = [
+    globals.mapleader = ",";
+    keymaps = [
     # Use ; for starting commands
     { key = ";"; action = ":"; }
     # Use regex searches
@@ -67,7 +68,7 @@
 
     # Highlight search matches
     hlsearch = true;
-    
+
     # Jump to matching brackets
     showmatch = true;
 
@@ -147,4 +148,5 @@
     # File Explorer
     nvim-web-devicons
   ];
+};
 }
