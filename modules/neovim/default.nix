@@ -16,9 +16,7 @@
   config = {
     enable = true;
 
-    colorschemes = {
-      nightfox.enable = true;
-    };
+    colorscheme = "everforest";
 
     globals.mapleader = ",";
     keymaps = [
@@ -45,6 +43,37 @@
     { key = "<C-j>"; action = "<C-w>j"; mode = "n"; }
     { key = "<C-k>"; action = "<C-w>k"; mode = "n"; }
     { key = "<C-l>"; action = "<C-w>l"; mode = "n"; }
+  ];
+
+  plugins = {
+    nix.enable = true;
+    airline.enable = true;
+
+    cmp-buffer.enable = true;
+    cmp-path.enable = true;
+  };
+
+  extraPlugins = with pkgs.vimPlugins; [
+    # Tools for building other plugins
+    async-vim
+    everforest
+
+    # NERDcommenter -- Auto comment out lines
+    nerdcommenter
+
+    # Language syntax highlighting
+    vim-jsonnet
+    vim-javascript
+    vim-terraform
+
+    # Auto-complete
+    cmp-cmdline
+    nvim-cmp
+    nvim-snippy
+
+    # Icons for plugins
+    nvim-web-devicons
+    vim-devicons
   ];
 
   opts = {
@@ -100,38 +129,5 @@
     wildmenu = true;
     mouse = "a";
   };
-
-  # TODO: Extract these out into modules
-  plugins = {
-    nix.enable = true;
-    airline.enable = true;
-
-    cmp-buffer.enable = true;
-    cmp-path.enable = true;
-  };
-
-  extraPlugins = with pkgs.vimPlugins; [
-    # Tools for building other plugins
-    async-vim
-
-    # NERDcommenter -- Auto comment out lines
-    nerdcommenter
-
-    # Syntax highlighting
-    vim-devicons
-
-    # Language syntax highlighting
-    vim-jsonnet
-    vim-javascript
-    vim-terraform
-
-    # Auto-complete
-    cmp-cmdline
-    nvim-cmp
-    nvim-snippy
-
-    # File Explorer
-    nvim-web-devicons
-  ];
 };
 }
