@@ -10,7 +10,7 @@
         { 
             key = "<C-p>";
             action = ":Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>";
-            mode="n";
+            mode = "n";
             options.silent = true;
         }
         { 
