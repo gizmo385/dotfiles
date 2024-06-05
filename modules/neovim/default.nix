@@ -101,12 +101,9 @@
   plugins = {
     nix.enable = true;
     airline.enable = true;
-    #multicursors.enable = true;
 
     cmp-buffer.enable = true;
     cmp-path.enable = true;
-
-    rust-tools.enable = true;
   };
 
   extraPlugins = with pkgs.vimPlugins; [
@@ -114,28 +111,18 @@
     everforest
     async-vim
 
-    # rainbow parenthesis -- Coloring of nested parenthesis
-    rainbow_parentheses-vim
-
     # NERDcommenter -- Auto comment out lines
     nerdcommenter
-
-    # Clojure REPL and auto-execute
-    vim-fireplace
 
     # Syntax highlighting
     vim-devicons
 
     # Language syntax highlighting
-    vim-clojure-highlight
     vim-jsonnet
-    vim-clojure-static
     vim-javascript
     vim-terraform
 
     # Auto-complete
-    cmp-buffer
-    cmp-path
     cmp-cmdline
     nvim-cmp
     nvim-snippy

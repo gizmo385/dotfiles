@@ -12,10 +12,20 @@ in
     };
 
     config = mkIf clojure {
+      # TODO: Add autocmds for rainbow parenthesis
       home.packages = [ pkgs.leiningen ];
-      programs.nixvim.plugins = {
-        lsp.servers.clojure-lsp.enable = true;
-        treesitter.ensureInstalled = ["clojure"];
+      programs.nixvim = {
+        plugins = {
+          lsp.servers.clojure-lsp.enable = true;
+          treesitter.ensureInstalled = ["clojure"];
+        };
+
+        extraPlugins = with pkgs.vimPlugins; [
+          vim-clojure-highlight
+          vim-clojure-static
+          vim-fireplace
+          rainbow_parentheses-vim
+        ];
       };
     };
   }
