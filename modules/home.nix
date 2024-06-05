@@ -20,6 +20,7 @@ in
       nixvim.homeManagerModules.nixvim
       ./git.nix
       ./zsh.nix
+      ./languages
     ];
 
     options.gizmo = {
