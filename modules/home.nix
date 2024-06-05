@@ -20,21 +20,14 @@ in
       nixvim.homeManagerModules.nixvim
       ./git.nix
       ./zsh.nix
+      ./work.nix
       ./languages
     ];
 
-    options.gizmo = {
-      username = mkOption {
-        type = types.str;
-        default = "gizmo";
-        description = "The username for the system";
-      };
-
-      work = mkOption {
-        type = types.bool;
-        default = false;
-        description = "Whether or not this is a work system";
-      };
+    options.gizmo.username = mkOption {
+      type = types.str;
+      default = "gizmo";
+      description = "The username for the system";
     };
 
     config = {
@@ -55,8 +48,6 @@ in
         };
 
         packages = [
-          # Tool for managing k8s contexts and namespaces
-          pkgs.kubectx
           # Alternative to man pages that provides examples
           pkgs.tldr
           # Tool for parsing YAML output (jq but for YAML)
