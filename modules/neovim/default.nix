@@ -103,8 +103,6 @@
     airline.enable = true;
     #multicursors.enable = true;
 
-    treesitter.enable = true;
-
     cmp-buffer.enable = true;
     cmp-path.enable = true;
 
@@ -141,9 +139,6 @@
     cmp-cmdline
     nvim-cmp
     nvim-snippy
-
-    # Formatting
-    neoformat
 
     # File Explorer
     nvim-web-devicons
