@@ -16,7 +16,9 @@
   config = {
     enable = true;
 
-    colorscheme = "everforest";
+    colorschemes = {
+      nightfox.enable = true;
+    };
 
     globals.mapleader = ",";
     keymaps = [
@@ -110,7 +112,6 @@
 
   extraPlugins = with pkgs.vimPlugins; [
     # Tools for building other plugins
-    everforest
     async-vim
 
     # NERDcommenter -- Auto comment out lines
