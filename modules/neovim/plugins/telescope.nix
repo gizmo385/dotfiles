@@ -11,11 +11,13 @@
             key = "<C-p>";
             action = ":Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>";
             mode="n";
+            options.silent = true;
         }
         { 
             key = "<C-f>";
             action = ":Telescope live_grep<cr>";
             mode = "n"; 
+            options.silent = true;
         }
     ];
 
