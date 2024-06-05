@@ -3,12 +3,13 @@
 {
   imports = [
     # Customized plugins
+    ./plugins/alpha.nix
+    ./plugins/lsp.nix
     ./plugins/nvim-tree.nix
+    ./plugins/paredit.nix
     ./plugins/telescope.nix
     ./plugins/treesitter.nix
-    ./plugins/lsp.nix
     ./plugins/vimwiki.nix
-    ./plugins/paredit.nix
   ];
 
   config = {
