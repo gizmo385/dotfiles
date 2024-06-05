@@ -31,7 +31,8 @@ in
           # Enable some LSPs for I only care about at work
           plugins.lsp.servers = {
             terraformls.enable = true;
-            docker.enable = true;
+            dockerls.enable = true;
+            docker-compose-language-service.enable = true;
             elixirls.enable = true;
           };
 
