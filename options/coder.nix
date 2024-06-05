@@ -7,6 +7,7 @@
 
     languages = {
       clojure = false;
+      rust = true;
     };
   };
 }
