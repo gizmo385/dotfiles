@@ -27,6 +27,15 @@ in
           pkgs.docker-compose
         ];
 
+
+        # Disable oh-my-zsh git prompt statuses because they're slow on the monorepo
+        programs.git.extraConfig = {
+          oh-my-zsh = {
+            hide-status = 1;
+            hide-dirty = 1;
+          };
+        };
+
         programs.nixvim = {
           # Enable some LSPs for I only care about at work
           plugins.lsp.servers = {
