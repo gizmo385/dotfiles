@@ -4,6 +4,7 @@
   imports = [
     # Customized plugins
     ./plugins/alpha.nix
+    ./plugins/lazygit.nix
     ./plugins/lsp.nix
     ./plugins/nvim-tree.nix
     ./plugins/paredit.nix
