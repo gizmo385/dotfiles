@@ -48,6 +48,7 @@
   plugins = {
     nix.enable = true;
     airline.enable = true;
+    auto-session.enable = true;
 
     cmp-buffer.enable = true;
     cmp-path.enable = true;
