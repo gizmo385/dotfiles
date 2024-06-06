@@ -4,6 +4,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
 
     # Nixvim, used for building neovim
     nixvim = {
@@ -20,6 +21,7 @@
     self,
     nixpkgs,
     home-manager,
+    flake-utils,
     ...
   } @ inputs:
   let
@@ -27,14 +29,18 @@
     defaultConfiguration = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
       extraSpecialArgs = {inherit inputs outputs;};
-      # > Our main home-manager configuration file <
       modules = [./modules/home.nix];
+    };
+
+    macbookConfiguration = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+      extraSpecialArgs = {inherit inputs outputs;};
+      modules = [./options/gizmo-macbook.nix ./modules/home.nix];
     };
 
     coderConfiguration = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
       extraSpecialArgs = {inherit inputs outputs;};
-      # > Our main home-manager configuration file <
       modules = [./options/coder.nix ./modules/home.nix];
     };
   in {
@@ -48,6 +54,9 @@
       "gizmo-coder" = coderConfiguration;
       "gizmo2" = coderConfiguration;
 
+      # Personal macbook
+      "gizmo-macbook" = macbookConfiguration;
+
       # Work laptop
       "M1M-CChapline" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
@@ -55,14 +64,18 @@
         # > Our main home-manager configuration file <
         modules = [./options/work-macbook.nix ./modules/home.nix];
       };
-
-      # Personal macbook
-      "gizmo-macbook" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-        extraSpecialArgs = {inherit inputs outputs;};
-        # > Our main home-manager configuration file <
-        modules = [./options/gizmo-macbook.nix ./modules/home.nix];
+    };
+  } // flake-utils.lib.eachDefaultSystem (system:
+  let
+    pkgs = import nixpkgs { inherit system; };
+  in
+  {
+    devShells = {
+      default = pkgs.mkShell {
+        packages = [
+          home-manager.packages.${system}.default
+        ];
       };
     };
-  };
+  });
 }
