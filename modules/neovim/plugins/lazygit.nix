@@ -7,7 +7,7 @@
       mode = "n";
     }
     {
-      key = "^g";
+      key = "<C-g>";
       action = ":LazyGit<CR>";
       mode = "n";
     }
