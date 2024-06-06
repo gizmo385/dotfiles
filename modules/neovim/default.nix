@@ -11,6 +11,7 @@
     ./plugins/telescope.nix
     ./plugins/treesitter.nix
     ./plugins/vimwiki.nix
+    ./plugins/autocomplete.nix
   ];
 
   config = {
@@ -49,9 +50,6 @@
     nix.enable = true;
     airline.enable = true;
     auto-session.enable = true;
-
-    cmp-buffer.enable = true;
-    cmp-path.enable = true;
   };
 
   extraPlugins = with pkgs.vimPlugins; [
@@ -66,11 +64,6 @@
     vim-jsonnet
     vim-javascript
     vim-terraform
-
-    # Auto-complete
-    cmp-cmdline
-    nvim-cmp
-    nvim-snippy
 
     # Icons for plugins
     nvim-web-devicons
