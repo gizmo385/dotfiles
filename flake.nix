@@ -63,6 +63,6 @@
         # > Our main home-manager configuration file <
         modules = [./options/gizmo-macbook.nix ./modules/home.nix];
       };
+    };
   };
-};
 }
