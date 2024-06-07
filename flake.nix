@@ -22,6 +22,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixvim,
     home-manager,
     flake-utils,
     ...
@@ -70,13 +71,24 @@
   } // flake-utils.lib.eachDefaultSystem (system:
   let
     pkgs = import nixpkgs { inherit system; };
+    # This is, admittedly pretty gross. The current way that I'm configuring nixvim for home-manager
+    # means that the dev shell definition gets mad because we have the config.enable option. I
+    # haven't found a clean way to hook this up without conditionally removing the config.enable
+    # option in the nixvim module :(
+    nixvimConfig = import ./modules/neovim { inherit pkgs; };
+    nixvimConfig' = nixvimConfig // {
+      config = (builtins.removeAttrs nixvimConfig.config ["enable"]);
+    };
+    nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule {
+      module = nixvimConfig';
+    };
   in
   {
     devShells = {
-      default = pkgs.mkShell {
-        packages = [
-          home-manager.packages.${system}.default
-        ];
+      neovim = pkgs.mkShell {
+        buildInputs = [ nvim ];
+        packages = [ home-manager.packages.${system}.default ];
+        shellHook = "nvim";
       };
     };
   });
