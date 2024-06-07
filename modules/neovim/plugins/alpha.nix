@@ -123,11 +123,11 @@ in
                   type = "text";
                   val = "Commands";
                 }
-              (mkButton "e" ":ene<CR>" "  > New file")
-              (mkButton "f" "<CMD>lua require('telescope.builtin').find_files()<CR>" "  > Find File")
-              (mkButton "/" "<CMD>lua require('telescope.builtin').live_grep()<CR>" "  > Search")
-              (mkButton "r" "<CMD>lua require('telescope.builtin').oldfiles()<CR>" "  > Recent")
-              (mkButton "q" ":qa<CR>" "  > Quit")
+              (mkButton "e" ":ene<CR>" " > New file")
+              (mkButton "f" "<CMD>lua require('telescope.builtin').find_files()<CR>" " > Find File")
+              (mkButton "/" "<CMD>lua require('telescope.builtin').live_grep()<CR>" " > Search")
+              (mkButton "r" "<CMD>lua require('telescope.builtin').oldfiles()<CR>" " > Recent")
+              (mkButton "q" ":qa<CR>" " > Quit")
             ];
           }
           {
