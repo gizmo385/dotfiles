@@ -1,19 +1,7 @@
 { pkgs, ... }:
 
 {
-  imports = [
-    # Customized plugins
-    ./plugins/alpha.nix
-    ./plugins/lazygit.nix
-    ./plugins/lsp.nix
-    ./plugins/nvim-tree.nix
-    ./plugins/paredit.nix
-    ./plugins/telescope.nix
-    ./plugins/treesitter.nix
-    ./plugins/vimwiki.nix
-    ./plugins/autocomplete.nix
-  ];
-
+  imports = [./plugins];
   config = {
     enable = true;
 
