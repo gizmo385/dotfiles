@@ -1,7 +1,14 @@
 Gizmo's Dotfiles
 =======
 
-All of my configurations for vim/nix/bash/zsh/fish/etc.
+Configurations for my local and remote development environments.
+
+**Neovim:**
+![screenshot of my neovim startup](./assets/neovim.png)
+![editing screenshot](./assets/neovim-editing.png)
+
+**Terminal**
+![screenshot of my terminal](./assets/terminal.png)
 
 # Try them out!
 
@@ -34,11 +41,14 @@ To fully install the dotfiles in your local environment:
 
 1. Clone the git repo
 2. Run `./install.sh`
-3. Source whichever shell RC file matches your shell (`bash`, `zsh`, or `fish`) or restart your shell.
+3. Open a new terminal
 
-Once the install has been completed, you can interact with the dotfile installation via the `dfs`
-CLI tool that is added to the path. Any required Vim plugins will install on first launch.
+The flake this uses to install configurations will select a config based on your hostname. If you don't have a hostname that is specified in `flake.nix`, then you''ll need to separately run:
+
+```
+home-manager switch --impure --flake .#default
+```
 
 # Updating Installed Packages
 
-I primarily use [nix](https://github.com/NixOS/nix) to manage my system dependencies. The list of packages installed system-wide via `nix-env` is found in [`packages.nix`](https://github.com/gizmo385/dotfiles/blob/main/configs/nix/packages.nix).
+I use Nix (via [home-manager](https://github.com/nix-community/home-manager) and [nixvim](https://github.com/nix-community/nixvim) to manage **all** of my configs. Browse through the nix files to 
