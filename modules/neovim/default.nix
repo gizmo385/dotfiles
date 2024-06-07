@@ -37,7 +37,6 @@
   plugins = {
     nix.enable = true;
     airline.enable = true;
-    auto-session.enable = true;
   };
 
   extraPlugins = with pkgs.vimPlugins; [
