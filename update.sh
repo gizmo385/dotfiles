@@ -10,4 +10,5 @@ if [ ! -d "$DOTFILES_GIT_DIR" ]; then
 fi
 
 # Update nix packages
+nix upgrade-nix
 home-manager switch --impure --flake "${DOTFILES_DIR}#$(hostname -s)"
