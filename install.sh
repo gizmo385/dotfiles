@@ -61,5 +61,4 @@ fi
 # Ensure the configs exist
 ln -sf "${DOTFILES_DIR}/modules/home.nix" "${HOME}/.config/home-manager/home.nix"
 ln -sf "${DOTFILES_DIR}/configs/nix.conf" "${HOME}/.config/nix/nix.conf"
-nix upgrade-nix
 home-manager switch --impure --flake "${DOTFILES_DIR}#$(hostname -s)"
