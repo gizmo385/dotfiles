@@ -12,16 +12,26 @@ in
     };
 
     config = mkIf python {
-      programs.nixvim.plugins = {
-        treesitter.ensureInstalled = ["python"];
-        lsp.servers = {
-          ruff-lsp.enable = true;
-          pylsp = {
-            enable = true;
-            settings.plugins = {
-              ruff = {
-                enabled = true;
-                lineLength = 120;
+      programs.nixvim = {
+        autoCmd = [
+          {
+            event = ["BufEnter"];
+            pattern = [ "*.py" ];
+            command = ":setlocal textwidth=120";
+          }
+        ];
+
+        plugins = {
+          treesitter.ensureInstalled = ["python"];
+          lsp.servers = {
+            ruff-lsp.enable = true;
+            pylsp = {
+              enable = true;
+              settings.plugins = {
+                ruff = {
+                  enabled = true;
+                  lineLength = 120;
+                };
               };
             };
           };
