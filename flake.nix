@@ -52,7 +52,7 @@
 
       # Remote development environments
       "gizmo-coder" = coderConfiguration;
-      "gizmo2" = coderConfiguration;
+      "gizmo" = coderConfiguration;
 
       # Personal macbook
       "gizmo-macbook" = macbookConfiguration;
