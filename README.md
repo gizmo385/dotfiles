@@ -51,4 +51,4 @@ home-manager switch --impure --flake .#default
 
 # Updating Installed Packages
 
-I use Nix (via [home-manager]() and [nixvim]() to manage **all** of my configs. Browse through the nix files to 
+I use Nix (via [home-manager](https://github.com/nix-community/home-manager) and [nixvim](https://github.com/nix-community/nixvim) to manage **all** of my configs. Browse through the nix files to 
