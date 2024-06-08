@@ -1,4 +1,5 @@
-{ config
+{ inputs
+, config
 , pkgs
 , lib
 , ... }:
@@ -19,9 +20,10 @@ in
     imports = [
       nixvim.homeManagerModules.nixvim
       ./git.nix
-      ./zsh.nix
-      ./work.nix
+      ./graphical.nix
       ./languages
+      ./work.nix
+      ./zsh.nix
     ];
 
     options.gizmo.username = mkOption {
@@ -40,6 +42,13 @@ in
             source = ../scripts;
             target = ".scripts";
             recursive = true;
+          };
+
+          rgignore = {
+            target = ".rgignore"; 
+            text =  ''
+            .git
+            '';
           };
         };
 

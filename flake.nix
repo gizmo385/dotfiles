@@ -53,6 +53,13 @@
       # Docker is the environment installed in the Dockerfile
       "docker" = defaultConfiguration;
 
+      # Linux desktop
+      "gizmonix" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [./options/gizmonix.nix ./modules/home.nix];
+      };
+
       # Remote development environments
       "gizmo-coder" = coderConfiguration;
       "gizmo" = coderConfiguration;
