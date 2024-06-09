@@ -1,5 +1,4 @@
-{ inputs
-, pkgs
+{ pkgs
 , config
 , lib
 , ... }:
@@ -17,9 +16,6 @@ in
 
   config = mkIf graphical {
     nixpkgs = {
-      # This overlay allows us to wrap some packages in NixGL to fix OpenGL
-      overlays = [ inputs.nixgl.overlays.default ];
-
       # This allows us to specify certain unfree programs that we want to be able to install. The
       # nividia inclusion here is required by NixGL for nividia drivers
       config.allowUnfreePredicate = pkg:
@@ -84,6 +80,7 @@ in
         # Add the nix to our XDG_DATA_DIRS, which allows application search for find them
         XDG_DATA_DIRS = "$HOME/.nix-profile/bin:$HOME/.nix-profile/share:$XDG_DATA_DIRS";
       };
+
       packages = with pkgs; [
         # Can't do without music
         spotify
