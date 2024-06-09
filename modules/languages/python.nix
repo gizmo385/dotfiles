@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ pkgs, lib, config, ... }:
 
 let
   inherit (lib) mkIf mkOption types;
@@ -12,6 +12,7 @@ in
     };
 
     config = mkIf python {
+      home.packages = [ pkgs.uv ];
       programs.nixvim = {
         autoCmd = [
           {
