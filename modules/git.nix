@@ -29,6 +29,7 @@
         pull.rebase = false;
         rerere.enabled = true;
         commit.verbose = true;
+        init.defaultBranch = "main";
       };
   };
 }
