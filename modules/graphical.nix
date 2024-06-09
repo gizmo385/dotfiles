@@ -6,6 +6,8 @@
 let
   inherit (lib) mkIf mkOption types;
   inherit (config.gizmo) graphical;
+
+  i3Mod = "Mod4";
 in
 {
   options.gizmo.graphical = mkOption {
@@ -24,52 +26,114 @@ in
         "spotify"
       ];
     };
+
     programs = {
+      zsh.profileExtra = ''
+      startx
+      '';
+
       # A better terminal emulator
       terminator = {
         enable = true;
         config.profiles.default = {
             background_color = "#282828";
-            font = "FiraCode Nerd Font Mono 10";
+            font = "FiraCode Nerd Font Mono 12";
             foreground_color = "#ebdbb2";
             show_titlebar = false;
             use_system_font = false;
           };
       };
-      i3status.enable = true;
+      
+      # A status bar for i3
+      i3status-rust = {
+        enable = true;
+        bars.default = {
+          icons = "awesome6";
+          theme = "gruvbox-dark";
+          blocks = [
+            {
+              block = "time";
+              interval = 5;
+              format = " $timestamp.datetime(f:'%a %d/%m %R') ";
+            }
+            {
+              block = "sound";
+            }
+            {
+              block = "memory";
+              format = " $icon $mem_total_used_percents.eng(w:2) ";
+              format_alt = " $icon_swap $swap_used_percents.eng(w:2) ";
+            }
+            {
+              block = "cpu";
+              interval = 1;
+              info_cpu = 20;
+              warning_cpu = 50;
+              critical_cpu = 90;
+            }
+            {
+              block = "load";
+              interval = 1;
+              format = "{1m}";
+            }
+          ];
+        };
+      };
     };
 
     xsession = {
       enable = true;
-      windowManager.i3 = {
-        enable = true;
-        config.terminal = "terminator";
-        extraConfig = ''
-        # class                 border  bground text    indicator child_border
-        client.focused          #4C7899 #285577 #FFFFFF #2E9EF4   #285577
-        client.focused_inactive #333333 #5F676A #FFFFFF #484E50   #5F676A
-        client.unfocused        #333333 #222222 #888888 #292D2E   #222222
-        client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
-        client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+      windowManager = {
+        command = "${pkgs.i3}/bin/i3";
+        i3 = {
+          enable = true;
+          config = {
+            terminal = pkgs.terminator;
+            fonts = {
+              names = ["FiraCode Nerd Font Mono"];
+              size = 10.0;
+              style = "Regular";
+            };
+            keybindings = {
+              # Switcher
+              "${i3Mod}+p" = "exec ${pkgs.dmenu}/bin/dmenu_run";
 
-        client.background       #FFFFFF
+              # Managing i3
+              "${i3Mod}+Shift+r" = "reload";
+              "${i3Mod}+Shift+x" = "restart";
 
-        bar {
-          colors {
-            background #000000
-            statusline #FFFFFF
-            separator  #666666
+              # Focus
+              "${i3Mod}+h" = "focus left";
+              "${i3Mod}+j" = "focus down";
+              "${i3Mod}+k" = "focus up";
+              "${i3Mod}+l" = "focus right";
 
-            focused_workspace  #4C7899 #285577 #FFFFFF
-            active_workspace   #333333 #222222 #FFFFFF
-            inactive_workspace #333333 #222222 #888888
-            urgent_workspace   #2F343A #900000 #FFFFFF
-            binding_mode       #2F343A #900000 #FFFFFF
-          }
-        }
+              # Move
+              "${i3Mod}+Shift+h" = "move left";
+              "${i3Mod}+Shift+j" = "move down";
+              "${i3Mod}+Shift+k" = "move up";
+              "${i3Mod}+Shift+l" = "move right";
 
-        bindsym $mod+d exec "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '#005577' -sf '#EEEEEE' -fn 'monospace-10' -p 'dmenu prompt &gt;'"
-        '';
+              # Resize windows
+              "${i3Mod}+Ctrl+h" = "resize shrink width 10px or 10 ppt";
+              "${i3Mod}+Ctrl+j" = "resize grow height 10px or 10 ppt";
+              "${i3Mod}+Ctrl+k" = "resize shrink height 10px or 10 ppt";
+              "${i3Mod}+Ctrl+l" = "resize grow width 10px or 10 ppt";
+            };
+
+            bars = [
+              {
+                position = "bottom";
+                fonts = {
+                  names = ["FiraCode Nerd Font Mono"];
+                  size = 12.0;
+                  style = "Regular";
+                };
+                statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs config-default.toml";
+              }
+            ];
+          };
+        };
       };
     };
 
@@ -79,14 +143,17 @@ in
       sessionVariables = {
         # Add the nix to our XDG_DATA_DIRS, which allows application search for find them
         XDG_DATA_DIRS = "$HOME/.nix-profile/bin:$HOME/.nix-profile/share:$XDG_DATA_DIRS";
+        NO_AT_BRIDGE = 1;
       };
 
       packages = with pkgs; [
-        # Can't do without music
-        spotify
         # Fonts with better code support
         fira-code
         fira-code-nerdfont
+
+        # i3 Window Manager stuff
+        i3lock
+        dmenu
       ];
     };
   };
