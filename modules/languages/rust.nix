@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ pkgs, lib, config, ... }:
 
 let
   inherit (lib) mkIf mkOption types;
@@ -12,19 +12,24 @@ in
     };
 
     config = mkIf rust {
-      programs.nixvim.plugins = {
-        rust-tools.enable = true;
-        treesitter.ensureInstalled = ["rust"];
-        lsp.servers = {
-          rust-analyzer = {
-            enable = true;
-            installCargo = false;
-            installRustc = false;
-            settings = {
-              cargo.features = "all";
-              check = {
-                command = "clippy";
-                features = "all";
+      # Install cargo
+      home.packages = with pkgs; [ cargo ];
+      # Setup nix tooling for rust
+      programs = {
+        nixvim.plugins = {
+          rust-tools.enable = true;
+          treesitter.ensureInstalled = ["rust"];
+          lsp.servers = {
+            rust-analyzer = {
+              enable = true;
+              installCargo = false;
+              installRustc = false;
+              settings = {
+                cargo.features = "all";
+                check = {
+                  command = "clippy";
+                  features = "all";
+                };
               };
             };
           };
