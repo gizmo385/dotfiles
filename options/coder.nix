@@ -8,6 +8,7 @@
     languages = {
       clojure = false;
       rust = true;
+      python.interpreter = false;
     };
   };
 }
