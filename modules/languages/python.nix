@@ -12,7 +12,7 @@ in
     };
 
     config = mkIf python {
-      home.packages = [ pkgs.uv ];
+      home.packages = [ pkgs.uv pkgs.python3 ];
       programs.nixvim = {
         autoCmd = [
           {
