@@ -47,6 +47,7 @@ in
                 ruff = {
                   enabled = true;
                   lineLength = 120;
+                  format = ["I"];
                 };
               };
             };
