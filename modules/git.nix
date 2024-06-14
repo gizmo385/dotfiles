@@ -1,7 +1,8 @@
 { pkgs, ... }:
 {
-  home.packages = [ pkgs.gh ];
-  programs.git = {
+  home.packages = [ pkgs.gh pkgs.lazygit ];
+  programs = {
+    git = {
       enable = true;
       userName = "gizmo385";
       userEmail = "gizmo385@users.noreply.github.com";
@@ -31,5 +32,9 @@
         commit.verbose = true;
         init.defaultBranch = "main";
       };
+    };
+    zsh.shellAliases = {
+      lg = "lazygit";
+    };
   };
 }
