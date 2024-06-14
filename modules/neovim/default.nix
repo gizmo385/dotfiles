@@ -5,7 +5,7 @@
   config = {
     enable = true;
 
-    colorscheme = "everforest";
+    colorschemes.ayu.enable = true;
 
     globals.mapleader = ",";
     keymaps = [
@@ -42,7 +42,6 @@
   extraPlugins = with pkgs.vimPlugins; [
     # Tools for building other plugins
     async-vim
-    everforest
 
     # NERDcommenter -- Auto comment out lines
     nerdcommenter
