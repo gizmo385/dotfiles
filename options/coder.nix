@@ -7,7 +7,7 @@
 
     languages = {
       clojure = false;
-      rust = true;
+      rust = false;
       python.interpreter = false;
     };
   };
