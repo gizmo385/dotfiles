@@ -64,6 +64,11 @@ in
               action = ":CodeownersGotoTeamHelpChannel<CR>";
               mode = "n";
             }
+            {
+              key = "<leader>C";
+              action = ":FloatermNew clyde tui<CR>";
+              mode = "n";
+            }
           ];
         };
       };
