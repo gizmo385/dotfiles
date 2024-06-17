@@ -1,5 +1,33 @@
+{ lib, config, ... }:
 
 let
+  inherit (lib) mkOption types;
+  inherit (config.gizmo.neovim.alpha) useNerdfontTileset;
+  normalTileset = {
+    openWiki =  "";
+    openDiary = "";
+    newDiaryEntry = "✎";
+    searchWiki = "";
+    newFile = "";
+    findFile = "";
+    search = "";
+    recentFiles = "";
+    quit = "";
+  };
+  nerdfontTileset = {
+    openWiki =  "󱉟 ";
+    openDiary = "󰂺 ";
+    newDiaryEntry = "✎";
+    searchWiki = "󰺄 ";
+    newFile = " ";
+    findFile = "󰩉 ";
+    search = " ";
+    recentFiles = "";
+    quit = "󰈆 ";
+  };
+
+  tileset = if useNerdfontTileset then nerdfontTileset else normalTileset;
+
   mkButton = shortcut: cmd: val: {
     type = "button";
     inherit val;
@@ -20,6 +48,11 @@ let
   };
 in
   {
+    options.gizmo.neovim.alpha.useNerdfontTileset = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Use the nerdfont-specific tileset for alpha icons";
+    };
     config = {
       keymaps = [
         {
@@ -102,10 +135,10 @@ in
                   type = "text";
                   val = "Wiki";
                 }
-                (mkButton "w" ":VimwikiIndex<CR>" "󱉟 > Open Wiki")
-                (mkButton "d" ":VimwikiDiaryIndex<cr>:VimwikiDiaryGenerateLinks<cr>" "󰂺 > Open Diary")
-                (mkButton "n" ":VimwikiMakeDiaryNote<cr>" "✎ > New Diary Entry")
-                (mkButton "s" "<CMD>lua require('telescope').extensions.vimwiki.live_grep()<cr>" "󰺄 > Search Wiki")
+                (mkButton "w" ":VimwikiIndex<CR>" "${tileset.openWiki} > Open Wiki")
+                (mkButton "d" ":VimwikiDiaryIndex<cr>:VimwikiDiaryGenerateLinks<cr>" "${tileset.openDiary} > Open Diary")
+                (mkButton "n" ":VimwikiMakeDiaryNote<cr>" "${tileset.newDiaryEntry} > New Diary Entry")
+                (mkButton "s" "<CMD>lua require('telescope').extensions.vimwiki.live_grep()<cr>" "${tileset.searchWiki} > Search Wiki")
               ];
             }
             {
@@ -123,11 +156,11 @@ in
                   type = "text";
                   val = "Commands";
                 }
-              (mkButton "e" ":ene<CR>" " > New file")
-              (mkButton "f" "<CMD>lua require('telescope.builtin').find_files()<CR>" "󰩉 > Find File")
-              (mkButton "/" "<CMD>lua require('telescope.builtin').live_grep()<CR>" " > Search")
-              (mkButton "r" "<CMD>lua require('telescope.builtin').oldfiles({only_cwd=true})<CR>" " > Recent")
-              (mkButton "q" ":qa<CR>" "󰈆 > Quit")
+              (mkButton "e" ":ene<CR>" "${tileset.newFile} > New file")
+              (mkButton "f" "<CMD>lua require('telescope.builtin').find_files()<CR>" "${tileset.findFile} > Find File")
+              (mkButton "/" "<CMD>lua require('telescope.builtin').live_grep()<CR>" "${tileset.search} > Search")
+              (mkButton "r" "<CMD>lua require('telescope.builtin').oldfiles()<CR>" "${tileset.recentFiles} > Recent")
+              (mkButton "q" ":qa<CR>" "${tileset.quit} > Quit")
             ];
           }
           {
