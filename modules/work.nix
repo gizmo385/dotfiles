@@ -66,7 +66,7 @@ in
             }
             {
               key = "<leader>C";
-              action = ":FloatermNew clyde tui<CR>";
+              action = ":FloatermNew --width=0.8 --height=0.9 clyde tui<CR>";
               mode = "n";
             }
           ];
