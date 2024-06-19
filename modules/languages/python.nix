@@ -41,6 +41,7 @@ in
           treesitter.ensureInstalled = ["python"];
           lsp.servers = {
             ruff-lsp.enable = true;
+            pyright.enable = true;
             pylsp = {
               enable = true;
               settings.plugins = {
