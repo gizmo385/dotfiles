@@ -17,6 +17,23 @@ in
         default = true;
         description = "Install the Python interpreter (some machines have this preinstalled)";
       };
+      linters = {
+        ruff = mkOption {
+          type = types.bool;
+          default = true;
+          description = "Enable ruff LSP";
+        };
+        pylsp = mkOption {
+          type = types.bool;
+          default = true;
+          description = "Enable pylsp LSP";
+        };
+        pyright = mkOption {
+          type = types.bool;
+          default = true;
+          description = "Enable pyright LSP";
+        };
+    };
     };
 
     config =  {
@@ -40,13 +57,13 @@ in
         plugins = {
           treesitter.ensureInstalled = ["python"];
           lsp.servers = {
-            ruff-lsp.enable = true;
-            pyright.enable = true;
+            ruff-lsp.enable = python.linters.ruff;
+            pyright.enable = python.linters.pyright;
             pylsp = {
-              enable = true;
+              enable = python.linters.pylsp;
               settings.plugins = {
                 ruff = {
-                  enabled = true;
+                  enabled = python.linters.ruff;
                   lineLength = 120;
                   format = ["I"];
                 };
