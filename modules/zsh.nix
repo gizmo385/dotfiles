@@ -25,7 +25,7 @@
       ];
 
       sessionVariables = {
-        PATH = "$PATH:$HOME/.scripts";
+        PATH = "$PATH:$HOME/.scripts:$HOME/.nix-profile/bin";
       };
 
       shellAliases = {
