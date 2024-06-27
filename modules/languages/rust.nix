@@ -13,24 +13,30 @@ in
 
     config = mkIf rust {
       # Install cargo
-      home.packages = with pkgs; [ cargo ];
+      home = {
+        packages = with pkgs; [ cargo ra-multiplex ];
+        file = {
+          ra-multiplex-config = {
+            target = ".config/ra-multiplex/config.toml";
+            text = "instance_timeout = false";
+          };
+        };
+      };
       # Setup nix tooling for rust
       programs = {
         nixvim.plugins = {
-          rust-tools.enable = true;
-          treesitter.ensureInstalled = ["rust"];
           lsp.servers = {
             rust-analyzer = {
               enable = true;
-              installCargo = false;
+              cmd = ["ra-multiplex.sh"];
               installRustc = false;
-              settings = {
-                cargo.features = "all";
-                check = {
-                  command = "clippy";
-                  features = "all";
-                };
-              };
+              installCargo = false;
+              onAttach.function = ''
+                vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+                if vim.g.lsp_on_attach ~= nil then
+                  vim.g.lsp_on_attach(client, bufnr)
+                end
+              '';
             };
           };
         };

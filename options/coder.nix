@@ -7,7 +7,7 @@
 
     languages = {
       clojure = false;
-      rust = false;
+      rust = true;
       python.interpreter = false;
 
       # This doesn't properly resolve types in the monorepo, drop it for now
