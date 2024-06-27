@@ -19,6 +19,7 @@ in
     imports = [
       nixvim.homeManagerModules.nixvim
       ./git.nix
+      ./fonts.nix
       ./graphical.nix
       ./languages
       ./work.nix

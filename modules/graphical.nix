@@ -147,11 +147,7 @@ in
       };
 
       packages = with pkgs; [
-        # Fonts with better code support
-        fira-code
-        fira-code-nerdfont
-
-        # i3 Window Manager stuff
+        # Window management settings
         i3lock
         dmenu
       ];
