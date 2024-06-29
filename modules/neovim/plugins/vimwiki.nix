@@ -39,7 +39,7 @@ in
   autoCmd = [
     {
       event = ["BufNewFile"];
-      pattern = [ "*/diary/*.wiki" "*/vimwiki/*.wiki" ];
+      pattern = [ "*/diary/*.wiki" ];
       command = ":0r !$HOME/.scripts/new_diary_entry.py '%'";
     }
     {
