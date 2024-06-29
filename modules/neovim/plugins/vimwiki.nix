@@ -39,17 +39,17 @@ in
   autoCmd = [
     {
       event = ["BufNewFile"];
-      pattern = [ "*/diary/*.wiki" ];
+      pattern = [ "*/diary/*.wiki" "*/vimwiki/*.wiki" ];
       command = ":0r !$HOME/.scripts/new_diary_entry.py '%'";
     }
     {
       event = ["BufEnter"];
-      pattern = [ "*/diary/*.wiki" ];
+      pattern = [ "*/diary/*.wiki" "*/vimwiki/*.wiki" ];
       command = "noremap <buffer> <C-p> <cmd>lua require('telescope').extensions.vimwiki.vimwiki()<cr>";
     }
     {
       event = ["BufEnter"];
-      pattern = [ "*/diary/*.wiki" ];
+      pattern = [ "*/diary/*.wiki" "*/vimwiki/*.wiki" ];
       command = "noremap <buffer> <C-f> <cmd>lua require('telescope').extensions.vimwiki.live_grep()<cr>";
     }
   ];
