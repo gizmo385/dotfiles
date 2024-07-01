@@ -38,6 +38,7 @@ RUN ln -sf /home/gizmo/workspaces/dotfiles/configs/nix.conf $HOME/.config/nix/ni
 # Install the flake
 RUN . $HOME/.nix-profile/etc/profile.d/nix.sh && home-manager switch --impure --flake .#docker
 
-# Swap back to the home directory and setup the entrypoint command
+# Swap back to the home directory, swap the default shell, and setup the entrypoint command
 WORKDIR /home/gizmo
+RUN sudo chsh -s "/home/gizmo/.nix-profile/bin/zsh"
 CMD ["/home/gizmo/.nix-profile/bin/zsh"]
