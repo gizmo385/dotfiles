@@ -2,8 +2,8 @@ FROM ubuntu:24.04
 
 # Install some base system dependencies
 RUN apt-get update && \
-    apt-get install curl git python3 xz-utils sudo --yes && \
-    rm -rf /var/lib/apt/lists/*
+	apt-get install curl git python3 xz-utils sudo --yes && \
+	rm -rf /var/lib/apt/lists/*
 
 # Create the gizmo user
 RUN useradd -ms /bin/bash gizmo
