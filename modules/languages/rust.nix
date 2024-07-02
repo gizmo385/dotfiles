@@ -1,20 +1,32 @@
 { pkgs, lib, config, ... }:
 
 let
-  inherit (lib) mkIf mkOption types;
+  inherit (lib) mkOption types;
+  inherit (lib.lists) optionals;
   inherit (config.gizmo.languages) rust;
 in
   {
-    options.gizmo.languages.rust = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Enable rust language tooling and plugins";
+    options.gizmo.languages.rust = {
+      toolchain = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Enable the cargo build tool for Rust";
+      };
+      lsp = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Enable the rust LSP tooling (like ra-multiplexer)";
+      };
     };
 
-    config = mkIf rust {
-      # Install cargo
+    config = {
       home = {
-        packages = with pkgs; [ cargo ra-multiplex ];
+        packages = builtins.concatLists [
+          # Install the cargo toolchain
+          (optionals rust.toolchain [pkgs.cargo])
+          # Install ra-multiplex, used for the LSP setup
+          (optionals rust.toolchain [pkgs.ra-multiplex])
+        ];
         file = {
           ra-multiplex-config = {
             target = ".config/ra-multiplex/config.toml";
@@ -27,7 +39,7 @@ in
         nixvim.plugins = {
           lsp.servers = {
             rust-analyzer = {
-              enable = true;
+              enable = rust.lsp;
               cmd = ["ra-multiplex.sh"];
               installRustc = false;
               installCargo = false;

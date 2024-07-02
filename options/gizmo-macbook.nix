@@ -3,6 +3,9 @@
 {
   config.gizmo = {
     username = "gizmo385";
-    languages.rust = true;
+    languages.rust = {
+      cargo = true;  
+      lsp = true;  
+    };
   };
 }
