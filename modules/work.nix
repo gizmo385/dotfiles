@@ -21,11 +21,17 @@ in
     };
 
     config = mkIf work {
-      home.packages = [
+      home = {
+        packages = [
           # Tool for managing k8s contexts and namespaces
           pkgs.kubectx
           pkgs.docker-compose
         ];
+        sessionVariables = {
+          # Used by Clyde to install the updated nix version
+          USE_NEW_NIX = "1";
+        };
+      };
 
 
         # Disable oh-my-zsh git prompt statuses because they're slow on the monorepo
