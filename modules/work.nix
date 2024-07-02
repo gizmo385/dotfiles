@@ -45,7 +45,7 @@ in
         programs.nixvim = {
           # Enable some LSPs for I only care about at work
           plugins.lsp.servers = {
-            #bashls.enable = true;
+            bashls.enable = true;
             terraformls.enable = true;
             dockerls.enable = true;
             docker-compose-language-service.enable = true;
