@@ -4,7 +4,7 @@
   config.gizmo = {
     username = "gizmo385";
     languages.rust = {
-      cargo = true;  
+      toolchain = true;  
       lsp = true;  
     };
   };

@@ -6,7 +6,7 @@
     graphical = true;
 
     languages.rust = {
-      cargo = true;  
+      toolchain = true;  
       lsp = true;  
     };
     neovim.alpha.useNerdfontTileset = true;
