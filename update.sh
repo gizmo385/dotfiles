@@ -9,5 +9,4 @@ if [ ! -d "$DOTFILES_GIT_DIR" ]; then
     exit 1
 fi
 
-# Update nix packages
-home-manager switch --impure --flake "${DOTFILES_DIR}#$(hostname -s)"
+nix develop .#setupDotfiles

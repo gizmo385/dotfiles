@@ -43,22 +43,13 @@ if [[ -z "${NIX_SOURCE_SCRIPT}" ]]; then
     curl -L https://nixos.org/nix/install | sh
     find_nix_install
 fi
-source "$NIX_SOURCE_SCRIPT"
 
 # Copy some configs over
 mkdir -p "$HOME/.config/home-manager"
 mkdir -p "$HOME/.config/nix"
 
-# Setup home-manager
-if ! command -v home-manager &> /dev/null; then
-    nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-    nix-channel --update
-    # Remove existing configs before we run the install
-    rm -rf "${HOME}/.config/home-manager/home.nix" "${HOME}/.config/nix/nix.conf"
-    nix-shell '<home-manager>' -A install
-fi
-
 # Ensure the configs exist
 ln -sf "${DOTFILES_DIR}/modules/home.nix" "${HOME}/.config/home-manager/home.nix"
 ln -sf "${DOTFILES_DIR}/configs/nix.conf" "${HOME}/.config/nix/nix.conf"
-home-manager switch --impure --flake "${DOTFILES_DIR}#$(hostname -s)"
+
+nix develop .#setupDotfiles
