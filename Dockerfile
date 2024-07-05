@@ -6,7 +6,7 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/*
 
 # Create the gizmo user
-RUN useradd -ms /bin/bash gizmo
+RUN useradd -ms /home/gizmo/.nix-profile/bin/zsh gizmo
 RUN echo "ALL ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # Setup the nix mount and make gizmo the owner
