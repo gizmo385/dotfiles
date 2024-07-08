@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DOTFILES_DIR=$(dirname $(realpath ${BASH_SOURCE[0]}))
+SCRIPT_SOURCE=$(realpath "${BASH_SOURCE[0]}")
+DOTFILES_DIR=$(dirname "$SCRIPT_SOURCE")
 DOTFILES_GIT_DIR="${DOTFILES_DIR}/.git"
 
 if [ ! -d "$DOTFILES_GIT_DIR" ]; then
