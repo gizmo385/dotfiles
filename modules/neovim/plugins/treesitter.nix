@@ -1,10 +1,12 @@
 { pkgs, ... }:
 
 {
-    plugins.treesitter = {
-        enable = true;
-        indent = true;
+  plugins.treesitter = {
+    enable = true;
+    settings = {
+      indent = true;
     };
+  };
 
-    extraPlugins = with pkgs.vimPlugins; [ playground ];
+  extraPlugins = with pkgs.vimPlugins; [ playground ];
 }
