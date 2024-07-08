@@ -1,23 +1,10 @@
 { pkgs, ... }:
 
 {
-  plugins.treesitter = {
-    enable = true;
-    settings = {
-      highlight.enable = true;
-      indent.enable = true;
+    plugins.treesitter = {
+        enable = true;
+        indent = true;
     };
-    grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-      bash
-      dockerfile
-      json
-      jsonnet
-      nix
-      typescript
-      vim
-      yaml
-    ];
-  };
 
-  extraPlugins = with pkgs.vimPlugins; [ playground ];
+    extraPlugins = with pkgs.vimPlugins; [ playground ];
 }

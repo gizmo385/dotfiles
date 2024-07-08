@@ -55,12 +55,7 @@ in
         ];
 
         plugins = {
-          treesitter = {
-            settings.ensure_installed = ["python"];
-            grammarPackages = [
-              pkgs.vimPlugins.nvim-treesitter.builtGrammars.python
-            ];
-          };
+          treesitter.ensureInstalled = ["python"];
           lsp.servers = {
             ruff-lsp.enable = python.linters.ruff;
             pyright.enable = python.linters.pyright;
