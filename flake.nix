@@ -98,10 +98,9 @@
         shellHook = "nvim";
       };
       setupDotfiles = pkgs.mkShell {
-        name = "default-shell";
         packages = [ home-manager.packages.${system}.default pkgs.nixVersions.nix_2_18 ];
         shellHook = ''
-        ${pkgs.home-manager}/bin/home-manager switch --impure --flake .#$(hostname -s)
+        ${pkgs.home-manager}/bin/home-manager switch --flake .#$(hostname -s)
         exit
         '';
       };

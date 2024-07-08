@@ -1,14 +1,12 @@
 { config
 , pkgs
 , lib
+, inputs
 , ... }:
 
 let
   # I use nixvim to manage my neovim configs within nix
-  nixvim = import (builtins.fetchGit {
-    url = "https://github.com/nix-community/nixvim";
-    ref = "main";
-  });
+  nixvim = inputs.nixvim;
 
   inherit (lib) mkOption types;
   inherit (pkgs.stdenvNoCC.hostPlatform) isDarwin;
