@@ -10,4 +10,4 @@ if [ ! -d "$DOTFILES_GIT_DIR" ]; then
     exit 1
 fi
 
-nix develop .#setupDotfiles
+USE_NEW_NIX=1 nix develop .#setupDotfiles
