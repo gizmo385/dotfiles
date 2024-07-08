@@ -4,8 +4,19 @@
   plugins.treesitter = {
     enable = true;
     settings = {
-      indent = true;
+      highlight.enable = true;
+      indent.enable = true;
     };
+    grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+      bash
+      dockerfile
+      json
+      jsonnet
+      nix
+      typescript
+      vim
+      yaml
+    ];
   };
 
   extraPlugins = with pkgs.vimPlugins; [ playground ];
