@@ -27,7 +27,9 @@ in
       programs.nixvim = {
         plugins = {
           lsp.servers.clojure-lsp.enable = true;
-          treesitter.ensureInstalled = ["clojure"];
+          treesitter = {
+            settings.ensure_installed = ["clojure"];
+          };
         };
 
         extraPlugins = with pkgs.vimPlugins; [

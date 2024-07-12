@@ -55,7 +55,9 @@ in
         ];
 
         plugins = {
-          treesitter.ensureInstalled = ["python"];
+          treesitter = {
+            settings.ensure_installed = ["python"];
+          };
           lsp.servers = {
             ruff-lsp.enable = python.linters.ruff;
             pyright.enable = python.linters.pyright;
