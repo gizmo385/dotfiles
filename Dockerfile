@@ -40,5 +40,4 @@ RUN . $HOME/.nix-profile/etc/profile.d/nix.sh && home-manager switch --impure --
 
 # Swap back to the home directory, swap the default shell, and setup the entrypoint command
 WORKDIR /home/gizmo
-RUN sudo chsh -s "/home/gizmo/.nix-profile/bin/zsh"
 CMD ["/home/gizmo/.nix-profile/bin/zsh"]
