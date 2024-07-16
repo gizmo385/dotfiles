@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   programs = {
@@ -12,17 +12,7 @@
         plugins = [ "gitfast" ];
         theme = "crcandy";
       };
-      plugins = [
-        {
-          name = "vi-mode";
-          src = pkgs.zsh-vi-mode;
-          file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-        }
-        {
-          name = "you-should-use";
-          src = pkgs.zsh-you-should-use;
-        }
-      ];
+      plugins = [ ];
 
       sessionVariables = {
         PATH = "$PATH:$HOME/.scripts:$HOME/.nix-profile/bin";
@@ -32,12 +22,6 @@
         # Fix my typos
         celar = "clear";
         gits = "git";
-
-        # Aliases for ls
-        ls = "eza";
-        ll = "eza -alF";
-        la = "eza -A";
-        l = "eza -F";
 
         # Git aliases
         gs = "git status";
@@ -73,15 +57,6 @@
         # Replace vim with neovim
         vim = "nvim";
       };
-
-      initExtra = ''
-      . "$(fzf-share)/key-bindings.zsh"
-      . "$(fzf-share)/completion.zsh"
-
-      bindkey '^F' fzf-file-widget
-      bindkey '^R' fzf-history-widget
-      bindkey '^G' fzf-cd-widget
-      '';
     };
 
     # Enable some zsh integrations in other tools
