@@ -23,6 +23,9 @@
         celar = "clear";
         gits = "git";
 
+        # Handle cd aliases
+        groot = "cd $(git rev-parse --show-toplevel)";
+
         # Git aliases
         gs = "git status";
         gc = "git commit";
