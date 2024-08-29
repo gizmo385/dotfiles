@@ -16,11 +16,12 @@ in
   {
     imports = [
       nixvim.homeManagerModules.nixvim
-      ./git.nix
       ./fonts.nix
+      ./git.nix
       ./graphical.nix
       ./languages
       ./work.nix
+      ./lazy_github.nix
       ./zsh.nix
     ];
 
