@@ -5,7 +5,7 @@
   config = {
     enable = true;
 
-    colorschemes.ayu.enable = true;
+    colorschemes.kanagawa.enable = true;
 
     globals.mapleader = ",";
     keymaps = [
