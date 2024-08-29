@@ -7,11 +7,6 @@ let
 in
   {
     options.gizmo.languages.python = {
-      tooling = mkOption {
-        type = types.bool;
-        default = true;
-        description = "Enable python language tooling and plugins";
-      };
       interpreter = mkOption {
         type = types.bool;
         default = true;
@@ -37,15 +32,15 @@ in
     };
 
     config =  {
-      home.packages = builtins.concatLists [
-        # Install the tooling if desired
-        (optionals python.tooling [pkgs.uv pkgs.ruff])
+    home.packages = builtins.concatLists [
+        # Install some basic python tooling
+        [pkgs.uv pkgs.ruff]
         # Install the interpreter if desired
         (optionals python.interpreter [pkgs.python3])
       ];
 
       # Setup the language tooling
-      programs.nixvim = mkIf python.tooling {
+      programs.nixvim = {
         autoCmd = [
           {
             event = ["BufEnter"];
