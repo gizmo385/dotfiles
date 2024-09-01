@@ -71,6 +71,7 @@ in
       key = "<leader>G";
       action = ":FloatermNew --width=0.9 --height=0.95 ${lazy-github-command}<CR>";
       mode = "n";
+      options.silent = true;
     }];
   };
 }
