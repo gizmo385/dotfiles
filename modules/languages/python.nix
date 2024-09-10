@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }:
 
 let
-  inherit (lib) mkIf mkOption types;
+  inherit (lib) mkOption types;
   inherit (lib.lists) optionals;
   inherit (config.gizmo.languages) python;
 in
@@ -21,7 +21,7 @@ in
         pylsp = mkOption {
           type = types.bool;
           default = true;
-          description = "Enable pylsp LSP";
+          description = "Enable pylsp";
         };
         pyright = mkOption {
           type = types.bool;
@@ -32,7 +32,7 @@ in
     };
 
     config =  {
-    home.packages = builtins.concatLists [
+      home.packages = builtins.concatLists [
         # Install some basic python tooling
         [pkgs.uv pkgs.ruff]
         # Install the interpreter if desired
@@ -55,7 +55,12 @@ in
           };
           lsp.servers = {
             ruff-lsp.enable = python.linters.ruff;
-            pyright.enable = python.linters.pyright;
+            pyright = {
+              enable = python.linters.pyright;
+              extraOptions = {
+                disableOrganizeImports = !python.linters.ruff;
+              };
+            };
             pylsp = {
               enable = python.linters.pylsp;
               settings.plugins = {
