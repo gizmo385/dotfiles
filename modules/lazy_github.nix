@@ -52,17 +52,6 @@ in
   # TODO: I'd like to set up an actual derivation for this and pull this out as a separate script,
   # but this'll do for now
   config = {
-    home.file.lazy-github-config = {
-      target = ".config/lazy-github/config.json";
-      text = builtins.toJSON {
-        appearence.dark_mode = lazy-github.appearance.dark_mode;
-        repositories.favorites = lazy-github.repositories.favorites;
-        pull_requests.state_filter = lazy-github.pull_requests.state_filter;
-        api.base_url = lazy-github.api.base_url;
-        cache.repo_cache_duration = lazy-github.cache.repo_cache_duration;
-      };
-    };
-
     programs.zsh.shellAliases = mkIf lazy-github.enable {
       lh = lazy-github-command;
       lazy-github = lazy-github-command;
