@@ -19,6 +19,12 @@
             mode = "n"; 
             options.silent = true;
         }
+        { 
+            key = "<leader>r";
+            action = ":Telescope oldfiles<cr>";
+            mode = "n"; 
+            options.silent = true;
+        }
     ];
 
     extraPlugins = with pkgs.vimPlugins; [
