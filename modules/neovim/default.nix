@@ -37,6 +37,7 @@
   plugins = {
     nix.enable = true;
     airline.enable = true;
+    web-devicons.enable = true;
   };
 
   extraPlugins = with pkgs.vimPlugins; [
@@ -50,10 +51,6 @@
     vim-jsonnet
     vim-javascript
     vim-terraform
-
-    # Icons for plugins
-    nvim-web-devicons
-    vim-devicons
   ];
 
   opts = {
