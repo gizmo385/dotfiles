@@ -9,7 +9,7 @@
       lsp = {
         enable = true;
         servers = {
-          nil-ls.enable = true;
+          nil_ls.enable = true;
         };
 
         keymaps = {

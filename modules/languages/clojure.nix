@@ -26,7 +26,7 @@ in
       home.packages = [ pkgs.leiningen ];
       programs.nixvim = {
         plugins = {
-          lsp.servers.clojure-lsp.enable = true;
+          lsp.servers.clojure_lsp.enable = true;
           treesitter = {
             settings.ensure_installed = ["clojure"];
           };

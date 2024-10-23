@@ -48,7 +48,7 @@ in
             bashls.enable = true;
             terraformls.enable = true;
             dockerls.enable = true;
-            docker-compose-language-service.enable = true;
+            docker_compose_language_service.enable = true;
             elixirls.enable = true;
           };
 

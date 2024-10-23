@@ -38,7 +38,7 @@ in
       programs = {
         nixvim.plugins = {
           lsp.servers = {
-            rust-analyzer = {
+            rust_analyzer = {
               enable = rust.lsp;
               cmd = ["ra-multiplex.sh"];
               installRustc = false;

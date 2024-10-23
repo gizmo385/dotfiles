@@ -54,7 +54,7 @@ in
             settings.ensure_installed = ["python"];
           };
           lsp.servers = {
-            ruff-lsp.enable = python.linters.ruff;
+            ruff_lsp.enable = python.linters.ruff;
             pyright = {
               enable = python.linters.pyright;
               extraOptions = {
