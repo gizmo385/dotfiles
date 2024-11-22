@@ -20,7 +20,7 @@ ENV BUILDING_DOTFILES_CONTAINER=1
 
 # Install nix and home-manager
 RUN curl -L https://nixos.org/nix/install | sh
-RUN . $HOME/.nix-profile/etc/profile.d/nix.sh && nix upgrade-nix
+RUN . $HOME/.nix-profile/etc/profile.d/nix.sh
 RUN $HOME/.nix-profile/bin/nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 RUN $HOME/.nix-profile/bin/nix-channel --update
 RUN . $HOME/.nix-profile/etc/profile.d/nix.sh && nix-shell '<home-manager>' -A install
