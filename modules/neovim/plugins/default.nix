@@ -5,6 +5,7 @@
     ./floaterm.nix
     ./lazygit.nix
     ./lsp.nix
+    ./multicursors.nix
     ./nvim-tree.nix
     ./telescope.nix
     ./treesitter.nix
