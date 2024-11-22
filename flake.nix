@@ -12,11 +12,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nuschtosSearch = {
+      url = "github:NuschtOS/search";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+
     # Nixvim, used for building neovim
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
+      inputs.nuschtosSearch.follows = "nuschtosSearch";
     };
 
   };
