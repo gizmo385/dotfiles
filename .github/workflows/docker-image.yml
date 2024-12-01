@@ -1,6 +1,7 @@
 name: Build dotfiles docker image
 
 on:
+  workflow_dispatch:
   push:
     branches: ['*']
   schedule:
