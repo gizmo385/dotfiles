@@ -14,7 +14,7 @@ in
       home.packages = with pkgs; [
         # Fonts with better code support
         fira-code
-        fira-code-nerdfont
+        nerd-fonts.fira-code
       ];
     };
   }
