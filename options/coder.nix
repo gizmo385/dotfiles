@@ -6,6 +6,7 @@
     work = true;
 
     languages = {
+      all.clint = true;
       clojure = false;
 
       # We manage our Python interpreters through Clyde tooling

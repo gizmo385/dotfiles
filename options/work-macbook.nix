@@ -4,6 +4,7 @@
   config.gizmo = {
     username = "chrischapline";
     work = true;
+    lsp.clint = true;
 
     languages = {
       python.interpreter = false;

@@ -1,7 +1,9 @@
 {
   imports = [
+    ./all.nix
     ./clojure.nix
-    ./rust.nix
+    ./nix.nix
     ./python.nix
+    ./rust.nix
   ];
 }
