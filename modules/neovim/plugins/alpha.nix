@@ -132,7 +132,7 @@ in
                 }
                 (mkButton "w" ":VimwikiIndex<CR>" "${tileset.openWiki} > Open Wiki")
                 (mkButton "d" ":VimwikiDiaryIndex<cr>:VimwikiDiaryGenerateLinks<cr>" "${tileset.openDiary} > Open Diary")
-                (mkButton "n" ":VimwikiMakeDiaryNote<cr>" "${tileset.newDiaryEntry} > New Diary Entry")
+                (mkButton "n" ":VimwikiMakeDiaryNote<cr>" "${tileset.newDiaryEntry}  > New Diary Entry")
                 (mkButton "s" "<CMD>lua require('telescope').extensions.vimwiki.live_grep()<cr>" "${tileset.searchWiki} > Search Wiki")
               ];
             }
@@ -154,7 +154,7 @@ in
               (mkButton "e" ":ene<CR>" "${tileset.newFile} > New file")
               (mkButton "f" "<CMD>lua require('telescope.builtin').find_files()<CR>" "${tileset.findFile} > Find File")
               (mkButton "/" "<CMD>lua require('telescope.builtin').live_grep()<CR>" "${tileset.search} > Search")
-              (mkButton "r" "<CMD>lua require('telescope.builtin').oldfiles()<CR>" "${tileset.recentFiles} > Recent")
+              (mkButton "r" "<CMD>lua require('telescope.builtin').oldfiles()<CR>" "${tileset.recentFiles}  > Recent")
               (mkButton "q" ":qa<CR>" "${tileset.quit} > Quit")
             ];
           }
