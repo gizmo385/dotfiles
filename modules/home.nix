@@ -1,6 +1,5 @@
 { config
 , pkgs
-, lib
 , inputs
 , ... }:
 
@@ -8,7 +7,6 @@ let
   # I use nixvim to manage my neovim configs within nix
   nixvim = inputs.nixvim;
 
-  inherit (lib) mkOption types;
   inherit (pkgs.stdenvNoCC.hostPlatform) isDarwin;
   inherit (config.gizmo) username;
   homeDirectory = if isDarwin then "/Users/${username}" else "/home/${username}";
@@ -22,14 +20,9 @@ in
       ./languages
       ./work.nix
       ./lazy_github.nix
+      ./options.nix
       ./zsh.nix
     ];
-
-    options.gizmo.username = mkOption {
-      type = types.str;
-      default = "gizmo";
-      description = "The username for the system";
-    };
 
     config = {
       home = {

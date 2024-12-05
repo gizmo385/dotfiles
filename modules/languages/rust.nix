@@ -1,24 +1,10 @@
 { pkgs, lib, config, ... }:
 
 let
-  inherit (lib) mkOption types;
   inherit (lib.lists) optionals;
   inherit (config.gizmo.languages) rust;
 in
   {
-    options.gizmo.languages.rust = {
-      toolchain = mkOption {
-        type = types.bool;
-        default = false;
-        description = "Enable the cargo build tool for Rust";
-      };
-      lsp = mkOption {
-        type = types.bool;
-        default = false;
-        description = "Enable the rust LSP tooling (like ra-multiplexer)";
-      };
-    };
-
     config = {
       home = {
         packages = builtins.concatLists [

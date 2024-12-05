@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  inherit (lib) mkIf mkOption types;
+  inherit (lib) mkIf;
   inherit (config.gizmo) work;
 
   # Custom codeownership plugin
@@ -14,12 +14,6 @@ let
   };
 in
   {
-    options.gizmo.work = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Enable work configs";
-    };
-
     config = mkIf work {
       home = {
         packages = [

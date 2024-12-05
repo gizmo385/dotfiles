@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }:
 
 let
-  inherit (lib) mkIf mkOption types;
+  inherit (lib) mkIf;
   inherit (config.gizmo.languages) clojure;
 
   paredit = pkgs.vimUtils.buildVimPlugin {
@@ -15,12 +15,6 @@ let
   };
 in
   {
-    options.gizmo.languages.clojure = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Enable Clojure language tooling and plugins";
-    };
-
     config = mkIf clojure {
       # TODO: Add autocmds for rainbow parenthesis
       home.packages = [ pkgs.leiningen ];

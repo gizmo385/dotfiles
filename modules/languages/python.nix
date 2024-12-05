@@ -1,35 +1,10 @@
 { pkgs, lib, config, ... }:
 
 let
-  inherit (lib) mkOption types;
   inherit (lib.lists) optionals;
   inherit (config.gizmo.languages) python;
 in
   {
-    options.gizmo.languages.python = {
-      interpreter = mkOption {
-        type = types.bool;
-        default = true;
-        description = "Install the Python interpreter (some machines have this preinstalled)";
-      };
-      linters = {
-        ruff = mkOption {
-          type = types.bool;
-          default = true;
-          description = "Enable ruff LSP";
-        };
-        pylsp = mkOption {
-          type = types.bool;
-          default = true;
-          description = "Enable pylsp";
-        };
-        pyright = mkOption {
-          type = types.bool;
-          default = true;
-          description = "Enable pyright LSP";
-        };
-      };
-    };
 
     config =  {
       home.packages = builtins.concatLists [

@@ -4,18 +4,12 @@
 , ... }:
 
 let
-  inherit (lib) mkIf mkOption types;
+  inherit (lib) mkIf;
   inherit (config.gizmo) graphical;
 
   i3Mod = "Mod4";
 in
 {
-  options.gizmo.graphical = mkOption {
-    type = types.bool;
-    default = false;
-    description = "Install UI packages";
-  };
-
   config = mkIf graphical {
     nixpkgs = {
       # This allows us to specify certain unfree programs that we want to be able to install. The

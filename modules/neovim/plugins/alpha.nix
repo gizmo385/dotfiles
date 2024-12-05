@@ -1,9 +1,7 @@
-{ lib, config, ... }:
+{ ... }:
 
 let
-  inherit (lib) mkOption types;
-  inherit (config.gizmo.neovim.alpha) useNerdfontTileset;
-  normalTileset = {
+  _normalTileset = {
     openWiki =  "";
     openDiary = "";
     newDiaryEntry = "✎";
@@ -13,6 +11,7 @@ let
     search = "";
     recentFiles = "";
     quit = "";
+    merge = "↪";
   };
   nerdfontTileset = {
     openWiki =  "󱉟 ";
@@ -24,9 +23,10 @@ let
     search = " ";
     recentFiles = "";
     quit = "󰈆 ";
+    merge = "";
   };
 
-  tileset = if useNerdfontTileset then nerdfontTileset else normalTileset;
+  tileset = nerdfontTileset;
 
   mkButton = shortcut: cmd: val: {
     type = "button";
@@ -48,11 +48,6 @@ let
   };
 in
   {
-    options.gizmo.neovim.alpha.useNerdfontTileset = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Use the nerdfont-specific tileset for alpha icons";
-    };
     config = {
       keymaps = [
         {
