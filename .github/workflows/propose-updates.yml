@@ -26,7 +26,11 @@ jobs:
       - name: Update flake versions
         run: nix flake update
 
+      - name: Diff the updates
+        run: git diff
+
       - name: Attempt to install the updated dotfiles
-        run: 
-        - ./install.sh
-        - ./install.sh
+        run: ./install.sh
+
+      - name: Run the install a second time
+        run: ./install.sh
