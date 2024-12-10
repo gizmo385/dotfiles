@@ -29,8 +29,5 @@ jobs:
       - name: Diff the updates
         run: git diff
 
-      - name: Attempt to install the updated dotfiles
-        run: ./install.sh
-
-      - name: Swap the home-manager flake
-        run: nix develop .#setupDotfiles --command "home-manager switch --flake .#docker"
+      - name: Install dotfiles
+        run: nix develop

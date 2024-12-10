@@ -113,6 +113,13 @@
         exit
         '';
       };
+      default = pkgs.mkShell {
+        packages = [ home-manager.packages.${system}.default pkgs.nixVersions.nix_2_24 pkgs.git ];
+        shellHook = ''
+        ${pkgs.home-manager}/bin/home-manager switch --flake .#docker
+        exit
+        '';
+      };
     };
   });
 }
