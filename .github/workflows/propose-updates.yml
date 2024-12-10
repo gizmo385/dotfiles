@@ -9,6 +9,10 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   propose-dotfile-version-updates:
     runs-on: ubuntu-latest
