@@ -39,7 +39,7 @@ in
 
       clojure = mkOption {
         type = types.bool;
-        default = true;
+        default = false;
         description = "Enable Clojure language tooling and plugins";
       };
 
