@@ -24,6 +24,7 @@ jobs:
         uses: cachix/install-nix-action@v27
 
       - name: Update flake versions
+        id: flakeUpdate
         run: nix flake update
 
       - name: Log in to the Container registry
@@ -43,3 +44,12 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
+
+      - name: Create Pull Request
+        if: ${{ success() }}
+        uses: peter-evans/create-pull-request@v7
+        title: Updating pinned dotfile versions
+        body: "Automated version updates: ```\n${{join(steps.flakeUpdate.outputs.stdout)}}\n```"
+        delete-branch: true
+        branch: automated/version-updates
+
