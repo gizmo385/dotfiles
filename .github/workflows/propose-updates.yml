@@ -50,7 +50,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           title: Updating pinned dotfile versions
-          body: "Automated version updates: ```\n${{join(steps.flakeUpdate.outputs.stdout)}}\n```"
+          body: "Automated version updates:\n```\n${{join(steps.flakeUpdate.outputs.*, '\n')}}\n```"
           delete-branch: true
           branch: automated/version-updates
 
