@@ -26,20 +26,5 @@ jobs:
       - name: Update flake versions
         run: nix flake update
 
-      - name: Log in to the Container registry
-        uses: docker/login-action@v3
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-
-      - name: Attempt to build the image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
+      - name: Attempt to install the updated dotfiles
+        run: ./install.sh
