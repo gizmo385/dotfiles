@@ -33,4 +33,4 @@ jobs:
         run: ./install.sh
 
       - name: Swap the home-manager flake
-        run: home-manager switch --flake .#docker
+        run: nix develop .#setupDotfiles --command "home-manager switch --flake .#docker"
