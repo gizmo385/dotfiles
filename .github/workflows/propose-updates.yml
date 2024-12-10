@@ -27,4 +27,6 @@ jobs:
         run: nix flake update
 
       - name: Attempt to install the updated dotfiles
-        run: ./install.sh
+        run: 
+        - ./install.sh
+        - ./install.sh
