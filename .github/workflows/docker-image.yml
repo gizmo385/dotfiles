@@ -3,7 +3,7 @@ name: Build dotfiles docker image
 on:
   workflow_dispatch:
   push:
-    branches: ['*']
+    branches: ['main']
   schedule:
     # Rebuild the dotfiles every Monday at 16:00 UTC (~ mid-morning mountain time)
     - cron: "0 16 * * 1"
