@@ -25,7 +25,9 @@ jobs:
 
       - name: Update flake versions
         id: flakeUpdate
-        run: nix flake update >> $GITHUB_OUTPUT 2>> $GITHUB_OUTPUT
+        run: |
+          nix flake update >> /tmp/flake-updates.txt 2>1
+          echo "{state}=$(cat /tmp/flake-updates.txt)" >> $GITHUB_OUTPUT
 
       - name: Log in to the Container registry
         uses: docker/login-action@v3
