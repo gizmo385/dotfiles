@@ -2,6 +2,8 @@ name: Attempts to update dependencies and validate that the upgrade is safe
 
 on:
   workflow_dispatch:
+  push:
+    branches: ['auto-propose-updates']
 
 env:
   REGISTRY: ghcr.io
