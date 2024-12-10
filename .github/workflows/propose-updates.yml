@@ -48,8 +48,9 @@ jobs:
       - name: Create Pull Request
         if: ${{ success() }}
         uses: peter-evans/create-pull-request@v7
-        title: Updating pinned dotfile versions
-        body: "Automated version updates: ```\n${{join(steps.flakeUpdate.outputs.stdout)}}\n```"
-        delete-branch: true
-        branch: automated/version-updates
+        with:
+          title: Updating pinned dotfile versions
+          body: "Automated version updates: ```\n${{join(steps.flakeUpdate.outputs.stdout)}}\n```"
+          delete-branch: true
+          branch: automated/version-updates
 
