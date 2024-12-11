@@ -3,10 +3,7 @@ name: Build dotfiles docker image
 on:
   workflow_dispatch:
   push:
-    branches: ['*']
-  schedule:
-    # Rebuild the dotfiles every Monday at 16:00 UTC (~ mid-morning mountain time)
-    - cron: "0 16 * * 1"
+    branches: ['main']
 
 env:
   REGISTRY: ghcr.io
