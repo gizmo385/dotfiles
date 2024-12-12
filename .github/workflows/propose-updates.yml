@@ -67,8 +67,6 @@ jobs:
       - name: Opened PR with updated package versions
         #if: ${{ success() && github.ref == 'refs/heads/main' }}
         if: ${{ success() }}
-        needs:
-          - propose-dotfile-version-updates
         runs-on: ubuntu-latest
         uses: nobrayner/discord-webhook@v1
         with:
@@ -80,8 +78,6 @@ jobs:
       - name: Failed to update version
         #if: ${{ failure() && github.ref == 'refs/heads/main' }}
         if: ${{ failure() }}
-        needs:
-          - propose-dotfile-version-updates
         runs-on: ubuntu-latest
         uses: nobrayner/discord-webhook@v1
         with:
