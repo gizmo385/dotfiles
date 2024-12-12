@@ -55,4 +55,4 @@ Updating packages can be done by running `nix flake update` to generate an updat
 
 # Customizing
 
-I use Nix (via [home-manager](https://github.com/nix-community/home-manager) and [nixvim](https://github.com/nix-community/nixvim) to manage **all** of my configs. Browse through the nix files to check the settings for individual applications or environments. Machine specific configurations are selected based on hostname and are located in the options directory.
+I use Nix via [home-manager](https://github.com/nix-community/home-manager) and [nixvim](https://github.com/nix-community/nixvim) to manage **all** of my configs. Browse through the nix files to check the settings for individual applications or environments. Machine specific configurations are selected based on hostname and are located in the options directory.
