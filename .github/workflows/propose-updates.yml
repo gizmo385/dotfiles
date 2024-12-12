@@ -31,7 +31,7 @@ jobs:
             echo 'FLAKE_OUTPUT<<EOF'
             nix flake update 2>&1
             echo EOF
-          } >> "$GITHUB_ENV"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
