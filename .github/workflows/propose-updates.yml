@@ -33,6 +33,17 @@ jobs:
             echo EOF
           } >> "$GITHUB_OUTPUT"
 
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: Attempt to build the image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+
       - name: Create Pull Request
         if: ${{ success() }}
         id: create-pull-request
