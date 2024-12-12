@@ -2,14 +2,12 @@ name: Attempts to update dependencies and validate that the upgrade is safe
 
 on:
   workflow_dispatch:
-  push:
-    branches: ['*']
-  pull_request:
-    types:
-      - opened
-  #schedule:
+  schedule:
     # Attempt to update things every Monday at 16:00 UTC (~ mid-morning mountain time)
-    #- cron: "0 16 * * 1"
+    - cron: "0 16 * * 1"
+  pull_request:
+    branches:
+    - main
 
 env:
   REGISTRY: ghcr.io
@@ -38,6 +36,56 @@ jobs:
             echo EOF
           } >> "$GITHUB_ENV"
 
-      - name: Validate outputs
-        run: echo ${{ steps.update-versions.outputs.FLAKE_OUTPUT }}
-          
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: Attempt to build the image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+
+      - name: Create Pull Request
+        if: ${{ success() }}
+        id: create-pull-request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          title: Automatic dotfile version updates
+          body: "Updates the pinned input versions:\n``\n${{ ${{ steps.update-versions.outputs.FLAKE_OUTPUT }}\n```"
+          delete-branch: true
+          branch: automated/version-updates
+
+      - name: Opened PR with updated package versions
+        #if: ${{ success() && github.ref == 'refs/heads/main' }}
+        if: ${{ success() }}
+        needs:
+          - propose-dotfile-version-updates
+        runs-on: ubuntu-latest
+        uses: nobrayner/discord-webhook@v1
+        with:
+          github-token: ${{ secrets.github_token }}
+          discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: 'Updated version pins are available for review'
+          description: 'Review [the changes](${{ steps.create-pull-request.outputs.pull-request-url }}) to ensure they are valid.'
+
+      - name: Failed to update version
+        #if: ${{ failure() && github.ref == 'refs/heads/main' }}
+        if: ${{ failure() }}
+        needs:
+          - propose-dotfile-version-updates
+        runs-on: ubuntu-latest
+        uses: nobrayner/discord-webhook@v1
+        with:
+          github-token: ${{ secrets.github_token }}
+          discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: 'Error while attempting to update pinned versions'
+          description: 'There may be incompatibilities that need to be fixed.'
