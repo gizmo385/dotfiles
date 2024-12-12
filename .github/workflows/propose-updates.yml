@@ -1,9 +1,9 @@
 name: Attempts to update dependencies and validate that the upgrade is safe
 
 on:
+  workflow_dispatch:
   push:
     branches: ['*']
-  #workflow_dispatch:
   #schedule:
     # Attempt to update things every Monday at 16:00 UTC (~ mid-morning mountain time)
     #- cron: "0 16 * * 1"
