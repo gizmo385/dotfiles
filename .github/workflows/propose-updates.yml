@@ -30,7 +30,7 @@ jobs:
         id: update-versions
         run: |
           update_output=$(nix flake update)
-          echo "update_output=${update_output}" >> $GITHUB_OUTPUT
+          echo 'update_output="${update_output}"' >> $GITHUB_OUTPUT
 
       - name: Validate outputs
         run: echo ${{ steps.update-versions.outputs.update_output }}
