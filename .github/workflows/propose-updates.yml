@@ -64,9 +64,8 @@ jobs:
           delete-branch: true
           branch: automated/version-updates
 
-      - name: Opened PR with updated package versions
-        #if: ${{ success() && github.ref == 'refs/heads/main' }}
-        if: ${{ success() }}
+      - name: Notify about updated versions
+        if: ${{ success() && github.ref == 'refs/heads/main' }}
         uses: nobrayner/discord-webhook@v1
         with:
           github-token: ${{ secrets.github_token }}
@@ -74,9 +73,8 @@ jobs:
           title: 'Updated version pins are available for review'
           description: 'Review [the changes](${{ steps.create-pull-request.outputs.pull-request-url }}) to ensure they are valid.'
 
-      - name: Failed to update version
-        #if: ${{ failure() && github.ref == 'refs/heads/main' }}
-        if: ${{ failure() }}
+      - name: Notify about failed versions update
+        if: ${{ failure() && github.ref == 'refs/heads/main' }}
         uses: nobrayner/discord-webhook@v1
         with:
           github-token: ${{ secrets.github_token }}
