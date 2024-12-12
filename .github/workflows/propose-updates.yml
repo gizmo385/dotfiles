@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   push:
     branches: ['*']
+  pull_request:
+    types:
+      - opened
   #schedule:
     # Attempt to update things every Monday at 16:00 UTC (~ mid-morning mountain time)
     #- cron: "0 16 * * 1"
@@ -29,9 +32,12 @@ jobs:
       - name: Update flake versions
         id: update-versions
         run: |
-          update_output=$(nix flake update)
-          echo 'update_output="${update_output}"' >> $GITHUB_OUTPUT
+          {
+            echo 'FLAKE_OUTPUT<<EOF'
+            nix flake update 2>&1
+            echo EOF
+          } >> "$GITHUB_ENV"
 
       - name: Validate outputs
-        run: echo ${{ steps.update-versions.outputs.update_output }}
+        run: echo ${{ steps.update-versions.outputs.FLAKE_OUTPUT }}
           
