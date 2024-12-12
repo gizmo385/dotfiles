@@ -33,17 +33,6 @@ jobs:
             echo EOF
           } >> "$GITHUB_OUTPUT"
 
-      #- name: Extract metadata (tags, labels) for Docker
-        #id: meta
-        #uses: docker/metadata-action@v5
-        #with:
-          #images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-
-      #- name: Attempt to build the image
-        #uses: docker/build-push-action@v5
-        #with:
-          #context: .
-
       - name: Create Pull Request
         if: ${{ success() }}
         id: create-pull-request
@@ -61,21 +50,21 @@ jobs:
           branch: automated/version-updates
           base: main
 
-      #- name: Notify about updated versions
-        #if: ${{ success() && github.ref == 'refs/heads/main' }}
-        #uses: nobrayner/discord-webhook@v1
-        #with:
-          #github-token: ${{ secrets.github_token }}
-          #discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          #title: 'Updated version pins are available for review'
-          #description: 'Review [the changes](${{ steps.create-pull-request.outputs.pull-request-url }}) to ensure they are valid.'
+      - name: Notify about updated versions
+        if: ${{ success() && github.ref == 'refs/heads/main' }}
+        uses: nobrayner/discord-webhook@v1
+        with:
+          github-token: ${{ secrets.github_token }}
+          discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: 'Updated version pins are available for review'
+          description: 'Review [the changes](${{ steps.create-pull-request.outputs.pull-request-url }}) to ensure they are valid.'
 
-      #- name: Notify about failed versions update
-        #if: ${{ failure() && github.ref == 'refs/heads/main' }}
-        #uses: nobrayner/discord-webhook@v1
-        #with:
-          #github-token: ${{ secrets.github_token }}
-          #discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          #title: 'Error while attempting to update pinned versions'
-          #severity: error
-          #description: 'There may be incompatibilities that need to be fixed.'
+      - name: Notify about failed versions update
+        if: ${{ failure() && github.ref == 'refs/heads/main' }}
+        uses: nobrayner/discord-webhook@v1
+        with:
+          github-token: ${{ secrets.github_token }}
+          discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: 'Error while attempting to update pinned versions'
+          severity: error
+          description: 'There may be incompatibilities that need to be fixed.'
