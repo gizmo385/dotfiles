@@ -49,6 +49,10 @@ The flake this uses to install configurations will select a config based on your
 home-manager switch --impure --flake .#default
 ```
 
-# Updating Installed Packages
+# Updating Packages
 
-I use Nix (via [home-manager](https://github.com/nix-community/home-manager) and [nixvim](https://github.com/nix-community/nixvim) to manage **all** of my configs. Browse through the nix files to 
+Updating packages can be done by running `nix flake update` to generate an updated set of pins for things like nixpkgs. I have a github action that should automatically open a PR with updated pins every Monday.
+
+# Customizing
+
+I use Nix (via [home-manager](https://github.com/nix-community/home-manager) and [nixvim](https://github.com/nix-community/nixvim) to manage **all** of my configs. Browse through the nix files to check the settings for individual applications or environments. Machine specific configurations are selected based on hostname and are located in the options directory.
