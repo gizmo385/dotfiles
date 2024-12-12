@@ -47,7 +47,6 @@ jobs:
       - name: Would create PR with
         env:
           FLAKE_OUTPUT: ${{ steps.update-versions.outputs.FLAKE_OUTPUT }}
-        run:
         run: |
           echo Updates the pinned input versions:
           echo '```'
