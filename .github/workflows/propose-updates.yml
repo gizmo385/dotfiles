@@ -67,7 +67,6 @@ jobs:
       - name: Opened PR with updated package versions
         #if: ${{ success() && github.ref == 'refs/heads/main' }}
         if: ${{ success() }}
-        runs-on: ubuntu-latest
         uses: nobrayner/discord-webhook@v1
         with:
           github-token: ${{ secrets.github_token }}
@@ -78,7 +77,6 @@ jobs:
       - name: Failed to update version
         #if: ${{ failure() && github.ref == 'refs/heads/main' }}
         if: ${{ failure() }}
-        runs-on: ubuntu-latest
         uses: nobrayner/discord-webhook@v1
         with:
           github-token: ${{ secrets.github_token }}
