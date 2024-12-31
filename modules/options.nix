@@ -43,6 +43,12 @@ in
         description = "Enable Clojure language tooling and plugins";
       };
 
+      javascript = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable Javascript language tooling and plugins";
+      };
+
       nix.lsp = mkOption {
         type = types.bool;
         default = true;

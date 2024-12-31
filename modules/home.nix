@@ -17,10 +17,11 @@ in
       ./fonts.nix
       ./git.nix
       ./graphical.nix
+      ./joplin.nix
       ./languages
-      ./work.nix
       ./lazy_github.nix
       ./options.nix
+      ./work.nix
       ./zsh.nix
     ];
 
