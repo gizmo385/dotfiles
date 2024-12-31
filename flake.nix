@@ -87,6 +87,7 @@
   } // flake-utils.lib.eachDefaultSystem (system:
   let
     pkgs = import nixpkgs { inherit system; };
+    switchCommand = "${pkgs.home-manager}/bin/home-manager switch --flake .#";
     # This is, admittedly pretty gross. The current way that I'm configuring nixvim for home-manager
     # means that the dev shell definition gets mad because we have the config.enable option. I
     # haven't found a clean way to hook this up without conditionally removing the config.enable
@@ -109,7 +110,7 @@
       setupDotfiles = pkgs.mkShell {
         packages = [ home-manager.packages.${system}.default pkgs.nixVersions.nix_2_24 pkgs.git ];
         shellHook = ''
-        ${pkgs.home-manager}/bin/home-manager switch --flake .#$(hostname -s)
+        ${switchCommand}$(hostname -s) || ${switchCommand}docker
         exit
         '';
       };
