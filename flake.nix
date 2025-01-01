@@ -59,12 +59,14 @@
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-hostname'
     homeConfigurations = {
-      # Docker is the environment installed in the Dockerfile
+      # Docker, WSL, and default all use the defaultConfiguration
+      "default" = defaultConfiguration;
       "docker" = defaultConfiguration;
+      "gizmo-desktop" = defaultConfiguration;
 
       # Linux desktop
       "gizmonix" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [./options/gizmonix.nix ./modules/home.nix];
       };
@@ -75,12 +77,11 @@
 
       # Personal macbook
       "gizmo-macbook" = macbookConfiguration;
-
+          
       # Work laptop
       "M1M-CChapline" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
         extraSpecialArgs = {inherit inputs outputs;};
-        # > Our main home-manager configuration file <
         modules = [./options/work-macbook.nix ./modules/home.nix];
       };
     };
@@ -88,6 +89,7 @@
   let
     pkgs = import nixpkgs { inherit system; };
     switchCommand = "${pkgs.home-manager}/bin/home-manager switch --flake .#";
+    setupPackages = [ home-manager.packages.${system}.default pkgs.nixVersions.nix_2_24 pkgs.git ];
     # This is, admittedly pretty gross. The current way that I'm configuring nixvim for home-manager
     # means that the dev shell definition gets mad because we have the config.enable option. I
     # haven't found a clean way to hook this up without conditionally removing the config.enable
@@ -108,9 +110,9 @@
         shellHook = "nvim";
       };
       setupDotfiles = pkgs.mkShell {
-        packages = [ home-manager.packages.${system}.default pkgs.nixVersions.nix_2_24 pkgs.git ];
+        packages = setupPackages;
         shellHook = ''
-        ${switchCommand}$(hostname -s) || ${switchCommand}docker
+        ${switchCommand}$(hostname -s)
         exit
         '';
       };
