@@ -7,9 +7,15 @@ in
   {
 
   config = {
+    home.file.joplin-keymap = {
+      target = ".config/joplin/keymap.json";
+      source = ../configs/joplin-keymap.json;
+    };
+
     programs.zsh.shellAliases =  {
       joplin = joplin-command;
     };
+
     programs.nixvim.keymaps =  [{
       key = "<leader>J";
       action = ":FloatermNew --width=0.9 --height=0.95 ${joplin-command}<CR>";
