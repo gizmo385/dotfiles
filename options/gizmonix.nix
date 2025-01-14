@@ -6,8 +6,8 @@
     graphical = true;
 
     languages.rust = {
-      toolchain = true;  
-      lsp = true;  
+      toolchain = true;
+      lsp = true;
     };
   };
 }

@@ -1,5 +1,6 @@
 { lib
-, ... }:
+, ...
+}:
 
 let
   inherit (lib) mkOption types;

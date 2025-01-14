@@ -1,7 +1,8 @@
 { pkgs
 , config
 , lib
-, ... }:
+, ...
+}:
 
 let
   inherit (lib) mkIf;
@@ -15,29 +16,29 @@ in
       # This allows us to specify certain unfree programs that we want to be able to install. The
       # nividia inclusion here is required by NixGL for nividia drivers
       config.allowUnfreePredicate = pkg:
-      builtins.elem (pkgs.lib.getName pkg) [
-        "nvidia"
-        "spotify"
-      ];
+        builtins.elem (pkgs.lib.getName pkg) [
+          "nvidia"
+          "spotify"
+        ];
     };
 
     programs = {
       zsh.profileExtra = ''
-      startx
+        startx
       '';
 
       # A better terminal emulator
       terminator = {
         enable = true;
         config.profiles.default = {
-            background_color = "#282828";
-            font = "FiraCode Nerd Font Mono 12";
-            foreground_color = "#ebdbb2";
-            show_titlebar = false;
-            use_system_font = false;
-          };
+          background_color = "#282828";
+          font = "FiraCode Nerd Font Mono 12";
+          foreground_color = "#ebdbb2";
+          show_titlebar = false;
+          use_system_font = false;
+        };
       };
-      
+
       # A status bar for i3
       i3status-rust = {
         enable = true;
@@ -84,7 +85,7 @@ in
           config = {
             terminal = pkgs.terminator;
             fonts = {
-              names = ["FiraCode Nerd Font Mono"];
+              names = [ "FiraCode Nerd Font Mono" ];
               size = 10.0;
               style = "Regular";
             };
@@ -119,7 +120,7 @@ in
               {
                 position = "bottom";
                 fonts = {
-                  names = ["FiraCode Nerd Font Mono"];
+                  names = [ "FiraCode Nerd Font Mono" ];
                   size = 12.0;
                   style = "Regular";
                 };

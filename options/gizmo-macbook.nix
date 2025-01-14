@@ -5,8 +5,8 @@
     username = "gizmo385";
     languages = {
       rust = {
-        toolchain = true;  
-        lsp = true;  
+        toolchain = true;
+        lsp = true;
       };
       python.linters.pylsp = false;
     };

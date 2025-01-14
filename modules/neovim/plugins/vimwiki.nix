@@ -38,21 +38,21 @@ in
 
   autoCmd = [
     {
-      event = ["BufNewFile"];
+      event = [ "BufNewFile" ];
       pattern = [ "*/diary/*.wiki" ];
       command = ":0r !$HOME/.scripts/new_diary_entry.py '%'";
     }
     {
-      event = ["BufEnter"];
+      event = [ "BufEnter" ];
       pattern = [ "*/diary/*.wiki" "*/vimwiki/*.wiki" ];
       command = "noremap <buffer> <C-p> <cmd>lua require('telescope').extensions.vimwiki.vimwiki()<cr>";
     }
     {
-      event = ["BufEnter"];
+      event = [ "BufEnter" ];
       pattern = [ "*/diary/*.wiki" "*/vimwiki/*.wiki" ];
       command = "noremap <buffer> <C-f> <cmd>lua require('telescope').extensions.vimwiki.live_grep()<cr>";
     }
   ];
 
-  extraPlugins = [ pkgs.vimPlugins.vimwiki vimwikiTelescope];
+  extraPlugins = [ pkgs.vimPlugins.vimwiki vimwikiTelescope ];
 }

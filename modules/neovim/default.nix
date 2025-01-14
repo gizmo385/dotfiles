@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  imports = [./plugins];
+  imports = [ ./plugins ];
   config = {
     enable = true;
 
@@ -12,12 +12,12 @@
       # Use ; for starting commands
       { key = ";"; action = ":"; }
       # Use regex searches
-      { key = "/"; action ="/\\v"; mode = ["n" "v"]; }
-      { key = "\\"; action =":%s/\\v"; mode = ["n" "v"]; }
+      { key = "/"; action = "/\\v"; mode = [ "n" "v" ]; }
+      { key = "\\"; action = ":%s/\\v"; mode = [ "n" "v" ]; }
       # Clear the current selection with ,<space>
       { key = "<leader><space>"; action = ":noh<CR>"; mode = "n"; }
       # Disable the arrow keys
-      { key = "<up>"; action = "<nop>";  mode = "n"; }
+      { key = "<up>"; action = "<nop>"; mode = "n"; }
       { key = "<down>"; action = "<nop>"; mode = "n"; }
       { key = "<left>"; action = "<nop>"; mode = "n"; }
       { key = "<right>"; action = "<nop>"; mode = "n"; }
@@ -70,8 +70,8 @@
       swapfile = false;
 
       # Ignore case when searching, unless I mix case
-      ignorecase  =  true;
-      smartcase  =  true;
+      ignorecase = true;
+      smartcase = true;
 
       # Search incrementally
       incsearch = true;
@@ -85,7 +85,7 @@
       # Highlight current column and 101st column as a marker
       cursorcolumn = true;
       textwidth = 100;
-      colorcolumn="+1";
+      colorcolumn = "+1";
 
       # Use 4 spaces instead of tabs, round to the nearest 4 spaces
       tabstop = 4;

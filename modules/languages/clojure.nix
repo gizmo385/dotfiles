@@ -14,25 +14,25 @@ let
     };
   };
 in
-  {
-    config = mkIf clojure {
-      # TODO: Add autocmds for rainbow parenthesis
-      home.packages = [ pkgs.leiningen ];
-      programs.nixvim = {
-        plugins = {
-          lsp.servers.clojure_lsp.enable = true;
-          treesitter = {
-            settings.ensure_installed = ["clojure"];
-          };
+{
+  config = mkIf clojure {
+    # TODO: Add autocmds for rainbow parenthesis
+    home.packages = [ pkgs.leiningen ];
+    programs.nixvim = {
+      plugins = {
+        lsp.servers.clojure_lsp.enable = true;
+        treesitter = {
+          settings.ensure_installed = [ "clojure" ];
         };
-
-        extraPlugins = with pkgs.vimPlugins; [
-          vim-clojure-highlight
-          vim-clojure-static
-          vim-fireplace
-          rainbow_parentheses-vim
-          paredit
-        ];
       };
+
+      extraPlugins = with pkgs.vimPlugins; [
+        vim-clojure-highlight
+        vim-clojure-static
+        vim-fireplace
+        rainbow_parentheses-vim
+        paredit
+      ];
     };
-  }
+  };
+}

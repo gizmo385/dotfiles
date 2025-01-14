@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 
-let 
+let
   inherit (lib) mkIf;
   inherit (config.gizmo.languages) javascript;
 in
