@@ -27,6 +27,13 @@ in
       };
     };
 
+    programs.zsh.initExtra = ''
+      if [ -e $HOME/.anthropic_api_key ]
+      then
+          export ANTHROPIC_API_KEY="$(cat $HOME/.anthropic_api_key)"
+      fi
+    '';
+
 
     # Disable oh-my-zsh git prompt statuses because they're slow on the monorepo
     programs.git.extraConfig = {
@@ -38,12 +45,15 @@ in
 
     programs.nixvim = {
       # Enable some LSPs for I only care about at work
-      plugins.lsp.servers = {
-        bashls.enable = true;
-        terraformls.enable = true;
-        dockerls.enable = true;
-        docker_compose_language_service.enable = true;
-        elixirls.enable = true;
+      plugins = {
+        avante.enable = true;
+        lsp.servers = {
+          bashls.enable = true;
+          terraformls.enable = true;
+          dockerls.enable = true;
+          docker_compose_language_service.enable = true;
+          elixirls.enable = true;
+        };
       };
 
       extraPlugins = [ codeowners ];

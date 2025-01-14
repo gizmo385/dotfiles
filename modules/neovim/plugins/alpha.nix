@@ -51,11 +51,6 @@ in
   config = {
     keymaps = [
       {
-        key = "<leader>a";
-        action = ":Alpha<CR>";
-        mode = "n";
-      }
-      {
         key = "<C-a>";
         action = ":Alpha<CR>";
         mode = "n";
