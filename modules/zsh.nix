@@ -60,6 +60,10 @@
 
         # Replace vim with neovim
         vim = "nvim";
+
+        # Replace the tops with btop
+        htop = "btop";
+        top = "btop";
       };
     };
 

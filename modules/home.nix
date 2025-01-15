@@ -72,6 +72,14 @@ in
       fd.enable = true; # Alternative to find
       eza.enable = true; # Alternative to ls
       fzf.enable = true; # Fuzzy file finder
+
+      # Better top
+      btop = {
+        enable = true;
+        settings = {
+          color_theme = "gruvbox_dark";
+        };
+      };
     };
 
     news.display = "silent";
