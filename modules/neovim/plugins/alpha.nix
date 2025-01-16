@@ -2,10 +2,6 @@
 
 let
   _normalTileset = {
-    openWiki = "";
-    openDiary = "";
-    newDiaryEntry = "✎";
-    searchWiki = "";
     newFile = "";
     findFile = "";
     search = "";
@@ -14,10 +10,6 @@ let
     merge = "↪";
   };
   nerdfontTileset = {
-    openWiki = "󱉟 ";
-    openDiary = "󰂺 ";
-    newDiaryEntry = "✎";
-    searchWiki = "󰺄 ";
     newFile = " ";
     findFile = "󰩉 ";
     search = " ";
@@ -113,23 +105,6 @@ in
           {
             type = "padding";
             val = 2;
-          }
-          {
-            type = "group";
-            val = [
-              {
-                opts = {
-                  hl = "Keyword";
-                  position = "center";
-                };
-                type = "text";
-                val = "Wiki";
-              }
-              (mkButton "w" ":VimwikiIndex<CR>" "${tileset.openWiki} > Open Wiki")
-              (mkButton "d" ":VimwikiDiaryIndex<cr>:VimwikiDiaryGenerateLinks<cr>" "${tileset.openDiary} > Open Diary")
-              (mkButton "n" ":VimwikiMakeDiaryNote<cr>" "${tileset.newDiaryEntry}  > New Diary Entry")
-              (mkButton "s" "<CMD>lua require('telescope').extensions.vimwiki.live_grep()<cr>" "${tileset.searchWiki} > Search Wiki")
-            ];
           }
           {
             type = "padding";
