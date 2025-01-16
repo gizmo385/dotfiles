@@ -9,6 +9,5 @@
     ./nvim-tree.nix
     ./telescope.nix
     ./treesitter.nix
-    ./vimwiki.nix
   ];
 }
