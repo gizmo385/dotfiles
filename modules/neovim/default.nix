@@ -41,6 +41,13 @@
       nix.enable = true;
       airline.enable = true;
       web-devicons.enable = true;
+      markview = {
+        enable = true;
+        lazyLoad.enable = false;
+        settings = {
+          highlight.enable = true;
+        };
+      };
     };
 
     extraPlugins = with pkgs.vimPlugins; [
