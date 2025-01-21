@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  home.packages = [ pkgs.gh pkgs.lazygit ];
+  home.packages = [ pkgs.gh ];
   programs = {
     git = {
       enable = true;

@@ -21,6 +21,7 @@ in
     ./joplin.nix
     ./languages
     ./lazy_github.nix
+    ./lazygit.nix
     ./options.nix
     ./work.nix
     ./zsh.nix
