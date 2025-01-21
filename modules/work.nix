@@ -27,12 +27,17 @@ in
       };
     };
 
-    programs.zsh.initExtra = ''
+    programs = {
+      zsh.initExtra = ''
       if [ -e $HOME/.anthropic_api_key ]
       then
           export ANTHROPIC_API_KEY="$(cat $HOME/.anthropic_api_key)"
       fi
-    '';
+      '';
+      lazygit.settings = {
+        git.branchPrefix = "gizmo/";
+      };
+    };
 
 
     # Disable oh-my-zsh git prompt statuses because they're slow on the monorepo
