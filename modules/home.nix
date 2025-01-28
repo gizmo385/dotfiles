@@ -56,6 +56,8 @@ in
         pkgs.tldr
         # Tool for parsing YAML output (jq but for YAML)
         pkgs.yq
+        # TUI for interacting with Docker
+        pkgs.lazydocker
       ];
     };
 

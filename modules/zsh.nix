@@ -64,6 +64,9 @@
         # Replace the tops with btop
         htop = "btop";
         top = "btop";
+
+        # Alias for LazyDocker
+        lzd = "lazydocker";
       };
     };
 
