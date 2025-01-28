@@ -19,6 +19,7 @@
             gd = { action = "definition"; };
             gi = { action = "implementation"; };
             gt = { action = "type_definition"; };
+            gr = { action = "references"; };
             gT = { action = "type_definition"; };
             K = { action = "hover"; };
             "<leader>lr" = { action = "rename"; };
