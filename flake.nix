@@ -64,6 +64,7 @@
         "default" = defaultConfiguration;
         "docker" = defaultConfiguration;
         "gizmo-desktop" = defaultConfiguration;
+        "alpenglow" = defaultConfiguration;
 
         # Linux desktop
         "gizmonix" = home-manager.lib.homeManagerConfiguration {
