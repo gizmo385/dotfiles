@@ -64,13 +64,19 @@
         "default" = defaultConfiguration;
         "docker" = defaultConfiguration;
         "gizmo-desktop" = defaultConfiguration;
-        "alpenglow" = defaultConfiguration;
 
         # Linux desktop
         "gizmonix" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [ ./options/gizmonix.nix ./modules/home.nix ];
+        };
+
+        # Home Server
+        "alpenglow" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./options/alpenglow.nix ./modules/home.nix ];
         };
 
         # Remote development environments
