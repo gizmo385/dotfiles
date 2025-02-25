@@ -23,6 +23,8 @@
             gT = { action = "type_definition"; };
             K = { action = "hover"; };
             "<leader>lr" = { action = "rename"; };
+            "<leader>la" = { action = "code_action"; };
+            "<leader>ca" = { action = "code_action"; };
           };
 
           diagnostic = {
