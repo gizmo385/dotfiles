@@ -45,6 +45,8 @@ if [[ -z "${NIX_SOURCE_SCRIPT}" ]]; then
     find_nix_install
 fi
 
+. $NIX_SOURCE_SCRIPT
+
 # Copy some configs over
 mkdir -p "$HOME/.config/home-manager"
 mkdir -p "$HOME/.config/nix"
