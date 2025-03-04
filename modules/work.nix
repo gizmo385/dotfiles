@@ -12,6 +12,15 @@ let
       rev = "ff6d2ad447d17f5c7eaf64fb99a77d1afaa02eda";
     };
   };
+  
+  img-clip = pkgs.vimUtils.buildVimPlugin {
+    name = "HakonHarnes/img-clip.nvim";
+    src = builtins.fetchGit {
+      url = "git@github.com:HakonHarnes/img-clip.nvim.git";
+      ref = "refs/heads/main";
+      rev = "24c13df08e3fe66624bed5350a2a780f77f1f65b";
+    };
+  };
 in
 {
   config = mkIf work {
@@ -51,7 +60,12 @@ in
     programs.nixvim = {
       # Enable some LSPs for I only care about at work
       plugins = {
-        avante.enable = true;
+        avante = {
+          enable = true;
+          settings = {
+            model = "claude-3-7-20250219";
+          };
+        };
         lsp.servers = {
           bashls.enable = true;
           terraformls.enable = true;
@@ -61,7 +75,7 @@ in
         };
       };
 
-      extraPlugins = [ codeowners ];
+      extraPlugins = [ codeowners img-clip ];
 
       keymaps = [
         {
