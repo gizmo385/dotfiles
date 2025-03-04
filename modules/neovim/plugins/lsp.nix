@@ -21,7 +21,8 @@
             gt = { action = "type_definition"; };
             gr = { action = "references"; };
             gT = { action = "type_definition"; };
-            K = { action = "hover"; };
+            K =  { action = "hover"; };
+            ca = { action = "code_action"; };
             "<leader>lr" = { action = "rename"; };
             "<leader>la" = { action = "code_action"; };
             "<leader>ca" = { action = "code_action"; };
