@@ -63,7 +63,9 @@ in
         avante = {
           enable = true;
           settings = {
-            model = "claude-3-7-20250219";
+            claude = {
+              model = "claude-3-7-sonnet-20250219";
+            };
           };
         };
         lsp.servers = {
