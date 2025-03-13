@@ -34,7 +34,7 @@
       { key = "<C-l>"; action = "<C-w>l"; mode = "n"; }
       # Change macro start bindings
       { key = "q"; action = "<Nop>"; mode = "n"; }
-      { key = "\""; action = "q"; mode = "n"; }
+      { key = "Q"; action = "q"; mode = "n"; }
     ];
 
     plugins = {
