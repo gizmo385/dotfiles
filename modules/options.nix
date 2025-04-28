@@ -50,10 +50,17 @@ in
         description = "Enable Javascript language tooling and plugins";
       };
 
-      nix.lsp = mkOption {
-        type = types.bool;
-        default = true;
-        description = "Enable the nix LSP tooling";
+      nix = {
+        lsp = mkOption {
+          type = types.bool;
+          default = true;
+          description = "Enable the nix LSP tooling";
+        };
+        formatter = mkOption {
+          type = types.bool;
+          default = true;
+          description = "Whether to install the formatter";
+        };
       };
 
       python = {
