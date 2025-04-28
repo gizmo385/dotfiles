@@ -50,6 +50,7 @@ in
       };
 
       nixvim = {
+        extraPlugins = [ codeowners ];
         # Enable some LSPs for I only care about at work
         plugins = {
           codecompanion = {
