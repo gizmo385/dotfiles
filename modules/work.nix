@@ -82,7 +82,7 @@ in
 
         autoCmd = [
           {
-            command = ":setlocal tabstop=5 shiftwidth=5";
+            command = ":setlocal expandtab tabstop=4 shiftwidth=4";
             event = [
               "BufEnter"
             ];
