@@ -80,6 +80,20 @@ in
           };
         };
 
+        autoCmd = [
+          {
+            command = ":set expandtab tabstop=5 shiftwidth=5;";
+            event = [
+              "BufEnter"
+            ];
+            pattern = [
+              "*.bzl"
+              "*.bazel"
+              "BUILD"
+            ];
+          }
+        ];
+
         keymaps = [
           {
             key = "<leader>co";
