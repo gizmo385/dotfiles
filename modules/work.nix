@@ -13,7 +13,7 @@ let
     };
   };
 in
-  {
+{
   config = mkIf work {
     home = {
       packages = [
@@ -34,12 +34,17 @@ in
       };
 
 
-      zsh.initContent = ''
-      if [ -e $HOME/.anthropic_api_key ]
-      then
-          export ANTHROPIC_API_KEY="$(cat $HOME/.anthropic_api_key)"
-      fi
-      '';
+      zsh = {
+        initContent = ''
+          if [ -e $HOME/.anthropic_api_key ]
+          then
+              export ANTHROPIC_API_KEY="$(cat $HOME/.anthropic_api_key)"
+          fi
+        '';
+        sessionVariables = {
+          LC_ALL = "en_US.UTF-8";
+        };
+      };
 
       # Disable oh-my-zsh git prompt statuses because they're slow on the monorepo
       git.extraConfig = {
