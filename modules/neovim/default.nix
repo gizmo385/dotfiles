@@ -5,7 +5,9 @@
   config = {
     enable = true;
 
-    colorschemes.kanagawa.enable = true;
+    colorschemes.bamboo = {
+      enable = true;
+    };
 
     globals.mapleader = ",";
     keymaps = [
