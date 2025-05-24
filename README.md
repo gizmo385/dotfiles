@@ -3,12 +3,14 @@ Gizmo's Dotfiles
 
 Configurations for my local and remote development environments.
 
-**Neovim:**
-![screenshot of my neovim startup](./assets/neovim.png)
-![editing screenshot](./assets/neovim-editing.png)
-
 **Terminal**
 ![screenshot of my terminal](./assets/terminal.png)
+
+**Neovim:**
+![Neovim startup screen](./assets/VimHomescreen.png)
+![Neovim editing](./assets/VimEditingFile.png)
+![Neovim LazyGit integration](./assets/VimLazyGit.png)
+![Neovim LazyGithub integration](./assets/VimLazyGithub.png)
 
 # Try them out!
 
