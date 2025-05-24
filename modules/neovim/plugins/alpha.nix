@@ -94,12 +94,13 @@ in
             };
             type = "text";
             val = [
-              " ██████╗ ██╗███████╗███╗   ███╗ ██████╗ ██████╗  █████╗ ███████╗"
-              "██╔════╝ ██║╚══███╔╝████╗ ████║██╔═══██╗╚════██╗██╔══██╗██╔════╝"
-              "██║  ███╗██║  ███╔╝ ██╔████╔██║██║   ██║ █████╔╝╚█████╔╝███████╗"
-              "██║   ██║██║ ███╔╝  ██║╚██╔╝██║██║   ██║ ╚═══██╗██╔══██╗╚════██║"
-              "╚██████╔╝██║███████╗██║ ╚═╝ ██║╚██████╔╝██████╔╝╚█████╔╝███████║"
-              " ╚═════╝ ╚═╝╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚═════╝  ╚════╝ ╚══════╝"
+              # Generated via https://patorjk.com/software/taag/#p=testall&f=Shaded%20Blocky&t=gizmo.codes
+              " ██████╗ ██╗███████╗███╗   ███╗ ██████╗     ██████╗ ██████╗ ██████╗ ███████╗███████╗"
+              "██╔════╝ ██║╚══███╔╝████╗ ████║██╔═══██╗   ██╔════╝██╔═══██╗██╔══██╗██╔════╝██╔════╝"
+              "██║  ███╗██║  ███╔╝ ██╔████╔██║██║   ██║   ██║     ██║   ██║██║  ██║█████╗  ███████╗"
+              "██║   ██║██║ ███╔╝  ██║╚██╔╝██║██║   ██║   ██║     ██║   ██║██║  ██║██╔══╝  ╚════██║"
+              "╚██████╔╝██║███████╗██║ ╚═╝ ██║╚██████╔╝██╗╚██████╗╚██████╔╝██████╔╝███████╗███████║"
+              " ╚═════╝ ╚═╝╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚═╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚══════╝"
             ];
           }
           {
@@ -122,9 +123,13 @@ in
                 val = "Commands";
               }
               (mkButton "e" ":ene<CR>" "${tileset.newFile} > New file")
-              (mkButton "f" "<CMD>lua require('telescope.builtin').find_files()<CR>" "${tileset.findFile} > Find File")
+              (mkButton "f" "<CMD>lua require('telescope.builtin').find_files()<CR>"
+                "${tileset.findFile} > Find File"
+              )
               (mkButton "/" "<CMD>lua require('telescope.builtin').live_grep()<CR>" "${tileset.search} > Search")
-              (mkButton "r" "<CMD>lua require('telescope.builtin').oldfiles()<CR>" "${tileset.recentFiles}  > Recent")
+              (mkButton "r" "<CMD>lua require('telescope.builtin').oldfiles()<CR>"
+                "${tileset.recentFiles}  > Recent"
+              )
               (mkButton "q" ":qa<CR>" "${tileset.quit} > Quit")
             ];
           }
