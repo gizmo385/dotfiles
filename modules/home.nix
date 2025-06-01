@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, inputs
-, ...
+{
+  config,
+  pkgs,
+  inputs,
+  ...
 }:
 
 let
@@ -15,6 +16,7 @@ in
 {
   imports = [
     nixvim.homeManagerModules.nixvim
+    ./ai.nix
     ./fonts.nix
     ./git.nix
     ./graphical.nix

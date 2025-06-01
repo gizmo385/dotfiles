@@ -1,5 +1,6 @@
-{ lib
-, ...
+{
+  lib,
+  ...
 }:
 
 let
@@ -17,6 +18,12 @@ in
       type = types.bool;
       default = false;
       description = "Enable work configs";
+    };
+
+    ai = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable AI companion plugins";
     };
 
     graphical = mkOption {

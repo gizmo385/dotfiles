@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   inherit (lib) mkIf;
@@ -20,7 +25,6 @@ in
         # Tool for managing k8s contexts and namespaces
         pkgs.kubectx
         pkgs.docker-compose
-        pkgs.claude-code
       ];
       sessionVariables = {
         # Used by Clyde to install the updated nix version
@@ -33,14 +37,7 @@ in
         git.branchPrefix = "gizmo/";
       };
 
-
       zsh = {
-        initContent = ''
-          if [ -e $HOME/.anthropic_api_key ]
-          then
-              export ANTHROPIC_API_KEY="$(cat $HOME/.anthropic_api_key)"
-          fi
-        '';
         sessionVariables = {
           LC_ALL = "en_US.UTF-8";
         };
@@ -58,23 +55,6 @@ in
         extraPlugins = [ codeowners ];
         # Enable some LSPs for I only care about at work
         plugins = {
-          codecompanion = {
-            enable = true;
-            settings = {
-              strategies = {
-                agent = {
-                  adapter = "anthropic";
-                };
-                chat = {
-                  adapter = "anthropic";
-                };
-                inline = {
-                  adapter = "anthropic";
-                };
-              };
-            };
-          };
-
           lsp.servers = {
             bashls.enable = true;
             terraformls.enable = true;
@@ -120,21 +100,8 @@ in
             action = ":FloatermNew --width=0.9 --height=0.9 clyde tui<CR>";
             mode = "n";
           }
-
-          {
-            key = "<leader>aa";
-            action = ":CodeCompanionChat Toggle<CR>";
-            mode = "n";
-          }
-
         ];
       };
     };
-
-
-    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      "claude-code"
-    ];
-
   };
 }
