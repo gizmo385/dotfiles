@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
   inherit (lib.lists) optionals;
@@ -9,7 +14,10 @@ in
     home = {
       packages = builtins.concatLists [
         # Install the cargo toolchain
-        (optionals rust.toolchain [ pkgs.cargo ])
+        (optionals rust.toolchain [
+          pkgs.cargo
+          pkgs.rustc
+        ])
         # Install ra-multiplex, used for the LSP setup
         (optionals rust.toolchain [ pkgs.ra-multiplex ])
       ];
