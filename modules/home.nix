@@ -60,6 +60,8 @@ in
         pkgs.yq
         # TUI for interacting with Docker
         pkgs.lazydocker
+        # CLI recording tool
+        pkgs.asciinema_3
       ];
     };
 
