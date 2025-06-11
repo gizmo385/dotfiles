@@ -17,6 +17,7 @@ in
         (optionals rust.toolchain [
           pkgs.cargo
           pkgs.rustc
+          pkgs.rust-analyzer
         ])
         # Install ra-multiplex, used for the LSP setup
         (optionals rust.toolchain [ pkgs.ra-multiplex ])
