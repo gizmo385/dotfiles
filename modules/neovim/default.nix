@@ -118,7 +118,6 @@
 
     plugins = {
       nix.enable = true;
-      lualine.enable = true;
       web-devicons.enable = true;
       markview = {
         enable = true;
@@ -126,6 +125,10 @@
         settings = {
           highlight.enable = true;
         };
+      };
+      lualine = {
+        enable = true;
+        settings.extensions = [ "avante" ];
       };
     };
 
