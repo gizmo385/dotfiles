@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
+{ config
+, pkgs
+, inputs
+, ...
 }:
 
 let
@@ -39,6 +38,16 @@ in
           source = ../scripts;
           target = ".scripts";
           recursive = true;
+        };
+
+        pr_template = {
+          target = "pr_template.md";
+          text = ''
+            # What's changing?
+
+            # Why is it changing?
+
+          '';
         };
 
         rgignore = {
