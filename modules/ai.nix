@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 
 let
@@ -32,9 +31,13 @@ in
           avante = {
             enable = true;
             settings = {
-              model = "claude-3-5-sonnet-20240620";
+              model = "claude-3-7-sonnet-20250219";
+              behaviour = {
+                enable_cursor_planning_mode = true;
+              };
             };
           };
+          lualine.settings.extensions = [ "avante" ];
         };
       };
     };
