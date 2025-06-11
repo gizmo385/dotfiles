@@ -12,36 +12,113 @@
     globals.mapleader = ",";
     keymaps = [
       # Use ; for starting commands
-      { key = ";"; action = ":"; }
+      {
+        key = ";";
+        action = ":";
+      }
       # Use regex searches
-      { key = "/"; action = "/\\v"; mode = [ "n" "v" ]; }
-      { key = "\\"; action = ":%s/\\v"; mode = [ "n" "v" ]; }
+      {
+        key = "/";
+        action = "/\\v";
+        mode = [
+          "n"
+          "v"
+        ];
+      }
+      {
+        key = "\\";
+        action = ":%s/\\v";
+        mode = [
+          "n"
+          "v"
+        ];
+      }
       # Clear the current selection with ,<space>
-      { key = "<leader><space>"; action = ":noh<CR>"; mode = "n"; }
+      {
+        key = "<leader><space>";
+        action = ":noh<CR>";
+        mode = "n";
+      }
       # Disable the arrow keys
-      { key = "<up>"; action = "<nop>"; mode = "n"; }
-      { key = "<down>"; action = "<nop>"; mode = "n"; }
-      { key = "<left>"; action = "<nop>"; mode = "n"; }
-      { key = "<right>"; action = "<nop>"; mode = "n"; }
+      {
+        key = "<up>";
+        action = "<nop>";
+        mode = "n";
+      }
+      {
+        key = "<down>";
+        action = "<nop>";
+        mode = "n";
+      }
+      {
+        key = "<left>";
+        action = "<nop>";
+        mode = "n";
+      }
+      {
+        key = "<right>";
+        action = "<nop>";
+        mode = "n";
+      }
       # Use editor lines, not global lines
-      { key = "j"; action = "gj"; mode = "n"; }
-      { key = "k"; action = "gk"; mode = "n"; }
+      {
+        key = "j";
+        action = "gj";
+        mode = "n";
+      }
+      {
+        key = "k";
+        action = "gk";
+        mode = "n";
+      }
       # Use jj to exit from insert mode
-      { key = "jj"; action = "<ESC>"; mode = "i"; }
-      { key = "JJ"; action = "<ESC>"; mode = "i"; }
+      {
+        key = "jj";
+        action = "<ESC>";
+        mode = "i";
+      }
+      {
+        key = "JJ";
+        action = "<ESC>";
+        mode = "i";
+      }
       # Better window movement
-      { key = "<C-h>"; action = "<C-w>h"; mode = "n"; }
-      { key = "<C-j>"; action = "<C-w>j"; mode = "n"; }
-      { key = "<C-k>"; action = "<C-w>k"; mode = "n"; }
-      { key = "<C-l>"; action = "<C-w>l"; mode = "n"; }
+      {
+        key = "<C-h>";
+        action = "<C-w>h";
+        mode = "n";
+      }
+      {
+        key = "<C-j>";
+        action = "<C-w>j";
+        mode = "n";
+      }
+      {
+        key = "<C-k>";
+        action = "<C-w>k";
+        mode = "n";
+      }
+      {
+        key = "<C-l>";
+        action = "<C-w>l";
+        mode = "n";
+      }
       # Change macro start bindings
-      { key = "q"; action = "<Nop>"; mode = "n"; }
-      { key = "Q"; action = "q"; mode = "n"; }
+      {
+        key = "q";
+        action = "<Nop>";
+        mode = "n";
+      }
+      {
+        key = "Q";
+        action = "q";
+        mode = "n";
+      }
     ];
 
     plugins = {
       nix.enable = true;
-      airline.enable = true;
+      lualine.enable = true;
       web-devicons.enable = true;
       markview = {
         enable = true;
