@@ -8,6 +8,18 @@
         enable = true;
       };
 
+      initContent = ''
+        # Check if FLOATERM is set
+        if [[ -n "$FLOATERM" ]]; then
+          export EDITOR="floaterm"
+          alias vim="floaterm"
+          alias open="floaterm"
+        else
+          # Default to neovim
+          alias vim="nvim"
+        fi
+      '';
+
       oh-my-zsh = {
         enable = true;
         plugins = [ "gitfast" ];
@@ -57,9 +69,6 @@
 
         # Replace cat with bat
         cat = "bat";
-
-        # Replace vim with neovim
-        vim = "nvim";
 
         # Replace the tops with btop
         htop = "btop";
