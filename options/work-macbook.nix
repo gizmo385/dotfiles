@@ -5,6 +5,11 @@
     username = "chrischapline";
     work = true;
 
+    ai = {
+      avantePlugin = true;
+      claudeCodePlugin = false;
+    };
+
     languages = {
       setupClint = true;
       python.interpreter = false;

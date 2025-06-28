@@ -5,6 +5,11 @@
     username = "discord";
     work = true;
 
+    ai = {
+      avantePlugin = true;
+      claudeCodePlugin = false;
+    };
+
     languages = {
       setupClint = true;
       clojure = false;

@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 
 let
@@ -9,7 +10,7 @@ let
   inherit (config.gizmo) ai;
 in
 {
-  config = mkIf ai {
+  config = mkIf ai.enable {
     home = {
       packages = [ pkgs.claude-code ];
     };
@@ -29,7 +30,7 @@ in
         # Enable some LSPs for I only care about at work
         plugins = {
           avante = {
-            enable = true;
+            enable = ai.avantePlugin;
             settings = {
               model = "claude-3-7-sonnet-20250219";
               behaviour = {
@@ -39,6 +40,35 @@ in
           };
           lualine.settings.extensions = [ "avante" ];
         };
+
+        extraPlugins = mkIf ai.claudeCodePlugin [
+          (pkgs.vimUtils.buildVimPlugin {
+            name = "claude-code.nvim";
+            src = pkgs.fetchFromGitHub {
+              owner = "greggh";
+              repo = "claude-code.nvim";
+              rev = "main";
+              sha256 = "sha256-jKWm3lN5nyZ1BsIKMFt4EQhb0n+iyEyOw79Rj/A3yZI=";
+            };
+          })
+        ];
+
+        keymaps = mkIf ai.claudeCodePlugin [
+          {
+            key = "<leader>aa";
+            action = ":ClaudeCode<CR>";
+            mode = "n";
+            options.silent = true;
+          }
+        ];
+
+        extraConfigLua = mkIf ai.claudeCodePlugin ''
+          require("claude-code").setup({
+            window = {
+              position = "rightbelow vsplit"
+            }
+          })
+        '';
       };
     };
 
