@@ -11,6 +11,7 @@
     };
 
     languages = {
+      c = false;
       setupClint = true;
       python.interpreter = false;
       python.linters.pyright = false;

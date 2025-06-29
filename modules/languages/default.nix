@@ -1,6 +1,7 @@
 {
   imports = [
     ./all.nix
+    ./c.nix
     ./clojure.nix
     ./javascript.nix
     ./nix.nix

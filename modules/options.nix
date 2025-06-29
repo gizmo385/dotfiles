@@ -53,6 +53,12 @@ in
     };
 
     languages = {
+      c = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable the installation of gcc";
+      };
+
       setupClint = mkOption {
         type = types.bool;
         default = false;

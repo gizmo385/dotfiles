@@ -11,6 +11,7 @@
     };
 
     languages = {
+      c = false;
       setupClint = true;
       clojure = false;
 
