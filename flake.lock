@@ -39,6 +39,29 @@
         "type": "github"
       }
     },
+    "gh-lazy": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1751170980,
+        "narHash": "sha256-KlYnZlEhSSXsTu3sZPXzj/BJoinB6MOsq1OFTl2wo2c=",
+        "owner": "gizmo385",
+        "repo": "gh-lazy",
+        "rev": "a9ca32874291fe6b44e0eb24f09f81614e8fc08f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gizmo385",
+        "repo": "gh-lazy",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -154,6 +177,7 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
+        "gh-lazy": "gh-lazy",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",

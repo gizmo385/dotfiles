@@ -25,6 +25,13 @@
       inputs.nuschtosSearch.follows = "nuschtosSearch";
     };
 
+    # Custom Github terminal UI that I've built
+    gh-lazy = {
+      url = "github:gizmo385/gh-lazy";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+
   };
 
   outputs =
