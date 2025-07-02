@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 
 let
@@ -13,6 +12,13 @@ in
   config = mkIf ai.enable {
     home = {
       packages = [ pkgs.claude-code ];
+
+      file = {
+        claude_md = {
+          source = ../configs/CLAUDE.md;
+          target = "CLAUDE.md";
+        };
+      };
     };
 
     programs = {
