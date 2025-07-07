@@ -46,7 +46,6 @@ in
         plugins = {
           lsp.servers = {
             bashls.enable = true;
-            terraformls.enable = true;
             dockerls.enable = true;
             docker_compose_language_service.enable = true;
             starlark_rust.enable = true;
