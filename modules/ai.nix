@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 
 let
@@ -53,8 +54,8 @@ in
             src = pkgs.fetchFromGitHub {
               owner = "greggh";
               repo = "claude-code.nvim";
-              rev = "main";
-              sha256 = "sha256-jKWm3lN5nyZ1BsIKMFt4EQhb0n+iyEyOw79Rj/A3yZI=";
+              rev = "c9a31e51069977edaad9560473b5d031fcc5d38b";
+              sha256 = "sha256-ZEIPutxhgyaAhq+fJw1lTO781IdjTXbjKy5yKgqSLjM";
             };
           })
         ];
