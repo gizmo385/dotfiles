@@ -7,12 +7,18 @@
 
 let
   inherit (lib) mkIf;
+  inherit (lib.lists) optionals;
   inherit (config.gizmo) ai;
+
+  opencodeCommand = "TERM=xterm-256color opencode";
 in
 {
   config = mkIf ai.enable {
     home = {
-      packages = [ pkgs.claude-code ];
+      packages = [
+        pkgs.claude-code
+        pkgs.opencode
+      ];
 
       file = {
         claude_md = {
@@ -60,13 +66,23 @@ in
           })
         ];
 
-        keymaps = mkIf ai.claudeCodePlugin [
-          {
-            key = "<leader>aa";
-            action = ":ClaudeCode<CR>";
-            mode = "n";
-            options.silent = true;
-          }
+        keymaps = builtins.concatLists [
+          (optionals ai.claudeCodePlugin [
+            {
+              key = "<leader>aa";
+              action = ":ClaudeCode<CR>";
+              mode = "n";
+              options.silent = true;
+            }
+          ])
+          [
+            {
+              key = "<leader>O";
+              action = ":FloatermNew --title=OpenCode --width=0.9 --height=0.95 ${opencodeCommand}<CR>";
+              mode = "n";
+              options.silent = true;
+            }
+          ]
         ];
 
         extraConfigLua = mkIf ai.claudeCodePlugin ''
