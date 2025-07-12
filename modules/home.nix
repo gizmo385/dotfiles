@@ -60,6 +60,7 @@ in
 
       sessionVariables = {
         EDITOR = "nvim";
+        PATH = "$HOME/.nix-profile/bin:$PATH";
       };
 
       packages = [
