@@ -28,20 +28,18 @@
     # Custom Github terminal UI that I've built
     gh-lazy = {
       url = "github:gizmo385/gh-lazy";
-      inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
 
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      nixvim,
-      home-manager,
-      flake-utils,
-      ...
+    { self
+    , nixpkgs
+    , nixvim
+    , home-manager
+    , flake-utils
+    , ...
     }@inputs:
     let
       inherit (self) outputs;
