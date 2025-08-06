@@ -57,6 +57,9 @@
 
         gmb = "git merge-base --fork-point origin/main HEAD";
 
+        # Vim Aliases
+        vi = "vim";
+
         # K8s aliases
         k = "kubectl";
         kx = "kubectx";
