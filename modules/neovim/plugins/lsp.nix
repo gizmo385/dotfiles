@@ -2,9 +2,15 @@
 
 {
   config = {
+
+    keymaps = [
+      { key = "<leader>d"; action = ":Trouble diagnostics toggle<CR>"; mode = "n"; }
+      { key = "<leader>t"; action = ":Trouble symbols toggle win.size=30<CR>"; mode = "n"; }
+    ];
     plugins = {
       lsp-format.enable = true;
       cmp-nvim-lsp.enable = true;
+      trouble.enable = true;
 
       lsp = {
         enable = true;
