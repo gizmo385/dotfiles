@@ -6,6 +6,12 @@
       enable = true;
       settings = {
         fetchAll = false;
+        git = {
+          paging = {
+            colorArg = "always";
+            pager = "delta --dark --paging=never";
+          };
+        };
         customCommands = [
           {
             key = "e";
