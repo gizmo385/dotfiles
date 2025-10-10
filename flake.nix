@@ -152,12 +152,22 @@
             packages = [ home-manager.packages.${system}.default ];
             shellHook = "nvim";
           };
-          setupDotfiles = pkgs.mkShell {
-            packages = setupPackages;
-            shellHook = ''
-              ${switchCommand}$(hostname -s)
-              exit
+        };
+
+        packages = {
+          setupDotfiles = pkgs.writeShellApplication {
+            name = "setup-dotfiles";
+            runtimeInputs = setupPackages;
+            text = ''
+              ${switchCommand}"$(hostname -s)" -b .backup
             '';
+          };
+        };
+
+        apps = {
+          setupDotfiles = {
+            type = "app";
+            program = "${self.packages.${system}.setupDotfiles}/bin/setup-dotfiles";
           };
         };
       }

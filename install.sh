@@ -55,4 +55,4 @@ mkdir -p "$HOME/.config/nix"
 ln -sf "${DOTFILES_DIR}/modules/home.nix" "${HOME}/.config/home-manager/home.nix"
 ln -sf "${DOTFILES_DIR}/configs/nix.conf" "${HOME}/.config/nix/nix.conf"
 
-USE_NEW_NIX=1 nix develop .#setupDotfiles
+USE_NEW_NIX=1 nix run .#setupDotfiles
