@@ -29,17 +29,19 @@
     gh-lazy = {
       url = "github:gizmo385/gh-lazy";
       inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , nixvim
-    , home-manager
-    , flake-utils
-    , ...
+    {
+      self,
+      nixpkgs,
+      nixvim,
+      home-manager,
+      flake-utils,
+      ...
     }@inputs:
     let
       inherit (self) outputs;
