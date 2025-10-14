@@ -68,6 +68,15 @@
           ./modules/home.nix
         ];
       };
+
+      workMacbook = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+        extraSpecialArgs = { inherit inputs outputs; };
+        modules = [
+          ./options/work-macbook.nix
+          ./modules/home.nix
+        ];
+      };
     in
     {
       # Standalone home-manager configuration entrypoint
@@ -115,14 +124,8 @@
         "gizmo-macbook" = macbookConfiguration;
 
         # Work laptop
-        "M1M-CChapline" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [
-            ./options/work-macbook.nix
-            ./modules/home.nix
-          ];
-        };
+        "M1M-CChapline" = workMacbook;
+        "M4M-CChapline" = workMacbook;
       };
     }
     // flake-utils.lib.eachDefaultSystem (
