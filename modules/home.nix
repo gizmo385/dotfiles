@@ -92,6 +92,12 @@ in
       eza.enable = true; # Alternative to ls
       fzf.enable = true; # Fuzzy file finder
 
+      # A better diff tool
+      delta = {
+        enable = true;
+        enableGitIntegration = true;
+      };
+
       # Better top
       btop = {
         enable = true;

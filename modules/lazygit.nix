@@ -26,6 +26,11 @@
         ];
       };
     };
+
+    zsh.shellAliases = {
+      lg = "lazygit";
+    };
+
     nixvim.keymaps = [{
       key = "<leader>g";
       action = ":FloatermNew --title=LazyGit --width=0.9 --height=0.95 lazygit<CR>";

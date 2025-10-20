@@ -34,7 +34,7 @@ in
       };
 
       # Disable oh-my-zsh git prompt statuses because they're slow on the monorepo
-      git.extraConfig = {
+      git.settings = {
         oh-my-zsh = {
           hide-status = 1;
           hide-dirty = 1;
