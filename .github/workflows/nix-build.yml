@@ -1,0 +1,42 @@
+name: Build Nix configurations
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches: ['main']
+
+jobs:
+  build-nix-configs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: |
+            experimental-features = nix-command flakes
+            accept-flake-config = true
+
+      - name: Setup Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Build x86_64-linux configurations
+        run: |
+          # Build the key Linux configurations
+          nix build .#homeConfigurations.docker.activationPackage --print-build-logs
+          nix build .#homeConfigurations.default.activationPackage --print-build-logs
+          nix build .#homeConfigurations.gizmonix.activationPackage --print-build-logs
+          nix build .#homeConfigurations.gizmo-desktop.activationPackage --print-build-logs
+          nix build .#homeConfigurations.alpenglow.activationPackage --print-build-logs
+          nix build .#homeConfigurations.gizmo-coder.activationPackage --print-build-logs
+
+      - name: Build summary
+        run: |
+          echo "✅ All configurations built successfully"
+          du -sh result*
