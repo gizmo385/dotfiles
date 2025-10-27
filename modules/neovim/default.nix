@@ -195,7 +195,6 @@
 
       # Misc settings
       ttyfast = true;
-      lazyredraw = true;
       wildmenu = true;
       mouse = "a";
     };
