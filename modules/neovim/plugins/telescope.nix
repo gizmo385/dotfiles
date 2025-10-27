@@ -5,7 +5,6 @@
     enable = true;
     extensions = {
       fzf-native.enable = true;
-      live-grep-args.enable = true;
     };
   };
 
@@ -18,7 +17,7 @@
     }
     {
       key = "<C-f>";
-      action = ":Telescope live_grep_args<cr>";
+      action = ":Telescope live_grep<cr>";
       mode = "n";
       options.silent = true;
     }
