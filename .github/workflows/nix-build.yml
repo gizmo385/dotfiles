@@ -39,11 +39,11 @@ jobs:
         run: |
           # Build the key Linux configurations
           nix build .#homeConfigurations.docker.activationPackage --print-build-logs
-          #nix build .#homeConfigurations.default.activationPackage --print-build-logs
-          #nix build .#homeConfigurations.gizmonix.activationPackage --print-build-logs
-          #nix build .#homeConfigurations.gizmo-desktop.activationPackage --print-build-logs
-          #nix build .#homeConfigurations.alpenglow.activationPackage --print-build-logs
-          #nix build .#homeConfigurations.gizmo-coder.activationPackage --print-build-logs
+          nix build .#homeConfigurations.default.activationPackage --print-build-logs
+          nix build .#homeConfigurations.gizmonix.activationPackage --print-build-logs
+          nix build .#homeConfigurations.gizmo-desktop.activationPackage --print-build-logs
+          nix build .#homeConfigurations.alpenglow.activationPackage --print-build-logs
+          nix build .#homeConfigurations.gizmo-coder.activationPackage --print-build-logs
 
       - name: Push to Attic cache
         run: |
