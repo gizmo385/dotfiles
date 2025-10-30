@@ -23,11 +23,11 @@ jobs:
             experimental-features = nix-command flakes
             accept-flake-config = true
 
-      - name: Connect to Tailscale
+      - name: Tailscale
         uses: tailscale/github-action@v4
         with:
-          authkey: ${{ secrets.TS_AUTH_KEY }}
-          statedir: /tmp/tailscale-state
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+
 
       - name: Setup Attic cache
         run: |
