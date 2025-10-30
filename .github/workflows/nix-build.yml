@@ -31,14 +31,9 @@ jobs:
 
       - name: Setup Attic cache
         run: |
-          # Install attic client
-          nix profile install github:zhaofengli/attic
-
-          # Login to attic cache
-          attic login ci ${{ secrets.ATTIC_ENDPOINT }} ${{ secrets.ATTIC_TOKEN }}
-
-          # Configure nix to use the cache
-          attic use ${{ secrets.ATTIC_CACHE_NAME }}
+          # Login to attic cache and configure nix to use it
+          nix shell github:zhaofengli/attic -c attic login ci ${{ secrets.ATTIC_ENDPOINT }} ${{ secrets.ATTIC_TOKEN }}
+          nix shell github:zhaofengli/attic -c attic use ${{ secrets.ATTIC_CACHE_NAME }}
 
       - name: Build x86_64-linux configurations
         run: |
@@ -53,7 +48,7 @@ jobs:
       - name: Push to Attic cache
         run: |
           # Push all built derivations to the cache
-          attic push ${{ secrets.ATTIC_CACHE_NAME }} result*
+          nix shell github:zhaofengli/attic -c attic push ${{ secrets.ATTIC_CACHE_NAME }} result*
 
       - name: Build summary
         run: |
