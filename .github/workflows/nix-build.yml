@@ -9,7 +9,7 @@ on:
     branches: ['main']
 
 jobs:
-  build-nix-configs:
+  build-linux-configs:
     runs-on: ubuntu-latest
 
     steps:
@@ -52,6 +52,49 @@ jobs:
 
       - name: Build summary
         run: |
-          echo "✅ All configurations built successfully"
+          echo "✅ All Linux configurations built successfully"
+          echo "📦 Pushed to Attic cache: ${{ secrets.ATTIC_CACHE_NAME }}"
+          du -sh result*
+
+  build-macos-configs:
+    runs-on: macos-14  # Apple Silicon runner
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: |
+            experimental-features = nix-command flakes
+            accept-flake-config = true
+
+      - name: Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+
+      - name: Setup Attic cache
+        run: |
+          # Login to attic cache and configure nix to use it
+          nix-shell -p attic-client --command "attic login ci ${{ secrets.ATTIC_ENDPOINT }} ${{ secrets.ATTIC_TOKEN }}"
+          nix-shell -p attic-client --command "attic use ${{ secrets.ATTIC_CACHE_NAME }}"
+
+      - name: Build aarch64-darwin configurations
+        run: |
+          # Build the macOS configurations
+          nix build .#homeConfigurations.gizmo-macbook.activationPackage --print-build-logs
+          nix build .#homeConfigurations.M1M-CChapline.activationPackage --print-build-logs
+          nix build .#homeConfigurations.M4M-CChapline.activationPackage --print-build-logs
+
+      - name: Push to Attic cache
+        run: |
+          # Push all built derivations to the cache
+          nix-shell -p attic-client --command "attic push ${{ secrets.ATTIC_CACHE_NAME }} result*"
+
+      - name: Build summary
+        run: |
+          echo "✅ All macOS configurations built successfully"
           echo "📦 Pushed to Attic cache: ${{ secrets.ATTIC_CACHE_NAME }}"
           du -sh result*
