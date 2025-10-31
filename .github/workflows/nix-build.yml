@@ -22,6 +22,8 @@ jobs:
           extra-conf: |
             experimental-features = nix-command flakes
             accept-flake-config = true
+            extra-substituters = https://attic.alpenglow.acbc.house/ci-cache
+            extra-trusted-public-keys = ci-cache:BXz8Qym/dtncWHsc5VWZY+Se/GCM3gfc1k/5IwRPV5o=
 
       - name: Tailscale
         uses: tailscale/github-action@v4
@@ -34,6 +36,9 @@ jobs:
           # Login to attic cache and configure nix to use it
           nix-shell -p attic-client --command "attic login ci ${{ secrets.ATTIC_ENDPOINT }} ${{ secrets.ATTIC_TOKEN }}"
           nix-shell -p attic-client --command "attic use ${{ secrets.ATTIC_CACHE_NAME }}"
+          # Verify the cache is configured as a substituter
+          echo "Configured substituters:"
+          nix show-config | grep substituters
 
       - name: Build x86_64-linux configurations
         run: |
@@ -69,6 +74,8 @@ jobs:
           extra-conf: |
             experimental-features = nix-command flakes
             accept-flake-config = true
+            extra-substituters = https://attic.alpenglow.acbc.house/ci-cache
+            extra-trusted-public-keys = ci-cache:BXz8Qym/dtncWHsc5VWZY+Se/GCM3gfc1k/5IwRPV5o=
 
       - name: Tailscale
         uses: tailscale/github-action@v4
@@ -80,6 +87,9 @@ jobs:
           # Login to attic cache and configure nix to use it
           nix-shell -p attic-client --command "attic login ci ${{ secrets.ATTIC_ENDPOINT }} ${{ secrets.ATTIC_TOKEN }}"
           nix-shell -p attic-client --command "attic use ${{ secrets.ATTIC_CACHE_NAME }}"
+          # Verify the cache is configured as a substituter
+          echo "Configured substituters:"
+          nix show-config | grep substituters
 
       - name: Build aarch64-darwin configurations
         run: |
