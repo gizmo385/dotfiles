@@ -1,0 +1,100 @@
+name: Build Nix configurations
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches: ['main']
+
+jobs:
+  build-linux-configs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: |
+            experimental-features = nix-command flakes
+            accept-flake-config = true
+
+      - name: Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+
+
+      - name: Setup Attic cache
+        run: |
+          # Login to attic cache and configure nix to use it
+          nix-shell -p attic-client --command "attic login ci ${{ secrets.ATTIC_ENDPOINT }} ${{ secrets.ATTIC_TOKEN }}"
+          nix-shell -p attic-client --command "attic use ${{ secrets.ATTIC_CACHE_NAME }}"
+
+      - name: Build x86_64-linux configurations
+        run: |
+          # Build the key Linux configurations
+          nix build .#homeConfigurations.docker.activationPackage --print-build-logs
+          nix build .#homeConfigurations.default.activationPackage --print-build-logs
+          nix build .#homeConfigurations.gizmonix.activationPackage --print-build-logs
+          nix build .#homeConfigurations.gizmo-desktop.activationPackage --print-build-logs
+          nix build .#homeConfigurations.alpenglow.activationPackage --print-build-logs
+          nix build .#homeConfigurations.gizmo-coder.activationPackage --print-build-logs
+
+      - name: Push to Attic cache
+        run: |
+          # Push all built derivations to the cache
+          nix-shell -p attic-client --command "attic push ${{ secrets.ATTIC_CACHE_NAME }} result*"
+
+      - name: Build summary
+        run: |
+          echo "✅ All Linux configurations built successfully"
+          echo "📦 Pushed to Attic cache: ${{ secrets.ATTIC_CACHE_NAME }}"
+          du -sh result*
+
+  build-macos-configs:
+    runs-on: macos-14  # Apple Silicon runner
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: |
+            experimental-features = nix-command flakes
+            accept-flake-config = true
+
+      - name: Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+
+      - name: Setup Attic cache
+        run: |
+          # Login to attic cache and configure nix to use it
+          nix-shell -p attic-client --command "attic login ci ${{ secrets.ATTIC_ENDPOINT }} ${{ secrets.ATTIC_TOKEN }}"
+          nix-shell -p attic-client --command "attic use ${{ secrets.ATTIC_CACHE_NAME }}"
+
+      - name: Build aarch64-darwin configurations
+        run: |
+          # Build the macOS configurations
+          nix build .#homeConfigurations.gizmo-macbook.activationPackage --print-build-logs
+          nix build .#homeConfigurations.M1M-CChapline.activationPackage --print-build-logs
+          nix build .#homeConfigurations.M4M-CChapline.activationPackage --print-build-logs
+
+      - name: Push to Attic cache
+        run: |
+          # Push all built derivations to the cache
+          nix-shell -p attic-client --command "attic push ${{ secrets.ATTIC_CACHE_NAME }} result*"
+
+      - name: Build summary
+        run: |
+          echo "✅ All macOS configurations built successfully"
+          echo "📦 Pushed to Attic cache: ${{ secrets.ATTIC_CACHE_NAME }}"
+          du -sh result*
