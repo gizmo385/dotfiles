@@ -13,3 +13,4 @@ dotfiles/.vim/plugged
 cli/venv
 configs/scripts/scripts
 result
+.claude
