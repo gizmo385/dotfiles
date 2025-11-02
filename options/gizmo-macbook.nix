@@ -8,8 +8,6 @@
         toolchain = true;
         lsp = true;
       };
-      python.linters.pylsp = false;
     };
-
   };
 }

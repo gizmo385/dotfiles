@@ -104,12 +104,6 @@ in
             description = "Enable ruff LSP";
           };
 
-          pylsp = mkOption {
-            type = types.bool;
-            default = true;
-            description = "Enable pylsp";
-          };
-
           pyright = mkOption {
             type = types.bool;
             default = true;

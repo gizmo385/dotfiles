@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
   inherit (lib.lists) optionals;
@@ -9,7 +14,10 @@ in
   config = {
     home.packages = builtins.concatLists [
       # Install some basic python tooling
-      [ pkgs.uv pkgs.ruff ]
+      [
+        pkgs.uv
+        pkgs.ruff
+      ]
       # Install the interpreter if desired
       (optionals python.interpreter [ pkgs.python3 ])
     ];
@@ -22,6 +30,20 @@ in
           pattern = [ "*.py" ];
           command = ":setlocal textwidth=120";
         }
+        {
+          event = [ "BufWritePre" ];
+          pattern = [ "*.py" ];
+          callback = {
+            __raw = ''
+              function()
+                vim.lsp.buf.code_action({
+                  context = { only = { "source.organizeImports" } },
+                  apply = true,
+                })
+              end
+            '';
+          };
+        }
       ];
 
       plugins = {
@@ -29,21 +51,16 @@ in
           settings.ensure_installed = [ "python" ];
         };
         lsp.servers = {
-          ruff.enable = python.linters.ruff;
+          ruff = {
+            enable = python.linters.ruff;
+            extraOptions = {
+              init_options.settings.args = [ "--select=I" ];
+            };
+          };
           pyright = {
             enable = python.linters.pyright;
             extraOptions = {
               disableOrganizeImports = !python.linters.ruff;
-            };
-          };
-          pylsp = {
-            enable = python.linters.pylsp;
-            settings.plugins = {
-              ruff = {
-                enabled = python.linters.ruff;
-                lineLength = 120;
-                format = [ "I" ];
-              };
             };
           };
         };
