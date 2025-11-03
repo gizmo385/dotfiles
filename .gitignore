@@ -14,3 +14,4 @@ cli/venv
 configs/scripts/scripts
 result
 .claude
+AGENTS.md
