@@ -7,10 +7,10 @@
       settings = {
         fetchAll = false;
         git = {
-          paging = {
+          pagers = [{
             colorArg = "always";
             pager = "delta --dark --paging=never";
-          };
+          }];
         };
         customCommands = [
           {
