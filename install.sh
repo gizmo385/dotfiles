@@ -53,6 +53,11 @@ mkdir -p "$HOME/.config/nix"
 
 # Ensure the configs exist
 ln -sf "${DOTFILES_DIR}/modules/home.nix" "${HOME}/.config/home-manager/home.nix"
-ln -sf "${DOTFILES_DIR}/configs/nix.conf" "${HOME}/.config/nix/nix.conf"
+
+if [ -z "$CODER" ]; then
+	ln -sf "${DOTFILES_DIR}/configs/nix.conf" "${HOME}/.config/nix/nix.conf"
+else
+	ln -sf "${DOTFILES_DIR}/configs/coder-nix.conf" "${HOME}/.config/nix/nix.conf"
+fi
 
 USE_NEW_NIX=1 nix run .#setupDotfiles
