@@ -7,6 +7,7 @@
     ./multicursors.nix
     ./nvim-tree.nix
     ./quicklinks.nix
+    ./quickscope.nix
     ./telescope.nix
     ./treesitter.nix
   ];
