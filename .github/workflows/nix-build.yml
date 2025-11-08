@@ -95,7 +95,6 @@ jobs:
         run: |
           # Build the macOS configurations
           nix build .#homeConfigurations.gizmo-macbook.activationPackage --print-build-logs
-          nix build .#homeConfigurations.M1M-CChapline.activationPackage --print-build-logs
           nix build .#homeConfigurations.M4M-CChapline.activationPackage --print-build-logs
 
       - name: Push to Attic cache

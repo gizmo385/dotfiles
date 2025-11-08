@@ -5,6 +5,12 @@
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Home manager
     home-manager = {
@@ -23,6 +29,7 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nuschtosSearch.follows = "nuschtosSearch";
+      inputs.flake-parts.follows = "flake-parts";
     };
 
     # Custom Github terminal UI that I've built
@@ -32,6 +39,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # A terminal multiplexer
+    tuios = {
+      url = "github:Gaurav-Gosain/tuios";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        treefmt-nix.follows = "treefmt-nix";
+      };
+    };
   };
 
   outputs =
@@ -46,7 +62,7 @@
     let
       inherit (self) outputs;
       defaultConfiguration = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = { inherit inputs outputs; };
         modules = [ ./modules/home.nix ];
       };
@@ -61,7 +77,7 @@
       };
 
       coderConfiguration = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = { inherit inputs outputs; };
         modules = [
           ./options/coder.nix
@@ -124,7 +140,6 @@
         "gizmo-macbook" = macbookConfiguration;
 
         # Work laptop
-        "M1M-CChapline" = workMacbook;
         "M4M-CChapline" = workMacbook;
       };
     }
@@ -135,7 +150,7 @@
         switchCommand = "${pkgs.home-manager}/bin/home-manager switch --flake .#";
         setupPackages = [
           home-manager.packages.${system}.default
-          pkgs.nixVersions.nix_2_28
+          pkgs.nixVersions.nix_2_31
           pkgs.git
         ];
         # This is, admittedly pretty gross. The current way that I'm configuring nixvim for home-manager
