@@ -20,7 +20,6 @@ in
     ./fonts.nix
     ./git.nix
     ./graphical.nix
-    ./joplin.nix
     ./languages
     ./lazy_github.nix
     ./lazygit.nix
