@@ -24,6 +24,7 @@ in
     ./lazy_github.nix
     ./lazygit.nix
     ./options.nix
+    ./toad.nix
     ./tuios.nix
     ./work.nix
     ./zsh.nix

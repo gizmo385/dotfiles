@@ -52,6 +52,12 @@ in
       description = "Setup fonts";
     };
 
+    toad = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Enable toad CLI wrapper";
+    };
+
     languages = {
       c = mkOption {
         type = types.bool;
