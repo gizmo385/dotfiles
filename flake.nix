@@ -166,15 +166,9 @@
         };
       in
       {
-        devShells = {
-          neovim = pkgs.mkShell {
-            buildInputs = [ nvim ];
-            packages = [ home-manager.packages.${system}.default ];
-            shellHook = "nvim";
-          };
-        };
-
         packages = {
+          neovim = nvim;
+          
           setupDotfiles = pkgs.writeShellApplication {
             name = "setup-dotfiles";
             runtimeInputs = setupPackages;
@@ -185,6 +179,11 @@
         };
 
         apps = {
+          neovim = {
+            type = "app";
+            program = "${nvim}/bin/nvim";
+          };
+
           setupDotfiles = {
             type = "app";
             program = "${self.packages.${system}.setupDotfiles}/bin/setup-dotfiles";
