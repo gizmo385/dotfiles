@@ -33,6 +33,8 @@ jobs:
         if: ${{ success() }}
         id: create-pull-request
         uses: peter-evans/create-pull-request@v7
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_SCOPED_TOKEN }}
         with:
           title: Automatic dotfile version updates
           body: |
