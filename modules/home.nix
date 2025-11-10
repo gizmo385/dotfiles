@@ -25,7 +25,6 @@ in
     ./lazygit.nix
     ./options.nix
     ./toad.nix
-    ./tuios.nix
     ./work.nix
     ./zsh.nix
   ];

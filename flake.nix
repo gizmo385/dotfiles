@@ -38,16 +38,6 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # A terminal multiplexer
-    tuios = {
-      url = "github:Gaurav-Gosain/tuios";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        treefmt-nix.follows = "treefmt-nix";
-      };
-    };
   };
 
   outputs =
