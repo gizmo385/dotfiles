@@ -34,7 +34,7 @@ jobs:
         id: create-pull-request
         uses: peter-evans/create-pull-request@v7
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.REPO_SCOPED_TOKEN }}
         with:
           title: Automatic dotfile version updates
           body: |
@@ -48,12 +48,6 @@ jobs:
           branch: automated/version-updates
           base: main
 
-      - name: Trigger nix-build workflow on PR branch
-        if: ${{ success() && steps.create-pull-request.outputs.pull-request-number }}
-        env:
-          GH_TOKEN: ${{ secrets.REPO_SCOPED_TOKEN }}
-        run: gh workflow run nix-build.yml --ref automated/version-updates
-
       - name: Enable auto-merge on PR
         if: ${{ success() && steps.create-pull-request.outputs.pull-request-number }}
         env:
@@ -64,7 +58,7 @@ jobs:
         if: ${{ success() && github.ref == 'refs/heads/main' }}
         uses: nobrayner/discord-webhook@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.REPO_SCOPED_TOKEN }}
           discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
           title: 'Updated dotfile version pins'
           description: 'Automerge on [the PR with the changes](${{ steps.create-pull-request.outputs.pull-request-url }}) has been enabled.'
@@ -73,7 +67,7 @@ jobs:
         if: ${{ failure() && github.ref == 'refs/heads/main' }}
         uses: nobrayner/discord-webhook@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.REPO_SCOPED_TOKEN }}
           discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
           title: 'Error while attempting to update pinned versions'
           description: 'There may be incompatibilities that need to be fixed.'
