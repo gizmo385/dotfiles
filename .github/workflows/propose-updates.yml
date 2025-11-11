@@ -51,13 +51,13 @@ jobs:
       - name: Trigger nix-build workflow on PR branch
         if: ${{ success() && steps.create-pull-request.outputs.pull-request-number }}
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.REPO_SCOPED_TOKEN }}
         run: gh workflow run nix-build.yml --ref automated/version-updates
 
       - name: Enable auto-merge on PR
         if: ${{ success() && steps.create-pull-request.outputs.pull-request-number }}
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.REPO_SCOPED_TOKEN }}
         run: gh pr merge --auto --squash ${{ steps.create-pull-request.outputs.pull-request-number }}
 
       - name: Notify about updated versions
@@ -76,5 +76,4 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
           title: 'Error while attempting to update pinned versions'
-          severity: error
           description: 'There may be incompatibilities that need to be fixed.'
