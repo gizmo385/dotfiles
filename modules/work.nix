@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 
 let
@@ -48,7 +49,7 @@ in
             bashls.enable = true;
             dockerls.enable = true;
             docker_compose_language_service.enable = true;
-            starlark_rust.enable = true;
+            starpls.enable = true;
             elixirls.enable = true;
           };
         };
