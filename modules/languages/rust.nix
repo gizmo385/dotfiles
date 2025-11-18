@@ -19,15 +19,7 @@ in
           pkgs.rustc
           pkgs.rust-analyzer
         ])
-        # Install ra-multiplex, used for the LSP setup
-        (optionals rust.toolchain [ pkgs.ra-multiplex ])
       ];
-      file = {
-        ra-multiplex-config = {
-          target = ".config/ra-multiplex/config.toml";
-          text = "instance_timeout = false";
-        };
-      };
     };
     # Setup nix tooling for rust
     programs = {
@@ -35,7 +27,6 @@ in
         lsp.servers = {
           rust_analyzer = {
             enable = rust.lsp;
-            cmd = [ "ra-multiplex.sh" ];
             installRustc = false;
             installCargo = false;
             onAttach.function = ''
