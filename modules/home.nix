@@ -35,12 +35,6 @@ in
       stateVersion = "23.11";
 
       file = {
-        scripts = {
-          source = ../scripts;
-          target = ".scripts";
-          recursive = true;
-        };
-
         pr_template = {
           target = "pr_template.md";
           text = ''
