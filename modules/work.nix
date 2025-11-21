@@ -32,6 +32,9 @@ in
         sessionVariables = {
           LC_ALL = "en_US.UTF-8";
         };
+        shellAliases = {
+          work = "kitten ssh gizmo.coder";
+        };
       };
 
       # Disable oh-my-zsh git prompt statuses because they're slow on the monorepo
