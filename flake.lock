@@ -46,11 +46,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1763540076,
-        "narHash": "sha256-xRoGZvULwPcmsQUluZ1oLBg6PQtjgvakYzk5se1Z61Q=",
+        "lastModified": 1764736001,
+        "narHash": "sha256-xdCzVE2wQKtgxbQ1utS/c9beVJvPzuHevjue926bCik=",
         "owner": "gizmo385",
         "repo": "gh-lazy",
-        "rev": "3142cf5b88511a91456bd87eca1e137d09946e48",
+        "rev": "56af9040a02175c3a48add962e08d4bdb23bc663",
         "type": "github"
       },
       "original": {

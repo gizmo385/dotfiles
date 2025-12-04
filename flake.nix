@@ -41,13 +41,12 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      nixvim,
-      home-manager,
-      flake-utils,
-      ...
+    { self
+    , nixpkgs
+    , nixvim
+    , home-manager
+    , flake-utils
+    , ...
     }@inputs:
     let
       inherit (self) outputs;
@@ -158,7 +157,7 @@
       {
         packages = {
           neovim = nvim;
-          
+
           setupDotfiles = pkgs.writeShellApplication {
             name = "setup-dotfiles";
             runtimeInputs = setupPackages;
