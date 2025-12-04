@@ -1,8 +1,7 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 
 let
@@ -57,6 +56,7 @@ in
               init_options.settings.args = [ "--select=I" ];
             };
           };
+          ty.enable = python.linters.ty;
           pyright = {
             enable = python.linters.pyright;
             extraOptions = {

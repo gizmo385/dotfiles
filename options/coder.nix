@@ -17,6 +17,10 @@
 
       # We manage our Python and JS interpreters through Clyde tooling
       python.interpreter = false;
+      python.linters = {
+        ty = true;
+        pyright = false;
+      };
       javascript = false;
 
       # We manage our nixfmt installation

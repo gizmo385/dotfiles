@@ -1,6 +1,5 @@
-{
-  lib,
-  ...
+{ lib
+, ...
 }:
 
 let
@@ -110,9 +109,15 @@ in
             description = "Enable ruff LSP";
           };
 
-          pyright = mkOption {
+          ty = mkOption {
             type = types.bool;
             default = true;
+            description = "Enable ty LSP";
+          };
+
+          pyright = mkOption {
+            type = types.bool;
+            default = false;
             description = "Enable pyright LSP";
           };
         };
