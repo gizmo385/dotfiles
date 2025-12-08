@@ -1,13 +1,13 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 let
-  gh-lazy = inputs.gh-lazy.packages.${pkgs.system}.default;
-  lazy-github-command = "TERM=xterm-256color ${gh-lazy}/bin/lazy-github";
+  python-bin = "${pkgs.python311}/bin/python";
+  uvx-bin = "${pkgs.uv}/bin/uvx";
+  lazy-github-command = "TERM=xterm-256color ${uvx-bin} --quiet --python ${python-bin} lazy-github";
 in
 {
-  config = {
-    home.packages = [ gh-lazy ];
 
+  config = {
     programs.zsh.shellAliases = {
       lh = lazy-github-command;
       lazy-github = lazy-github-command;

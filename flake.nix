@@ -31,22 +31,16 @@
       inputs.nuschtosSearch.follows = "nuschtosSearch";
       inputs.flake-parts.follows = "flake-parts";
     };
-
-    # Custom Github terminal UI that I've built
-    gh-lazy = {
-      url = "github:gizmo385/gh-lazy";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , nixvim
-    , home-manager
-    , flake-utils
-    , ...
+    {
+      self,
+      nixpkgs,
+      nixvim,
+      home-manager,
+      flake-utils,
+      ...
     }@inputs:
     let
       inherit (self) outputs;
