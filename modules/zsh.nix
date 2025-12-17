@@ -57,6 +57,10 @@
 
         gmb = "git merge-base --fork-point origin/main HEAD";
 
+        # Cat/bat aliases
+        pat = "cat -p";
+        catp = "cat -p";
+
         # Vim Aliases
         vi = "vim";
 
