@@ -5,11 +5,6 @@
     username = "discord";
     work = true;
 
-    ai = {
-      avantePlugin = true;
-      claudeCodePlugin = false;
-    };
-
     languages = {
       c = false;
       setupClint = true;

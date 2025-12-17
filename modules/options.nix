@@ -25,18 +25,6 @@ in
         default = true;
         description = "Enable AI tool installations";
       };
-
-      claudeCodePlugin = mkOption {
-        type = types.bool;
-        default = true;
-        description = "Enable claude-code neovim plugin";
-      };
-
-      avantePlugin = mkOption {
-        type = types.bool;
-        default = false;
-        description = "Enable avante neovim plugin";
-      };
     };
 
     graphical = mkOption {

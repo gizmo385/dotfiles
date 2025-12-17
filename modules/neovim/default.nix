@@ -129,7 +129,6 @@
       };
       lualine = {
         enable = true;
-        settings.extensions = [ "avante" ];
       };
     };
 
