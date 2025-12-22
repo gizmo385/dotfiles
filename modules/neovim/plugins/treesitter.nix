@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   plugins.treesitter = {
@@ -10,6 +10,4 @@
     };
     folding.enable = false;
   };
-
-  extraPlugins = with pkgs.vimPlugins; [ playground ];
 }
