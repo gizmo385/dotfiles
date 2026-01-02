@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
   inherit (lib) mkIf;
@@ -22,7 +27,9 @@ in
       plugins = {
         lsp.servers.clojure_lsp.enable = true;
         treesitter = {
-          settings.ensure_installed = [ "clojure" ];
+          grammarPackages = [
+            pkgs.vimPlugins.nvim-treesitter.builtGrammars.python
+          ];
         };
       };
 

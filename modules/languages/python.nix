@@ -1,7 +1,8 @@
-{ pkgs
-, lib
-, config
-, ...
+{
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 
 let
@@ -47,7 +48,9 @@ in
 
       plugins = {
         treesitter = {
-          settings.ensure_installed = [ "python" ];
+          grammarPackages = [
+            pkgs.vimPlugins.nvim-treesitter.builtGrammars.python
+          ];
         };
         lsp.servers = {
           ruff = {

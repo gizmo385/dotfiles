@@ -1,10 +1,14 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   plugins.treesitter = {
     enable = true;
+    grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+      markdown
+      markdown_inline
+      html
+    ];
     settings = {
-      ensure_installed = [ "markdown" "markdown_inline" "html" ];
       highlight.enable = true;
       indent.enable = true;
     };
