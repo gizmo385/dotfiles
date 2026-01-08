@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
+{ config
+, pkgs
+, inputs
+, ...
 }:
 
 let
@@ -24,7 +23,6 @@ in
     ./lazy_github.nix
     ./lazygit.nix
     ./options.nix
-    ./toad.nix
     ./work.nix
     ./zsh.nix
   ];

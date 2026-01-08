@@ -6,7 +6,6 @@
 
 let
   inherit (lib) mkIf;
-  inherit (lib.lists) optionals;
   inherit (config.gizmo) ai;
 in
 {
@@ -14,6 +13,7 @@ in
     home = {
       packages = [
         pkgs.claude-code
+        pkgs.claude-code-acp
       ];
 
       file = {
@@ -21,12 +21,20 @@ in
           source = ../configs/CLAUDE.md;
           target = "CLAUDE.md";
         };
+        toad_json = {
+          source = ../configs/toad.json;
+          target = ".config/toad/toad.json";
+          force = true;
+        };
       };
     };
 
     programs = {
-      # Add an environment variable for the Anthropic API key
       zsh = {
+        shellAliases = {
+          toad = "uvx --from batrachian-toad toad acp ${pkgs.claude-code-acp}/bin/claude-code-acp";
+        };
+        # Add an environment variable for the Anthropic API key
         initContent = ''
           if [ -e $HOME/.anthropic_api_key ]
           then

@@ -1,0 +1,15 @@
+{
+    "ui": {
+        "column-width": 200, 
+        "theme": "gruvbox", 
+        "agent-title": false, 
+        "column": false, 
+        "status-line": true, 
+        "info-bar": false, 
+        "footer": true, 
+        "compact-input": true
+    }, 
+    "statistics": {
+        "allow_collect": false
+    }
+}
