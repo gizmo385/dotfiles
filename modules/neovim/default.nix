@@ -4,10 +4,8 @@
   imports = [ ./plugins ];
   config = {
     enable = true;
-
-    colorschemes.bamboo = {
-      enable = true;
-    };
+    nixpkgs.config.allowUnfree = true;
+    colorschemes.bamboo.enable = true;
 
     globals.mapleader = ",";
     keymaps = [

@@ -28,6 +28,7 @@ in
   ];
 
   config = {
+    nixpkgs.config.allowUnfree = true;
     home = {
       inherit username homeDirectory;
       stateVersion = "23.11";

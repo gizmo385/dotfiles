@@ -5,6 +5,9 @@
     username = "discord";
     work = true;
 
+    # Setup github copilot
+    ai.copilot = true;
+
     languages = {
       c = false;
       setupClint = true;
