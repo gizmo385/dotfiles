@@ -33,7 +33,7 @@ in
           LC_ALL = "en_US.UTF-8";
         };
         shellAliases = {
-          work = "kitten ssh gizmo.coder";
+          work = "kitten ssh gizmo.coder -t 'cd ~/workspace/discord && zsh --login'";
         };
       };
 
