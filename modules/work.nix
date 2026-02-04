@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 
 let
@@ -35,7 +34,17 @@ in
         shellAliases = {
           work = "kitten ssh gizmo.coder -t 'cd ~/workspace/discord && zsh --login'";
         };
+
+        # We can defer to the work installation setup for fzf
+        initContent = lib.mkOrder 1500 ''
+          if [[ $options[zle] = on ]]; then
+          . ~/.nix-profile/share/fzf/completion.zsh
+          . ~/.nix-profile/share/fzf/key-bindings.zsh
+          fi
+        '';
       };
+      # We can defer to the work installation setup for fzf
+      fzf.enable = lib.mkForce false;
 
       # Disable oh-my-zsh git prompt statuses because they're slow on the monorepo
       git.settings = {
@@ -44,6 +53,7 @@ in
           hide-dirty = 1;
         };
       };
+
 
       nixvim = {
         # Enable some LSPs for I only care about at work
