@@ -29,6 +29,7 @@ jobs:
         uses: tailscale/github-action@v4
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+          ping: alpenglow.tail771ca6.ts.net
 
 
       - name: Setup Attic cache
