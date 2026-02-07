@@ -22,6 +22,23 @@ jobs:
           extra-conf: |
             experimental-features = nix-command flakes
             accept-flake-config = true
+            extra-substituters = https://attic.alpenglow.acbc.house/ci-cache
+            extra-trusted-public-keys = ci-cache:BXz8Qym/dtncWHsc5VWZY+Se/GCM3gfc1k/5IwRPV5o=
+
+      - name: Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+
+
+      - name: Setup Attic cache
+        run: |
+          # Login to attic cache and configure nix to use it
+          nix-shell -p attic-client --command "attic login ci ${{ secrets.ATTIC_ENDPOINT }} ${{ secrets.ATTIC_TOKEN }}"
+          nix-shell -p attic-client --command "attic use ${{ secrets.ATTIC_CACHE_NAME }}"
+          # Verify the cache is configured as a substituter
+          echo "Configured substituters:"
+          nix show-config | grep substituters
 
       - name: Build x86_64-linux configurations
         run: |
@@ -33,9 +50,15 @@ jobs:
           nix build .#homeConfigurations.alpenglow.activationPackage --print-build-logs
           nix build .#homeConfigurations.gizmo-coder.activationPackage --print-build-logs
 
+      - name: Push to Attic cache
+        run: |
+          # Push all built derivations to the cache
+          nix-shell -p attic-client --command "attic push ${{ secrets.ATTIC_CACHE_NAME }} result*"
+
       - name: Build summary
         run: |
           echo "✅ All Linux configurations built successfully"
+          echo "📦 Pushed to Attic cache: ${{ secrets.ATTIC_CACHE_NAME }}"
           du -sh result*
 
   build-macos-configs:
@@ -51,6 +74,22 @@ jobs:
           extra-conf: |
             experimental-features = nix-command flakes
             accept-flake-config = true
+            extra-substituters = https://attic.alpenglow.acbc.house/ci-cache
+            extra-trusted-public-keys = ci-cache:BXz8Qym/dtncWHsc5VWZY+Se/GCM3gfc1k/5IwRPV5o=
+
+      - name: Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+
+      - name: Setup Attic cache
+        run: |
+          # Login to attic cache and configure nix to use it
+          nix-shell -p attic-client --command "attic login ci ${{ secrets.ATTIC_ENDPOINT }} ${{ secrets.ATTIC_TOKEN }}"
+          nix-shell -p attic-client --command "attic use ${{ secrets.ATTIC_CACHE_NAME }}"
+          # Verify the cache is configured as a substituter
+          echo "Configured substituters:"
+          nix show-config | grep substituters
 
       - name: Build aarch64-darwin configurations
         run: |
@@ -58,9 +97,15 @@ jobs:
           nix build .#homeConfigurations.gizmo-macbook.activationPackage --print-build-logs
           nix build .#homeConfigurations.M4M-CChapline.activationPackage --print-build-logs
 
+      - name: Push to Attic cache
+        run: |
+          # Push all built derivations to the cache
+          nix-shell -p attic-client --command "attic push ${{ secrets.ATTIC_CACHE_NAME }} result*"
+
       - name: Build summary
         run: |
           echo "✅ All macOS configurations built successfully"
+          echo "📦 Pushed to Attic cache: ${{ secrets.ATTIC_CACHE_NAME }}"
           du -sh result*
 
   build-docker-image:
@@ -80,6 +125,11 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+
+      - name: Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 
       - name: Log in to the Container registry
         uses: docker/login-action@v3
