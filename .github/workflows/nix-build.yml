@@ -30,6 +30,7 @@ jobs:
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
           ping: alpenglow.tail771ca6.ts.net
+          statedir: /tmp/tailscale-state/
 
 
       - name: Setup Attic cache
