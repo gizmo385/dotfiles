@@ -18,6 +18,13 @@
           # Default to neovim
           alias vim="nvim"
         fi
+
+        # Source fzf integration from the profile to match the installed binary,
+        # rather than home-manager's pinned nix store path which may differ.
+        if [[ $options[zle] = on ]]; then
+          source "$HOME/.nix-profile/share/fzf/completion.zsh"
+          source "$HOME/.nix-profile/share/fzf/key-bindings.zsh"
+        fi
       '';
 
       oh-my-zsh = {
@@ -92,6 +99,6 @@
 
     # Enable some zsh integrations in other tools
     eza.enableZshIntegration = true;
-    fzf.enableZshIntegration = true;
+    fzf.enableZshIntegration = false;
   };
 }
