@@ -30,6 +30,7 @@ in
       zsh = {
         sessionVariables = {
           LC_ALL = "en_US.UTF-8";
+          PATH = "$HOME/workspace/discord/.local/bin:$PATH";
         };
         shellAliases = {
           work = "kitten ssh gizmo.coder -t 'cd ~/workspace/discord && zsh --login'";
