@@ -90,10 +90,6 @@
 
         # Alias for LazyDocker
         lzd = "lazydocker";
-
-        # Aliases for ast-grep
-        ag = "ast-grep";
-        sg = "ast-grep";
       };
     };
 

@@ -66,8 +66,6 @@ in
         pkgs.lazydocker
         # CLI recording tool
         pkgs.asciinema_3
-        # Syntax-aware grep tool
-        pkgs.ast-grep
       ];
     };
 
