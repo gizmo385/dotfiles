@@ -25,11 +25,6 @@ in
         default = true;
         description = "Enable AI tool installations";
       };
-      copilot = mkOption {
-        type = types.bool;
-        default = false;
-        description = "Enable copilot setup and relevant vim plugins";
-      };
     };
 
     graphical = mkOption {

@@ -30,31 +30,6 @@ in
     };
 
     programs = {
-      nixvim = {
-        plugins = mkIf ai.copilot {
-          lsp.servers.copilot.enable = true;
-          sidekick.enable = true;
-        };
-        keymaps = mkIf ai.copilot [
-          {
-            key = "<tab>";
-            action.__raw = ''
-              function()
-                if not require("sidekick").nes_jump_or_apply() then
-                  return "<Tab>"
-                end
-              end
-            '';
-            mode = [ "n" "i" ];
-            options = {
-              expr = true;
-              desc = "Goto/Apply Next Edit Suggestion";
-            };
-          }
-        ];
-      };
-
-
       zsh = {
         shellAliases = {
           toad = "uvx --from batrachian-toad toad acp ${pkgs.claude-code-acp}/bin/claude-code-acp";
