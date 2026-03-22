@@ -16,6 +16,14 @@ Configurations for my local and remote development environments.
 
 If you'd like to try out my dotfiles without installing them, there are a few different options:
 
+### Using Nix
+
+If you have nix available, you can try my neovim configs by running:
+
+```bash
+nix run github:gizmo385/dotfiles#neovim
+```
+
 ### Using Github Codespaces:
 
 There's a `devcontainer.json` defined in the `.devcontainers` folder in this repo! You're welcome to pull that into your own repos if you want to use my dotfiles in your own repo but you can also just click the button below to spin up a codespace and try them for yourself!
