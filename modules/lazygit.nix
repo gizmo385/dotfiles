@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs = {
@@ -7,6 +7,7 @@
       settings = {
         fetchAll = false;
         git = {
+          path = "${pkgs.git}/bin/git";
           pagers = [{
             colorArg = "always";
             pager = "delta --dark --paging=never";

@@ -9,6 +9,13 @@
       };
 
       initContent = ''
+        # Source nix environment if available
+        if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
+          source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+        elif [[ -f $HOME/.nix-profile/etc/profile.d/nix.sh ]]; then
+          source $HOME/.nix-profile/etc/profile.d/nix.sh
+        fi
+
         # Check if FLOATERM is set
         if [[ -n "$FLOATERM" ]]; then
           export EDITOR="floaterm"
@@ -35,7 +42,7 @@
       plugins = [ ];
 
       sessionVariables = {
-        PATH = "$PATH:$HOME/.scripts:$HOME/.nix-profile/bin";
+        PATH = "$HOME/.nix-profile/bin:$HOME/.scripts:$PATH";
       };
 
       shellAliases = {
