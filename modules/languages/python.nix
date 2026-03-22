@@ -60,12 +60,7 @@ in
             };
           };
           ty.enable = python.linters.ty;
-          pyright = {
-            enable = python.linters.pyright;
-            extraOptions = {
-              disableOrganizeImports = !python.linters.ruff;
-            };
-          };
+          pyrefly.enable = python.linters.pyrefly;
         };
       };
     };

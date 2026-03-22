@@ -1,5 +1,6 @@
-{ lib
-, ...
+{
+  lib,
+  ...
 }:
 
 let
@@ -93,14 +94,14 @@ in
 
           ty = mkOption {
             type = types.bool;
-            default = true;
+            default = false;
             description = "Enable ty LSP";
           };
 
-          pyright = mkOption {
+          pyrefly = mkOption {
             type = types.bool;
-            default = false;
-            description = "Enable pyright LSP";
+            default = true;
+            description = "Enable pyrefly LSP";
           };
         };
       };

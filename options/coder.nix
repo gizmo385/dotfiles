@@ -13,8 +13,8 @@
       # We manage our Python and JS interpreters through Clyde tooling
       python.interpreter = false;
       python.linters = {
-        ty = true;
-        pyright = false;
+        ty = false;
+        pyrefly = true;
       };
       javascript = false;
 
