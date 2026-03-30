@@ -13,7 +13,7 @@ in
     home = {
       packages = [
         pkgs.claude-code
-        pkgs.claude-code-acp
+        pkgs.claude-agent-acp
       ];
 
       file = {
@@ -32,7 +32,7 @@ in
     programs = {
       zsh = {
         shellAliases = {
-          toad = "uvx --from batrachian-toad toad acp ${pkgs.claude-code-acp}/bin/claude-code-acp";
+          toad = "uvx --from batrachian-toad toad acp ${pkgs.claude-agent-acp}/bin/claude-agent-acp";
         };
         # Add an environment variable for the Anthropic API key
         initContent = ''
