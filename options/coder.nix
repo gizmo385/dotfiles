@@ -4,6 +4,10 @@
   config.gizmo = {
     username = "discord";
     work = true;
+    ai = {
+      configs = true;
+      tools = false;
+    };
 
     languages = {
       c = false;

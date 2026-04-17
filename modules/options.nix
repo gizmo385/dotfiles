@@ -1,6 +1,5 @@
-{
-  lib,
-  ...
+{ lib
+, ...
 }:
 
 let
@@ -21,10 +20,15 @@ in
     };
 
     ai = {
-      enable = mkOption {
+      tools = mkOption {
         type = types.bool;
         default = true;
         description = "Enable AI tool installations";
+      };
+      configs = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Setup Claude and AI tooling configs";
       };
     };
 

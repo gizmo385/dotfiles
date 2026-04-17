@@ -9,14 +9,14 @@ let
   inherit (config.gizmo) ai;
 in
 {
-  config = mkIf ai.enable {
+  config = {
     home = {
-      packages = [
+      packages = mkIf ai.tools [
         pkgs.claude-code
         pkgs.claude-agent-acp
       ];
 
-      file = {
+      file = mkIf ai.configs {
         claude_md = {
           source = ../configs/CLAUDE.md;
           target = "CLAUDE.md";
@@ -29,7 +29,7 @@ in
       };
     };
 
-    programs = {
+    programs = mkIf ai.configs {
       zsh = {
         # Add an environment variable for the Anthropic API key
         initContent = ''
