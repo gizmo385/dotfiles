@@ -31,9 +31,6 @@ in
 
     programs = {
       zsh = {
-        shellAliases = {
-          toad = "uvx --from batrachian-toad toad acp ${pkgs.claude-agent-acp}/bin/claude-agent-acp";
-        };
         # Add an environment variable for the Anthropic API key
         initContent = ''
           if [ -e $HOME/.anthropic_api_key ]
