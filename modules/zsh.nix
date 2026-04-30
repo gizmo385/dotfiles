@@ -1,6 +1,9 @@
 { ... }:
 
 {
+  home.sessionPath = [
+    "$HOME/.nix-profile/bin:$HOME/.scripts"
+  ];
   programs = {
     zsh = {
       enable = true;
@@ -40,10 +43,6 @@
         theme = "crcandy";
       };
       plugins = [ ];
-
-      sessionVariables = {
-        PATH = "$HOME/.nix-profile/bin:$HOME/.scripts:$PATH";
-      };
 
       shellAliases = {
         # Fix my typos
