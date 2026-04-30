@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 
 let
@@ -16,9 +17,13 @@ in
         pkgs.kubectx
         pkgs.docker-compose
       ];
+      sessionPath = [
+        "$HOME/workspace/discord/.local/bin"
+      ];
       sessionVariables = {
         # Used by Clyde to install the updated nix version
         USE_NEW_NIX = "1";
+        LC_ALL = "en_US.UTF-8";
       };
     };
 
@@ -28,14 +33,6 @@ in
       };
 
       zsh = {
-        sessionVariables = {
-          LC_ALL = "en_US.UTF-8";
-          PATH = "$HOME/workspace/discord/.local/bin:$PATH";
-        };
-        shellAliases = {
-          work = "kitten ssh gizmo.coder -t 'cd ~/workspace/discord && zsh --login'";
-        };
-
         # We can defer to the work installation setup for fzf
         initContent = lib.mkOrder 1500 ''
           if [[ $options[zle] = on ]]; then
@@ -54,7 +51,6 @@ in
           hide-dirty = 1;
         };
       };
-
 
       nixvim = {
         # Enable some LSPs for I only care about at work
