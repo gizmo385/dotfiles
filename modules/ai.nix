@@ -1,17 +1,20 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf optionals;
   inherit (config.gizmo) ai;
 in
 {
   config = {
     home = {
-      packages = mkIf ai.tools [
+      packages = [
+        pkgs.pi-coding-agent
+      ] ++ optionals ai.tools [
         pkgs.claude-code
         pkgs.claude-agent-acp
       ];
@@ -42,4 +45,3 @@ in
     };
   };
 }
-
