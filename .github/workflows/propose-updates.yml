@@ -20,6 +20,12 @@ jobs:
       - name: Setup nix
         uses: cachix/install-nix-action@v27
 
+      - name: Build pre-update closure
+        id: pre-closure
+        run: |
+          OLD=$(nix build .#homeConfigurations.docker.activationPackage --no-link --print-out-paths)
+          echo "OLD=$OLD" >> "$GITHUB_OUTPUT"
+
       - name: Update flake versions
         id: update-versions
         run: |
@@ -28,18 +34,45 @@ jobs:
             nix flake update 2>&1
             echo EOF
           } >> "$GITHUB_OUTPUT"
+          echo "RUN_DATE=$(date -u +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
+      - name: Diff package closures
+        id: closure-diff
+        run: |
+          NEW=$(nix build .#homeConfigurations.docker.activationPackage --no-link --print-out-paths)
+          {
+            echo 'CLOSURE_DIFF<<EOF'
+            nix store diff-closures "${{ steps.pre-closure.outputs.OLD }}" "$NEW" 2>&1 || true
+            echo EOF
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Print update summary (dry-run on non-main)
+        if: ${{ success() && github.ref != 'refs/heads/main' }}
+        run: |
+          echo "Skipping PR creation because this run is not on main (ref: ${{ github.ref }})."
+          echo ""
+          echo "=== Flake input updates ==="
+          echo "${{ steps.update-versions.outputs.FLAKE_OUTPUT }}"
+          echo ""
+          echo "=== Package version diff ==="
+          echo "${{ steps.closure-diff.outputs.CLOSURE_DIFF }}"
 
       - name: Create Pull Request
-        if: ${{ success() }}
+        if: ${{ success() && github.ref == 'refs/heads/main' }}
         id: create-pull-request
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.REPO_SCOPED_TOKEN }}
-          title: Automatic dotfile version updates
+          title: "Automatic dotfile version updates (${{ steps.update-versions.outputs.RUN_DATE }})"
           body: |
             Updates the pinned input versions:
             ```
             ${{ steps.update-versions.outputs.FLAKE_OUTPUT }}
+            ```
+
+            Package version diff (against `homeConfigurations.docker`):
+            ```
+            ${{ steps.closure-diff.outputs.CLOSURE_DIFF }}
             ```
 
             This PR should automatically merge when builds have been validated.
@@ -48,7 +81,7 @@ jobs:
           base: main
 
       - name: Enable auto-merge on PR
-        if: ${{ success() && steps.create-pull-request.outputs.pull-request-number }}
+        if: ${{ success() && github.ref == 'refs/heads/main' && steps.create-pull-request.outputs.pull-request-number }}
         env:
           GH_TOKEN: ${{ secrets.REPO_SCOPED_TOKEN }}
         run: gh pr merge --auto --squash ${{ steps.create-pull-request.outputs.pull-request-number }}
