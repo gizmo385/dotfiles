@@ -17,8 +17,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup nix
-        uses: cachix/install-nix-action@v27
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: |
+            experimental-features = nix-command flakes
+            accept-flake-config = true
+            extra-substituters = https://attic.alpenglow.acbc.house/ci-cache
+            extra-trusted-public-keys = ci-cache:BXz8Qym/dtncWHsc5VWZY+Se/GCM3gfc1k/5IwRPV5o=
+
+      - name: Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+          ping: alpenglow.tail771ca6.ts.net
+          statedir: /tmp/tailscale-state/
+
+      - name: Setup Attic cache
+        run: |
+          # Login to attic cache and configure nix to use it
+          nix-shell -p attic-client --command "attic login ci ${{ secrets.ATTIC_ENDPOINT }} ${{ secrets.ATTIC_TOKEN }}"
+          nix-shell -p attic-client --command "attic use ${{ secrets.ATTIC_CACHE_NAME }}"
+          # Verify the cache is configured as a substituter
+          echo "Configured substituters:"
+          nix show-config | grep substituters
 
       - name: Build pre-update closure
         id: pre-closure
@@ -40,11 +62,16 @@ jobs:
         id: closure-diff
         run: |
           NEW=$(nix build .#homeConfigurations.docker.activationPackage --no-link --print-out-paths)
+          echo "NEW=$NEW" >> "$GITHUB_OUTPUT"
           {
             echo 'CLOSURE_DIFF<<EOF'
             nix store diff-closures "${{ steps.pre-closure.outputs.OLD }}" "$NEW" 2>&1 || true
             echo EOF
           } >> "$GITHUB_OUTPUT"
+
+      - name: Push to Attic cache
+        run: |
+          nix-shell -p attic-client --command "attic push ${{ secrets.ATTIC_CACHE_NAME }} ${{ steps.closure-diff.outputs.NEW }}"
 
       - name: Print update summary (dry-run on non-main)
         if: ${{ success() && github.ref != 'refs/heads/main' }}
@@ -93,7 +120,28 @@ jobs:
           github-token: ${{ secrets.REPO_SCOPED_TOKEN }}
           discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
           title: 'Updated dotfile version pins'
-          description: 'Automerge on [the PR with the changes](${{ steps.create-pull-request.outputs.pull-request-url }}) has been enabled.'
+          description: |
+            Automerge on [the PR with the changes](${{ steps.create-pull-request.outputs.pull-request-url }}) has been enabled.
+
+            **Package version diff:**
+            ```
+            ${{ steps.closure-diff.outputs.CLOSURE_DIFF }}
+            ```
+
+      - name: Notify about updated versions (test run)
+        if: ${{ success() && github.ref != 'refs/heads/main' }}
+        uses: nobrayner/discord-webhook@v1
+        with:
+          github-token: ${{ secrets.REPO_SCOPED_TOKEN }}
+          discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: '[TEST] Updated dotfile version pins'
+          description: |
+            Test run on branch `${{ github.ref_name }}` — no PR was created. [View workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+
+            **Package version diff:**
+            ```
+            ${{ steps.closure-diff.outputs.CLOSURE_DIFF }}
+            ```
 
       - name: Notify about failed versions update
         if: ${{ failure() && github.ref == 'refs/heads/main' }}
