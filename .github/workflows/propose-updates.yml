@@ -65,7 +65,8 @@ jobs:
           echo "NEW=$NEW" >> "$GITHUB_OUTPUT"
           {
             echo 'CLOSURE_DIFF<<EOF'
-            nix store diff-closures "${{ steps.pre-closure.outputs.OLD }}" "$NEW" 2>&1 || true
+            nix store diff-closures "${{ steps.pre-closure.outputs.OLD }}" "$NEW" 2>&1 \
+              | sed -E 's/\x1b\[[0-9;]*[a-zA-Z]//g' || true
             echo EOF
           } >> "$GITHUB_OUTPUT"
 
