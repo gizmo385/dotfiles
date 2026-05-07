@@ -43,14 +43,27 @@
     }@inputs:
     let
       inherit (self) outputs;
+
+      gizmoOverlay = final: prev: {
+        claude-squad = final.callPackage ./pkgs/claude-squad.nix { };
+      };
+
+      mkPkgs =
+        system:
+        import nixpkgs {
+          inherit system;
+          overlays = [ gizmoOverlay ];
+          config.allowUnfree = true;
+        };
+
       defaultConfiguration = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        pkgs = mkPkgs "x86_64-linux";
         extraSpecialArgs = { inherit inputs outputs; };
         modules = [ ./modules/home.nix ];
       };
 
       macbookConfiguration = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+        pkgs = mkPkgs "aarch64-darwin";
         extraSpecialArgs = { inherit inputs outputs; };
         modules = [
           ./options/gizmo-macbook.nix
@@ -59,7 +72,7 @@
       };
 
       coderConfiguration = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        pkgs = mkPkgs "x86_64-linux";
         extraSpecialArgs = { inherit inputs outputs; };
         modules = [
           ./options/coder.nix
@@ -68,7 +81,7 @@
       };
 
       workMacbook = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+        pkgs = mkPkgs "aarch64-darwin";
         extraSpecialArgs = { inherit inputs outputs; };
         modules = [
           ./options/work-macbook.nix
@@ -86,7 +99,7 @@
 
         # WSL
         "gizmo-desktop" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          pkgs = mkPkgs "x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             ./options/wsl.nix
@@ -96,7 +109,7 @@
 
         # Linux desktop
         "gizmonix" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          pkgs = mkPkgs "x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             ./options/gizmonix.nix
@@ -106,7 +119,7 @@
 
         # Home Server
         "alpenglow" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          pkgs = mkPkgs "x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             ./options/alpenglow.nix
