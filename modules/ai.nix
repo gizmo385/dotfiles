@@ -36,6 +36,8 @@ in
       ] ++ optionals ai.tools [
         pkgs.claude-code
         pkgs.claude-agent-acp
+      ] ++ optionals ai.claudeSquad [
+        pkgs.claude-squad
       ];
 
       file = mkIf ai.configs {
