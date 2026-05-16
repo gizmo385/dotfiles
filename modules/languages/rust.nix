@@ -16,8 +16,10 @@ in
         # Install the cargo toolchain
         (optionals rust.toolchain [
           pkgs.cargo
-          pkgs.rustc
+          pkgs.clippy
           pkgs.rust-analyzer
+          pkgs.rustc
+          pkgs.rustfmt
         ])
       ];
     };
