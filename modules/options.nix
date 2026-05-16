@@ -30,11 +30,6 @@ in
         default = true;
         description = "Setup Claude and AI tooling configs";
       };
-      claudeSquad = mkOption {
-        type = types.bool;
-        default = true;
-        description = "Install claude-squad, a TUI for managing parallel Claude Code sessions";
-      };
     };
 
     graphical = mkOption {
