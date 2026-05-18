@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, inputs
-, ...
+{
+  config,
+  pkgs,
+  inputs,
+  ...
 }:
 
 let
@@ -64,7 +65,7 @@ in
         # TUI for interacting with Docker
         pkgs.lazydocker
         # CLI recording tool
-        pkgs.asciinema_3
+        pkgs.asciinema
       ];
     };
 
