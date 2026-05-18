@@ -1,5 +1,6 @@
-{ lib
-, ...
+{
+  lib,
+  ...
 }:
 
 let
@@ -29,6 +30,11 @@ in
         type = types.bool;
         default = true;
         description = "Setup Claude and AI tooling configs";
+      };
+      mux = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Setup my custom agent-mux tool";
       };
     };
 

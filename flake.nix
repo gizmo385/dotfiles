@@ -30,6 +30,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
+
+    # agent-mux — terminal multiplexer for Claude Code sessions. Pinned via
+    # this flake's lockfile, so the upstream `latest` release tag being mutable
+    # doesn't affect us; `nix flake update agent-mux` to pull a new commit.
+    agent-mux = {
+      url = "github:gizmo385/mux";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
   outputs =

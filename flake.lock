@@ -1,5 +1,28 @@
 {
   "nodes": {
+    "agent-mux": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779077970,
+        "narHash": "sha256-XciRS6UTMm7SIet4I35olJdwnwSAElKXvkDpaSqGlHQ=",
+        "owner": "gizmo385",
+        "repo": "mux",
+        "rev": "29eeac22912684edc9d6f877a86812de665bd1e5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gizmo385",
+        "repo": "mux",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -164,6 +187,7 @@
     },
     "root": {
       "inputs": {
+        "agent-mux": "agent-mux",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",

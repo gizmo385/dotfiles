@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -8,6 +9,7 @@
 let
   inherit (lib) mkIf optionals;
   inherit (config.gizmo) ai;
+  agent-mux = inputs.agent-mux.packages.${pkgs.system}.default;
 
   jsonMerge = import ./lib/json-merge.nix { inherit lib pkgs; };
 
@@ -33,9 +35,13 @@ in
     home = {
       packages = [
         pkgs.pi-coding-agent
-      ] ++ optionals ai.tools [
+      ]
+      ++ optionals ai.tools [
         pkgs.claude-code
         pkgs.claude-agent-acp
+      ]
+      ++ optionals ai.mux [
+        agent-mux
       ];
 
       file = mkIf ai.configs {
@@ -72,6 +78,10 @@ in
               export ANTHROPIC_API_KEY="$(cat $HOME/.anthropic_api_key)"
           fi
         '';
+
+        shellAliases = mkIf ai.mux {
+          am = "agent-mux";
+        };
       };
     };
   };
