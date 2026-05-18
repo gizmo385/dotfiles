@@ -49,11 +49,6 @@ in
           source = ../configs/CLAUDE.md;
           target = "CLAUDE.md";
         };
-        toad_json = {
-          source = ../configs/toad.json;
-          target = ".config/toad/toad.json";
-          force = true;
-        };
         claude_statusline = {
           source = ../configs/claude-statusline.sh;
           target = ".claude/statusline-command.sh";
