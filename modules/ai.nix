@@ -9,7 +9,7 @@
 let
   inherit (lib) mkIf optionals;
   inherit (config.gizmo) ai;
-  agent-mux = inputs.agent-mux.packages.${pkgs.system}.default;
+  agent-mux = inputs.agent-mux.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
   jsonMerge = import ./lib/json-merge.nix { inherit lib pkgs; };
 
