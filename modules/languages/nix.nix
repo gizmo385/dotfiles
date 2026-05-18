@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   inherit (lib.lists) optionals;
@@ -9,7 +14,7 @@ in
     home = {
       packages = builtins.concatLists [
         # Install the interpreter if desired
-        (optionals nix.formatter [ pkgs.nixfmt-rfc-style ])
+        (optionals nix.formatter [ pkgs.nixfmt ])
       ];
     };
 
