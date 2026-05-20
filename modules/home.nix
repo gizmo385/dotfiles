@@ -66,6 +66,9 @@ in
         pkgs.lazydocker
         # CLI recording tool
         pkgs.asciinema
+        # Misc packages
+        pkgs.tmux
+        pkgs.libnotify
       ];
     };
 
