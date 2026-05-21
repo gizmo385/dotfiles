@@ -67,7 +67,6 @@ in
         # CLI recording tool
         pkgs.asciinema
         # Misc packages
-        pkgs.tmux
         pkgs.libnotify
       ];
     };
@@ -91,6 +90,13 @@ in
       delta = {
         enable = true;
         enableGitIntegration = true;
+      };
+
+      tmux = {
+        enable = true;
+        mouse = true;
+        focusEvents = true;
+        terminal = "tmux-256color";
       };
 
       # Better top
