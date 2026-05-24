@@ -5,6 +5,11 @@
 
 let
   inherit (lib) mkOption types;
+
+  soundFiles = lib.attrNames (
+    lib.filterAttrs (_: t: t == "regular") (builtins.readDir ../assets/sounds)
+  );
+  soundNames = map (f: lib.removeSuffix ".wav" (lib.removeSuffix ".mp3" f)) soundFiles;
 in
 {
   options.gizmo = {
@@ -35,6 +40,11 @@ in
         type = types.bool;
         default = true;
         description = "Setup my custom agent-mux tool";
+      };
+      muxChime = mkOption {
+        type = types.enum soundNames;
+        default = "airplane-chime";
+        description = "Which notification sound (from assets/sounds/) agent-mux should play";
       };
     };
 
