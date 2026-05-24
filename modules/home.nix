@@ -51,6 +51,11 @@ in
             .git
           '';
         };
+
+        tmux_conf = {
+          source = ../configs/tmux.conf;
+          target = ".tmux.conf";
+        };
       };
 
       sessionVariables = {
@@ -66,6 +71,8 @@ in
         pkgs.lazydocker
         # CLI recording tool
         pkgs.asciinema
+        # Terminal multiplexer
+        pkgs.tmux
         # Misc packages
         pkgs.libnotify
       ];
@@ -90,13 +97,6 @@ in
       delta = {
         enable = true;
         enableGitIntegration = true;
-      };
-
-      tmux = {
-        enable = true;
-        mouse = true;
-        focusEvents = true;
-        terminal = "tmux-256color";
       };
 
       # Better top
