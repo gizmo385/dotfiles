@@ -104,6 +104,13 @@ in
             targetPath = "${config.home.homeDirectory}/.config/agent-mux/config.toml";
             patch = agentMuxSettingsPatch;
           };
+          # The agent-mux binary path rotates every rebuild (new /nix/store
+          # hash), so re-run `install-hooks` on each activation to refresh
+          # the Notification hook entry in ~/.claude/settings.json. The
+          # subcommand is idempotent and updates a stale entry in place.
+          installAgentMuxClaudeHook = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+            ${agent-mux}/bin/agent-mux install-hooks
+          '';
         })
       ];
     };
