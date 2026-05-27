@@ -10,11 +10,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779602908,
-        "narHash": "sha256-sDkgbZfSiZMhf34g03gzlDtaUVPZqV9PAZUou4EJGjo=",
+        "lastModified": 1779868335,
+        "narHash": "sha256-fngvnldiUiKh3h6zut7P2PjKSpdG3+8cFg+wJrrMGAI=",
         "owner": "gizmo385",
         "repo": "mux",
-        "rev": "7ada3b80a0e868e92baac8cedd560a5045d9ce90",
+        "rev": "9364a8d28d3d72d5eadbefa328065c3d5c5cd0b5",
         "type": "github"
       },
       "original": {
