@@ -1,9 +1,8 @@
-{
-  config,
-  inputs,
-  lib,
-  pkgs,
-  ...
+{ config
+, inputs
+, lib
+, pkgs
+, ...
 }:
 
 let
@@ -37,10 +36,12 @@ let
   );
   # basename-without-extension -> filename, e.g. "airplane-chime" -> "airplane-chime.mp3"
   soundsByName = lib.listToAttrs (
-    map (f: {
-      name = lib.removeSuffix ".wav" (lib.removeSuffix ".mp3" f);
-      value = f;
-    }) soundFiles
+    map
+      (f: {
+        name = lib.removeSuffix ".wav" (lib.removeSuffix ".mp3" f);
+        value = f;
+      })
+      soundFiles
   );
   selectedChimeFile = soundsByName.${ai.muxChime};
   agentMuxChimePath = "${config.xdg.dataHome}/sounds/${selectedChimeFile}";
@@ -54,26 +55,26 @@ let
   };
 
   soundHomeFiles = lib.listToAttrs (
-    map (f: {
-      name = "agent_mux_sound_${lib.replaceStrings [ "-" "." ] [ "_" "_" ] f}";
-      value = {
-        source = soundsSrc + "/${f}";
-        target = ".local/share/sounds/${f}";
-      };
-    }) soundFiles
+    map
+      (f: {
+        name = "agent_mux_sound_${lib.replaceStrings [ "-" "." ] [ "_" "_" ] f}";
+        value = {
+          source = soundsSrc + "/${f}";
+          target = ".local/share/sounds/${f}";
+        };
+      })
+      soundFiles
   );
 in
 {
   config = {
     home = {
-      packages = [
-        pkgs.pi-coding-agent
-      ]
-      ++ optionals ai.tools [
+      packages = [ ]
+        ++ optionals ai.tools [
         pkgs.claude-code
         pkgs.claude-agent-acp
       ]
-      ++ optionals ai.mux [
+        ++ optionals ai.mux [
         agent-mux
       ];
 
