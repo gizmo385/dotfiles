@@ -42,13 +42,12 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      nixvim,
-      home-manager,
-      flake-utils,
-      ...
+    { self
+    , nixpkgs
+    , nixvim
+    , home-manager
+    , flake-utils
+    , ...
     }@inputs:
     let
       inherit (self) outputs;
@@ -141,7 +140,7 @@
         switchCommand = "${pkgs.home-manager}/bin/home-manager switch --flake .#";
         setupPackages = [
           home-manager.packages.${system}.default
-          pkgs.nixVersions.nix_2_28
+          pkgs.nixVersions.nix_2_31
           pkgs.git
         ];
         # This is, admittedly pretty gross. The current way that I'm configuring nixvim for home-manager
