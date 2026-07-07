@@ -5,6 +5,11 @@
     username = "chrischapline";
     work = true;
 
+    ai = {
+      configs = true;
+      tools = false;
+    };
+
     languages = {
       c = false;
       setupClint = true;
