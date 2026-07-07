@@ -16,6 +16,10 @@ in
 {
   imports = [
     nixvim.homeModules.nixvim
+    # We pin all flake inputs to a single nixpkgs via `follows`. Nixvim now warns
+    # when its nixpkgs is overridden that way and asks us to set the source
+    # explicitly instead, which acknowledges the override and silences the warning.
+    { programs.nixvim.nixpkgs.source = inputs.nixpkgs; }
     ./ai.nix
     ./fonts.nix
     ./git.nix
