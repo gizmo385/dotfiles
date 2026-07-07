@@ -60,7 +60,6 @@ in
             dockerls.enable = true;
             docker_compose_language_service.enable = true;
             starpls.enable = true;
-            elixirls.enable = true;
           };
         };
 
