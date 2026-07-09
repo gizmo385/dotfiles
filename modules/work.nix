@@ -36,8 +36,8 @@ in
         # We can defer to the work installation setup for fzf
         initContent = lib.mkOrder 1500 ''
           if [[ $options[zle] = on ]]; then
-          . ~/.nix-profile/share/fzf/completion.zsh
-          . ~/.nix-profile/share/fzf/key-bindings.zsh
+          [[ -f ~/.nix-profile/share/fzf/completion.zsh ]] && . ~/.nix-profile/share/fzf/completion.zsh
+          [[ -f ~/.nix-profile/share/fzf/key-bindings.zsh ]] && . ~/.nix-profile/share/fzf/key-bindings.zsh
           fi
         '';
       };
