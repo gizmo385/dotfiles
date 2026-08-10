@@ -8,9 +8,9 @@
         fetchAll = false;
         git = {
           path = "${pkgs.git}/bin/git";
-          pagers = [{
+          diffRenderers = [{
             colorArg = "always";
-            pager = "delta --dark --paging=never";
+            command = "delta --dark --paging=never";
           }];
         };
         customCommands = [
