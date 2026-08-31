@@ -3,8 +3,9 @@ name: Attempts to update dependencies and validate that the upgrade is safe
 on:
   workflow_dispatch:
   schedule:
-    # Attempt to update things every Monday at 16:00 UTC (~ mid-morning mountain time)
-    - cron: "0 12 * * 1"
+    # Attempt to update things every Monday at 6am Denver time
+    - cron: "0 06 * * 1"
+      timezone: "America/Denver"
 
 jobs:
   propose-dotfile-version-updates:
