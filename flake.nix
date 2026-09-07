@@ -127,7 +127,7 @@
         "gizmo" = coderConfiguration;
 
         # Personal macbook
-        "gizmo-macbook" = macbookConfiguration;
+        "gizmo-air" = macbookConfiguration;
 
         # Work laptop
         "M4M-CChapline" = workMacbook;

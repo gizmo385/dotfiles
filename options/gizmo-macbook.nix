@@ -2,7 +2,7 @@
 
 {
   config.gizmo = {
-    username = "gizmo385";
+    username = "chris";
 
     languages = {
       rust = {
