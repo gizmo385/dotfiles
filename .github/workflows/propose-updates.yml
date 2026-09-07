@@ -3,8 +3,30 @@ name: Attempts to update dependencies and validate that the upgrade is safe
 on:
   workflow_dispatch:
   schedule:
-    # Attempt to update things every Monday at 6am Denver time
-    - cron: "0 06 * * 1"
+    # Attempt to update things every Monday at ~1am Denver time, so the merged result is ready for
+    # machines that install dotfiles on Monday morning.
+    #
+    # GitHub delays (and sometimes drops) scheduled runs under load, and the delay is upstream of
+    # the runner queue -- so it can't be tuned away, only planned around. This repo has historically
+    # seen 1-7h of lag on a 12:00 UTC schedule. Two deliberate choices to buy headroom:
+    #   - Early enough that even a multi-hour delay still lands well before the workday.
+    #   - Off the top of the hour, since "high load times include the start of every hour", and
+    #     clear of the 22:00-02:00 UTC window where the default-midnight crons pile up.
+    #
+    # Background, since this looks like a misconfiguration but isn't:
+    #   - Officially documented as expected behavior, including that runs may be dropped entirely:
+    #     https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule
+    #   - Drift worsening through 2026 (~1h40m avg in 2025 -> 4h30m+), open with no maintainer reply:
+    #     https://github.com/actions/runner/issues/4468
+    #   - Long-running community thread, delays escalating to 4-10h+:
+    #     https://github.com/orgs/community/discussions/156282
+    #   - Report that moving off the top of the hour changed nothing, i.e. the off-minute tweak
+    #     above is cheap insurance rather than a real fix:
+    #     https://github.com/orgs/community/discussions/201738
+    #
+    # If this ever needs to be reliable rather than eventual, the workaround is an external
+    # scheduler calling workflow_dispatch via the API, keeping this schedule as a fallback.
+    - cron: "37 1 * * 1"
       timezone: "America/Denver"
 
 jobs:
