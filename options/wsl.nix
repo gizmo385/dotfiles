@@ -4,6 +4,7 @@
   config = {
     gizmo = {
       username = "gizmo";
+      ai.telemetry = true;
 
       languages = {
         rust = {

@@ -3,6 +3,7 @@
 {
   config.gizmo = {
     username = "chris";
+    ai.telemetry = true;
 
     languages = {
       rust = {

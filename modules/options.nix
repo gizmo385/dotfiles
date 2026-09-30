@@ -41,6 +41,11 @@ in
         default = true;
         description = "Setup my custom agent-mux tool";
       };
+      telemetry = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Send Claude Code telemetry to my self-hosted SigNoz (needs the tailnet)";
+      };
       muxChime = mkOption {
         type = types.enum soundNames;
         default = "airplane-chime";
