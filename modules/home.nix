@@ -79,7 +79,8 @@ in
         pkgs.tmux
         # Misc packages
         pkgs.libnotify
-      ];
+      ]
+      ++ pkgs.lib.optionals isDarwin [ pkgs.terminal-notifier ];
     };
 
     programs = {
