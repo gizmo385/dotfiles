@@ -140,6 +140,7 @@
       # Language syntax highlighting
       vim-jsonnet
       vim-javascript
+      vim-rhai
       vim-terraform
     ];
 
