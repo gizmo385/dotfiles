@@ -64,7 +64,7 @@ jobs:
           du -sh result*
 
   build-macos-configs:
-    runs-on: macos-14  # Apple Silicon runner
+    runs-on: macos-26  # Apple Silicon runner
 
     steps:
       - name: Checkout repository
